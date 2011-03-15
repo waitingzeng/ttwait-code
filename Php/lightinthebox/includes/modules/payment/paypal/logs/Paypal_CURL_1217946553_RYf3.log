@@ -1,0 +1,51 @@
+2008-08-05 02:29:13
+-------------------
+(live transaction) --> https://api-3t.paypal.com/nvp
+Request Headers: 
+Array
+(
+    [0] => Content-Type: text/namevalue
+    [1] => X-VPS-Timeout: 45
+    [2] => X-VPS-VIT-Client-Type: PHP/cURL
+    [3] => X-VPS-VIT-Integration-Product: PHP::Zen Cart - WPP-NVP
+    [4] => X-VPS-VIT-Integration-Version: 1.3.8a
+)
+
+
+Request Parameters: {SetExpressCheckout} 
+Array
+(
+    [LOCALECODE] => US
+    [PAYMENTACTION] => Sale
+    [EMAIL] => showq@163.com
+    [PHONENUM] => 132454654
+    [AMT] => 1,437.48
+    [RETURNURL] => https://localhost/lightinthebox/ipn_main_handler.php?type=ec
+    [CANCELURL] => https://localhost/lightinthebox/index.php?main_page=checkout_shipping&amp;ec_cancel=1
+    [PAGESTYLE] => Primary
+    [METHOD] => SetExpressCheckout
+    [CURRENCYCODE] => CAD
+    [VERSION] => 3.2
+)
+
+
+Response: 
+Array
+(
+    [TIMESTAMP] => 2008-08-05T14:29:03Z
+    [CORRELATIONID] => 6f5598f18eced
+    [ACK] => Failure
+    [VERSION] => 3.2
+    [BUILD] => 657865
+    [L_ERRORCODE0] => 10002
+    [L_SHORTMESSAGE0] => Authentication/Authorization Failed
+    [L_LONGMESSAGE0] => You do not have permissions to make this API call
+    [L_SEVERITYCODE0] => Error
+    [CURL_ERRORS] => 
+)
+
+
+SetExpressCheckout, Elapsed: 2551ms -- Failure
+
+TIMESTAMP=2008%2d08%2d05T14%3a29%3a03Z&CORRELATIONID=6f5598f18eced&ACK=Failure&VERSION=3%2e2&BUILD=657865&L_ERRORCODE0=10002&L_SHORTMESSAGE0=Authentication%2fAuthorization%20Failed&L_LONGMESSAGE0=You%20do%20not%20have%20permissions%20to%20make%20this%20API%20call&L_SEVERITYCODE0=Error&CURL_ERRORS=
+

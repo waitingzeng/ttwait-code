@@ -1,0 +1,42 @@
+2008-12-16 07:04:51
+-------------------
+(live transaction) --> https://api-3t.paypal.com/nvp
+Request Headers: 
+Array
+(
+    [0] => Content-Type: text/namevalue
+    [1] => X-VPS-Timeout: 45
+    [2] => X-VPS-VIT-Client-Type: PHP/cURL
+    [3] => X-VPS-VIT-Integration-Product: PHP::Zen Cart - WPP-NVP
+    [4] => X-VPS-VIT-Integration-Version: 1.3.8a
+)
+
+
+Request Parameters: {GetExpressCheckoutDetails} 
+Array
+(
+    [TOKEN] => EC-4CK51816K14515803
+    [REQBILLINGADDRESS] => 1
+    [METHOD] => GetExpressCheckoutDetails
+    [USER] => coralbridals_api1.gmail.com
+    [PWD] => ****************
+    [VERSION] => 3.2
+    [SIGNATURE] => ****************************************************jQ3V
+)
+
+
+Response: 
+Array
+(
+    [TOKEN] => EC-4CK51816K14515803
+    [TIMESTAMP] => 2008-12-17T02:04:50Z
+    [CORRELATIONID] => 5725d28cc9e1
+    [ACK] => Success
+    [VERSION] => 3.2
+    [BUILD] => 779008
+    [CURL_ERRORS] => 
+)
+
+
+GetExpressCheckoutDetails, Elapsed: 360ms -- Success
+

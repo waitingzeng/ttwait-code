@@ -1,0 +1,58 @@
+2008-12-15 11:23:21
+-------------------
+(live transaction) --> https://api-3t.paypal.com/nvp
+Request Headers: 
+Array
+(
+    [0] => Content-Type: text/namevalue
+    [1] => X-VPS-Timeout: 45
+    [2] => X-VPS-VIT-Client-Type: PHP/cURL
+    [3] => X-VPS-VIT-Integration-Product: PHP::Zen Cart - WPP-NVP
+    [4] => X-VPS-VIT-Integration-Version: 1.3.8a
+)
+
+
+Request Parameters: {GetExpressCheckoutDetails} 
+Array
+(
+    [TOKEN] => EC-8DC22549R6165122R
+    [REQBILLINGADDRESS] => 1
+    [METHOD] => GetExpressCheckoutDetails
+    [USER] => coralbridals_api1.gmail.com
+    [PWD] => ****************
+    [VERSION] => 3.2
+    [SIGNATURE] => ****************************************************jQ3V
+)
+
+
+Response: 
+Array
+(
+    [TOKEN] => EC-8DC22549R6165122R
+    [TIMESTAMP] => 2008-12-16T06:23:20Z
+    [CORRELATIONID] => 614b2f0b2b9b0
+    [ACK] => Success
+    [VERSION] => 3.2
+    [BUILD] => 779008
+    [EMAIL] => paypal@docostume.com
+    [PAYERID] => 9UGDKTNPCFLW6
+    [PAYERSTATUS] => verified
+    [BUSINESS] => Xia Ren
+    [FIRSTNAME] => Ren
+    [LASTNAME] => Xia
+    [COUNTRYCODE] => CN
+    [SHIPTONAME] => Xia Ren
+    [SHIPTOSTREET] => No 0207, 43# Lou,
+    [SHIPTOSTREET2] => 2 Qu, Liu Pu Kang,
+    [SHIPTOCITY] => Xicheng
+    [SHIPTOSTATE] => Beijing
+    [SHIPTOZIP] => 100011
+    [SHIPTOCOUNTRYCODE] => C2
+    [SHIPTOCOUNTRYNAME] => China
+    [ADDRESSSTATUS] => Unconfirmed
+    [CURL_ERRORS] => 
+)
+
+
+GetExpressCheckoutDetails, Elapsed: 380ms -- Success
+

@@ -1,0 +1,61 @@
+2008-12-07 06:03:18
+-------------------
+(live transaction) --> https://api-3t.paypal.com/nvp
+Request Headers: 
+Array
+(
+    [0] => Content-Type: text/namevalue
+    [1] => X-VPS-Timeout: 45
+    [2] => X-VPS-VIT-Client-Type: PHP/cURL
+    [3] => X-VPS-VIT-Integration-Product: PHP::Zen Cart - WPP-NVP
+    [4] => X-VPS-VIT-Integration-Version: 1.3.8a
+)
+
+
+Request Parameters: {SetExpressCheckout} 
+Array
+(
+    [LOCALECODE] => US
+    [PAYMENTACTION] => Sale
+    [ADDROVERRIDE] => 1
+    [SHIPTONAME] => test adtest
+    [SHIPTOSTREET] => 43lo, fdsl0odf
+    [SHIPTOCITY] => dfo34
+    [SHIPTOZIP] => 10240
+    [SHIPTOSTATE] => IL
+    [SHIPTOCOUNTRYCODE] => US
+    [EMAIL] => pepelu@tom.com
+    [PHONENUM] => 230-430-3433
+    [AMT] => 188.00
+    [RETURNURL] => http://www.pacchina.com/zenlight/ipn_main_handler.php?type=ec
+    [CANCELURL] => http://www.pacchina.com/zenlight/index.php?main_page=checkout_shipping&amp;ec_cancel=1
+    [PAGESTYLE] => Primary
+    [METHOD] => SetExpressCheckout
+    [CURRENCYCODE] => USD
+    [USER] => digitalshop365_api1.gmail.com
+    [PWD] => ****************
+    [VERSION] => 3.2
+    [SIGNATURE] => ****************************************************405B
+)
+
+
+Response: 
+Array
+(
+    [TIMESTAMP] => 2008-12-08T01:03:18Z
+    [CORRELATIONID] => ec65ef82a7e7f
+    [ACK] => Failure
+    [VERSION] => 3.2
+    [BUILD] => 767689
+    [L_ERRORCODE0] => 10736
+    [L_SHORTMESSAGE0] => Shipping Address Invalid City State Postal Code
+    [L_LONGMESSAGE0] => A match of the Shipping Address City, State, and Postal Code failed.
+    [L_SEVERITYCODE0] => Error
+    [CURL_ERRORS] => 
+)
+
+
+SetExpressCheckout, Elapsed: 459ms -- Failure
+
+TIMESTAMP=2008%2d12%2d08T01%3a03%3a18Z&CORRELATIONID=ec65ef82a7e7f&ACK=Failure&VERSION=3%2e2&BUILD=767689&L_ERRORCODE0=10736&L_SHORTMESSAGE0=Shipping%20Address%20Invalid%20City%20State%20Postal%20Code&L_LONGMESSAGE0=A%20match%20of%20the%20Shipping%20Address%20City%2c%20State%2c%20and%20Postal%20Code%20failed%2e&L_SEVERITYCODE0=Error&CURL_ERRORS=
+

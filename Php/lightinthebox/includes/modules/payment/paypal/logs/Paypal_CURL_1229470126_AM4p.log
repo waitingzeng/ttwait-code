@@ -1,0 +1,63 @@
+2008-12-16 04:28:46
+-------------------
+(live transaction) --> https://api-3t.paypal.com/nvp
+Request Headers: 
+Array
+(
+    [0] => Content-Type: text/namevalue
+    [1] => X-VPS-Timeout: 45
+    [2] => X-VPS-VIT-Client-Type: PHP/cURL
+    [3] => X-VPS-VIT-Integration-Product: PHP::Zen Cart - WPP-NVP
+    [4] => X-VPS-VIT-Integration-Version: 1.3.8a
+)
+
+
+Request Parameters: {DoExpressCheckoutPayment} 
+Array
+(
+    [ITEMAMT] => 283.00
+    [SHIPPINGAMT] => 0.00
+    [AMT] => 283.00
+    [L_NUMBER0] => AN424
+    [L_QTY0] => 1
+    [L_NAME0] => AN424 halter cheap wedding dress,bridal gown,lace,organza,mermaid bridal dress
+    [L_AMT0] => 283.00
+    [L_TAXAMT0] => 0.00
+    [BUTTONSOURCE] => ZenCart-EC_us
+    [TOKEN] => 
+    [PAYERID] => 
+    [PAYMENTACTION] => Sale
+    [NOTIFYURL] => http://www.pacchina.com/zentest/zenlight/ipn_main_handler.php
+    [METHOD] => DoExpressCheckoutPayment
+    [CURRENCYCODE] => USD
+    [USER] => coralbridals_api1.gmail.com
+    [PWD] => ****************
+    [VERSION] => 3.2
+    [SIGNATURE] => ****************************************************jQ3V
+)
+
+
+Response: 
+Array
+(
+    [TIMESTAMP] => 2008-12-16T23:28:45Z
+    [CORRELATIONID] => 966e490eaf02
+    [ACK] => Failure
+    [VERSION] => 3.2
+    [BUILD] => 779008
+    [L_ERRORCODE0] => 10408
+    [L_ERRORCODE1] => 10419
+    [L_SHORTMESSAGE0] => Express Checkout token is missing.
+    [L_SHORTMESSAGE1] => Express Checkout PayerID is missing.
+    [L_LONGMESSAGE0] => Express Checkout token is missing.
+    [L_LONGMESSAGE1] => Express Checkout PayerID is missing.
+    [L_SEVERITYCODE0] => Error
+    [L_SEVERITYCODE1] => Error
+    [CURL_ERRORS] => 
+)
+
+
+DoExpressCheckoutPayment, Elapsed: 353ms -- Failure
+
+TIMESTAMP=2008%2d12%2d16T23%3a28%3a45Z&CORRELATIONID=966e490eaf02&ACK=Failure&VERSION=3%2e2&BUILD=779008&L_ERRORCODE0=10408&L_ERRORCODE1=10419&L_SHORTMESSAGE0=Express%20Checkout%20token%20is%20missing%2e&L_SHORTMESSAGE1=Express%20Checkout%20PayerID%20is%20missing%2e&L_LONGMESSAGE0=Express%20Checkout%20token%20is%20missing%2e&L_LONGMESSAGE1=Express%20Checkout%20PayerID%20is%20missing%2e&L_SEVERITYCODE0=Error&L_SEVERITYCODE1=Error&CURL_ERRORS=
+

@@ -1,0 +1,10 @@
+v1.1 02/09/2007
+
+- Url and Base Path defined (dinamically) before the js' call.
+- Maxim Image Size and Maxim Upload Dir Size
+- General Debugging
+
+
+v1.0 18/08/2007
+
+- Initial Release

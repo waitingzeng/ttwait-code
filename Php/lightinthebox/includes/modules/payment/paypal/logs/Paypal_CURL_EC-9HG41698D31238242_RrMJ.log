@@ -1,0 +1,49 @@
+2008-12-16 08:22:00
+-------------------
+(live transaction) --> https://api-3t.paypal.com/nvp
+Request Headers: 
+Array
+(
+    [0] => Content-Type: text/namevalue
+    [1] => X-VPS-Timeout: 45
+    [2] => X-VPS-VIT-Client-Type: PHP/cURL
+    [3] => X-VPS-VIT-Integration-Product: PHP::Zen Cart - WPP-NVP
+    [4] => X-VPS-VIT-Integration-Version: 1.3.8a
+)
+
+
+Request Parameters: {SetExpressCheckout} 
+Array
+(
+    [LOCALECODE] => US
+    [PAYMENTACTION] => Sale
+    [EMAIL] => pepelu@tom.com
+    [PHONENUM] => 230-430-3433
+    [AMT] => 284.80
+    [RETURNURL] => http://www.pacchina.com/zentest/zenlight/ipn_main_handler.php?type=ec
+    [CANCELURL] => http://www.pacchina.com/zentest/zenlight/index.php?main_page=checkout_shipping&amp;ec_cancel=1
+    [PAGESTYLE] => Primary
+    [METHOD] => SetExpressCheckout
+    [CURRENCYCODE] => USD
+    [USER] => coralbridals_api1.gmail.com
+    [PWD] => ****************
+    [VERSION] => 3.2
+    [SIGNATURE] => ****************************************************jQ3V
+)
+
+
+Response: 
+Array
+(
+    [TOKEN] => EC-9HG41698D31238242
+    [TIMESTAMP] => 2008-12-17T03:21:59Z
+    [CORRELATIONID] => 769cc4367b2
+    [ACK] => Success
+    [VERSION] => 3.2
+    [BUILD] => 779008
+    [CURL_ERRORS] => 
+)
+
+
+SetExpressCheckout, Elapsed: 379ms -- Success
+

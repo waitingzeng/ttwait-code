@@ -1,0 +1,10 @@
+body { margin: 0; padding: 0; }
+.block { height: 92px; width: 92px; border: 1px solid threedface; text-align: center; behavior: url(assets/hover.htc ); }
+.block a img { border: 0 none; }
+.block:hover, .block.hover{ background-color: #ffc; }
+alt,.edit { font-size: 8pt; font-family: Verdana, Geneva, sans-serif; padding-top: 3px;}
+alt a,.edit a { border: 1px solid white; padding: 3px; }
+alt a:hover,.edit a:hover { border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight; background-color: #ffc; }
+alt img,.edit img { border: 0 none; vertical-align: bottom; }
+.noResult { font-size:large; font-weight:bold; color:#ccc; font-family: Helvetica, sans-serif;  text-align: center;  padding-top: 60px;   }
+.error { color:#c00; font-weight:bold; font-size: medium; font-family: Helvetica, sans-serif; text-align: center;  padding-top: 65px;}

@@ -1,0 +1,96 @@
+2008-09-25 01:00:18
+-------------------
+(live transaction) --> https://api-3t.paypal.com/nvp
+Request Headers: 
+Array
+(
+    [0] => Content-Type: text/namevalue
+    [1] => X-VPS-Timeout: 45
+    [2] => X-VPS-VIT-Client-Type: PHP/cURL
+    [3] => X-VPS-VIT-Integration-Product: PHP::Zen Cart - WPP-NVP
+    [4] => X-VPS-VIT-Integration-Version: 1.3.8a
+)
+
+
+Request Parameters: {SetExpressCheckout} 
+Array
+(
+    [LOCALECODE] => US
+    [PAYMENTACTION] => Sale
+    [ADDROVERRIDE] => 1
+    [SHIPTONAME] => wolfregionasfd liuyanjuns
+    [SHIPTOSTREET] => sdfjaskdjflk
+    [SHIPTOSTREET2] => fafasdkfjl
+    [SHIPTOCITY] => kfasdf
+    [SHIPTOZIP] => fasdkfjalk
+    [SHIPTOSTATE] => AL
+    [SHIPTOCOUNTRYCODE] => US
+    [EMAIL] => showq@163.com
+    [AMT] => 649.32
+    [RETURNURL] => http://localhost/lightinthebox/ipn_main_handler.php?type=ec
+    [CANCELURL] => http://localhost/lightinthebox/index.php?main_page=checkout_shipping&amp;ec_cancel=1
+    [PAGESTYLE] => Primary
+    [METHOD] => SetExpressCheckout
+    [CURRENCYCODE] => USD
+    [VERSION] => 3.2
+)
+
+
+Response: 
+Array
+(
+    [] => 
+    [CURL_ERRORS] => (6) Could not resolve host: api-3t.paypal.com; No data record of requested type
+)
+
+(6) Could not resolve host: api-3t.paypal.com; No data record of requested type
+Array
+(
+    [url] => https://api-3t.paypal.com/nvp
+    [http_code] => 0
+    [header_size] => 0
+    [request_size] => 0
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 0
+    [namelookup_time] => 0
+    [connect_time] => 0
+    [pretransfer_time] => 0
+    [size_upload] => 0
+    [size_download] => 0
+    [speed_download] => 0
+    [speed_upload] => 0
+    [download_content_length] => 0
+    [upload_content_length] => 0
+    [starttransfer_time] => 0
+    [redirect_time] => 0
+)
+
+
+SetExpressCheckout, Elapsed: 8ms -- Failed
+(6) Could not resolve host: api-3t.paypal.com; No data record of requested type
+Array
+(
+    [url] => https://api-3t.paypal.com/nvp
+    [http_code] => 0
+    [header_size] => 0
+    [request_size] => 0
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 0
+    [namelookup_time] => 0
+    [connect_time] => 0
+    [pretransfer_time] => 0
+    [size_upload] => 0
+    [size_download] => 0
+    [speed_download] => 0
+    [speed_upload] => 0
+    [download_content_length] => 0
+    [upload_content_length] => 0
+    [starttransfer_time] => 0
+    [redirect_time] => 0
+)
+
+

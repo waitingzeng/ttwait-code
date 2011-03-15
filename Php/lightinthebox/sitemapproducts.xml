@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="gss.xsl"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+        xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+ <url>
+  <loc>http://www.electronics-store-china.com/toshiba-portege-r400s4932-core-duo-u2500-12-ghz-ulv-centrino-duo-ram-2-gb-hdd-80-gb_p196.html</loc>
+  <lastmod>2008-10-01</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1</priority>
+ </url>
+ <url>
+  <loc>http://www.electronics-store-china.com/toshiba-portege-r500s5007v-core-2-duo-u7700-133-ghz-ulv-centrino-ram-2-gb-hdd-128-gb-ssd_p197.html</loc>
+  <lastmod>2008-10-01</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1</priority>
+ </url>
+ <url>
+  <loc>http://www.electronics-store-china.com/toshiba-qosmio-e15av101-laptop-170-ghz-pentium-m-centrino-512-mb-ram-80-gb-hard-drive-dvdrwcdrw-drive_p204.html</loc>
+  <lastmod>2008-10-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1</priority>
+ </url>
+ <url>
+  <loc>http://www.electronics-store-china.com/apple-16gb-unlock-iphone-gsm-wifi-touchscreen-cell-phone-unlock_p202.html</loc>
+  <lastmod>2008-10-10</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1</priority>
+ </url>
+ <url>
+  <loc>http://www.electronics-store-china.com/iphone-8gb-apple-iphone-8gb-unlocked-original-mobile-phone_p203.html</loc>
+  <lastmod>2008-10-10</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1</priority>
+ </url>
+</urlset>

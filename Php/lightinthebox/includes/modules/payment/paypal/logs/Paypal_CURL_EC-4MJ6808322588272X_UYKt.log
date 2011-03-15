@@ -1,0 +1,49 @@
+2008-12-16 06:52:56
+-------------------
+(live transaction) --> https://api-3t.paypal.com/nvp
+Request Headers: 
+Array
+(
+    [0] => Content-Type: text/namevalue
+    [1] => X-VPS-Timeout: 45
+    [2] => X-VPS-VIT-Client-Type: PHP/cURL
+    [3] => X-VPS-VIT-Integration-Product: PHP::Zen Cart - WPP-NVP
+    [4] => X-VPS-VIT-Integration-Version: 1.3.8a
+)
+
+
+Request Parameters: {SetExpressCheckout} 
+Array
+(
+    [LOCALECODE] => US
+    [PAYMENTACTION] => Sale
+    [EMAIL] => redo@docostume.com
+    [PHONENUM] => 29485039845
+    [AMT] => 0.90
+    [RETURNURL] => http://www.pacchina.com/zentest/zenlight/ipn_main_handler.php?type=ec
+    [CANCELURL] => http://www.pacchina.com/zentest/zenlight/index.php?main_page=checkout_shipping&amp;ec_cancel=1
+    [PAGESTYLE] => Primary
+    [METHOD] => SetExpressCheckout
+    [CURRENCYCODE] => USD
+    [USER] => coralbridals_api1.gmail.com
+    [PWD] => ****************
+    [VERSION] => 3.2
+    [SIGNATURE] => ****************************************************jQ3V
+)
+
+
+Response: 
+Array
+(
+    [TOKEN] => EC-4MJ6808322588272X
+    [TIMESTAMP] => 2008-12-17T01:52:55Z
+    [CORRELATIONID] => e698699057e6e
+    [ACK] => Success
+    [VERSION] => 3.2
+    [BUILD] => 779008
+    [CURL_ERRORS] => 
+)
+
+
+SetExpressCheckout, Elapsed: 325ms -- Success
+

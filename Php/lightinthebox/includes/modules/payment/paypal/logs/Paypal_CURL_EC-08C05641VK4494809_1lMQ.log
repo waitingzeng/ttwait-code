@@ -1,0 +1,56 @@
+2008-12-16 12:24:26
+-------------------
+(live transaction) --> https://api-3t.paypal.com/nvp
+Request Headers: 
+Array
+(
+    [0] => Content-Type: text/namevalue
+    [1] => X-VPS-Timeout: 45
+    [2] => X-VPS-VIT-Client-Type: PHP/cURL
+    [3] => X-VPS-VIT-Integration-Product: PHP::Zen Cart - WPP-NVP
+    [4] => X-VPS-VIT-Integration-Version: 1.3.8a
+)
+
+
+Request Parameters: {GetExpressCheckoutDetails} 
+Array
+(
+    [TOKEN] => EC-08C05641VK4494809
+    [REQBILLINGADDRESS] => 1
+    [METHOD] => GetExpressCheckoutDetails
+    [USER] => coralbridals_api1.gmail.com
+    [PWD] => ****************
+    [VERSION] => 3.2
+    [SIGNATURE] => ****************************************************jQ3V
+)
+
+
+Response: 
+Array
+(
+    [TOKEN] => EC-08C05641VK4494809
+    [TIMESTAMP] => 2008-12-16T07:24:25Z
+    [CORRELATIONID] => 1a238acc1c29f
+    [ACK] => Success
+    [VERSION] => 3.2
+    [BUILD] => 779008
+    [EMAIL] => yuan.yuanji@msn.com
+    [PAYERID] => C6LUT3EDLX7ZN
+    [PAYERSTATUS] => verified
+    [FIRSTNAME] => BoQiong
+    [LASTNAME] => Zhang
+    [COUNTRYCODE] => CN
+    [SHIPTONAME] => Zhang BoQiong
+    [SHIPTOSTREET] => 17-902, No 2000 Dong Lu Road
+    [SHIPTOCITY] => Pudong District
+    [SHIPTOSTATE] => Shanghai
+    [SHIPTOZIP] => 201206
+    [SHIPTOCOUNTRYCODE] => C2
+    [SHIPTOCOUNTRYNAME] => China
+    [ADDRESSSTATUS] => Unconfirmed
+    [CURL_ERRORS] => 
+)
+
+
+GetExpressCheckoutDetails, Elapsed: 415ms -- Success
+

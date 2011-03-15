@@ -1,0 +1,26 @@
+安装方法：
+一，
+
+把程序上传空间后.把includes\下的configure.php删掉，把admin\includes下的 configure.php删掉，如没有此文件，证明我已经替您删了。 把根目录下.htaccess先改名。
+
+
+二，
+
+建立好数据库。
+安装，确让全部上传完毕后,输入你的域名，正常安装。过程和zencart 安装一样,建立好数据库.
+
+安装好后进入phpmyadmin 数据库,把该数据库里面所有的表都删除后退出。
+
+把数据库名密码等信息写进mydb下restore.php里，打开IE，运行：http://www.yourdomain.com/mydb/restore.php，把SQL2的数据库写进数据库(先后得恢复四次，从第一个开始)，安装好数据后把.htaccess改回去。
+
+
+三，
+
+
+后台密码：名：admin   密码：admin88
+后台地址：http://www.yourdomain.com/admin
+
+进入后台后，请先设置email，把email地址全部改为你的。
+
+
+
