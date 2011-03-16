@@ -1,0 +1,23 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $fittings} -->
+ <div class="module goods_list">
+  <div class="caption"><span>{$lang.accessories_releate}</span></div>
+  <p class="top"><span></span></p>
+  <div class="content">
+    <ul class="goods_grid">   
+    <!--{foreach from=$fittings item=goods}-->       
+      <li style="height:130px;">        
+        <p class="img"><a href="{$goods.url}" target="_blank"><img src="{$goods.goods_thumb}" alt="{$goods.name|escape:html}"/></a></p>
+        <p class="name"><a href="{$goods.url}" target="_blank" title="{$goods.goods_name|escape:html}">{$goods.short_name|escape:html}</a></p>
+        <p class="price" style="font-weight:normal;">{$lang.fittings_price}{$goods.fittings_price}</p>
+      </li>    
+    <!--{/foreach}-->
+    </ul>
+  </div>
+  <p class="bottom"><span></span></p>
+ </div>
+<!-- {/if} -->
+
+
+
+

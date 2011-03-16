@@ -1,0 +1,18 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="Mod3 blank">
+<h2 class="Top">{$lang.top10}</h2>
+<div class="top10List clearfix">
+  <!-- {foreach name=top_goods from=$top_goods item=goods}-->
+  <ul class="clearfix">
+	<img src="../images/top_{$smarty.foreach.top_goods.iteration}.gif" class="iteration" />
+      <li class="topimg f_l">
+      <a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" /></a>
+      </li>      
+      <li class="txt f_r">
+			<a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_name}</a><br />
+      {$lang.shop_price}<font class="price">{$goods.price}</font><br />
+     </li>
+    </ul>
+  <!-- {/foreach} -->
+  </div>
+</div>

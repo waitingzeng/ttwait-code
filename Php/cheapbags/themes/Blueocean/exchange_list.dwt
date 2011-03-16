@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+</head>
+<body>
+  <div id="wrap">
+    <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+    <div class="container">
+      <div class="global_l">
+        <!-- TemplateBeginEditable name="左边区域" -->
+        <!-- #BeginLibraryItem "/library/cart.lbi" --><!-- #EndLibraryItem -->
+        <!-- #BeginLibraryItem "/library/category_tree.lbi" --><!-- #EndLibraryItem -->
+        <!-- #BeginLibraryItem "/library/filter_attr.lbi" --><!-- #EndLibraryItem -->
+        <!-- #BeginLibraryItem "/library/price_grade.lbi" --><!-- #EndLibraryItem -->
+        <!-- #BeginLibraryItem "/library/top10.lbi" --><!-- #EndLibraryItem -->
+        <!-- #BeginLibraryItem "/library/promotion_info.lbi" --><!-- #EndLibraryItem -->
+        <!-- #BeginLibraryItem "/library/recommend_promotion.lbi" --><!-- #EndLibraryItem -->
+        <!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem -->
+        <!-- TemplateEndEditable -->
+      </div>
+      <div class="global_r">
+         <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+         <!-- TemplateBeginEditable name="右边区域通栏广告位 752*30" --><!-- TemplateEndEditable -->
+         <!-- TemplateBeginEditable name="右边区域顶部" -->
+         <!-- #BeginLibraryItem "/library/exchange_hot.lbi" --><!-- #EndLibraryItem -->
+         <!-- TemplateEndEditable -->
+          <div class="goods_list module">
+             <div class="caption">
+             <form method="GET" class="sort" name="listform">
+            <font style="height:28px; line-height:28px; font-weight:bold;">{$lang.btn_display}：</font>
+            <a href="javascript:;" onClick="javascript:display_mode('list')"><img src="images/display_mode_list<!-- {if $pager.display == 'list'} -->_act<!-- {/if} -->.gif" alt="{$lang.display.list}"></a>
+            <a href="javascript:;" onClick="javascript:display_mode('grid')"><img src="images/display_mode_grid<!-- {if $pager.display == 'grid'} -->_act<!-- {/if} -->.gif" alt="{$lang.display.grid}"></a>
+            <a href="javascript:;" onClick="javascript:display_mode('text')"><img src="images/display_mode_text<!-- {if $pager.display == 'text'} -->_act<!-- {/if} -->.gif" alt="{$lang.display.text}"></a>&nbsp;&nbsp;
+                <select name="sort" class="text">
+                  {html_options options=$lang.sort selected=$pager.sort}
+                </select>
+                <select name="order" class="text">
+                  {html_options options=$lang.order selected=$pager.order}
+                </select>
+                <input type="image" name="imageField" class="go" src="../images/bnt_go.gif" alt="go"/>
+                <input type="hidden" name="category" value="{$category}" />
+                <input type="hidden" name="display" value="{$pager.display}" id="display" />
+                <input type="hidden" name="brand" value="{$brand_id}" />
+                <input type="hidden" name="price_min" value="{$price_min}" />
+                <input type="hidden" name="price_max" value="{$price_max}" />
+                <input type="hidden" name="filter_attr" value="{$filter_attr}" />
+                <input type="hidden" name="page" value="{$pager.page}" />
+              </form>
+              <span>{$lang.goods_list}</span>
+            </div>
+            <p class="top"><span></span></p>
+            <div class="content">
+              <!-- {if $category > 0} -->
+              <form name="compareForm" action="compare.php" method="post" onSubmit="return compareGoods(this);">
+              <!-- {/if} -->
+              <!-- {if $pager.display == 'list'} -->
+              <ul class="goods_item">
+              <!--{foreach from=$goods_list item=goods}-->
+                <li>
+              <!-- {if $goods.goods_id} -->
+                     <p class="img"><a href="{$goods.url}"><img src="{$goods.goods_thumb}" alt="{$goods.goods_name}" class="goodsimg" /></a></p>
+                     <h6>{$goods.goods_name}</h6>
+                     <p class="brief">
+                       <!--{if $goods.goods_brief} 商品描述-->
+                       {$lang.goods_brief}{$goods.goods_brief}
+                       <!--{/if}-->
+                     </p>
+                     <p class="price">
+                       {$lang.exchange_integral}<font class="f5">{$goods.exchange_integral}</font>
+                     </p>
+                     <p class="item_cart">
+                       <a href="{$goods.url}"><img style="float:left;" src="../images/ljdh.gif"></a>
+                     </p>
+                  <!--{/if}-->
+                </li>
+              <!--{/foreach}-->
+              </ul>
+              <!-- {elseif $pager.display == 'grid'} -->
+              <ul class="goods_grid">
+               <!--{foreach from=$goods_list item=goods}-->
+               <!-- {if $goods.goods_id} 不加此句会多循环出一个商品来-->
+               <li>
+                 <p class="img"><a href="{$goods.url}"><img src="{$goods.goods_thumb}" alt="{$goods.goods_name}" class="goodsimg" /></a></p>
+                 <p class="name"><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.goods_name}</a></p>
+                 <p class="price">
+                   {$lang.exchange_integral}
+                 </p>
+                 <p class="price">
+                  <font class="shop_s">{$goods.exchange_integral}</font>
+                </p>
+                <p class="btn_list">
+                  <a href="{$goods.url}"><img style="float:left;" src="../images/ljdh.gif"></a>
+                </p>
+                </li>
+               <!-- {/if} -->
+                <!--{/foreach}-->
+              </ul>
+              <!-- {elseif $pager.display == 'text'} -->
+              <ul class="goods_item">
+              <!--{foreach from=$goods_list item=goods}-->
+                <li>
+                <!-- {if $goods.goods_id} -->
+                     <h6>{$goods.goods_name}</h6>
+                     <p class="brief">
+                       <!--{if $goods.goods_brief} 商品描述-->
+                       {$lang.goods_brief}{$goods.goods_brief}
+                       <!--{/if}-->
+                     </p>
+                     <p class="price">
+                       {$lang.exchange_integral}<font class="f5">{$goods.exchange_integral}</font>
+                     </p>
+                     <p class="item_cart">
+                       <a href="{$goods.url}"><img style="float:left;" src="../images/ljdh.gif"></a>
+                     </p>
+                <!--{/if}-->
+                </li>
+              <!--{/foreach}-->
+               </ul>
+              <!-- {/if} -->
+              <!-- {if $category > 0} -->
+              </form>
+              <!-- {/if} -->
+              <script type="Text/Javascript" language="JavaScript">
+                <!--
+                {literal}
+                function selectPage(sel)
+                {
+                  sel.form.submit();
+                }
+                {/literal}
+                //-->
+             </script>
+            </div>
+          <script type="Text/Javascript" language="JavaScript">
+          <!--
+          {literal}
+          function selectPage(sel)
+          {
+            sel.form.submit();
+          }
+          {/literal}
+          //-->
+          </script>
+          <p class="bottom"><span></span></p>
+          </div>
+          <!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+      </div>
+    </div>
+    <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+    <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+  </div>
+</body>
+</html>

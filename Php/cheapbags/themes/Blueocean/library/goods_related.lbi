@@ -1,0 +1,25 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $related_goods} -->
+<div class="goods_list module">
+  <div class="caption"><span>{$lang.releate_goods}</span></div>
+  <p class="top"><span></span></p>
+  <div class="content">
+    <ul class="goods_grid">
+    <!--{foreach from=$related_goods item=releated_goods_data}-->    
+      <li style="height:130px;">      
+      <p class="img"><a href="{$releated_goods_data.url}"><img src="{$releated_goods_data.goods_thumb}" alt="{$releated_goods_data.goods_name}" class="B_blue" /></a></p>
+      <p class="name"><a href="{$releated_goods_data.url}" title="{$releated_goods_data.goods_name}">{$releated_goods_data.short_name}</a></p>
+      <p class="price">
+      <!-- {if $releated_goods_data.promote_price neq 0} -->
+      {$lang.promote_price}{$releated_goods_data.formated_promote_price}
+      <!-- {else} -->
+      {$releated_goods_data.shop_price}
+      <!-- {/if} -->
+      </p>
+      </li>   
+    <!--{/foreach}--> 
+    </ul>
+  </div>
+  <p class="bottom"><span></span></p>
+</div>
+<!-- {/if} -->

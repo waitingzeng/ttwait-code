@@ -1,0 +1,9 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="libDiv">
+  <div class="libTop">
+    <h3>My Cart</h3>
+  </div>
+  <div class="libBody">
+<div class="cartDiv" id="ECS_CARTINFO">{insert name='cart_info'}</div>
+  </div>
+</div>

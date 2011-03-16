@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+</head>
+
+<body>
+<div id="globalWrapper">
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --><div id="wrapper"><!-- End #search-bar --><!-- TemplateBeginEditable name="通栏广告位" --><!-- TemplateEndEditable -->
+  <div id="container">
+  <!-- #BeginLibraryItem "/library/ur_here.lbi" --> {$lang.ur_here} {$ur_here} <!-- #EndLibraryItem -->
+<div id="pageLeft">
+<!-- TemplateBeginEditable name="主区域左侧" --><!-- #BeginLibraryItem "/library/article_category_tree.lbi" -->
+<div class="titleDiv"><img src="images/article_category.gif" alt="Category" width="158" height="39" /></div>
+<div id="catDiv" style="padding:5px 10px;">
+  <ul>
+    <!--{foreach from=$article_categories item=cat}-->
+    <li> <span class="parent-cat"><a href="{$cat.url}">{$cat.name|escape:html}</a></span><br />
+      <!--{foreach from=$cat.children item=child}-->
+      <span style="white-space:nowrap;"><a href="{$child.url}">{$child.name|escape:html}</a></span>
+      <!--{/foreach}-->
+    </li>
+    <!--{/foreach}-->
+  </ul>
+</div>
+<!-- #EndLibraryItem --><!-- TemplateEndEditable --></div>
+<!-- End #pageLeft -->
+<div id="pageIn">
+  <table class="artCat">
+ 			<thead>
+   <tr>
+    <th class="t1">{$lang.article_title}</th>
+      <th class="t2">{$lang.article_author}</th>
+      <th class="t3">{$lang.article_add_time}</th>
+    </tr>
+			</thead>
+  <!-- {foreach from=$artciles_list item=article name=n} -->
+  {if $smarty.foreach.n.iteration%2==1}
+  <tr>
+  {else}
+  <tr class="alt">
+  {/if}
+    <td><a href="{$article.url}" title="{$article.title|escape:html}">{$article.short_title}</a></td>
+      <td>{$article.author}</td>
+      <td>{$article.add_time}</td>
+    </tr>
+  <!-- {/foreach} -->
+</table>
+<!-- #BeginLibraryItem "/library/pages.lbi" -->
+<form action="{$smarty.server.PHP_SELF}" method="get" name="selectPageForm" id="selectPageForm">
+  <div id="pager"> {$lang.pager_1}{$pager.record_count}{$lang.pager_2}{$lang.pager_3}{$pager.page_count}{$lang.pager_4} <span> <a href="{$pager.page_first}">{$lang.page_first}</a> <a href="{$pager.page_prev}">{$lang.page_prev}</a> <a href="{$pager.page_next}">{$lang.page_next}</a> <a href="{$pager.page_last}">{$lang.page_last}</a> </span>
+    <!--{foreach from=$pager.search key=key item=item}-->
+    <input type="hidden" name="{$key}" value="{$item}" />
+    <!--{/foreach}-->
+    <select name="page" id="page" onchange="selectPage(this)">
+    {html_options options=$pager.array selected=$pager.page}
+    </select>
+  </div>
+</form>
+<script type="text/javascript" language="JavaScript">
+<!--
+{literal}
+function selectPage(sel)
+{
+  sel.form.submit();
+}
+{/literal}
+//-->
+</script>
+<!-- #EndLibraryItem --></div>
+<!-- End #indexMiddle -->
+<!-- End #indexRrigh -->
+<div class="clear"></div>
+</div>
+<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem --></div><!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+<!-- End #Wrapper -->
+</div><!-- End #globalWrapper -->
+</body>
+<script type="text/javascript">
+document.getElementById('cur_url').value = window.location.href;
+</script>
+</html>

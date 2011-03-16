@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS|{$page_title}" href="{$feed_url}" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,index.js'}
+<script type="text/javascript" src="js/action.js"></script>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="Area clearfix">
+ <div class="PageLeft f_l">
+  <!-- TemplateBeginEditable name="左侧区域" -->
+<!-- #BeginLibraryItem "/library/category_tree.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/new_articles.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/top10.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/order_query.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/invoice_query.lbi" --> <!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/email_list.lbi" --><!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+ </div>
+  <div class="PageRight f_l">   
+	<!-- #BeginLibraryItem "/library/cart.lbi" --><!-- #EndLibraryItem -->
+	<!-- #BeginLibraryItem "/library/search_form.lbi" --><!-- #EndLibraryItem -->
+	<div class="PageMiddle f_l">	
+	<!-- #BeginLibraryItem "/library/index_ad.lbi" --><!-- #EndLibraryItem -->
+	<!-- #BeginLibraryItem "/library/recommend_promotion.lbi" --><!-- #EndLibraryItem -->
+	<div class="PbulicBorder blank">
+	<div class="infotit clearfix" id="com_b">
+    <h2><span class="new"></span>{$lang.new_goods}</h2>
+    <h2 class="h2bg"><span class="hot"></span>{$lang.hot_goods}</h2>
+    <h2 class="h2bg"><span class="best"></span>{$lang.best_goods}</h2>
+ </div>
+ <div class="tagcontent" id="com_v"></div>
+ <div id="com_h">
+    <blockquote>
+    <!-- #BeginLibraryItem "/library/recommend_new.lbi" --><!-- #EndLibraryItem -->
+    </blockquote>
+    <blockquote>
+    <!-- #BeginLibraryItem "/library/recommend_hot.lbi" --><!-- #EndLibraryItem -->
+    </blockquote>
+    <blockquote>
+    <!-- #BeginLibraryItem "/library/recommend_best.lbi" --><!-- #EndLibraryItem -->
+    </blockquote>   
+   </div>
+	 </div>
+  <script type="text/javascript">reg("com");</script>
+	<!-- TemplateBeginEditable name="中间区域" -->
+<!-- #BeginLibraryItem "/library/group_buy.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/auction.lbi" --><!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+	</div>
+	<div class="AreaRight f_r">	 
+		<!-- TemplateBeginEditable name="右侧区域" -->
+<!-- #BeginLibraryItem "/library/brands.lbi" --><!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+	</div>
+  </div> 
+</div> 
+<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+<!--{if $img_links  or $txt_links }-->
+<div class="Area blank">
+<div class="Mod3">
+<h2>Link</h2>
+<div class="ContantBlank links clearfix">
+ <!--开始图片类型的友情链接{foreach from=$img_links item=link}-->
+   <a href="{$link.url}" target="_blank" title="{$link.name}"><img src="{$link.logo}" alt="{$link.name}" /></a>
+   <!--结束图片类型的友情链接{/foreach}-->
+   <!-- {if $txt_links} -->
+   <!--开始文字类型的友情链接{foreach from=$txt_links item=link}-->
+   <a href="{$link.url}" target="_blank" title="{$link.name}" class="linkTxt">{$link.name}</a>
+   <!--结束文字类型的友情链接{/foreach}-->
+   <!-- {/if} -->
+</div>
+</div> 
+</div> 
+<!--{/if}-->
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+</html>

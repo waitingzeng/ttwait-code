@@ -1,0 +1,18 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--{if $invoice_list}-->
+<div class="module">
+  <div class="top"><span></span></div>
+  <div class="content">
+    <h1>{$lang.shipping_query}</h1>
+    <ul style="padding:0 8px; line-height:18px; padding-bottom:5px;">
+      <!-- 发货单查询{foreach from=$invoice_list item=invoice} -->    
+      <li>
+        <span class="f2">{$lang.order_number}:</span>{$invoice.order_sn}<br/>
+        <span class="f2">{$lang.consignment}:</span>{$invoice.invoice_no}
+      </li>    
+      <!-- 结束发货单查询{/foreach}-->
+    </ul>
+  </div>  
+  <div class="bottom"><span></span></div>
+</div>
+<!-- {/if} -->

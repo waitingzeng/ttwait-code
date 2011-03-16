@@ -1,0 +1,21 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $best_goods}-->
+<div class="goodsRecommend">
+  <h3><span class="more"><a href="../search.php?intro=best">more</a></span>Best Products</h3>
+  <ul class="clearfix">
+    <!--{foreach from=$best_goods item=goods}-->
+    <li><a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" border="0" /></a>
+      <p class="name"><a href="{$goods.url}">{$goods.short_style_name}</a></p>
+      <p class="price_shop">
+        <!-- {if $goods.promote_price neq ""} -->
+        {$lang.promote_price}{$goods.promote_price}
+        <!-- {else}-->
+        {$lang.shop_price}{$goods.shop_price}
+        <!--{/if}-->
+      </p>
+    </li>
+    <!--{/foreach}-->
+  </ul>
+    <div class="clear"></div>
+</div>
+<!-- {/if} -->

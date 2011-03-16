@@ -1,0 +1,33 @@
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+  <div id="wrapper"> 
+    <div id="container">
+      <div id="pageLeft"> <!-- #BeginLibraryItem "/library/category_tree.lbi" --><!-- #EndLibraryItem -->
+ <!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem -->  </div>
+      
+      <div id="pageIn"> <div class="ur_here">Your Position: <a href=".">Home</a> <code>&gt;</code> <a href="category.php?id=1">Testgood</a></div>        
+	        <div class="scree">
+			<ul>
+            <!--{if $price_grade.1}-->
+            <div class="attr">{$lang.price}：</div>
+            <div class="con">
+            <!--{foreach from=$price_grade item=grade}-->
+				<!-- {if $grade.selected} -->
+				<li class="cur">{$grade.price_range}</li>
+				<!-- {else} -->
+				<li><a href="{$grade.url}">{$grade.price_range}</a></li>
+				<!-- {/if} -->
+			<!--{/foreach}-->
+             </div>
+
+            <div style="clear:both"></div>
+          </ul>
+			<div style="clear:both"></div>
+        </div>
+          <div style="clear:both"></div>
+	      <!-- #BeginLibraryItem "/library/goods_list.lbi" --><!-- #EndLibraryItem -->
+         </div>
+      
+      
+      <div class="clear"></div>
+    </div>
+     </div><!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->

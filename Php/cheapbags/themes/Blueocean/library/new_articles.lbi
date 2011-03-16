@@ -1,0 +1,63 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="module" id="notice">
+  <div class="top"><span></span></div>
+  <div class="content">
+		<ul id="newArticleTab">
+		  <li id="ECS_NOTICE" class="tabFront">{$lang.shop_notice}</li>
+		  <li id="ECS_ARTICLE" class="tabBack">{$lang.new_article}</li>
+		</ul>
+		<div id="newArticle">
+		  <div id="ECS_NOTICE_BODY">
+		    {$shop_notice}
+		  </div>
+		  <div id="ECS_ARTICLE_BODY" style="display:none;">
+		    <ul>
+		      <!-- {foreach name=new_articles from=$new_articles item=article} -->
+		      <!-- {if $smarty.foreach.new_articles.iteration lte 6} 限制文章显示数量 -->
+		      <li>[<a href="{$article.cat_url}">{$article.cat_name}</a>] <a href="{$article.url}" title="{$article.title|escape:html}">{$article.short_title}</a></li>
+		      <!-- {/if} -->
+		      <!-- {/foreach} -->
+		    </ul>
+		  </div>
+	</div>
+  </div>
+  <p class="bottom"><span></span></p>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+{literal}
+  var cycleList = ['ECS_NOTICE', 'ECS_ARTICLE'];
+  var tabFront = 'tabFront';
+  var tabBack = 'tabBack';
+  function cycleShow(obj)
+  {
+    var curObj;
+    var curBody;
+    for (i=0; i < cycleList.length; i++)
+    {
+      curObj = document.getElementById(cycleList[i]);
+      curBody = document.getElementById(cycleList[i] + '_BODY');
+      if (obj.id == curObj.id)
+      {
+        curObj.className = tabFront;
+        curBody.style.display = "";
+      }
+      else
+      {
+        curObj.className = tabBack;
+        curBody.style.display = "none";
+      }
+    }
+  }
+
+  // 添加事件
+  for (i=0; i< cycleList.length; i++)
+  {
+    document.getElementById(cycleList[i]).onmousemove = function()
+    {
+      cycleShow(this);
+    };
+  }
+{/literal}
+//]]>
+</script>

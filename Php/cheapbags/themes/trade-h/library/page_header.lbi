@@ -1,0 +1,78 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{insert_scripts files='transport.js,utils.js'}
+<?php
+  require_once("themes/trade-h/util.php");
+  $GLOBALS['smarty']->assign('categories',get_categories_tree()); // 保证首页页面都显示所有分类
+?>
+ <div id="header">
+  <div id="logo"><a href="../index.php" title="logo">Wholesale Handbags</a><br/>from China, wholesalers, suppliers, exporters, manufacturers, traders</div>
+  <div id="contact">
+  		<!-- 邮件{if false and $service_email} -->
+      <img src="../images/email.gif" border="0" alt="Email" />  <a href="mailto:{$service_email}">{$service_email}</a><br/>
+      <!-- 结束邮件{/if} -->
+  		<!-- MSN Messenger {foreach from=$msn item=im} -->
+        <!-- {if $im} -->
+        <img src="../images/msn1.gif" border="0" alt="MSN" /> <a href="msnim:chat?contact={$im}">{$im}</a>
+        <!-- {/if} -->
+        <!-- {/foreach} 结束MSN Messenger --></div>
+  <div id="mainNav">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+	  <td><div class="home"><a href="../index.php"><span>{$lang.home}</span></a></div></td>
+<!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav} -->
+      <td>{if $smarty.foreach.nav_middle_list.last}<div class="out borl" onmouseover="this.className='on borl'" onmouseout="this.className='out borl'">{else}<div class="out" onmouseover="this.className='on'" onmouseout="this.className='out'">{/if}<a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank" {/if} {if $nav.active eq 1} class="cur"{/if}>{$nav.name}</a>
+        <?php 
+              $subcates = get_subcate_byurl($GLOBALS['smarty']->_var['nav']['url']);
+              if($subcates!=false)
+              {
+          echo "<div class='navp'>";
+              echo "<ul>";
+                  if(count($subcates)>0)
+                  {
+                      if($subcates)
+                      {
+                      foreach($subcates as $cate)
+                      {
+                          echo "<li><a href='".$cate['url']."' class='level_1'>".$cate['name']."</a></li>";
+                      }
+                      }
+                  }
+            echo "</ul>";
+         echo "</div>";
+              }
+         ?>
+    </div></td>
+<!-- {/foreach} -->
+	  <td id="ECS_MEMBERZONE">{* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'}</td>
+  </tr>
+  </table>
+  </div>
+  <div id="search" class="clearfix">
+  <div class="searchForm"> 
+    <form id="searchForm" name="searchForm" method="get" action="search.php" onsubmit="return checkSearchForm()">
+        <input type="text" name="keywords" value="Cheap Bags Wholesale" onclick="this.select();" class="keyword"/>
+        <input type="image" name="imageField" src="../images/btn_search.gif"/> 
+        <a href="../search.php?act=advanced_search">Advanced Search</a>
+    </form>
+  </div>
+  <div class="cart" id="ECS_CARTINFO">{insert name='cart_info'}</div>
+  </div>
+</div>
+<script type="text/javascript">
+{literal}
+<!--
+function checkSearchForm()
+{
+	if(document.getElementById('keyword').value)
+	{
+		return true;
+	}
+	else
+	{
+		alert("{$lang.no_keywords}");
+		return false;
+	}
+}
+-->
+{/literal}
+</script>

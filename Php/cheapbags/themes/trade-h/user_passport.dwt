@@ -1,0 +1,367 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,user.js,transport.js'}
+</head>
+<body>
+<div id="globalWrapper">
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --><div id="wrapper">
+<div id="container">
+  <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+<!--判断是否需要左右芬兰{if $action eq 'register' || $action eq 'login'}--><div id="userIn"><!--{/if}-->
+<div class="libDiv">
+  <div class="libTop">
+    <h3><!--{if $action eq 'register'}-->User Register<!--{elseif $action eq 'login'}-->User Login<!--{elseif $action eq 'get_password'}-->Get Password<!--{elseif $action eq 'qpassword_name'}-->Get Password By Question<!--{elseif $action eq 'get_passwd_question'}-->Show Question By User Name<!--{elseif $action eq 'reset_password'}-->Reset Password<!--{/if}--></h3>
+  </div>
+  <div class="libBody">
+<div class="userPage">
+  <!-- End #search-bar -->
+    <!--*User Register界面-->
+    <!--{if $action eq 'register'}-->
+    <!-- {if $shop_reg_closed eq 1} -->
+    {$lang.shop_register_closed}
+    <!-- {else} -->
+<div class="userPassport">
+  <form action="user.php" method="post" name="formUser" onsubmit="return register();">
+    <table  border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td height="30" align="right">{$lang.label_username}：</td>
+        <td align="left">
+          <input name="username" type="text" class="inputBox left10" size="25" id="username" onblur="is_registered(this.value);" />
+          <span id="username_notice" style="color:#FF0000"> * <font color="#999999">Or 3-20 characters (numbers, letters and "_")</font></span>          </td>
+        </tr>
+      <tr>
+        <td height="30" align="right">E-mail：</td>
+        <td align="left">
+          <input name="email" type="text" class="inputNowidth left10" size="40" id="email" onblur="checkEmail(this.value);"  />
+          <span id="email_notice" style="color：#FF0000"> * <font color="#999999">Facilitate the recovery of lost accounts</font></span>          </td>
+        </tr>
+      <tr>
+        <td height="30" align="right">{$lang.label_password}：</td>
+        <td align="left">
+          <input name="password" type="password" class="inputBox left10" id="password" onblur="check_password(this.value);" onkeyup="checkIntensity(this.value)"  style="width：179px;" />
+          <span style="color：#FF0000" id="password_notice"> * <font color="#999999">(6-12 characters)</font></span>          </td>
+        </tr>
+      <tr>
+        <td height="30" align="right">{$lang.label_password_intensity}：</td>
+        <td align="left">
+          <table width="145" border="0" cellspacing="0" cellpadding="1" class="left10">
+            <tr align="center">
+              <td width="33%" id="pwd_lower">{$lang.pwd_lower}</td>
+              <td width="33%" id="pwd_middle">{$lang.pwd_middle}</td>
+              <td width="33%" id="pwd_high">{$lang.pwd_high}</td>
+              </tr>
+            </table>          </td>
+        </tr>
+      <tr>
+        <td height="30" align="right">{$lang.label_confirm_password}：</td>
+        <td align="left">
+          <input name="confirm_password" type="password" class="inputBox left10" id="conform_password" onblur="check_conform_password(this.value);"   style="width:179px;"/>
+          <span style="color:#FF0000" id="conform_password_notice"> * <font color="#999999">Please enter a password for confirmation</font></span>          </td>
+        </tr>
+      <!-- {foreach from=$extend_info_list item=field} -->
+      <!-- {if $field.id eq 6} -->
+      <tr>
+        <td height="30" align="right">{$lang.passwd_question}：</td>
+        <td>
+          <select name='sel_question' class="left10">
+            <option value='0'>{$lang.sel_question}</option>
+	  {html_options options=$passwd_questions}
+	  </select>
+          </td>
+        </tr>
+      <tr>
+        <td height="30" align="right" <!-- {if $field.is_need} -->id="passwd_quesetion"<!--{/if}-->>{$lang.passwd_answer}：</td>
+        <td>
+          <input name="passwd_answer" type="text" size="25" class="inputBox left10" maxlengt='20'/><!-- {if $field.is_need} --><span style="color:#FF0000"> *</span><!-- {/if} -->
+          </td>
+        </tr>
+      <!-- {else} -->
+      <tr>
+        <td height="30" align="right" <!-- {if $field.is_need} -->id="extend_field{$field.id}i"<!--{/if}-->>{$field.reg_field_name}：
+        <td>
+          <input name="extend_field{$field.id}" type="text" size="25" class="inputBox left10" /><!-- {if $field.is_need} --><span style="color:#FF0000"> *</span><!-- {/if} -->
+          </td>
+        </tr>
+      <!-- {/if} -->
+      <!-- {/foreach} -->
+      <!-- 判断是否启用验证码{if $enabled_captcha} -->
+      <tr>
+        <td height="30" align="right">{$lang.comment_captcha}：</td>
+        <td align="left"><input type="text" class="inputBox left10" size="8" name="captcha"  />
+          <img src="captcha.php?{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?'+Math.random()" /> </td>
+        </tr>
+      <!--{/if}-->
+      <tr>
+        <td> </td>
+        <td height="40" align="left"><label>
+          <input name="agreement" type="checkbox" value="1" checked="checked" />
+          {$lang.agreement}</label></td>
+        </tr>
+      <tr>
+        <td height="40">&nbsp;</td>
+        <td style="padding-left:10px;"><input name="act" type="hidden" value="act_register" />
+          <input type="hidden" name="back_act" value="{$back_act}" />
+          <input name="Submit" type="submit" class="global_btn" value="{$lang.confirm_register}" /></td>
+        </tr>
+      <tr>
+        <td colspan="2"> </td>
+        </tr>
+      <tr>
+        <td> </td>
+        <td align="left" class="actionSub">
+          <a href="user.php?act=get_password">{$lang.forgot_password}</a>          </td>
+        </tr>
+      </table>
+    <br />
+  </form></div>
+    
+    <!--{/if}-->
+    <!--{/if}-->
+    <!--#User Register界面-->
+    <!--#登录界面-->
+    <!-- {if $action eq 'login'} -->
+    <div id="userLogin">
+<div class="userPassportLogin">
+  <form name="formLogin" action="user.php" method="post" onSubmit="return userLogin()">
+  <br />
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="260" align="center"><table border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td height="30" align="right">{$lang.label_username}：</td>
+                <td><input name="username" type="text" class="inputBox left10" style="width:180px" size="25" /></td>
+                </tr>
+              <tr>
+                <td align="right">{$lang.label_password}：</td>
+                <td>
+                  <input name="password" type="password" size="15"  class="inputBox left10"/>
+                  </td>
+                </tr>
+          <!-- 判断是否启用验证码{if $enabled_captcha} -->
+          <tr>
+            <td align="right">{$lang.comment_captcha}</td>
+            <td><input type="text" size="8" name="captcha" class="inputNowidth left10" />
+            <img src="captcha.php?is_login=1&{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?is_login=1&'+Math.random()" /> </td>
+          </tr>
+          <!--{/if}-->
+          <tr>
+            <td colspan="2" align="center"><input type="checkbox" value="1" name="remember" id="remember" /><label for="remember">{$lang.remember}</label></td>
+          </tr>
+          <tr>
+                <td height="60" colspan="2" align="center"> 
+                  <input type="hidden" name="act" value="act_login" />
+                  <input type="hidden" name="back_act" value="{$back_act}" />
+                  <input type="submit" name="submit" value="{$lang.confirm_login}" class="global_btn" />                </td>
+                </tr>
+              <tr><td class="actionSub" height="30" colspan="2"><a href="user.php?act=qpassword_name">{$lang.get_password_by_question}</a><br /><a href="user.php?act=get_password">{$lang.get_password_by_mail}</a></td></tr>
+            </table></td>
+            </tr>
+        </table>
+        <br />
+        </form>
+    </div>
+
+    </div>
+    <!--{/if}-->
+    <!--#登录界面-->
+    <!--*Get Password界面 -->
+    <!--{if $action eq 'get_password'} -->
+    {insert_scripts files='utils.js'}
+    <script type="text/javascript">
+    {foreach from=$lang.password_js item=item key=key}
+      var {$key} = "{$item}";
+    {/foreach}
+    </script>
+    <div id="userPassword">
+      <div class="userPassport">
+      <form action="user.php" method="post" name="getPassword" onsubmit="return submitPwdInfo();">
+        <br />
+  <table border="0" align="center" cellspacing="0">
+    <tr>
+      <td height="30" colspan="2" align="center">{$lang.username_and_email}</td>
+      </tr>
+    <tr>
+      <td height="30" align="right">{$lang.username}：</td>
+      <td><input name="user_name" type="text" class="inputBox left10" size="30" /></td>
+      </tr>
+    <tr>
+      <td height="30" align="right">{$lang.email}：</td>
+      <td><input name="email" type="text" class="inputBox left10" size="30" /></td>
+      </tr>
+    <tr>
+      <td height="30" colspan="2" align="center"><input type="hidden" name="act" value="send_pwd_email" />
+        <input type="submit" name="submit" class="global_btn" value="{$lang.confirm_submit}" />
+        <input name="button" type="button" class="global_btn" onclick="history.back()" value="{$lang.back_page_up}" />            </td>
+      </tr>
+  </table><br />
+        </form>
+    </div>
+    
+    </div>
+<!--{/if}-->
+
+<!--*Get Password By Question的确认找回账号界面 -->
+    <!--{if $action eq 'qpassword_name'} -->
+<div id="userPassword-reset">
+  <div class="userPassport">
+    <form action="user.php" method="post">
+        <br />
+        <table width="70%" border="0" align="center">
+          <tr>
+            <td colspan="2" align="center"><strong>{$lang.get_question_username}</strong></td>
+          </tr>
+          <tr>
+            <td width="29%" align="right">{$lang.username}：</td>
+            <td width="61%"><input name="user_name" type="text" size="30" class="inputBox left10" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="hidden" name="act" value="get_passwd_question" />
+              <input type="submit" name="submit" value="{$lang.submit}" class="global_btn" style="border:none;" />
+              <input name="button" type="button" onclick="history.back()" value="{$lang.back_page_up}" style="border:none;" class="global_btn" />
+        </td>
+          </tr>
+        </table>
+        <br />
+      </form>
+  </div>
+</div>
+
+<!--{/if}-->
+
+<!--*Show Question By User Name -->
+    <!--{if $action eq 'get_passwd_question'} -->
+<div id="userPassword-reset">
+      <div class="userPassport">
+    <form action="user.php" method="post">
+        <br />
+        <table width="70%" border="0" align="center">
+          <tr>
+            <td colspan="2" align="center"><strong>{$lang.input_answer}</strong></td>
+          </tr>
+          <tr>
+            <td width="29%" align="right">{$lang.passwd_question}：</td>
+            <td width="61%">{$passwd_question}</td>
+          </tr>
+          <tr>
+            <td align="right">{$lang.passwd_answer}：</td>
+            <td><input name="passwd_answer" type="text" size="20" class="inputBox left10" /></td>
+          </tr>
+          <!-- 判断是否启用验证码{if $enabled_captcha} -->
+          <tr>
+            <td align="right">{$lang.comment_captcha}：</td>
+            <td><input type="text" size="8" name="captcha" class="inputBox left10" />
+            <img src="captcha.php?is_login=1&{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?is_login=1&'+Math.random()" /> </td>
+          </tr>
+          <!--{/if}-->
+          <tr>
+            <td></td>
+            <td><input type="hidden" name="act" value="check_answer" />
+              <input type="submit" name="submit" value="{$lang.submit}" class="global_btn" style="border:none;" />
+              <input name="button" type="button" onclick="history.back()" value="{$lang.back_page_up}" style="border:none;" class="global_btn" />
+        </td>
+          </tr>
+        </table>
+        <br />
+      </form>
+  </div>
+</div>
+
+<!--{/if}-->
+
+<!--*Reset Password -->
+<!-- {if $action eq 'reset_password'} -->
+    <script type="text/javascript">
+    {foreach from=$lang.password_js item=item key=key}
+      var {$key} = "{$item}";
+    {/foreach}
+    </script>
+    <div id="userPassword-reset">
+      <div class="userPassport">
+      <form action="user.php" method="post" name="getPassword2" onSubmit="return submitPwd()">
+        <br />
+  <table border="0" align="center" cellspacing="0">
+    <tr>
+      <td height="30" align="right">{$lang.new_password}：</td>
+      <td><input name="new_password" type="password" class="inputBox left10" size="25" /></td>
+      </tr>
+    <tr>
+      <td height="30" align="right">{$lang.confirm_password}：</td>
+      <td><input name="confirm_password" type="password" class="inputBox left10" size="25" /></td>
+      </tr>
+    <tr>
+      <td height="30" colspan="2" align="center"><input type="hidden" name="act" value="act_edit_password" />
+        <input type="hidden" name="uid" value="{$uid}" />
+        <input type="hidden" name="code" value="{$code}" />
+        <input type="submit" name="submit" class="global_btn" value="{$lang.confirm_submit}" />          </td>
+      </tr>
+  </table><br />
+      </form>
+    </div>
+    
+    </div>
+    <!-- {/if} -->
+    <!--#Get Password界面 -->
+</div>
+    <div class="clear"></div>
+  </div>
+  
+</div>
+<!--{if $action eq 'register' || $action eq 'login'}-->
+</div>
+<div id="userRight">
+<!--{if $action eq 'register'}-->
+<div class="loginHelp">
+  <h3> Our services </h3>
+  <div class="libBody">
+    <ul>
+      <li> {$lang.user_reg_info[4]}</li>
+      <li> {$lang.user_reg_info[5]}</li>
+      <li> {$lang.user_reg_info[6]}</li>
+      <li> {$lang.user_reg_info[7]}</li>
+    </ul>
+<div class="enter"><a href="../user.php?act=login" class="button" title='Login'> <span> Sign In</span></a> </div>
+  </div>
+</div>
+<!--{elseif $action eq 'login'}-->
+<div class="loginHelp">
+  <h3> Our services </h3>
+  <div class="libBody">
+    <ul>
+      <li> {$lang.user_reg_info[4]}</li>
+      <li> {$lang.user_reg_info[5]}</li>
+      <li> {$lang.user_reg_info[6]}</li>
+      <li> {$lang.user_reg_info[7]}</li>
+    </ul>
+    <div class="enter"><a href="../user.php?act=register" class="button" title='Register'> <span> Join Free</span></a> </div>
+  </div>
+</div>
+<!--判断是否需要左右芬兰{/if}-->
+</div>
+<!--{/if}-->
+<div class="clear"></div>
+</div>
+  <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem --></div><!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+<!-- End #Wrapper -->
+  </div>
+<!-- End #globalWrapper -->
+<script type="text/javascript">
+var process_request = "{$lang.process_request}";
+{foreach from=$lang.passport_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+var username_exist = "{$lang.username_exist}";
+</script>
+</body>
+</html>

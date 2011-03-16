@@ -1,0 +1,6 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{if $user_info}
+<td id="ECS_MEMBERZONE"><div class="member"><a href="user.php">{$lang.user_center}</a></div></td><td><div class="member noright"><a href="user.php?act=logout">{$lang.user_logout}</a></div></td>
+{else}
+<td id="ECS_MEMBERZONE"><div class="member"><a href="user.php?act=login">Sign In</a></div></td><td><div class="member noright"><a href="user.php?act=register">Join Free</a></div></td>
+{/if}

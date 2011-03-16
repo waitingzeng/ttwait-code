@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<style>
+ th, td{padding:3px;}
+</style>
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+</head>
+<body>
+  <div id="wrap">
+    <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+    <div class="container">
+      <div class="global_l">
+      <!-- TemplateBeginEditable name="左边区域" -->
+      <!-- #BeginLibraryItem "/library/article_category_tree.lbi" --><!-- #EndLibraryItem -->
+      <!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem -->
+      <!-- TemplateEndEditable -->
+      </div>
+      <div class="global_r">
+        <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+        <!-- TemplateBeginEditable name="通栏广告区域（宽752px）" --><!-- TemplateEndEditable -->
+        <div class="module">
+          <p class="top"><span></span></p>
+          <div class="content">
+						<form action="{$search_url}" name="search_form" method="get" style="margin:8px;">
+							<input name="keywords" type="text" id="requirement" value="{$search_value}"/>
+							<input name="id" type="hidden" value="{$cat_id}" />
+							<input type="submit" value="{$lang.button_search}" class="button_1" />
+						</form>
+            <table width="98%" style="margin:5px auto;" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+              <tr>
+                <th bgcolor="#ffffff">{$lang.article_title}</th>
+                <th bgcolor="#ffffff">{$lang.article_author}</th>
+                <th bgcolor="#ffffff">{$lang.article_add_time}</th>
+              </tr>
+              <!-- {foreach from=$artciles_list item=article} -->
+              <tr>
+                <td bgcolor="#ffffff"><a href="{$article.url}" title="{$article.title|escape:html}">{$article.short_title}</a></td>
+                <td bgcolor="#ffffff">{$article.author}</td>
+                <td bgcolor="#ffffff" align="center">{$article.add_time}</td>
+              </tr>
+              <!-- {/foreach} -->
+            </table>
+          </div>
+          <p class="bottom"><span></span></p>
+        </div>
+				<!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+      </div>
+    </div>
+    <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+    <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+  </div>
+</body>
+</html>

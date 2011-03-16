@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS|{$page_title}" href="{$feed_url}" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+
+</head>
+
+<body>
+<div id="globalWrapper">
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --><div id="wrapper">
+  <!-- End #search-bar -->
+<!-- TemplateBeginEditable name="通栏广告位" -->
+<!-- TemplateEndEditable -->
+  <!-- End #login-news -->
+<div id="container">
+  <div id="indexRight">
+<!-- #BeginLibraryItem "/library/ad_txt.lbi" --><!-- #EndLibraryItem -->
+  <!-- TemplateBeginEditable name="主区域右侧" --><!-- TemplateEndEditable --></div>
+  <div id="bigLeft">
+<!-- #BeginLibraryItem "/library/index_ad.lbi" --><!-- #EndLibraryItem -->
+	<!-- TemplateBeginEditable name="主区域左侧" -->
+<!-- TemplateEndEditable -->
+</div>
+  <div class="clear"></div>
+<!-- TemplateBeginEditable name="通栏主区域" -->
+<!-- #BeginLibraryItem "/library/recommend_best.lbi" -->
+
+<!-- {if $best_goods}-->
+<div class="goodsRecommend">
+    <h3><span class="more"><a href="../search.php?intro=best">more</a></span>Best Products</h3>
+      <!--{foreach from=$best_goods item=goods}-->
+    <div class="reList"><a class="pic" href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" border="0" /></a><ul>
+        <li class="name"><a href="{$goods.url}">{$goods.short_style_name}</a></li>
+         <li class="brief">
+          {$goods.brief}
+        </li>
+       <li class="price_shop">
+          <!-- {if $goods.promote_price neq ""} -->
+          {$lang.promote_price}：{$goods.promote_price}
+          <!-- {else}-->
+          {$lang.shop_price}：{$goods.shop_price}
+          <!--{/if}-->
+        </li>
+      </ul>
+    </div>
+      <!--{/foreach}-->
+</div>
+<!-- {/if} -->
+
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+</div>
+<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+    <!-- {if $txt_links } -->
+    <div id="link">
+      <p><strong>Link：</strong>
+        <!-- 开始文字类型的友情链接{foreach from=$txt_links item=link} -->
+        [<a href="{$link.url}" target="_blank" title="{$link.name}">{$link.name}</a>]
+        <!-- 结束文字类型的友情链接{/foreach} -->
+      </p>
+    </div><!-- /globalLink -->
+    <!-- {/if} -->
+</div><!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+<!-- End #Wrapper -->
+</div><!-- End #globalWrapper -->
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='utils.js,common.js,global.js,compare.js,transport.js'}
+</head>
+<body>
+<div id="globalWrapper">
+  <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --><div id="wrapper">
+<!-- TemplateBeginEditable name="通栏广告位" --><!-- TemplateEndEditable -->
+    <div id="container">
+<!-- {if $action eq "form"} -->
+     <!-- #BeginLibraryItem "/library/ur_here.lbi" --> {$lang.ur_here} {$ur_here} <!-- #EndLibraryItem -->
+     <!--  搜索的表单 -->
+      <div class="content-div" style="padding:100px 0;border: 1px solid #EEE;">
+        <form action="search.php" method="get" name="advancedSearchForm" id="advancedSearchForm">
+          <table border="0" align="center" cellpadding="3">
+            <tr>
+              <td valign="top">{$lang.keywords}:</td>
+              <td>
+                <input name="keywords" id="keywords" type="text" size="40" maxlength="120" value="{$adv_val.keywords}" />
+                <label for="sc_ds"><input type="checkbox" name="sc_ds" value="1" id="sc_ds" {$scck} />{$lang.sc_ds}</label>
+              <br />{$lang.searchkeywords_notice}              </td>
+            </tr>
+            <tr>
+              <td height="25">{$lang.category}:</td>
+              <td><select name="category" id="select">
+                <option value="0">{$lang.all_category}</option>{$cat_list}</select>              </td>
+            </tr>
+            <tr>
+              <td height="25">{$lang.brand}:</td>
+              <td><select name="brand" id="brand">
+                <option value="0">{$lang.all_brand}</option>
+                    {html_options options=$brand_list selected=$adv_val.brand}
+                  </select>              </td>
+            </tr>
+            <tr>
+              <td height="25">{$lang.price}:</td>
+              <td><input name="min_price" type="text" id="min_price" value="{$adv_val.min_price}" size="10" maxlength="8" />
+                -
+              <input name="max_price" type="text" id="max_price" value="{$adv_val.max_price}" size="10" maxlength="8" />              </td>
+            </tr>
+            <!--{if $goods_type_list}-->
+            <tr>
+              <td height="25">{$lang.extension}</td>
+              <td><select name="goods_type" onchange="this.form.submit()">
+                <option value="0">{$lang.all_option}</option>
+                    {html_options options=$goods_type_list selected=$goods_type_selected}
+                  </select>              </td>
+            </tr>
+            <!--{/if}-->
+            <!--{if $goods_type_selected > 0}-->
+            <!--{foreach from=$goods_attributes item=item}-->
+            <!--{if $item.type eq 1}-->
+            <tr>
+              <td height="25">{$item.attr}:</td>
+              <td colspan="3"><input name="attr[{$item.id}]" value="{$item.value}" type="text" size="20" maxlength="120" /></td>
+            </tr>
+            <!--{/if}-->
+            <!--{if $item.type eq 2}-->
+            <tr>
+              <td height="25">{$item.attr}:</td>
+              <td colspan="3"><input name="attr[{$item.id}][from]" value="{$item.value.from}" type="text" size="5" maxlength="5" />
+                -
+              <input name="attr[{$item.id}][to]" value="{$item.value.to}" type="text" maxlength="5" /></td>
+            </tr>
+            <!--{/if}-->
+            <!--{if $item.type eq 3}-->
+            <tr>
+              <td height="25">{$item.attr}:</td>
+              <td colspan="3"><select name="attr[{$item.id}]">
+                <option value="0">{$lang.all_option}</option>
+                    {html_options options=$item.options selected=$item.value}
+                  </select></td>
+            </tr>
+            <!--{/if}-->
+            <!--{/foreach}-->
+            <!--{/if}-->
+
+            <!-- {if $use_storage eq 1} -->
+            <tr>
+              <td height="25">&nbsp;</td>
+              <td><label for="outstock"><input type="checkbox" name="outstock" value="1" id="outstock" <!-- {if $outstock} -->checked="checked"<!--{/if}-->/> {$lang.hidden_outstock}</label></td>
+            </tr>
+            <!--{/if}-->
+
+            <tr>
+              <td height="25">&nbsp;</td>
+              <td><input type="hidden" name="action" value="form" />
+              <input type="submit" name="Submit" class="global_btn" value="{$lang.button_search}" /></td>
+            </tr>
+          </table>
+        </form>
+      </div>
+      <!-- {/if} -->
+      <!-- {if isset($goods_list)} -->
+<div id="pageLeft"><!-- TemplateBeginEditable name="主区域左侧" -->
+<!-- #BeginLibraryItem "/library/category_tree.lbi" -->
+
+{insert_scripts files='transport.js,utils.js'}
+<div class="catDiv">
+  <ul>
+    <!--{foreach from=$categories item=cat}-->
+    <li class="parentCat"><A href="{$cat.url}">{$cat.name|escape:html}</A></li>
+      <!--{foreach from=$cat.children item=child}-->
+      <li><A href="{$child.url}">{$child.name|escape:html}</A></li>
+      <!--{/foreach}-->
+    <!--{/foreach}-->
+  </ul>
+</div>
+ <!-- #EndLibraryItem --><!-- #BeginLibraryItem "/library/history.lbi" -->
+
+<div class="libDiv">
+  <h2>浏览历史</h2>
+  <ul class="history-list">
+    {insert name='history'}
+  </ul>
+</div>
+
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->      </div>
+<div id="pageIn"> 
+    <!-- #BeginLibraryItem "/library/ur_here.lbi" --> {$lang.ur_here} {$ur_here} <!-- #EndLibraryItem -->
+<div id="filter">
+          <form method="get" action="search.php" name="listform">
+            <div class="fore item">SORT BY：</div>
+            <ul class="item tab">
+              <li class="<!-- {if $pager.sort == 'goods_id'} -->curr ud<!-- {/if} --><!-- {if $pager.sort == 'goods_id' && $pager.order == 'DESC'} --> ASC<!-- {else} --> DESC<!-- {/if} -->"><b></b><a href="category.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=goods_id&order=<!-- {if $pager.sort == 'goods_id' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->#goods_list">TIME</a><span></span></li>
+              <li class="<!-- {if $pager.sort == 'shop_price'} -->curr ud<!-- {/if} --><!-- {if $pager.sort == 'shop_price' && $pager.order == 'DESC'} --> ASC<!-- {else} --> DESC<!-- {/if} -->"><b></b><a href="category.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=shop_price&order=<!-- {if $pager.sort == 'shop_price' && $pager.order == 'ASC'} -->DESC<!-- {else} -->ASC<!-- {/if} -->#goods_list">PRICE</a><span></span></li>
+              <li class="<!-- {if $pager.sort == 'last_update'} -->curr ud<!-- {/if} --><!-- {if $pager.sort == 'last_update' && $pager.order == 'DESC'} --> ASC<!-- {else} --> DESC<!-- {/if} -->"><b></b><a href="category.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=last_update&order=<!-- {if $pager.sort == 'last_update' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->#goods_list">UPDATE</a><span></span></li>
+            </ul>
+            <div class="sort">VIEW：<a href="javascript:;" onClick="javascript:display_mode('list')"><img src="images/display_mode_list<!-- {if $pager.display == 'list'} -->_act<!-- {/if} -->.gif" alt="{$lang.display.list}"></a> <a href="javascript:;" onClick="javascript:display_mode('grid')"><img src="images/display_mode_grid<!-- {if $pager.display == 'grid'} -->_act<!-- {/if} -->.gif" alt="{$lang.display.grid}"></a> <a href="javascript:;" onClick="javascript:display_mode('text')"><img src="images/display_mode_text<!-- {if $pager.display == 'text'} -->_act<!-- {/if} -->.gif" alt="{$lang.display.text}"></a></div>
+            <span class="clear"></span>
+            <ul class="extra">
+              <li><span>Total <strong>{$pager.record_count}</strong> records</span></li>
+            </ul>
+            <input type="hidden" name="category" value="{$category}" />
+            <input type="hidden" name="display" value="{$pager.display}" id="display" />
+            <input type="hidden" name="brand" value="{$brand_id}" />
+            <input type="hidden" name="price_min" value="{$price_min}" />
+            <input type="hidden" name="price_max" value="{$price_max}" />
+            <input type="hidden" name="filter_attr" value="{$filter_attr}" />
+            <input type="hidden" name="page" value="{$pager.page}" />
+            <input type="hidden" name="sort" value="{$pager.sort}" />
+            <input type="hidden" name="order" value="{$pager.order}" />
+          </form>
+        </div>
+
+	  <!-- TemplateBeginEditable name="主区域中间" -->
+<!-- #BeginLibraryItem "/library/goods_list.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+<!-- TemplateEndEditable --></div>
+      <!-- {/if} -->
+      <!-- End #indexRrigh -->
+      <div class="clear"></div>
+    </div>
+    <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+	</div><!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+  <!-- End #Wrapper -->
+  </div>
+<!-- End #globalWrapper -->
+</body>
+</html>

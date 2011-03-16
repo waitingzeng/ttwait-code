@@ -1,0 +1,21 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $price_grade} -->
+<div class="module">
+  <p class="top"><span></span></p>  
+  <div class="content">
+    <h1>{$lang.price_grade}</h1>
+    <ul class="text_list">
+      <!-- {foreach from=$price_grade item=grade} -->   
+      <!-- {if $grade.selected} -->
+      <li>
+      <font style="font-family:宋体;">·</font>{$grade.start} - {$grade.end} {if $grade.goods_num}({$grade.goods_num}){/if}
+      </li>
+      <!-- {else} -->    
+      <li><font style="font-family:宋体;">·</font><a href="{$grade.url}">{$grade.start} - {$grade.end}</a>{if $grade.goods_num}({$grade.goods_num}){/if}</li>    
+      <!-- {/if} -->    
+      <!-- {/foreach} -->
+    </ul>
+  </div>
+  <p class="bottom"><span></span></p>
+</div>
+<!-- {/if} -->

@@ -1,0 +1,10 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="Mod3 blank">
+<h2 class="new"><a href="{$articles_cat.url}">{$articles_cat.name|escape:html}</a></h2>
+ <div class="ContantBlank">
+  <!--{foreach from=$articles item=article_item}-->
+   <a href="{$article_item.url}" title="{$article_item.title|escape:html}" class="Triangle">{$article_item.short_title|truncate:14}</a><br />
+   <!--{/foreach}-->
+ <p class="tr"><a href="{$articles_cat.url}"><img src="../images/more.gif" ></a></p>
+ </div>
+ </div>

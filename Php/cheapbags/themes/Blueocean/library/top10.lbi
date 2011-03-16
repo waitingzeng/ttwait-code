@@ -1,0 +1,24 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div id="ranking" class="area">
+  <h1>
+    <span>{$lang.top10}</span>
+  </h1>
+  <!-- {foreach name=top_goods from=$top_goods item=goods}-->
+  <ul>
+	<img src="../images/top_{$smarty.foreach.top_goods.iteration}.gif" class="iteration" />
+	<!-- {if $smarty.foreach.top_goods.iteration<4}-->
+      <li>
+      <a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" width="45" height="45" /></a>
+      </li>
+	<!-- {/if} -->		
+      <li {if $smarty.foreach.top_goods.iteration<4}class="iteration1"{/if}>
+      <a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_name}</a><br />
+      {$lang.shop_price}<font class="f1">{$goods.price}</font><br />
+      </li>
+			<div style="clear:both;"></div>
+    </ul>
+  <!-- {/foreach} -->
+  <div class="bottom">
+    <span></span>
+  </div>
+</div>

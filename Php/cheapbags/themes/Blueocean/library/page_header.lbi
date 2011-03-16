@@ -1,0 +1,56 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--- header --->
+<div id="header">
+  <div id="logo">
+    <a href="../index.php" name="top" title="{$page_title}">
+      <img src="images/logo.jpg" alt="{$page_title}" />
+    </a>
+  </div>
+  <div id="top_nav">
+    <!--- top_nav --->
+    <ul class="nav">
+      <!-- {foreach name=nav_top_list from=$navigator_list.top item=nav} -->
+      <li><a href="{$nav.url}" <!-- {if $nav.opennew eq 1} -->target="_blank"<!-- {/if} -->>{$nav.name}</a>|</li>
+      <!-- {/foreach} -->
+    </ul>
+    <!--- end-top_nav--->
+    <!--- vip --->
+    <ul class="vip">
+      <li>{insert_scripts files='transport.js,utils.js'}{* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'}</li>
+    </ul>
+    <!--- end-vip --->    
+  </div>
+  <!--- main_nav --->
+  <ul id="main_nav">
+    <li{if $navigator_list.config.index eq 1} id="currentPage"{/if}><a href="../index.php">{$lang.home}</a></li>
+    <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav} -->
+    <li{if $nav.active eq 1} id="currentPage"{/if}><a href="{$nav.url}" <!-- {if $nav.opennew eq 1} -->target="_blank"<!-- {/if} -->>{$nav.name}</a></li>
+    <!-- {/foreach} -->
+  </ul>
+  <!--- end-main_nav --->  
+</div>
+<!--- search --->
+<div id="search">
+    <form id="searchForm" name="searchForm" method="get" action="search.php" onSubmit="return checkSearchForm()">
+      <!-- {if $searchkeywords} -->
+      <p id="globalSearchKeywords" class="linkSkyblue">
+      {$lang.hot_search}：
+      <!-- {foreach from=$searchkeywords item=val} -->
+      <a href="search.php?keywords={$val|escape:url}">{$val}</a>
+      <!-- {/foreach} -->
+      </p>
+      <!-- {/if} -->
+      <select name="category" id="category" style="vertical-align:middle;">
+      <option value="0">{$lang.all_category}</option>
+      {$category_list}
+      </select>
+      <input name="keywords" type="text" id="keyword" value="{$search_keywords|escape}"  style="vertical-align:middle;"/>      
+      <input type="image" src="../images/search_go.gif" class="go"  style="vertical-align:middle;"/>
+      <a href="search.php?act=advanced_search" id="adsearch">{$lang.advanced_search}</a>      
+    </form>
+  </div>
+<!--- end-search --->
+<!--- end-header --->
+<script type="text/javascript">
+var process_request = "{$lang.process_request}";
+</script>

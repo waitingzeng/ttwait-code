@@ -1,0 +1,16 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="module">
+  <p class="top"><span></span></p>
+  <div class="content">
+     <h1><a href="{$articles_cat.url}">{$articles_cat.name|escape:html}</a></h1>
+     <div class="cont">
+       <ul>
+				 <!--{foreach from=$articles item=article_item}-->
+         <li><font style="font-family:宋体;">·</font><a href="{$article_item.url}" title="{$article_item.title|escape:html}">{$article_item.short_title}</a> {$article_item.add_time}</li>
+         <!--{/foreach}-->
+       </ul>
+     </div>     
+     <div class="more"><a href="{$articles_cat.url}"><img src="../images/more.jpg" alt="more" /></a></div>
+  </div>
+  <p class="bottom"><span></span></p>
+</div>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+</head>
+<body>
+  <div id="wrap">
+    <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+    <div class="container">
+      <div class="global_l">
+      <!-- TemplateBeginEditable name="左边区域" -->
+      <!-- #BeginLibraryItem "/library/category_tree.lbi" --><!-- #EndLibraryItem -->
+      <!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem -->
+      <!-- TemplateEndEditable -->
+      </div>
+      <div class="global_r">
+        <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+        <div class="module" id="article">
+          <p class="top"><span></span></p>
+          <div class="content">
+            <h3>{$article.title|escape:html}</h3>
+            <div class="author">{$article.author|escape:html} / {$article.add_time}</div>
+            <!-- {if $article.content } -->
+            {$article.content}
+            <!-- {/if} -->
+            <div class="page">
+            {if $next_article}
+            <b>{$lang.next_article}:</b>&nbsp&nbsp<a href="{$next_article.url}">{$next_article.title}</a><br />
+            {/if}
+            <!-- 下一篇文章 -->
+            {if $prev_article}
+            <b>{$lang.prev_article}:</b>&nbsp&nbsp<a href="{$prev_article.url}">{$prev_article.title}</a>
+            {/if}
+          </div>
+          </div>
+          <p class="bottom"><span></span></p>
+        </div>
+        <!-- TemplateBeginEditable name="右边区域" -->
+        <!-- #BeginLibraryItem "/library/comments.lbi" --><!-- #EndLibraryItem -->
+        <!-- TemplateEndEditable -->
+      </div>
+    </div>
+    <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+    <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+  </div>
+</body>
+</html>

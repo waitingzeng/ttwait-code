@@ -1,0 +1,14 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="libDiv">
+  <div class="libTop">
+    <h3>{$lang.new_article}</h3>
+  </div>
+  <div class="libBody">
+    <ul class="notice">
+      <!--{foreach from=$new_articles item=article}-->
+      <li><a href="{$article.url}" title="{$article.title|escape:html}">{$article.short_title}</a></li>
+      <!--{/foreach}-->
+    </ul>
+  </div>
+  
+</div>

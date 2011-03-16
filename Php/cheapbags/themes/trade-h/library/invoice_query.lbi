@@ -1,0 +1,19 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--{if $invoice_list}-->
+<!--发货查询-->
+<div class="libDiv">
+  <div class="libTop">
+    <h3>{$lang.shipping_query}</h3>
+  </div>
+  <div class="libBody">
+    <ul id="email_list">
+    <!-- 发货单查询{foreach from=$invoice_list item=invoice} -->
+   {$lang.order_number} {$invoice.order_sn}<br />
+   {$lang.consignment} {$invoice.invoice_no}
+   <!-- 结束发货单查询{/foreach}-->
+    </ul>
+    <div class="clear"></div>
+  </div>
+  
+</div>
+<!-- {/if} -->

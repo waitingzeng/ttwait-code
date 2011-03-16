@@ -1,0 +1,29 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<?
+$GLOBALS['smarty']->assign('article_categories',   article_categories_tree(0)); // 分类树
+?>
+  <div class="sideCategory">
+    <h3><span class="libDivTL">&nbsp;</span><span class="libDivTR">&nbsp;</span><em>{$lang.article_cat}</em></h3>
+  </div>
+  <div class="sideBody">
+    <dl id="accountNav">
+      <dd> <span class='title '>Help</span>
+        <ul>
+          <!-- {foreach from=$helps item=help_cat} -->
+          <li ><a  href="{$help_cat.cat_id}" title='{$help_cat.cat_name}'>{$help_cat.cat_name}</a></li>
+          <!--{/foreach}-->
+        </ul>
+      </dd>
+    </dl>
+    <!--{foreach from=$article_categories item=cat}-->
+    <dl id="accountNav">
+      <dd> <span class='title '>{$cat.name|escape:html}</span>
+        <ul>
+          <!--{foreach from=$cat.children item=child}-->
+          <li ><a  href="{$child.url}" title='{$child.name|escape:html}'>{$child.name|escape:html}</a></li>
+          <!--{/foreach}-->
+        </ul>
+      </dd>
+    </dl>
+    <!--{/foreach}-->
+  </div>

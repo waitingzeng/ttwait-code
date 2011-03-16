@@ -1,0 +1,17 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $bought_goods} -->
+  <div class="content-div">
+    <!--{foreach from=$bought_goods item=goods}-->
+    <table border="0" cellpadding="3" cellspacing="0" class="re_goods-table" style="float: left">
+      <tr>
+        <td align="center"><a href="{$goods.url}"><img src="{$goods.goods_thumb}" alt="{$goods.goods_name}" width="80" height="60" border="0" /></a></td>
+      </tr>
+      <tr>
+        <td><a href="{$goods.url}" title="{$goods.goods_name}">{$goods.short_name}</a>
+        </td>
+      </tr>
+    </table>
+    <!--{/foreach}-->
+    <br style="clear: both" />
+  </div>
+<!-- {/if} -->

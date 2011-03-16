@@ -1,0 +1,17 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $helps} -->
+<div class="Area blank">
+   <div class="PbulicBorder tagcontent ">
+    <!-- {foreach from=$helps item=help_cat} -->
+   <div class="goodsbox">
+    <div class="helpTit">{$help_cat.cat_name}</div>
+    <div class="tl">
+    <!-- {foreach from=$help_cat.article item=item} -->
+    <a href="{$item.url}" title="{$item.title|escape:html}" class="Triangle">{$item.short_title}</a><br />
+    <!-- {/foreach} -->
+    </div>
+   </div>
+   <!-- {/foreach} --> 
+  </div>
+</div> 
+<!-- {/if} -->

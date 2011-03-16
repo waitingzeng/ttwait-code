@@ -1,0 +1,21 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $group_buy_goods} -->
+<div class="goods_list module" id="group_buy">
+  <div class="caption"><span><img alt="{$lang.group_buy_goods}" src="images/associates_caption.jpg" /></span></div>
+  <div class="top"><span></span></div>
+  <div class="content">
+   
+    <ul class="goods_grid2">
+      <!--{foreach from=$group_buy_goods item=goods}-->
+      <li>        
+        <p class="img"><a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}"/></a></p>
+        <p class="name"><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a></p>
+        <p class="price">{$goods.last_price}</p>
+      </li>
+      <!--{/foreach}-->
+    </ul>
+    <div class="more"><a href="group_buy.php"><img src="images/more.jpg" /></a></div>
+  </div>
+  <div class="bottom"><span></span></div>
+</div>
+<!-- {/if} -->

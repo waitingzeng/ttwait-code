@@ -1,0 +1,23 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<?php
+  $GLOBALS['smarty']->assign('top_goods',       get_top10());           // 销售排行
+?>
+<div class="libDiv">
+  <div class="libTop">
+    <h3>{$lang.top10}</h3>
+  </div>
+  <div class="libBody">
+  <ul class="top10">
+    <!-- {foreach name=top_goods from=$top_goods item=goods}-->
+	<!-- {if $smarty.foreach.top_goods.iteration<11}-->
+      <li>
+      <div class="samllimg"><a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" class="img"/></a></div>
+      <div class="name-price"><img src="../images/top_{$smarty.foreach.top_goods.iteration}.gif"  /> <a href="{$goods.url}" title="{$goods.short_name|escape:html}">{$goods.short_name}</a>
+      <p class="price_shop">{$lang.shop_price}{$goods.price}</p></div>
+      </li>
+	<!-- {/if} -->		
+    <!--{/foreach}-->
+  </ul>
+    <div class="clear"></div>
+  </div>
+</div>

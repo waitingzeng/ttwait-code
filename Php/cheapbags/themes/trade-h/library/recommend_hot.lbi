@@ -1,0 +1,22 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $hot_goods}-->
+<div class="goodsRecommend">
+    <h3><span class="more"><a href="../search.php?intro=hot">more</a></span>Hot Products</h3>
+      <!--{foreach from=$hot_goods item=goods}-->
+    <div class="reList"><a class="pic" href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" border="0" /></a><ul>
+        <li class="name"><A href="{$goods.url}">{$goods.short_style_name}</A></li>
+         <li class="brief">
+          {$goods.brief}
+        </li>
+       <li class="price_shop">
+          <!-- {if $goods.promote_price neq ""} -->
+          {$lang.promote_price}{$goods.promote_price}
+          <!-- {else}-->
+          {$lang.shop_price}{$goods.shop_price}
+          <!--{/if}-->
+        </li>
+      </ul>
+    </div>
+      <!--{/foreach}-->
+</div>
+<!-- {/if} -->

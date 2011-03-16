@@ -1,0 +1,14 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="Menu">
+<ul>
+   <li {if $navigator_list.config.index eq 1} class="cur"{/if}><a href="../index.php">{$lang.home}</a><span></span></li>
+        <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav} -->
+      <li {if $nav.active eq 1}class="cur"{/if}>
+       <a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank" {/if}>{$nav.name}</a>
+      </li> 
+        <!-- {/foreach} --> 
+   </ul>
+<a href="flow.php" style="cursor:pointer"><div class="Cart">
+<img src="../images/porson.gif" />
+</div></a>
+</div>

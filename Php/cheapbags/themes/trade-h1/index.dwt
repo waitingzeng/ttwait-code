@@ -1,0 +1,37 @@
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div id="wrapper">
+<div id="container">
+  <div id="indexRight">
+<div class="diyLib">
+ <h3>Welcome to Tiffany</h3>
+  <p>
+  {$shop_notice}
+  </p>
+</div>  </div>
+  <div id="bigLeft">
+<div class="index_ad">
+<!-- #BeginLibraryItem "/library/index_ad.lbi" --><!-- #EndLibraryItem -->
+</div>	
+</div>
+  <div class="clear"></div>
+  <!-- {if $best_goods} -->
+<div class="goodsRecommend">
+  <h3><span class="more"><a href="search.php?intro=best">more</a></span>Best Products</h3>
+  <ul class="clearfix">
+  		<!--{foreach from=$best_goods item=goods}-->
+        <li><a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" border="0" /></a>
+      <p class="name"><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a></p>
+
+      <!--{if $goods.promote_price neq "" } -->
+        <p class="price_promote">{$lang.promote_price}{$goods.promote_price}</p>
+        <!--{else}-->
+        <p class="price_shop">{$lang.shop_prices}{$goods.shop_price}</p>
+            <!--{/if}-->
+    </li>
+		<!--{/foreach}-->
+      </ul>
+    <div class="clear"></div>
+</div>
+<!-- {/if} -->
+</div>
+    </div><!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->

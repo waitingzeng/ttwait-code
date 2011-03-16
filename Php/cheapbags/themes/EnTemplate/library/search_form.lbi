@@ -1,0 +1,65 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <ul class="searchbox blank">
+  <li class="Search f_l">
+ <!--search start-->
+   <form id="searchForm" name="searchForm" method="get" action="search.php" onSubmit="return checkSearchForm()">
+	  <span class="WhiteKey">Search</span>
+   <select name="category" id="category" style="position: relative; _top:3px;" class="InBorder">
+      <option value="0">{$lang.all_category}</option>
+      {$category_list}
+    </select>
+   <input name="keywords" type="text" id="keyword" value="{$search_keywords|escape}" class="InBorder" size="20" style="position: relative; _top:3px;"/> 
+   <input name="imageField" type="submit" value=" " class="go"  /> 
+  <a href="search.php?act=advanced_search"><span class="ad">{$lang.advanced_search}</span></a>
+   </form>
+	 </li>
+   <script type="text/javascript">
+    {literal}
+    <!--
+    function checkSearchForm()
+    {
+        if(document.getElementById('keyword').value)
+        {
+            return true;
+        }
+        else
+        {
+            alert("{$lang.no_keywords}");
+            return false;
+        }
+    }
+    -->
+    {/literal}
+    </script>		
+		<li class="Key f_r">
+		 {if $searchkeywords}
+    {foreach from=$searchkeywords item=val}
+    <a href="search.php?keywords={$val|escape:url}">{$val}</a>
+    {/foreach}
+    {/if} 
+		</li>		
+	</ul>	
+
+  <!--search end-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

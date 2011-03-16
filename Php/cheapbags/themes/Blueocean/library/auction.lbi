@@ -1,0 +1,21 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $auction_list} -->
+<div class="goods_list module" id="auction">
+  <div class="caption"><span><img alt="{$lang.auction_goods}" src="images/auction_caption.jpg" /></span></div>
+  <div class="top"><span></span></div>
+  <div class="content">
+   
+    <!--{foreach from=$auction_list item=auction}-->
+    <ul class="goods_grid2">
+      <li>
+        <p class="img"><a href="{$auction.url}"><img src="{$auction.thumb}" alt="{$auction.goods_name|escape:html}"/></a></p>
+        <p class="name"><a href="{$auction.url}">{$auction.short_style_name|escape:html}</a></p>
+        <p class="price">{$auction.formated_start_price}</p>
+      </li>
+    </ul>
+    <!--{/foreach}-->
+    <div class="more"><a href="../auction.php" style="width:43px; height:13px;"><img src="images/more.jpg" /></a></div>
+  </div>
+  <div class="bottom"><span></span></div>
+</div>
+<!-- {/if} -->

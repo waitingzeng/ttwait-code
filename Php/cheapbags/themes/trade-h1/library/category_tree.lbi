@@ -1,0 +1,14 @@
+<div id="category">
+ <h2>Goods category</h2>
+  <div class="backcata"> </div>
+  <ul>
+  <!--{foreach from=$categories item=cat}-->
+    <li><a href="{$cat.url}">{$cat.name|escape:html}</a>
+    <ul>
+      <!--{foreach from=$cat.cat_id item=child}-->
+      <li><a href="{$child.url}">{$child.name|escape:html}</a></li>
+      <!--{/foreach}-->
+    </ul>
+  <!--{/foreach}--> 
+  </ul>
+</div>

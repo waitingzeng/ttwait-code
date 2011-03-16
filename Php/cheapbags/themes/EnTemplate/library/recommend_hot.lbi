@@ -1,0 +1,17 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $hot_goods} -->
+   <!--{foreach from=$hot_goods item=goods}-->
+   <div class="goodsbox">
+    <div class="imgbox"><a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" /></a></div>
+		<p>
+    <a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a><br />
+    <!-- {if $goods.promote_price neq ""} -->
+    {$lang.promote_price}<span class="price">{$goods.promote_price}</span>
+    <!-- {else}-->
+   {$lang.shop_price}<span class="price">{$goods.shop_price}</span>
+    <!--{/if}--> 
+		</p>  
+   </div>	
+  <!--{/foreach}-->
+  <p class="tr"><a href="../search.php?intro=hot" ><img src="../images/more.gif" ></a></p>
+<!-- {/if} -->

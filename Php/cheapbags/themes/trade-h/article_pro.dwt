@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+</head>
+<body>
+<div id="globalWrapper">
+  <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --><div id="wrapper">
+    <!-- End #search-bar --><!-- TemplateBeginEditable name="通栏广告位" --><!-- TemplateEndEditable -->
+    <div id="container">
+    <!-- #BeginLibraryItem "/library/ur_here.lbi" --> {$lang.ur_here} {$ur_here} <!-- #EndLibraryItem -->
+      <div id="pageLeft"> <!-- TemplateBeginEditable name="主区域左侧" --><!-- #BeginLibraryItem "/library/article_category_tree.lbi" -->
+        <div class="titleDiv"><img src="images/article_category.gif" alt="Category" width="158" height="39" /></div>
+        <div id="catDiv" style="padding:5px 10px;">
+          <ul>
+            <!--{foreach from=$article_categories item=cat}-->
+            <li> <span class="parent-cat"><a href="{$cat.url}">{$cat.name|escape:html}</a></span><br />
+              <!--{foreach from=$cat.children item=child}-->
+              <span style="white-space:nowrap;"><a href="{$child.url}">{$child.name|escape:html}</a></span>
+              <!--{/foreach}-->
+            </li>
+            <!--{/foreach}-->
+          </ul>
+        </div>
+      <!-- #EndLibraryItem --><!-- TemplateEndEditable --></div>
+      <!-- End #pageLeft -->
+      <div id="pageIn">
+        <div style="padding:15px;border: #e0e0e0 1px solid; margin-bottom:20px;">
+        <div style="text-align:center;font-size:18px"><strong>{$article.title|escape:html} </strong></div>
+      <div style="padding:5px;">
+          <!-- {if $article.content } -->
+          <div style="padding:10px 20px;">{$article.content}</div>
+          <!-- {/if} -->
+      </div>
+      </div>
+      </div>
+<div class="clear"></div>
+    </div>
+    </div><!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+  <!-- End #Wrapper -->
+  </div>
+<!-- End #globalWrapper -->
+</body>
+</html>

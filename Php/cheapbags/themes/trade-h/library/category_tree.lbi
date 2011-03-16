@@ -1,0 +1,26 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<?
+$GLOBALS['smarty']->assign('categories',       get_categories_tree(0)); // 分类树
+?>
+<div id="category">
+ <h2>{$lang.goods_category}</h2>
+  <div class="backcata"> </div>
+  <ul>
+    <!--{foreach from=$categories item=cat}-->
+    {if $cat.cat_id}
+    <li><a href="{$cat.url}"{if $category eq $cat.id} class="cur"{/if}>{$cat.name|escape:html}</a>
+      <!--{if $cat.id eq $topcat_id}-->
+      <ul>
+      <!--{foreach from=$cat.cat_id item=child}-->
+        <li><a href="{$child.url}"  title="{$child.name|escape:html}"{if $now_id eq $child.id} class="cur"{/if}>{$child.name|escape:html}</a> </li>
+      <!--{/foreach}-->
+      </ul>
+      {/if}
+    </li>
+    {else}
+    <li><a href="{$cat.url}"{if $category eq $cat.id} class="cur"{/if}>{$cat.name|escape:html}</a></li>
+    {/if}
+    <!--{/foreach}-->
+    <li>
+  </ul>
+</div>

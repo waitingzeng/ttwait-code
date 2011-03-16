@@ -1,0 +1,22 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $promotion_goods} -->
+<div class="module" id="specials">  
+  <div class="top"><span></span></div>
+  <div class="content">
+    <h1>{$lang.promotion_goods}</h1>
+    <ul>
+      <!--{foreach from=$promotion_goods item=goods name="promotion_foreach"}-->
+      {if $smarty.foreach.promotion_foreach.index <= 3}
+      <li>
+        <a href="{$goods.url}"><img src="{$goods.thumb}" border="0" alt="{$goods.name|escape:html}"/></a>
+        <p class="name"><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_name|escape:html}</a></p>
+        <p style="color:#fe7800; font-weight:bold;">{$goods.promote_price}</p>
+      </li>
+     {/if}
+     <!--{/foreach}-->
+    </ul>
+    <p class="more"><a href="../search.php?intro=promotion"><img style="float:right" src="../images/more.jpg"></a></p>
+  </div>
+  <div class="bottom"><span></span></div>
+</div>
+<!-- {/if} -->

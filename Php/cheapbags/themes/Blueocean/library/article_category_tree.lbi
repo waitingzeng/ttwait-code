@@ -1,0 +1,16 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div id="category_tree" class="area">
+  <p class="top"><span></span></p>
+  <div class="content">
+    <h1>{$lang.article_cat}</h1>
+    <dl>
+      <!--{foreach name=parent-cat from=$article_categories item=cat}-->
+      <dt><font class="f1">·</font><a href="{$cat.url}">{$cat.name|escape:html}</a></dt>
+          <!--{foreach from=$cat.children item=child}-->
+          <dd><a href="{$child.url}">{$child.name|escape:html}</a></dd>
+          <!--{/foreach}-->
+      <!--{/foreach}-->
+    </dl>
+  </div>
+  <p class="bottom"><span></span></p>
+</div>

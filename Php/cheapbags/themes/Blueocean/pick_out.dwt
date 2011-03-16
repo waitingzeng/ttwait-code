@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,lefttime.js'}
+<script type="text/javascript">
+  {foreach from=$lang.js_languages item=item key=key}
+    var {$key} = "{$item}";
+  {/foreach}
+</script>
+</head>
+<body>
+  <div id="wrap">
+    <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+    <div class="container">
+      <div class="global_l">
+        <!-- TemplateBeginEditable name="左边区域" -->
+        <!-- #BeginLibraryItem "/library/category_tree.lbi" --><!-- #EndLibraryItem -->
+        <!-- #BeginLibraryItem "/library/goods_related.lbi" --><!-- #EndLibraryItem -->
+        <!-- #BeginLibraryItem "/library/categorys.lbi" --><!-- #EndLibraryItem -->
+        <!-- #BeginLibraryItem "/library/goods_fittings.lbi" --><!-- #EndLibraryItem -->
+        <!-- #BeginLibraryItem "/library/goods_article.lbi" --><!-- #EndLibraryItem -->
+        <!-- #BeginLibraryItem "/library/goods_attrlinked.lbi" --><!-- #EndLibraryItem -->
+        <!-- TemplateEndEditable -->
+        <div class="module goods_list">
+          <div class="caption"><span>{$lang.your_choice}</span></div>
+          <p class="top"><span></span></p>
+          <div class="content">
+            <ul style="padding:0 5px;">
+              <!--{foreach from = $picks item=pick }-->
+              <li><a href="{$pick.url}">{$pick.name}</a></li>
+              <!--{/foreach}-->
+            </ul>
+          </div>
+          <p class="bottom"><span></span></p>
+        </div>
+      </div>
+      <div class="global_r">
+        <div class="module goods_list" id="activity">
+          <div class="caption"><span>{$lang.pick_out}</span></div>
+          <p class="top"><span></span></p>
+          <div class="content">
+            <table width="98%" style="margin:0 auto 5px auto;" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+              <!--{foreach from=$condition item=caption}-->
+              <tr>
+                <td valign="middle" bgcolor="#f4f4f4" style="border-bottom: 1px solid #DADADA; height:30px; line-height:30px; font-size:11px; padding-left:10px;"><strong>{$caption.name}</strong></td>
+              </tr>
+              <!--{foreach from=$caption.cat item=cat}-->
+              <tr>
+                <td bgcolor="#ffffff">&nbsp;&nbsp;<strong>{$cat.cat_name}</strong></td>
+              </tr>
+              <tr>
+                <td bgcolor="#ffffff">&nbsp;&nbsp;
+                <!--{foreach from = $cat.list item=list}-->
+                &nbsp;&nbsp;<a href="{$list.url}">{$list.name}</a>
+                <!--{/foreach}-->
+                </td>
+              </tr>
+              <!--{/foreach}-->
+              <!--{/foreach}-->
+            </table>
+          </div>
+          <p class="bottom"><span></span></p>
+        </div>
+        <div class="module goods_list">
+          <div class="caption"><span>{$lang.search_result} ({$count})</span></div>
+          <p class="top"><span></span></p>
+          <div class="content">
+            <ul class="goods_grid">
+              <!--{foreach from=$pickout_goods item=goods name=goods}-->
+              <li style="height:140px">
+                <p class="img"><a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" class="goodsimg" /></a></p>
+                <p class="name"><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_name}</a></p>
+                <p class="price">
+                  <!-- {if $goods.promote_price neq ""} -->
+                  {$goods.promote_price}
+                  <!-- {else}-->
+                  {$goods.shop_price}
+                  <!--{/if}-->
+                </p>
+                <p class="btn_list">
+                  <a href="javascript:collect({$goods.id})"><img style="float:left; margin-right:10px;" src="../images/add_to_favorite.jpg"></a>
+                  <a href="javascript:addToCart({$goods.id})"><img style="float:left;" src="../images/add_top_cart.jpg"></a>
+                </p>
+              </li>
+              <!--{/foreach}-->
+            </ul>
+            <!--{if $count > 5}-->
+            <div class="more" style="clear:both;"><a href="{$url}"><img src="images/more.jpg" /></a></div>
+            <!--{/if}-->
+          </div>
+          <p class="bottom"><span></span></p>
+        </div>
+      </div>
+    </div>
+    <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+    <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+  </div>
+</body>
+<script type="text/javascript">
+var gmt_end_time = "{$group_buy.gmt_end_date|default:0}";
+{foreach from=$lang.goods_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+
+var btn_buy = "{$lang.btn_buy}";
+var is_cancel = "{$lang.is_cancel}";
+var select_spe = "{$lang.select_spe}";
+<!-- {literal} -->
+
+onload = function()
+{
+  try
+  {
+    onload_leftTime();
+  }
+  catch (e)
+  {}
+}
+<!-- {/literal} -->
+</script>
+</html>

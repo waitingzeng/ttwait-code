@@ -1,0 +1,27 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $hot_goods} -->
+<!-- {if $cat_rec_sign neq 1} -->
+<div class="goods_list module" id="goods_hot">
+  <div class="caption">
+    <span><img alt="{$lang.hot_goods}" src="images/hot_caption.jpg" /></span>
+  </div>
+  <div class="top"><span></span></div>
+  <div class="content" id="show_hot_area">
+  <!-- {/if} -->
+    <ul class="goods_grid2">
+    <!--{foreach from=$hot_goods item=goods}-->
+      <li>
+        <p class="img"><a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}"/></a></p>
+        <p class="name"><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a></p>
+        <p class="price">{$lang.exchange_integral}</p><p class="price">{$goods.exchange_integral}
+        </p>
+      </li>
+    <!--{/foreach}-->
+    </ul>
+    <div class="more"><a href="../search.php?intro=hot"><img src="images/more.jpg" /></a></div>
+    <!-- {if $cat_rec_sign neq 1} -->
+  </div>
+  <div class="bottom"><span></span></div>
+</div>
+<!-- {/if} -->
+<!-- {/if} -->

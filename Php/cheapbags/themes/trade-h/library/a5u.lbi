@@ -1,0 +1,201 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+.mesWindow {
+	border:#9DC6EC 5px solid;
+	padding:10px;
+	background:#fff;
+	font-family:"Microsoft JhengHei","Microsoft YaHei",Helvetica,Arial,sans-serif;
+}
+.mesWindow h2 {
+	border-bottom:#eee 1px solid;
+	margin:0 10px;
+	padding-bottom:5px;
+	font-weight:bold;
+	text-align:left;
+	line-height:40px;
+	font-size:1.7em;
+	color:#ac3231;
+}
+.mesWindow h2 em {
+	color:#999;
+	font-size:.8em;
+	font-style:normal;
+}
+.mesWindow h2 span {
+	float:right;
+}
+.mesWindow .close {
+	background:url(http://www.wd5u.com/OKQQ/images/close.png) no-repeat;
+	text-indent:-9999px;
+	display:block;
+	width:40px;
+	height:40px;
+	border:none;
+	cursor:pointer;
+}
+.mesWindowContent {
+	margin:4px;
+	font-size:12px;
+}
+.mesWindowContent a {
+	color:#004C76;
+	text-decoration:none;
+}
+.mesWindowContent a:hover {
+	color:#c00;
+	text-decoration:underline;
+}
+/* -- 内窗口 -- */
+.theme-tips {
+	padding:30px;
+	background-color:#fff;
+	position:relative;
+}
+.theme-tips h3 {
+	color:#ac3231;
+	margin-top:10px;
+}
+.theme-tips p {
+	font-size:14px;
+	line-height:18px;
+	margin-top:10px;
+}
+.theme-tips .notice {
+	padding:10px;
+	margin-bottom:10px;
+	border:2px solid #FFD324;
+	line-height:1.2em;
+	background:#FFF6BF;
+	color:#514721;
+}
+.demo-link {
+	margin-top:10px;
+}
+.demo-link li {
+	display:block;
+	width:180px;
+	float:left;
+	padding:3px 8px;
+}
+.demo-link li a {
+	color:#027b98;
+	font-size:14px;
+	font-weight:bold;
+}
+.demo-link li em {
+	font-size:12px;
+}
+.demo-user span {
+	display:inline-block;
+	width:240px;
+	float:left;
+	margin-top:10px;
+	margin-left:20px;
+	padding:10px;
+	background:#eee;
+	border:1px solid #999;
+}
+.demo-user b {
+	display:block;
+	clear:both;
+}
+.theme-tips .buy {
+	position:absolute;
+	top:10px;
+	right:10px;
+	padding:10px;
+	color:#8a1f11;
+	font-size:18px;
+	font-weight:bold;
+	background:#FBE3E4;
+	border:2px solid #FBC2C4;
+}
+.theme-tips .buy:hover {
+	background-position:0 -60px;
+}
+</style>
+<script>
+var isIe=(document.all)?true:false;
+//设置select的可见状态
+function setSelectState(state)
+{
+var objl=document.getElementsByTagName('select');
+for(var i=0;i<objl.length;i++)
+{
+objl[i].style.visibility=state;
+}
+}
+function mousePosition(ev)
+{
+if(ev.pageX || ev.pageY)
+{
+return {x:ev.pageX, y:ev.pageY};
+}
+return {
+x:ev.clientX + document.body.scrollLeft - document.body.clientLeft,y:ev.clientY + document.body.scrollTop - document.body.clientTop
+};
+}
+//弹出方法
+function showMessageBox(wTitle,content,pos,wWidth)
+{
+closeWindow();
+var bWidth=parseInt(document.documentElement.scrollWidth);
+var bHeight=parseInt(document.documentElement.scrollHeight);
+if(isIe){
+setSelectState('hidden');}
+var back=document.createElement("div");
+back.id="back";
+var styleStr="top:0px;left:0px;position:absolute;background:#666;width:"+bWidth+"px;height:"+bHeight+"px;";
+styleStr+=(isIe)?"filter:alpha(opacity=0);":"opacity:0;";
+back.style.cssText=styleStr;
+document.body.appendChild(back);
+showBackground(back,30);
+var mesW=document.createElement("div");
+mesW.id="mesWindow";
+mesW.className="mesWindow";
+mesW.innerHTML="<h2><span><input type='button' onclick='closeWindow();' title='关闭窗口' class='close' value='关闭' /></span>模板提示<em>（此窗口并不包含在销售的模板中）</em></h2><div class='mesWindowContent' id='mesWindowContent'>"+content+"</div><div class='mesWindowBottom'></div>";
+var v_top=(window.screen.height-mesW.clientHeight)/2;
+v_top+=document.documentElement.scrollTop;
+styleStr="top:"+(v_top-280)+"px;left:"+(document.body.clientWidth/2-mesW.clientWidth/2)+"px;position:absolute;width:600px;margin-left:-300px;left:50%;z-index:9999;";
+mesW.style.cssText=styleStr;
+document.body.appendChild(mesW);
+}
+//让背景渐渐变暗
+function showBackground(obj,endInt)
+{
+if(isIe)
+{
+obj.filters.alpha.opacity+=5;
+if(obj.filters.alpha.opacity<endInt)
+{
+setTimeout(function(){showBackground(obj,endInt)},0);
+}
+}else{
+var al=parseFloat(obj.style.opacity);al+=0.05;
+obj.style.opacity=al;
+if(al<(endInt/100))
+{setTimeout(function(){showBackground(obj,endInt)},5);}
+}
+}
+//关闭窗口
+function closeWindow()
+{
+if(document.getElementById('back')!=null)
+{
+document.getElementById('back').parentNode.removeChild(document.getElementById('back'));
+}
+if(document.getElementById('mesWindow')!=null)
+{
+document.getElementById('mesWindow').parentNode.removeChild(document.getElementById('mesWindow'));
+}
+if(isIe){
+setSelectState('');}
+}
+//测试弹出
+function testMessageBox(ev)
+{
+var objPos = mousePosition(ev);
+messContent="<div class='theme-tips'><a class='buy' target='_blank' href='{$shop_address}'>立即购买 »</a><p>提醒1：这是演示网站，并没有销售任何商品，请勿填写个人资料！</p><p>提醒2：wd5u没有任何第三方合作商，谨防欺诈，购买模板仅有以下两种渠道</p><p style='padding-left:2em'>网店无忧官方网站：<a href='http://www.wd5u.com/ target='_blank''>wd5u.com</a> 唯一淘宝店：<a href='http://wd5u.taobao.com/' target='_blank'>http://wd5u.taobao.com</a></p><p class='notice'>请注意！凡是购买盗卖、倒卖、盗版的都无法得到模板永久免费升级、一年的模板后续技术支持等售后服务，相关个人或公司会进入wd5u的灰名单。<br>并且购买盗版有风险，比如无法正常使用，网站资料被盗等。</p><p>销售QQ/旺旺/电话：<a href='http://sighttp.qq.com/cgi-bin/check?sigkey=c570fb55a553efa16bd4b87defd1bd7ee694f1df1b79f9e252bcfb7d67052045' target='_blank'><img src=' http://wpa.qq.com/pa?p=1:1500388606:4'  border='0' alt='QQ' /> 模板销售.01</a> <a href='http://wpa.qq.com/msgrd?V=1&amp;Uin=64309288&amp;Site=QQ咨询&amp;Menu=yes' target='_blank'><img src=' http://wpa.qq.com/pa?p=1:64309288:4'  border='0' alt='QQ' /> 模板销售.02</a> <a href='http://amos1.taobao.com/msg.ww?v=2&uid=%E5%AF%BB%E6%A2%A6%E9%A3%8E%E4%B9%8B%E5%BD%B1&s=2' target='_blank'><img src='http://amos1.taobao.com/online.ww?v=2&uid=%E5%AF%BB%E6%A2%A6%E9%A3%8E%E4%B9%8B%E5%BD%B1&s=2' width='16' height='16' border='0' alt='旺旺交流' style='margin-left:5px'/> 旺旺交流</a> &nbsp;0596-2523596</p><div style='clear: both;'></div></div>";
+showMessageBox('',messContent,objPos,350);
+}
+</script>

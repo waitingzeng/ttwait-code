@@ -1,0 +1,20 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $auction_list} -->
+<div class="Mod2 blank">
+<h2>{$lang.auction_goods}
+<a href="auction.php" class="more"><img src="../images/more.gif" ></a></h2>
+ <div class="tagcontent">
+  <!--{foreach from=$auction_list item=auction}-->
+   <div class="goodsbox">
+   <div class="imgbox"><a href="{$auction.url}"><img src="{$auction.thumb}" alt="{$auction.goods_name|escape:html}"/></a></div>
+	 <p>
+    <a href="{$auction.url}" title="{$auction.goods_name|escape:html}">{$auction.short_style_name|escape:html}</a><br />
+  <span class="price">
+    {$auction.formated_start_price}
+  </span> 
+	</p>
+	 </div> 
+   <!--{/foreach}-->
+</div>
+</div>
+<!-- {/if} -->

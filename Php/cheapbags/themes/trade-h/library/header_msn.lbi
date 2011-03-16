@@ -1,0 +1,9 @@
+<script type="text/javascript" src="http://settings.messenger.live.com/controls/1.0/PresenceButton.js"></script>
+<div
+  id="Microsoft_Live_Messenger_PresenceButton_30d9caaf19a2cd63"
+  msgr:width="100"
+  msgr:backColor="#D7E8EC"
+  msgr:altBackColor="#FFFFFF"
+  msgr:foreColor="#424542"
+  msgr:conversationUrl="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee=30d9caaf19a2cd63@apps.messenger.live.com&mkt=zh-cn"></div>
+<script type="text/javascript" src="http://messenger.services.live.com/users/30d9caaf19a2cd63@apps.messenger.live.com/presence?dt=&mkt=zh-cn&cb=Microsoft_Live_Messenger_PresenceButton_onPresence"></script>

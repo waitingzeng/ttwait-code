@@ -1,0 +1,73 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div id="ECS_SNATCH">
+  <!-- {if $myprice.is_end eq false} -->
+  <div class="module goods_list">
+    <div class="caption"><span>{$lang.me_bid}</span></div>
+    <p class="top"><span></span></p>
+    <div class="content">
+      <form action="javascript:bid()" method="post" name="formBid" id="formBid">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="16%" align="right"><strong>{$lang.my_integral}：</strong></td>
+            <td width="15%">{$myprice.pay_points}</td>
+            <td width="69%"></td>
+          </tr>
+          <tr>
+            <td align="right"><strong>{$lang.bid}：</strong></td>
+            <td width="15%" style="padding-right:5px;"><input type="hidden" name="snatch_id" value="{$id}" /><input name="price" type="text" class="inputBg" ></td>
+            <td><input type="submit" name="Submit" class="button_2" value="{$lang.me_bid}" style="vertical-align:middle;" /></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <p class="bottom"><span></span></p>
+  </div>
+  <div class="module goods_list">
+    <div class="caption"><span>{$lang.me_now_bid}</span></div>
+    <p class="top"><span></span></p>
+    <div class="content" style="padding:0 10px;">
+      <!--{foreach from=$myprice.bid_price item=item}-->
+      {$item.price}
+      <!--{if $item.is_only}-->
+      ({$lang.only_price})
+      <!--{/if}-->
+      <br>
+      <!--{/foreach}-->
+    </div>
+    <p class="bottom"><span></span></p>
+  </div>
+  <!-- {else} -->
+  <div class="module goods_list">
+    <div class="caption"><span></span></div>
+    <p class="top"><span></span></p>
+    <div class="content">
+      <!--{if $result}-->
+      <form name="buy" action="snatch.php" method="get">
+        <table width="98%" style=" margin:0 10px;" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
+          <tr>
+            <td bgcolor="#FFFFFF"><strong>{$lang.victory_user}</strong></td>
+            <td bgcolor="#FFFFFF">{$result.user_name}<input type="hidden" name="act" value="buy" /><input type="hidden" name="id" value="{$id}" /></td>
+          </tr>
+          <tr>
+            <td bgcolor="#FFFFFF"><strong>{$lang.price_bid}</strong></td>
+            <td bgcolor="#FFFFFF">
+             {$result.formated_bid_price} &nbsp;&nbsp;
+              <!-- {if $result.order_count eq 0 and $result.user_id eq $smarty.session.user_id} -->
+              <input type="submit" name="bug" class="bnt_blue_1" title="{$lang.button_buy}" />
+              <!--{/if}-->
+            </td>
+          </tr>
+          <tr>
+            <td bgcolor="#FFFFFF"><strong>{$lang.bid_time}</strong></td>
+            <td bgcolor="#FFFFFF">{$result.bid_time}</td>
+          </tr>
+        </table>
+      </form>
+      <!--{else}-->
+      <strong>{$lang.not_victory_user}</strong>
+      <!--{/if}-->
+    </div>
+    <p class="bottom"><span></span></p>
+  </div>
+  <!-- {/if} -->
+</div>

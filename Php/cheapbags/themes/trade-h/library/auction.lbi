@@ -1,0 +1,22 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $auction_list} -->
+<div class="libDiv">
+  <div class="libTop">
+    <h3>{$lang.auction_goods}</em><span class="more"><a href="../auction.php">more…</a></span></h3>
+  </div>
+  <div class="libBody">
+<ul class="goodsRecommend">
+  <!--{foreach from=$auction_list item=auction}-->
+  <li><p class="pic"><A href="{$auction.url}"><img src="{$auction.thumb}" alt="{$goods.name|escape:html}" border="0" /></A></p>
+    <p class="name">{$auction.goods_name|escape:html}</p>
+        <p class="price">{$lang.market_price}：<del>{$goods.market_price}</del><br />
+        {$lang.formated_start_price}：<em>{$auction.formated_start_price}</em>
+        </p>
+  </li>
+  <!--{/foreach}-->
+</ul>
+    <div class="clear"></div>
+  </div>
+  
+</div>
+<!-- {/if} -->

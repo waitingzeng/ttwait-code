@@ -1,0 +1,42 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $new_goods} -->
+<!-- {if $cat_rec_sign neq 1} -->
+<div class="goods_list module" id="goods_new">
+  <div class="caption">
+      <span><img src="images/new_caption.jpg" alt="{$lang.new_goods}"/></span>
+      <div class="switchover" id="itemNew">
+        {if $cat_rec[2]}
+        <h2><a href="javascript:void(0)" onclick="change_tab_style('itemNew', 'h2', this);get_cat_recommend(2, 0);">{$lang.all_goods}</a></h2>
+        {foreach from=$cat_rec[2] item=rec_data}
+        <h2 class="h2bg">
+        <a href="javascript:void(0)" onclick="change_tab_style('itemNew', 'h2', this);get_cat_recommend(2, {$rec_data.cat_id})">{$rec_data.cat_name}</a></h2>
+      {/foreach}
+      {/if}
+      </div>
+  </div>
+  <div class="top"><span></span></div>
+  <div class="content" id="show_new_area">
+    <!-- {/if} -->
+    
+    <ul class="goods_grid2">
+      <!--{foreach from=$new_goods item=goods}-->         
+      <li>
+       <p class="img"><a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}"/></a></p>
+       <p class="name"><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_style_name}</a></p>
+       <p class="price">
+        <!-- {if $goods.promote_price neq ""} -->
+        {$goods.promote_price}
+        <!-- {else}-->
+        {$goods.shop_price}
+        <!--{/if}-->
+       </p>  
+      </li>
+      <!--{/foreach}--> 
+    </ul>
+    <p class="more"><a href="../search.php?intro=new"><img src="images/more.jpg" /></a></p>
+  <!-- {if $cat_rec_sign neq 1} -->
+  </div>
+  <div class="bottom"><span></span></div>
+</div>
+<!-- {/if} -->
+<!-- {/if} -->

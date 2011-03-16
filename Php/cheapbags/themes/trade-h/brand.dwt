@@ -1,0 +1,414 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,global.js,compare.js'}
+</head>
+<body>
+<div id="globalWrapper">
+  <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --><div id="wrapper">
+    <!-- End #search-bar -->
+    <!-- TemplateBeginEditable name="通栏广告位" --> <!-- TemplateEndEditable -->
+    {insert_scripts files='common.js'}
+    <div id="container">
+    <!-- #BeginLibraryItem "/library/ur_here.lbi" --> {$lang.ur_here} {$ur_here} <!-- #EndLibraryItem -->
+      <div id="pageLeft"> <!-- TemplateBeginEditable name="主区域左侧" --><!-- #BeginLibraryItem "/library/category_tree.lbi" -->
+<div class="titleDiv"><img src="images/category.gif" alt="Category" width="158" height="39" /></div>
+<div id="catDiv" style="padding:5px 10px;">
+  <ul>
+    <!--{foreach from=$categories item=cat}-->
+    <li> <span class="parent-cat"><a href="{$cat.url}">{$cat.name|escape:html}</a></span><br />
+      <!--{foreach from=$cat.children item=child}-->
+      <span style="white-space:nowrap;"><a href="{$child.url}">{$child.name|escape:html}</a></span>
+      <!--{/foreach}-->
+    </li>
+    <!--{/foreach}-->
+  </ul>
+</div>
+<!-- #EndLibraryItem --><!-- #BeginLibraryItem "/library/history.lbi" -->
+<div class="titleDiv"><img src="images/history.gif" alt="History" width="158" height="39" /></div>
+<div class="content-div">
+  <ul class="history-list">
+    {insert name='history'}
+  </ul>
+</div><!-- #EndLibraryItem --><!-- TemplateEndEditable --></div>
+
+      <!-- End #pageLeft -->
+      <div id="pageIn">
+        <div>
+          
+          <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#EBEBEB" style="margin-top:30px;">
+            <tr>
+              <td bgcolor="#ffffff" width="200" align="center" valign="middle"><div style="width:200px; overflow:hidden;">
+                <!-- {if $brand.brand_logo} -->
+                <img src="data/brandlogo/{$brand.brand_logo}" />
+                <!-- {/if} -->
+                <div style="text-align:center;font-size:18px;margin-top:5px;"><strong>{$brand.brand_name} </strong></div>
+              </div></td>
+              <td bgcolor="#ffffff" style="padding:10px;line-height:180%;"> {$brand.brand_desc|nl2br}<br />
+                <!-- {if $brand.site_url} -->
+                {$lang.official_site} <a href="{$brand.site_url}" target="_blank" class="f6">{$brand.site_url}</a><br />
+                <!-- {/if} -->
+                {$lang.brand_category}<br />
+                <div class="brandCategoryA">
+                  <!-- {foreach from=$brand_cat_list item=cat} -->
+                  <a href="{$cat.url}" class="f6">{$cat.cat_name|escape:html} {if $cat.goods_count}({$cat.goods_count}){/if}</a>
+                  <!-- {/foreach} -->
+                </div></td>
+            </tr>
+          </table>
+        </div>
+        <!-- TemplateBeginEditable name="主区域中间" -->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><!-- #BeginLibraryItem "/library/goods_list.lbi" -->
+            <div class="titleDiv"><img src="images/goods_list.gif" alt="Goods List" width="158" height="39" align="left" />
+                <form action="{$smarty.server.PHP_SELF}" method="post" name="form" class="sort" id="form">
+                  <a href="javascript:;" onclick="javascript:display_mode('list')"> <img src="library/images/display_mode_list&lt;!-- {if $pager.display == 'list'} --&gt;_act&lt;!-- {/if} --&gt;.gif" alt="{$lang.display.list}" /> </a> <a href="javascript:;" onclick="javascript:display_mode('grid')"> <img src="library/images/display_mode_grid&lt;!-- {if $pager.display == 'grid'} --&gt;_act&lt;!-- {/if} --&gt;.gif" alt="{$lang.display.grid}" /> </a> <a href="javascript:;" onclick="javascript:display_mode('text')"> <img src="library/images/display_mode_text&lt;!-- {if $pager.display == 'text'} --&gt;_act&lt;!-- {/if} --&gt;.gif" alt="{$lang.display.text}" /> </a>&nbsp;&nbsp;
+                  <select name="sort">
+                    
+      {html_options options=$lang.sort selected=$pager.sort}
+    
+                  </select>
+                  <select name="order">
+                    
+      {html_options options=$lang.order selected=$pager.order}
+    
+                  </select>
+                  <input type="image" name="imageField" src="images/btn_go.gif" alt="go" />
+                  <input type="hidden" name="category" value="{$category}" />
+                  <input type="hidden" name="display" value="{$pager.display}" />
+                  <input type="hidden" name="brand" value="{$brand_id}" />
+                  <input type="hidden" name="price_min" value="{$price_min}" />
+                  <input type="hidden" name="price_max" value="{$price_max}" />
+                  <input type="hidden" name="page" value="{$pager.page}" />
+                </form>
+            </div>
+            <div class="content-div">
+              <!-- {if $category > 0} -->
+              <form action="library/compare.php" method="post" name="compareForm" id="compareForm" onsubmit="return compareGoods(this);">
+                <!-- {/if} -->
+                <!-- {if $pager.display == 'list'} -->
+                <!--{foreach from=$goods_list item=goods}-->
+                <table border="0" cellpadding="5" cellspacing="1" class="goods-list">
+                  <tr>
+                    <td width="35%" align="center"><!-- {if $category > 0} -->
+                        <a href="javascript:;" onclick="addToCookie({$goods.goods_id},'{$goods.goods_name}')">{$lang.compare}</a>
+                        <!-- {/if} -->
+                        <div style=" margin-left:30px; position:relative;float:left;"> <a href="{$goods.url}"> <img src="{$goods.goods_thumb}" alt="{$goods.goods_name}" border="0"></a>
+                            <div style="position:absolute;right:0px; bottom:1px;">
+                              <!--{if $goods.promote_price } -->
+                              <img src="library/images/watermark_promote.gif" />
+                              <!--{else}-->
+                              <!--{if $goods.is_new} -->
+                              <img src="library/images/watermark_new.gif" />
+                              <!--{else}-->
+                              <!--{if $goods.is_best} -->
+                              <img src="library/images/watermark_best.gif" />
+                              <!--{/if}-->
+                              <!--{/if}-->
+                              <!--{/if}-->
+                            </div>
+                      </div></td>
+                    <td><a href="{$goods.url}"><strong>{$goods.goods_style_name}</strong></a><br />
+                      {$goods.goods_brief}<br />
+                      <!-- {if $show_marketprice} -->
+                      {$lang.market_price}<span class="market-price">{$goods.market_price}</span>
+                      <!-- {/if} -->
+                      <!--{if $goods.promote_price neq "" } -->
+                      {$lang.promote_price}<span class="goods-price">{$goods.promote_price}</span>
+                      <!--{else}-->
+                      {$lang.shop_price}<span class="goods-price">{$goods.shop_price}</span>
+                      <!--{/if}-->
+                      <div class="addto_cart"> <a href="javascript:collect({$goods.goods_id});"><img src="images/collect.gif" alt="{$lang.collect}" /></a> <a href="javascript:addToCart({$goods.goods_id})"><img src="images/add_cart.gif" alt="{$lang.add_to_cart}" /></a> </div></td>
+                  </tr>
+                </table>
+                <!--{/foreach}-->
+                <!-- {elseif $pager.display == 'grid'} -->
+                <table border="0" cellpadding="5" cellspacing="1" class="goods-list">
+                  <tr>
+                    <!--{foreach name=wrap from=$goods_list item=goods}-->
+                    <td width="50%" align="center"><div style=" margin-left:30px; position:relative;float:left;">
+                        <!-- {if $goods.goods_id} -->
+                        <a href="{$goods.url}"> <img src="{$goods.goods_thumb}" alt="{$goods.goods_name}" border="0"></a>
+                        <div style="position:absolute;right:0px; bottom:1px;">
+                          <!--{if $goods.promote_price } -->
+                          <img src="library/images/watermark_promote.gif" />
+                          <!--{else}-->
+                          <!--{if $goods.is_new} -->
+                          <img src="library/images/watermark_new.gif" />
+                          <!--{else}-->
+                          <!--{if $goods.is_best} -->
+                          <img src="library/images/watermark_best.gif" />
+                          <!--{/if}-->
+                          <!--{/if}-->
+                          <!--{/if}-->
+                        </div>
+                      </div>
+                        <br />
+                        <!-- {if $show_marketprice} -->
+                        <span class="market-price">{$goods.market_price}</span>
+                        <!-- {/if} -->
+                      &nbsp;&nbsp;
+                      <!--{if $goods.promote_price neq "" } -->
+                      <span class="goods-price">{$goods.promote_price}</span>
+                      <!--{else}-->
+                      <span class="goods-price">{$goods.shop_price}</span>
+                      <!--{/if}-->
+                      <!-- {if $category > 0} -->
+                      <br />
+                      <a href="javascript:;" onclick="addToCookie({$goods.goods_id},'{$goods.goods_name}')">{$lang.compare}</a>
+                      <!-- {/if} -->
+                      <br />
+                      <a href="{$goods.url}"><strong>{$goods.goods_name}</strong></a><br />
+                      {$goods.goods_brief}<br />
+                      <div class="addto_cart"> <a href="javascript:collect({$goods.goods_id});"><img src="images/collect.gif" alt="{$lang.collect}" /></a> <a href="javascript:addToCart({$goods.goods_id})"><img src="images/add_cart.gif" alt="{$lang.add_to_cart}" /></a> </div>
+                      <!-- {/if} -->                    </td>
+                    <!-- {if ($smarty.foreach.wrap.iteration % 2 eq 0) and ($smarty.foreach.wrap.iteration ne $smarty.foreach.wrap.total) } -->
+                  </tr>
+                  <tr>
+                    <!-- {/if} -->
+                    <!--{/foreach}-->
+                  </tr>
+                </table>
+                <!-- {elseif $pager.display == 'text'} -->
+                <!--{foreach from=$goods_list item=goods}-->
+                <table border="0" cellpadding="5" cellspacing="1" class="goods-list">
+                  <tr>
+                    <td><a href="{$goods.url}"><strong>{$goods.goods_style_name}</strong></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <!-- {if $category > 0} -->
+                      <a href="javascript:;" onclick="addToCookie({$goods.goods_id},'{$goods.goods_name}')">{$lang.compare}</a>
+                        <!-- {/if} -->
+                        <br />
+                      {$goods.goods_brief}<br />
+                      <!-- {if $show_marketprice} -->
+                      {$lang.market_price}<span class="market-price">{$goods.market_price}</span>
+                      <!-- {/if} -->
+                      <!--{if $goods.promote_price neq "" } -->
+                      {$lang.promote_price}<span class="goods-price">{$goods.promote_price}</span>
+                      <!--{else}-->
+                      {$lang.shop_price}<span class="goods-price">{$goods.shop_price}</span>
+                      <!--{/if}-->
+                      <div class="addto_cart"> <a href="javascript:collect({$goods.goods_id});"><img src="images/collect.gif" alt="{$lang.collect}" /></a> <a href="javascript:addToCart({$goods.goods_id})"><img src="images/add_cart.gif" alt="{$lang.add_to_cart}" /></a> </div></td>
+                  </tr>
+                </table>
+                <!--{/foreach}-->
+                <!-- {/if} -->
+                <!-- {if $category > 0} -->
+              </form>
+              <!-- {/if} -->
+            </div>
+            <script type="text/javascript">
+
+{foreach from=$lang.compare_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+var compare_no_goods = "{$lang.compare_no_goods}";
+{literal}
+var catId = {$category};
+
+function addToCookie(goodsId,goodsName)
+{
+  var obj = new Object();
+  if(document.getCookie("compareItem" + catId) != null)
+  {
+    var value   = document.getCookie("compareItem" + catId);
+    obj = value.parseJSON();
+  }
+  var counter = 0;
+  for (var k in obj)
+  {
+    if (typeof(obj[k]) == "function")
+      continue;
+    counter++
+  }
+  if(counter>=4)
+  {
+    alert(count_limit);
+    return;
+  }
+  if (!obj[goodsId])
+  {
+    obj[goodsId] = goodsName;
+  }
+  else
+  {
+    alert(exist.replace("%s",goodsName)); 
+    return;
+  }
+
+  var li = document.createElement("LI");
+  li.innerHTML = goodsName;
+  li.id = "compareItem_" + goodsId;
+  li.style.listStyle = "none";
+  li.style.paddingLeft = "0px";
+
+  var delBtn = document.createElement("IMG");
+  delBtn.src = "images/drop.gif";
+  delBtn.className = goodsId;
+  delBtn.onclick = function()
+  {
+    document.getElementById("compareList").removeChild(this.parentNode);
+    removeItem(this.className);
+  }
+  li.insertBefore(delBtn,li.childNodes[0]);
+  document.getElementById("compareList").appendChild(li);
+
+  var date = new Date();
+  date.setTime(date.getTime() + 99999999);
+  
+  document.setCookie("compareItem" + catId, obj.toJSONString(), date.toGMTString())
+  if (document.getElementById("compareBox").style.display != "")
+    document.getElementById("compareBox").style.display = "";
+
+}
+
+function removeItem(id)
+{
+  var cookieValue = document.getCookie("compareItem" + catId);
+  var obj = cookieValue.parseJSON();
+  delete obj[id];
+  var date = new Date();
+  date.setTime(date.getTime() + 99999999);
+  document.removeCookie("compareItem" + catId);
+  var JSONString = obj.toJSONString();
+  document.setCookie("compareItem" + catId, obj.toJSONString(), date.toGMTString())
+  if(JSONString == "{}"){
+    document.getElementById("compareBox").style.display = "none";
+  }
+}
+
+window.onload = function()
+{
+  var compareBox = document.createElement("DIV");
+  var submitBtn = document.createElement("INPUT");
+  var compareList = document.createElement("UL");
+  compareBox.id = "compareBox";
+  compareBox.style.display = "none";
+  compareBox.style.top = "200px";
+  compareBox.align = "center";
+  submitBtn.type = "button";
+  submitBtn.value = button_compare;
+  submitBtn.onclick = function() {
+    var cookieValue = document.getCookie("compareItem" + catId);
+    var obj = cookieValue.parseJSON();
+    var url = document.location.href;
+    url = url.substring(0,url.lastIndexOf('/')+1) + "compare.php"; 
+    var i = 0;
+    for(var k in obj)
+    {
+      if(typeof(obj[k])=="function")
+      continue;
+      if(i==0)
+        url += "?goods[]=" + k;
+      else
+        url += "&goods[]=" + k;
+      i++;
+    }
+    if(i<2)
+    {
+      alert(compare_no_goods);
+      return ;
+    }
+    document.location.href = url;
+  }
+
+  compareBox.appendChild(submitBtn);
+  compareList.id = "compareList";
+  compareBox.appendChild(compareList);
+  document.body.appendChild(compareBox);
+  
+  var cookieValue = document.getCookie("compareItem" + catId);
+  
+  if (cookieValue != null)
+  {
+    if(cookieValue != "{}"){
+    compareBox.style.display = "";
+  }
+  var obj = cookieValue.parseJSON();
+  for (var k in obj)
+  {
+    if(typeof(obj[k])=="function")
+      continue;
+    var li = document.createElement("LI");
+    li.innerHTML = obj[k];
+    li.style.listStyle = "none";
+    var delBtn = document.createElement("IMG");
+    delBtn.src = "images/drop.gif";
+    delBtn.className = k;
+    delBtn.onclick = function(){
+    document.getElementById("compareList").removeChild(this.parentNode);
+    removeItem(this.className);
+  }
+  li.insertBefore(delBtn,li.childNodes[0]);
+
+  document.getElementById("compareList").appendChild(li);
+  
+}}
+};
+
+var lastScrollY = 0;
+
+  window.setInterval(function heartBeat()
+  {
+    if (!document.getElementById("compareBox")) return;
+    if (document.getElementById("compareBox").style.display != "") return;
+    var diffY = Math.max(document.documentElement.scrollTop,document.body.scrollTop);
+
+    var percent =.2*(diffY-lastScrollY);
+    if(percent>0) 
+      percent = Math.ceil(percent);
+    else
+      percent = Math.floor(percent);
+    document.getElementById("compareBox").style.top = parseInt(document.getElementById("compareBox").style.top)+ percent + "px";
+
+    lastScrollY = lastScrollY + percent;
+  },10);
+
+{/literal}
+            </script>
+            <!-- #EndLibraryItem --></td>
+          </tr>
+        </table>
+        <!-- #BeginLibraryItem "/library/pages.lbi" -->
+<form action="{$smarty.server.PHP_SELF}" method="get" name="selectPageForm" id="selectPageForm">
+  <div id="pager"> {$lang.pager_1}{$pager.record_count}{$lang.pager_2}{$lang.pager_3}{$pager.page_count}{$lang.pager_4} <span> <a href="{$pager.page_first}">{$lang.page_first}</a> <a href="{$pager.page_prev}">{$lang.page_prev}</a> <a href="{$pager.page_next}">{$lang.page_next}</a> <a href="{$pager.page_last}">{$lang.page_last}</a> </span>
+    <!--{foreach from=$pager.search key=key item=item}-->
+    <input type="hidden" name="{$key}" value="{$item}" />
+    <!--{/foreach}-->
+    <select name="page" id="page" onchange="selectPage(this)">
+    {html_options options=$pager.array selected=$pager.page}
+    </select>
+  </div>
+</form>
+<script type="text/javascript" language="JavaScript">
+<!--
+{literal}
+function selectPage(sel)
+{
+  sel.form.submit();
+}
+{/literal}
+//-->
+</script>
+<!-- #EndLibraryItem --><!-- TemplateEndEditable -->      </div>
+      <!-- End #indexMiddle -->
+      <!-- End #indexRrigh -->
+<div class="clear"></div>
+    </div>
+    <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+	</div><!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+  <!-- End #Wrapper -->
+  </div>
+<!-- End #globalWrapper -->
+</body>
+</html>

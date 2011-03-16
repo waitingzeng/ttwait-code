@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<title>{$page_title}</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<link rel="alternate" type="application/rss+xml" title="RSS|{$page_title}" href="{$feed_url}" />
+{insert_scripts files='common.js,transport.js,utils.js'}
+</head>
+<body>
+<div id="globalWrapper">
+ <div id="header">
+  <div id="logo"><a href="index.php" title="logo"><img src="images/logo.gif" ></a></div>
+  <div id="mainNav">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+	  <td><div class="home"><a href="index.php"><span>{$lang.home}</span></a></div></td>
+	 <!--{foreach from=$categories item=cat}-->
+     <!--{if $cat.show_in_nav == 1}-->
+      <td><div class="out" onMouseOver="this.className='on'" onMouseOut="this.className='out'">
+        <a href="{$cat.url}" <!--{if $category == $cat.id }-->class="cur"<!--{/if}-->>{$cat.name|escape:html}</a>
+        <!--{if $cat.cat_id}-->
+        	<div class='navp'><ul>
+            <!--{foreach from=$cat.cat_id item=child}-->
+            <!--{if $child.show_in_nav}-->
+            <li><a href="{$child.url}">{$child.name|escape:html}</a></li>
+            <!--{/if}-->
+            <!--{/foreach}-->
+            </ul></div>
+         <!--{/if}-->
+       </div>
+      </td>
+      <!--{/if}-->
+ <!-- {/foreach} -->  
+ 	  {* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'}
+  </tr>
+  </table>
+  </div>
+  <div id="search" class="clearfix">
+  <div class="searchForm">
+  	{if $searchkeywords}
+   {$lang.hot_search} ：
+   {foreach from=$searchkeywords item=val}
+   <a href="search.php?keywords={$val|escape:url}">{$val}</a>
+   {/foreach}
+   {/if}
+    <form id="searchForm" name="searchForm" method="get" action="search.php" onSubmit="return checkSearchForm()">
+        <input type="text" name="keywords" value="Search Products" onClick="this.select();" class="keyword"/>
+        <input type="image" name="imageField" src="images/btn_search.gif"/> 
+        <a href="search.php?act=advanced_search">{$lang.advanced_search}</a>
+    </form>
+  </div>
+  <div class="cart" id="ECS_CARTINFO">{insert name='cart_info'}</div>
+  </div>
+</div>
+<script type="text/javascript">
+<!--
+function checkSearchForm()
+{
+	if(document.getElementById('keyword').value)
+	{
+		return true;
+	}
+	else
+	{
+		alert("Please enter keywords!");
+		return false;
+	}
+}
+-->
+</script>
