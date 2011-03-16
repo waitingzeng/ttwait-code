@@ -1,0 +1,14 @@
+Instructions: (requires wordpress 2.7 or above)
+
+You will need to unzip WP Content Spinner (wpcspinner.zip) after purchase.
+
+Once you unzip WP Content Spinner upload the folder called "wpspinner" to your wordpress plugins folder.
+
+Login to your Wordpress installation
+Go to plugins in the Admin menu and activate WP Content Spinner plugin.
+
+After that you are done. All posted content both will be processed automatically.
+
+Please Note: The plugin permanently changes the posts. This is to prevent high load by trying to render the unique content every visit.
+
+It is recommended for new blogs. WP Content Spinner may permanently modify previous posts as well. That is why we recommend it be used for new blogs, or blogs that are not already ranking well.

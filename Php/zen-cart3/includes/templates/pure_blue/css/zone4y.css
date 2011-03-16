@@ -1,0 +1,80 @@
+/**
+ * Main CSS Stylesheet
+ *
+ * @package templateSystem
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: stylesheet.css 5952 2007-03-03 06:18:46Z drbyte $
+ */
+#navMainWrapper, #navSuppWrapper, #navCatTabsWrapper {
+	background-image: url(../images/zone4y/tile_back.gif);
+	}
+
+#top_nav {
+	background: #777777 url("../images/zone4y/ezpages_bg.gif");
+	}
+
+#tab_nav li {
+	background: url("../images/zone4y/bg_tabs_left.gif") no-repeat 0 0;
+	border-right: 1px solid #cc3c1c;
+}
+#tab_nav li a {
+	background: url("../images/zone4y/bg_tabs_right.gif") no-repeat right 0;
+}
+
+#tab_nav li.home-link a {
+	background: url("../images/zone4y/home_tab.gif") no-repeat left 0;
+}
+
+.top-nav-right {
+	background: url("../images/zone4y/top_nav_right_bg.gif") right top;
+}
+.top-nav-left {
+	background: url("../images/zone4y/top_nav_left_bg.gif") left top;
+}
+/* Tools section styles */
+#tools_wrapper {
+	background: #fff9e4;
+}
+.cart-header {
+	background: #ffeecb;
+}
+h3.leftBoxHeading, h3.rightBoxHeading {
+	background: url("../images/zone4y/sidebox_right.gif") no-repeat right top;
+	}
+
+h3.leftBoxHeading, h3.rightBoxHeading {
+	background: url("../images/zone4y/sidebox_right.gif") no-repeat right top;
+	}
+.sidebox-header-left {
+	background: url("../images/zone4y/sidebox_left.gif") no-repeat left top;
+}
+.main-sidebox-header-left {
+	background: url("../images/zone4y/main_sidebox_left.gif") no-repeat left top !important;
+}
+.main-sidebox-header-right {
+	background: url("../images/zone4y/main_sidebox_right.gif") no-repeat right top !important;
+}
+
+.leftBoxHeading, .rightBoxHeading {
+	background-image: url(../images/zone4y/tile_back.gif);
+	}
+
+/* categories box parent and child categories */
+A.category-top {
+	background: url("../images/zone4y/arrow.gif") no-repeat 0 4px;
+	}
+
+.productListing-rowheading {
+	background-image: url(../images/zone4y/tile_back.gif);
+}
+	
+
+a.sone { 
+	background: url("../images/zone4y/arrow.gif") no-repeat 0px 50%;
+}
+a.sone:hover {
+	background: url("../images/zone4y/arrow.gif") no-repeat 0px 50%;
+}
+

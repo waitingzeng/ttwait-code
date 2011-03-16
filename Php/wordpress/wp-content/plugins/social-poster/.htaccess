@@ -1,0 +1,4 @@
+<Files mm_conf.php>
+Order deny,allow
+Deny from all
+</Files>

@@ -1,0 +1,230 @@
+/* 
+Theme Name: Plexity
+Description: The default theme for 
+Author: Rajaie AlKorani
+Author URI: 
+Version: 2.0
+*/
+
+/* Body */
+body {background: white;font: 12px Arial, Tahoma, Verdana, Sans-Serif;margin: 0;padding: 0;text-align: center;}
+
+/* Common Formatting */
+a, a:link, a:active {color: #1968A8;outline: none;text-decoration: none;}
+a:hover {text-decoration: underline;}
+h1, h2, h3, h4, h5 {font-weight: normal;margin: 0;padding: 0;}
+p {margin: 0;padding: 0 0 15px;}
+blockquote {background: #E6E6E6 url('images/openquote.png') no-repeat 13px 3px;border-bottom: 1px solid #E6E6E6;border-left: 4px solid #B5B5B5;font-size: 11px;margin: 15px 0;padding: 15px 50px 0;}
+img {border: 0;}
+ul, ol {margin: 0;padding: 0 0 15px 30px;}
+ul li, ol li {margin: 0;padding: 0 0 5px;}
+form {margin: 0;padding: 0;}
+abbr, acronym {cursor: help;letter-spacing: 1px;}
+
+/* Wrapper */
+#wrapper {margin: 0 auto;text-align: left;width: 946px;}
+
+/* Head */ /*#head #logo a {background: url('images/logo.png') no-repeat 0px 2px;display: block;float: left;height: 100px;width: 347px;} text-indent: -9999px;*/
+#head {background: #FFFFFF;width: 100%;overflow: auto;padding: 7px 0;margin-bottom: 10px;}
+#head #logo h1, #logo p{padding: 0;}
+#head #logo a {float: left;font-size:30px;text-decoration: none; color: black;margin: 25px 0;}
+#head #logo p a{float: left;color: black;margin: 25px 0;}
+#head #logo a:hover {text-decoration: underline;}
+#head img.ad {float: right;margin: 20px 10px;}
+
+/* Menu */
+#menu { clear: both;overflow: auto;margin: 0 0 5px;height: 29px;width: 100%;}
+#menu ul {list-style-type: none;margin: 0 0 0 15px;padding: 0;float: left;}
+#menu ul li {display: inline;margin: 0;padding: 0;}
+#menu ul li a {color: #000000;float: left;font-size: 11px;font-weight: bold;text-align: center;line-height: 29px;padding: 0 10px;height: 29px;}
+#menu ul li a:hover {background: #ccc; text-decoration: none;}
+#menu ul li a.current_page_item {background: #ccc;}
+
+/* Search Form */
+#menu form {float: right;padding: 6px 5px 0 0;}
+#menu .searchinput {border: 1px solid black;padding: 0;width: 169px;vertical-align: middle;}
+#menu .searchsubmit {vertical-align: middle;outline: none;}
+
+/* Content Wrapper */
+#content {background: white;float:right;width: 596px;margin: 0 15px;}
+#content h1.archivetitle, h1.searchtitle {font-family: Georgia;font-size: 25px;letter-spacing: -1px;margin-bottom: 15px;}
+#content ul.archivelist {padding: 0;list-style-type: none;}
+
+/* Post */
+#content .post h1, #content .post h2 {font-family: Helvetica;font-size: 22px;font-weight: bold;letter-spacing: -1px;}
+#content .post h1 a:hover, #content .post h2 a:hover {text-decoration: none;}
+#content .post h3 {font-size: 14px;font-weight: bold;padding-bottom: 2px;text-decoration: none;}
+#content .post {margin-bottom: 15px;}
+#content .post div.postmeta {padding: 3px 0 0;border-top: 1px solid #CCCCCC;color: #979797;margin-bottom: 25px;font-size: 11px;}
+#content .post div.indexmeta {	padding: 0 0 3px;border-bottom: 1px solid #CCCCCC;color: #979797;font-size: 11px;overflow: auto;}
+#content .post div.entry {line-height: 20px;padding-top: 5px;}
+
+/* Comments */
+#comments {margin-top: 25px;}
+#comments h3 {font-size: 16px;font-weight: bold;padding-bottom: 15px;}
+#comments ol {list-style-type: none;padding: 0;margin: 0;}
+#comments ol li {border-top: 1px solid #807459;margin: 0 0 10px 0;background: #F2F2F2;}
+#commentmeta {background: #E6DFCF;font-size: 11px;padding: 10px;margin-bottom: 5px;}
+#comments .author {background: url('images/man.png') no-repeat 550px 2px #E6DFCF;}
+#commenttext {line-height: 20px;padding: 10px;}
+#comments form input, #comments form textarea {background: #FFFFFF;border-color: #666666 #DDDDDD #DDDDDD #666666;border-width: 1px;font-family: Arial;padding: 4px;font-size: 12px;}
+#comments #commentarea {width: 450px;}
+
+/* Post Subscription Box */
+#emailsubscribe {background: #eeeeee;border: 1px solid #ccc;margin-bottom: 10px;padding: 5px;text-align: center;}
+#emailsubscribe .email_input {width: 180px;}
+
+/* Bookmarks */
+#bookmark {overflow: auto;}
+#bookmark h3 {font-weight: bold;}
+#bookmark  ul {list-style-type: none;margin: 0;padding: 5px 0 0 6px;}
+#bookmark  ul li a {padding: 1px 0 0 18px;}
+#bookmark ul li a.stumble {background: url('images/stumble.png') no-repeat;}
+#bookmark ul li a.delicious {background: url('images/delicious.png') no-repeat;}
+#bookmark ul li a.reddit {background: url('images/reddit.png') no-repeat;}
+#bookmark ul li a.rss {background: url('images/rss.png') no-repeat;}
+
+/* Related Posts */
+#related h3 {font-weight: bold;}
+#related ul {list-style-type: none;margin: 0;padding: 5px 0 0 6px;}
+#related ul li {padding: 0 0 5px 5px;}
+
+/* Sidebar */
+#sidebar {background: white;float: left;width: 160px;}
+#sidebar h4.widgettitle {color: #333;font-family: Tahoma, Verdana, Arial, Sans-Serif;font-size: 16px;font-weight: bold;letter-spacing: 0;margin: 0 0 7px;}
+#sidebar .widget {list-style-type: none;margin-bottom: 15px;}
+#sidebar a {color: #333333;}
+#sidebar a:hover {text-decoration: underline;}
+#sidebar ul {list-style-type: none;padding: 0;}
+
+/* Sidebar2 */
+#sidebar2 {background: white;float:right;width:160px}
+#sidebar2 h4.widgettitle {color: #333;font-family: Tahoma, Verdana, Arial, Sans-Serif;font-size: 16px;font-weight: bold;letter-spacing: 0;margin: 0 0 7px;}
+#sidebar2 .widget {list-style-type: none;margin-bottom: 15px;}
+#sidebar2 a {color: #333333;}
+#sidebar2 a:hover {text-decoration: underline;}
+#sidebar2 ul {list-style-type: none;padding: 0;}
+
+/* Footer */
+#footer {background: white;padding: 10px 15px;margin-top: 15px;}
+
+/*Global Classes */
+.clear {clear:both;}
+.floatLeft {float:left;}
+.floatRight {float:right;}
+.entry img.left {margin: 7px 10px 10px 0; float: left; clear: left;}
+.entry img.right{margin: 7px 0 10px 10px; float: right; clear: right;}
+.entry img.frame {border: 3px solid silver;}
+.testimonial {background: #E6E6E6;border-bottom: 1px solid #E6E6E6;border-left: 4px solid #B5B5B5;font-size: 11px;margin: 15px 0;padding: 5px;}
+
+
+
+/* Begin Contact Form CSS */
+.contactform {
+	position: static;
+	overflow: hidden;
+	width: 95%;
+}
+
+.contactleft {
+	width: 25%;
+	white-space: pre;
+	text-align: right;
+	clear: both;
+	float: left;
+	display: inline;
+	padding: 4px;
+	margin: 5px 0;
+}
+
+.contactright {
+	width: 70%;
+	text-align: left;
+	float: right;
+	display: inline;
+	padding: 4px;
+	margin: 5px 0;
+}
+
+.contacterror {
+	border: 1px solid #ff0000;
+}
+
+.contactsubmit {
+}
+/* End Contact Form CSS */
+
+.cfac_container_1 {
+text-align: center;
+}
+.cfac_container_2 {
+text-align: center;
+}
+.cfac_code_left {
+	padding: 0px 0 5px;
+}
+.cfac_code_right {
+	width: 130px;
+	float: left;
+	padding: 2px;
+	margin-bottom: 10px;
+}
+.cfac_clear {
+	float: none;
+	clear: both;
+}
+
+
+#header {
+	width: 100%;
+	background: #000;
+
+	height: 100%;
+	background: #FFF;
+}
+
+
+#header h1 {
+	font-size: 3.0em;
+	padding: 0;
+	margin: 0;
+	color: #000;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Arial, sans-serif;
+	
+}
+
+#header h1 a {
+	color: #000;
+}
+
+.description {
+	color:#666666;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Verdana, Arial, sans-serif;
+}
+
+
+#header_right {
+	float:right;
+	width: 390px;
+	text-align: right;
+	font-size: 1.2em;
+	color: #fff;
+	padding: 20px 20px 20px 0;
+}
+
+#header_left {
+	float:left;
+	width: 500px;
+	text-align: left;
+	font-size: 1.2em;
+	color: #fff;
+	padding: 10px 0px 20px 20px;
+}
+
+#header_left1{
+height:100px;
+}
+
+.alignright {
+float:right;
+}

@@ -1,0 +1,7 @@
+<div id="productDescription" class="productGeneral biggerText"><div style="text-indent: 17.7pt"><strong>At uGarms we can assure you of the best quality and shipping. We ship items with original box and any other items needed.</p>
+<p>1)  Low Prices - We offer competitive price to expand your markets,usually it is about 30% lower than other suppliers of this quality.<br />
+  2)  Top quality - All our products are made of the best in leather and other selections material to create a mirror image. All our products go with original boxes,tags,dust bags and other accessories,and the products must be inspected again by our QC  before shipping out.<br />
+  3)  Promos. We will provide free express shipping worldwide for your orders with promo code. Shipping is worldwide.<br />
+  4)  Best services - Quality first, customers forever Your questions are our priority. Feel free to send us  a email with your inquiries and we will responsd to you in time and give excellent services,we are sure you will satisfied with our services at any time.<br />
+  5)  Long Term Buyers - No only will we give special treatment to short time, but long time buyers will also recieve various discounts and offers to prove with value there custom.</p>
+<p>Looking forward to doing a long term business with you, we will do our best to keep you updated on stock, as well as constant support throughout your purchase.</strong></div></div>

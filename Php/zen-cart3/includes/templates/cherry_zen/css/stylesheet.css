@@ -1,0 +1,911 @@
+/**
+ * Main CSS Stylesheet
+ *
+ * @package templateSystem
+ * @copyright Copyright 2003-2007 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: stylesheet.css 5952 2007-03-03 06:18:46Z drbyte $
+ */
+ 
+/* This section controls the colors for the site. Change red (default) to one of these options: orange, yellow, green, blue, purple, or grey) */
+input#searchTop {
+	background: url("../images/red/rounded-search-input-top.gif") top left no-repeat;
+}
+#navMainWrapper {
+	background:url("../images/red/header.gif");
+}
+h3.leftBoxHeading, h3.rightBoxHeading {
+	background: url("../images/red/sideboxbg.gif");
+}
+#navMain a {
+	background:url("../images/red/tableftE.gif") no-repeat left top;
+}
+#navMain a span {
+	background:url("../images/red/tabrightE.gif") no-repeat right top;
+}
+#navMain a span.last {
+	background:url("../images/red/tabrightE_last.gif") no-repeat right top;
+}
+/* end main color changes */
+
+
+/* other background color or image changes */
+body {
+	background:#84A4C1; /* main site background color, blue default */
+}
+#headerWrapper {
+	background:#fff;  /* background color behind logo and sales text, white default */
+}
+input:focus, select:focus, textarea:focus {
+	background:#e0e8ef; /* background color for input boxes, light blue default */
+}
+.messageStackWarning, .messageStackError {
+	background:#990000;  /* background color for warning messages, red default */
+}
+.messageStackSuccess {
+	background:#929292;  /* background color for success messages, grey default */
+}
+.messageStackCaution {
+	background:#FFFF99;  /* background color for caution messages, yellow default */
+}
+#cartSubTotal, h2.centerBoxHeading, .rowOdd {
+	background:#e8e9e9; /* background color for the New Product, Featured Products and Specials heading, odd listings, and for the subtotal section in the cart, light grey default */
+}
+TR.tableHeading {
+	background:#cacaca; /* background color for various table headings (including shopping cart heading), medium grey default */
+}
+.rowEven {
+	background:#F0F0F0;  /* background color for even listings, very light grey default */
+}
+#navEZPagesTop {
+	background:url("../images/ezbg.gif") repeat-x;  /* grey background image behind ezpages section */
+}
+#contentMainWrapper {
+	background:url("../images/sidebox.gif") 100% 0 repeat-y; /* This is the right column background "faked" with an image. */
+	background-color:#fff; /*background color for the main "content" of the site */
+}
+#contentMainWrapperb {
+	background: url("../images/sidebox.gif") 0 0 repeat-y; /* This is the left column background "faked" with an image. */
+}
+input.search {
+	background: url("../images/rounded-search-input.gif") top left no-repeat; float:left; /* rounded search image for the search sidebox */
+}
+/* font color changes */
+
+body {
+	color:#000;  /* main site font color*/
+}
+a:link {
+	color:#4f4f4f; /* main site links color */
+	text-decoration:none;
+}
+a:visited {
+	text-decoration:none; /* color of links after customer has visited them */
+	color:#313131;
+}
+a:hover {
+	color:#000; /* color when links are hovered over */
+	text-decoration:none;
+}
+h3.leftBoxHeading, h3.rightBoxHeading {
+	color:#fff; /* right and left box heading color */
+}
+.leftBoxHeading a, .rightBoxHeading a {
+	color:#fff; /* right and left box LINK heading color */
+}
+.leftBoxHeading a:hover, .rightBoxHeading a:hover {
+	color:#E8E9E9; /* right and left box LINK heading color when hovered over*/
+}
+
+.leftBoxHeading a:visited, .rightBoxHeading a:visited {
+	color:#fff; /* right and left box LINK heading color when hovered over*/
+}
+
+#navMain a span {
+	color:#fff; /* color of header links, HOME, LOGIN, MY ACCOUNT, etc. */
+}
+#navMain a:hover span {
+	color:#fff; /* color of header links, HOME, LOGIN, MY ACCOUNT, etc. when hovered over */
+}
+#tagline {
+	color:#333; /* tagline text color */
+}
+#productPrices {
+	color:#9F1C00; /* color of price */
+}
+.productSpecialPrice, .productSalePrice, .productSpecialPriceSale, .productPriceDiscount, .alert {
+	color:#990000; /* color of sale prices and alerts */
+}
+.messageStackWarning, .messageStackError {
+	color:#fff; /* color of warning message text */
+}
+
+/* bold text */
+.bold, .important, #tagline, #navEZPagesTop, LEGEND, #navSupp ul li a, #navCatTabs ul li a, #navEZPagesTOCWrapper, #cartSubTotal, .cartBoxTotal, #cartBoxEmpty, #cartBoxVoucherBalance  {
+	font-weight:700;
+}
+/* end of site font color changes */
+
+
+/* site and main content width section */
+	
+html>body {
+	width: auto;
+}
+#nw {
+	width:80%; /* main site width; if you'd prefer a fixed width site, enter the width in px here. */
+	max-width:1300px; /* prevents the main content from getting wider than 1300px in sites other than IE */
+	min-width:1000px; /* this prevents the main content from getting smaller than 1000px in browsers OTHER THAN IE. You can make this as small as 800px, BUT any smaller than that, and the top header menu will break into two lines. Also, if you make this width 800px, you will need to make sure your product image on the product info page is no wider than 190px */
+}
+/* IE only. Controls Width of Site and Main Content*/
+* html #nw {
+ width:expression((d=document.compatMode=="CSS1Compat" ? document.documentElement : document.body) && (d.clientWidth > 1300? "1300px" : d.clientWidth > 1048? "80%" : d.clientWidth < 1048? "1000px" : "80%")); /* this prevents the site from getting smaller than 1000px or wider than 1300px in IE */
+}
+/* end IE only */
+/* end site and main content width section */
+
+
+/*wrappers - page or section containers*/
+#nw {
+	text-align:left;
+	vertical-align:top;
+	margin:0 auto;
+}
+#headerWrapper {
+	float:left;
+	width:100%;
+}
+#navMainWrapper {
+	height:32px;
+	width:100%;
+	font-size:12px;
+}
+#logoWrapper {
+	width:auto;
+}
+#logo {
+	float:left;
+	padding-left:0px;
+	text-align:center;
+}
+#taglineWrapper {
+	width:30%;
+	float:left;
+	
+}
+#taglineWrapper span{
+	font-size : 12pt;
+	color:red;
+}
+#taglineWrapper a{
+	font-size : 12pt;
+}
+#tagline {
+	font-size:1.1em;
+	text-align:center;
+	padding:25px 8px 35px;
+}
+#navEZPagesTop {
+	width:auto;
+	padding:7px 0;
+}
+#navEZPagesTop a {
+	padding:0 8px;
+}
+#contentMainWrapper {
+	line-height:1.4;
+	min-height: 100%;
+}
+#contentMainWrapperb {
+	min-height: 100%;
+}
+* html #contentMainWrapper {
+	height: 100%;
+}
+.outer {
+	padding-left: 165px; /* Same width as margin-left for the float-wrap div */
+	padding-right: 150px; /* Our right column width */
+}
+.inner {
+	width: 100%;
+}
+.float-wrap {
+	float: left;
+	width: 97%;
+	margin-left: -165px; /* Same length as .outer padding-left but with negative value */
+}
+#content {
+	float: right;
+	margin-right: -165px; /* Same length as .outer padding-left but with negative value */
+	width: 100%;
+	line-height:1.6;
+	position: relative; /* IE needs this  */
+}
+.contentWrap {
+	padding: 5px 0 5px 5px;
+}
+#navColumnOne {
+	float: left;
+	position: relative; /* IE needs this  */
+}
+#navColumnTwo {
+	float: right;
+	margin-right: -150px; /* This negative margin-right value is in this example the same as the right column width. */
+	position: relative; /* IE needs this  */
+}
+* html #navColumnTwo {
+	margin-right: -170px !important; /* Fixes IE6 Issue */
+}
+/* end wrappers - page or section containers*/
+
+* {
+	margin:0;
+	padding:0;
+}
+body {
+	font-family: "Lucida Grande", tahoma, verdana, arial, helvetica, sans-serif;
+	font-size:73.5%;
+	margin-top:20px;
+}
+a img {
+	border:none;
+}
+ul, ol {
+	text-align:left;
+	padding-left:25px;
+	margin:0 0 10px 10px;
+}
+h1 {
+	font-size:1.3em;
+}
+h2 {
+	font-size:1.2em;
+}
+h3 {
+	font-size:1.1em;
+}
+h4, h5, h6, h4.optionName, LEGEND, ADDRESS, .sideBoxContent, .larger {
+	font-size:1em;
+}
+LEGEND {
+	color:#333;
+}
+.biggerText {
+	font-size:1.1em;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin:.3em 0;
+}
+CODE {
+	font-family:tahoma, arial, verdana, helvetica, sans-serif;
+	font-size:1em;
+}
+FORM, SELECT {
+	display:inline;
+	font-size:1em;
+	margin:.5em;
+}
+option {
+	padding-right:.5em;
+}
+INPUT {
+	margin:.3em .5em;
+}
+html>/**/body input[type=checkbox], html>/**/body input[type=radio] {
+	float:left;
+	clear:both;
+}
+html>/**/body .checkboxLabel, html>/**/body .radioButtonLabel {
+	margin:0 .2em .5em 0;
+	float:left;
+}
+.ratingRow input[type=radio] {
+	float:none;
+	margin:0 .5em;
+}
+TEXTAREA {
+	margin:auto;
+	display:block;
+	width:95%;
+}
+FIELDSET {
+	padding:.5em;
+	margin:.5em 0;
+	border:1px solid #cccccc;
+}
+LEGEND {
+	padding:.3em;
+}
+h4.optionName {
+	padding-right:1em;
+}
+.centerBoxContents, .specialsListBoxContents, .categoryListBoxContents, .centerBoxContentsAlsoPurch, .attribImg {
+	float:left;
+}
+LABEL.inputLabel {
+	width:90%;
+
+	margin:.3em;
+}
+LABEL.inputLabelPayment {
+	width:15em;
+	float:left;
+	padding:.5em;
+}
+LABEL.selectLabel, LABEL.switchedLabel, LABEL.uploadsLabel {
+	width:12em;
+	float:left;
+}
+ADDRESS {
+	font-style:normal;
+	padding-right:40px;
+}
+.clearBoth {
+	clear:both;
+	height:0;
+	font-size:0;
+	line-height:0;
+}
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.clearfix {
+	display: inline-block;
+}
+/* Hides from IE-mac \*/
+* html .clearfix {
+	height: 1%;
+}
+.clearfix {
+	display: block;
+}
+/* End hide from IE-mac */
+
+HR {
+	height:1px;
+	margin:.5em 0;
+	border:none;
+	border-bottom:1px solid #9a9a9a;
+}
+.messageStackWarning, .messageStackError, .messageStackSuccess, .messageStackCaution {
+	padding:.2em;
+}
+/* product info page css */
+
+#cartAdd {
+	width:300px;
+	text-align:center;
+	margin:10px auto;
+	padding-right:10px;
+}
+#cartAdd input {
+	margin:.3em 3 0 0;
+}
+#productDescription {
+	border:1px solid #bfbfbf;
+	margin-top:20px;
+	clear:both;
+}
+#rightFloat {
+	float:left;
+	width:45%;
+}
+#leftFloat {
+	float:left;
+	text-align:center;
+}
+#productDetailsList {
+	float:left;
+}
+#productAttributes {
+	width:100%;
+	float:left;
+	border:1px solid #bfbfbf;
+	padding-left:5px;
+	margin:5px 0 0 10px;
+}
+#productImage {
+	margin:0 auto;
+	text-align:center;
+}
+.imgLink {
+	text-align:center;
+	margin:0 auto;
+	display:block;
+	width:100%;
+}
+#friendReview {
+	width:200px;
+	padding:15px 0 10px 0;
+	float:left;
+	clear:left;
+	text-align:left;
+}
+.reviewCount {
+	float:left;
+	padding-left:2px;
+}
+#productReviewLink {
+	padding:5px 0;
+}
+.wrapperAttribsOptions {
+	line-height:2em;
+	width:auto;
+	float:left;
+}
+.wrapperAttribsOptions h4 {
+	padding-right:15px;
+}
+/* end product info page css */
+
+/* css for top menu tabs */
+
+#navMain {
+	float:right;
+	width:900px;
+	line-height:normal;
+	height:32px;
+}
+#navMain ul {
+	float:right;
+	list-style:none;
+}
+#navMain li {
+	display:inline;
+}
+#navMain a {
+	float:left;
+	text-decoration:none;
+}
+#navMain a span {
+	float:left;
+	display:block;
+	padding: 7px 5px 0 5px;
+	text-align:center;
+	width:80px;
+	cursor:pointer;
+	height:25px;
+
+}
+/* Commented Backslash Hack hides rule from IE5-Mac \*/
+#navMain a span {
+	float:none;
+}
+/* End IE5-Mac hack */
+
+#navMain a:hover {
+	background-position:0% -32px;
+}
+#navMain a:hover span {
+	background-position:100% -32px;
+}
+/* end css for top menu tabs */
+	
+.navNextPrevWrapper {
+	margin-bottom:1em;
+}
+.navPrevCounter {
+	font-size:.9em;
+}
+.navNextPrevList {
+	display:inline;
+	white-space:nowrap;
+	padding:0 1em;
+	list-style-type:none;
+	position:relative;
+}
+#navSuppWrapper {
+	width:100%;
+	margin:0 auto;
+	float:left;
+}
+#navSupp {
+	margin:0 auto;
+	text-align:center;
+	padding-top:1em;
+}
+#navSupp ul {
+	list-style-type:none;
+	text-align:center;
+	line-height:1.5em;
+	padding: .3em 0;
+}
+#navCatTabs ul {
+	list-style-type:none;
+	text-align:center;
+}
+#navSupp li, #navCatTabs li {
+	display:inline;
+	padding:0 .5em;
+}
+#navSupp ul li a, #navCatTabs ul li a {
+	text-decoration:none;
+	white-space:nowrap;
+	display:inline;
+	width:0;
+}
+#navEZPagesTOCWrapper {
+	float:right;
+	height:1%;
+	border:1px solid #000;
+}
+#navEZPagesTOC ul {
+	padding: .5em 0;
+	list-style-type:none;
+	line-height:1.5em;
+}
+#navEZPagesTOC ul li {
+	white-space:nowrap;
+}
+#navEZPagesTOC ul li a {
+	padding:0 .5em;
+}
+#navCategoryIcon, .buttonRow, #indexProductListCatDescription {
+	margin:.5em;
+}
+#navMainSearch {
+	float:left;
+	width:120px;
+}
+input.search {
+	border: 0;
+	width: 100px; /* width of text-display area */
+	padding: 3px 15px 4px 20px;
+	font-size: 11px;
+}
+input#searchTop {
+	border: 0;
+	width: 115px; /* width of text-display area */
+	padding: 4px 15px 5px 20px;
+	font-size: 12px;
+}
+* html input#searchTop {
+	background-attachment: fixed;
+}
+#navBreadCrumb {
+	text-align:left;
+	line-height:1.6em;
+	font-size:.99em;
+	padding:.2em 0;
+}
+#contentColumnMain, #navColumnOne, #navColumnTwo, .centerBoxContents, .specialsListBoxContents, .categoryListBoxContents, .additionalImages, .centerBoxContentsSpecials, .centerBoxContentsAlsoPurch, .centerBoxContentsFeatured, .centerBoxContentsNew, .alert {
+	vertical-align:top;
+}
+#productDescription, .shippingEstimatorWrapper {
+	padding:.5em;
+}
+.important {
+	padding:.5em;
+}
+.gvBal {
+	float:right;
+}
+#bannerOne, #bannerTwo, #bannerThree, #bannerFour, #bannerFive, #bannerSix {
+	padding:.8em;
+}
+.smallText, #siteinfoLegal, #siteinfoCredits, #siteinfoStatus, #siteinfoIP {
+	font-size:.9em;
+}
+#siteinfoLegal {
+	padding-bottom:1em;
+	clear:both;
+}
+.tableHeading TH {
+	border-bottom:1px solid #cccccc;
+}
+#cartSubTotal {
+	border-top:1px solid #cccccc;
+	text-align:right;
+	line-height:2.2em;
+	padding-right:2.5em;
+}
+.tableRow, .tableHeading, #cartSubTotal {
+	height:2.2em;
+}
+.cartProductDisplay, .cartUnitDisplay, .cartTotalDisplay, .cartRemoveItemDisplay, .cartQuantityUpdate, .cartQuantity, #cartInstructionsDisplay, .cartTotalsDisplay {
+	padding:.5em 0 0;
+}
+#cartProdTitle {
+	text-align:center
+}
+.cartUnitDisplay, .cartTotalDisplay {
+	text-align:center;
+	padding-right:.2em;
+}
+.cartRemoveItemDisplay input[type=checkbox] {
+	float:none;
+	margin-bottom:1em;
+}
+#scUpdateQuantity {
+	width:1.8em;
+}
+#scProductsHeading {
+	padding-left:2em;
+}
+.cartQuantity {
+	width:4em;
+}
+.cartNewItem {
+	position:relative;  /*do not remove-fixes stupid IEbug*/
+}
+.cartOldItem {
+	position:relative;   /*do not remove-fixes stupid IEbug*/
+}
+.cartBoxTotal {
+	text-align:right;
+	padding-right:10px;
+}
+.cartRemoveItemDisplay {
+	width:5em;
+}
+.cartAttribsList {
+	margin-left:1em;
+}
+#mediaManager {
+	width:50%;
+	margin:.2em;
+	padding:.5em;
+}
+.mediaTitle {
+	float: left;
+}
+.mediaTypeLink {
+	float: right;
+}
+.normalprice, .productSpecialPriceSale {
+	text-decoration:line-through;
+}
+.orderHistList {
+	margin:1em;
+	padding:.2em 0;
+}
+#ezPageBoxList li {
+	padding:.2em 0;
+}
+.totalBox {
+	width:5.5em;
+	text-align:right;
+	padding:.2em;
+}
+.lineTitle, .amount {
+	text-align:right;
+	padding:.2em;
+}
+.amount {
+	width:5.5em;
+}
+#reviewsInfoDefaultProductImage, #productReviewsDefaultProductImage, #reviewWriteMainImage {
+	margin:.5em 1em 0 0;
+}
+#cartImage {
+	margin:.5em 1em;
+}
+.attribImg {
+	width:20%;
+	margin:.3em 0;
+}
+.centerBoxContents, .specialsListBoxContents, .categoryListBoxContents, .additionalImages, .centerBoxContentsSpecials, .centerBoxContentsAlsoPurch, .centerBoxContentsFeatured, .centerBoxContentsNew {
+	margin:1em 0;
+}
+.centerBoxContentsProducts {
+	margin:0 auto;
+	text-align:center;
+	width:95%
+}
+h3.leftBoxHeading, h3.rightBoxHeading {
+	font-size:1.1em;
+	font-weight:normal;
+	height:1.5em;
+	padding:.2em 0 0 0;
+}
+h2.centerBoxHeading {
+	margin:5px auto;
+	padding:.5em 0;
+	text-align:center;
+	border:1px solid #bababa;
+	line-height:normal;
+	width:100%;
+}
+.leftBoxHeading, .rightBoxHeading {
+}
+.sideBoxContent {
+	font-size:1.1em;
+	padding:5px;
+}
+.sideBoxContent ul {
+	text-align:left;
+	list-style-type:none;
+	padding:0 0 0 10px!important;
+	margin:0!important;
+}
+.sideBoxContent li {
+}
+#categoriesContent, #documentcategoriesContent {
+	text-align:left;
+	padding-left:10px;
+}
+.centeredContent, TH, #cartEmptyText, #cartBoxGVButton, #cartBoxEmpty, #cartBoxVoucherBalance, #navCatTabsWrapper, #navEZPageNextPrev, #bannerOne, #bannerTwo, #bannerThree, #bannerFour, #bannerFive, #bannerSix, #siteinfoLegal, #siteinfoCredits, #siteinfoStatus, #siteinfoIP, .center, .cartRemoveItemDisplay, .cartQuantityUpdate, .cartQuantity, .cartTotalsDisplay, #cartBoxGVBalance, .leftBoxHeading, .centerBoxHeading, .rightBoxHeading, .productListing-data, .accountQuantityDisplay, .ratingRow, LABEL#textAreaReviews, #reviewsInfoDefaultProductImage, #productReviewsDefaultProductImage, #reviewWriteMainImage, .centerBoxContents, .specialsListBoxContents, .categoryListBoxContents, .additionalImages, .centerBoxContentsSpecials, .centerBoxContentsAlsoPurch, .centerBoxContentsFeatured, .centerBoxContentsNew, .gvBal, .attribImg {
+	text-align:center;
+}
+.productListing-data img {
+	padding:10px;
+}
+#upProductsHeading {
+	text-align:left;
+}
+#upDateHeading {
+	text-align:right;
+}
+/*misc*/
+.back {
+	float:left;
+}
+.forward, #shoppingCartDefault #PPECbutton {
+	float: right;
+}
+.rowOdd {
+	height:1.5em;
+	vertical-align:top;
+}
+.rowEven {
+	height:1.5em;
+	vertical-align:top;
+}
+.hiddenField {
+	display:none;
+}
+.visibleField {
+	display:inline;
+}
+#accountLinksWrapper li {
+	padding:.5em 0;
+	display:block;
+	list-style:none;
+}
+.accountTotalDisplay, .accountTaxDisplay {
+	width:20%;
+	text-align:right;
+}
+.accountQuantityDisplay {
+	width:10%;
+	vertical-align:top
+}
+TR.tableHeading {
+	height:2em;
+}
+#siteMapList {
+	width:90%;
+	float:right;
+}
+.ratingRow {
+	margin:1em 0 1.5em 0;
+}
+LABEL#textAreaReviews {
+	font-weight:normal;
+	margin:1em 0;
+}
+.information {
+	padding: 10px 3px;
+	line-height: 150%;
+}
+#shoppingcartBody #shippingEstimatorContent {
+	clear: both;
+}
+.seDisplayedAddressLabel {
+	background-color:#85C285;
+	text-align: center;
+}
+.seDisplayedAddressInfo {
+	text-transform: uppercase;
+	text-align: center;
+	font-weight: bold;
+}
+#seShipTo {
+	padding: 0.2em;
+}
+.smallProductImage {
+	padding:1em;
+}
+#sendSpendWrapper {
+	border:1px solid #cacaca;
+	float:right;
+	margin:0 0 1em 1em;
+}
+.floatingBox, #accountLinksWrapper, #sendSpendWrapper, #checkoutShipto, #checkoutBillto, #navEZPagesTOCWrapper {
+	width:46%;
+}
+/* css for product image drop shadow and border. To disable the drop shadow and border, simply delete or comment out this section */
+
+#productMainImage {
+	float:left;
+	background: url("../images/shadowAlpha.png") no-repeat bottom right !important;
+	background: url("../images/shadow.gif") no-repeat bottom right;
+	margin: 10px 0 0 10px !important;
+	margin: 10px 0 0 5px;
+}
+#productMainImage img {
+	display: block;
+	position: relative;
+	background: #fff;
+	margin: -3px 6px 6px -3px;
+	border: 1px solid #a9a9a9; /* defines the border for the product image. To remove the border delete or comment out this line, AND padding: 4px; below */
+	padding: 4px;
+}
+/* end css for product image drop shadow */
+
+.layercss{
+   position:absolute;
+   float:left;
+   width:115px;
+   z-index:999999; 
+   background-color: #FDF7DF;
+   visibility:hidden;
+}
+.layercss ul{
+float:left;
+padding-left:0px;
+padding-bottom:0px;
+margin-left:2px;
+}
+.layercss li{
+	width : 90%;
+	float : left;
+	height : 20px;
+	line-height : 150%;
+	font-size:12px;
+}
+.layercss li a{
+height:20px;
+width:100%;
+}
+.layercss a:hover{
+text-decoration:underline;
+}
+.listingPrice {
+	line-height : 150%;
+}
+
+.categoryListBoxContents a{
+font-size:14px;
+font-weight:bold;
+color:#000000;
+text-decoration:underline;
+}
+
+
+
+
+/**#TTwait Add*/
+ul#nav,ul#nav ul { margin:0; padding:0;}
+ul#nav li { list-style:none;background: url("../images/dotted_line.gif") repeat-x 0 bottom;}
+ul#nav ul a:visited{
+color: #486A86;
+}
+
+a.sone { 
+	font: 12px arial;
+	text-decoration: none;
+	padding: 0 0 0 9px;
+	height : 20px;
+	line-height : 20px;
+	background: url("../images/arrow.gif") no-repeat 0px 50%;
+	display:block; 
+}
+a.stwo { 
+	height:20px; 
+	line-height:20px; 
+	display:block; 
+	padding-left:3px; 
+	color:#486A86; 
+	font-size:10px arial; 
+	text-decoration:none;
+}
+a.sone:hover {
+	background: url("../images/arrow.gif") no-repeat 0px 50%;
+	text-decoration:underline;
+}

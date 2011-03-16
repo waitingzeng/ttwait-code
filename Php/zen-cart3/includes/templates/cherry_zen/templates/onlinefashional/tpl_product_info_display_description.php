@@ -1,0 +1,8 @@
+<div id="productDescription" class="productGeneral biggerText"><div style="text-indent: 17.7pt"><strong>As for a professiona and serious supplier,we have made it possible to offer products with lower prices,top quality,free shipping, and best services.</strong></div>
+<div style="margin: 0cm 0cm 0pt 18pt; text-indent: -18pt"><strong>1)&nbsp;&nbsp; </strong><strong>lower prices.we offer the most competitive price to expand your markets,usually it is about 30% lower than other suppliers. </strong></div>
+<div style="margin: 0cm 0cm 0pt 18pt; text-indent: -18pt"><strong>2)&nbsp;&nbsp;</strong><strong>Top quality. All our products are made of the best in leather and other selections material to create a mirror image. All our products go with original boxes,tags,dust bags and other accessories,and the products must be inspected again by our QC &nbsp;before shipping out.</strong></div>
+<div style="margin: 0cm 0cm 0pt 18pt; text-indent: -18pt"><strong>3)&nbsp;&nbsp;</strong><strong>Free shipping. we will provide free express shipping worldwide for your orders. Shipping is absolutely free worldwide if your order is over $100.</strong></div>
+<div style="margin: 0cm 0cm 0pt 18pt; text-indent: -18pt"><strong>4)&nbsp;&nbsp;</strong><strong>best services. Quality first, customers forever !Your questions are our priority. Feel free to send us &nbsp;a email with your inquiries and we will response you in time and give excellent services,we are sure you will satisfied with our services at any time.</strong></div>
+
+<div></div>
+<div style="text-indent: 18.05pt"><strong>Looking forward to doing a long term business with you.we will do our best for you.</strong></div></div>

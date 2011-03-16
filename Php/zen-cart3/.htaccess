@@ -1,0 +1,17 @@
+
+DirectoryIndex index.html index.php
+
+Options +FollowSymLinks -MultiViews
+RewriteEngine On
+RewriteBase /
+
+# Deny access from .htaccess
+RewriteRule ^\.htaccess$ - [F]
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{SCRIPT_FILENAME} !-f
+#RewriteCond %{SCRIPT_FILENAME} !-d
+
+#RewriteRule ^images/pic/(.*)$ http://173.230.150.95/pic/$1 [R=301,NC,L]
+RewriteRule ^images/pic/(.*)$ http://littlefox010.appspot.com/pic/$1 [R=301,NC,L]
+RewriteRule ^product_info.php$ index.php [QSA,L]
