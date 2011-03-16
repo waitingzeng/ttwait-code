@@ -18,7 +18,7 @@ if (!defined('IN_ECS'))
     die('Hacking attempt');
 }
 
-define('DEBUG_MODE', 8);
+//define('DEBUG_MODE', 8);
 
 error_reporting(E_ALL);
 
