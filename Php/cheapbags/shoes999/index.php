@@ -219,13 +219,13 @@ elseif ($_REQUEST['act'] == 'main')
             $warning[] = sprintf($_LANG['temp_dir_cannt_read'], $upload_tmp_dir);
         }
     }
-
+    /*
     $result = file_mode_info('../cert');
     if ($result < 2)
     {
         $warning[] = sprintf($_LANG['not_writable'], 'cert', $_LANG['cert_cannt_write']);
     }
-
+    
     $result = file_mode_info('../' . DATA_DIR);
     if ($result < 2)
     {
@@ -277,7 +277,7 @@ elseif ($_REQUEST['act'] == 'main')
             $warning[] = sprintf($_LANG['not_writable'], IMAGE_DIR . '/upload', $_LANG['imagesupload_cannt_write']);
         }
     }
-
+*/
     $result = file_mode_info('../temp');
     if ($result < 2)
     {
