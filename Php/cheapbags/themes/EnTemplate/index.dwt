@@ -24,8 +24,8 @@
   <!-- TemplateBeginEditable name="左侧区域" -->
 <!-- #BeginLibraryItem "/library/category_tree.lbi" --><!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/new_articles.lbi" --><!-- #EndLibraryItem -->
-<!-- #BeginLibraryItem "/library/top10.lbi" --><!-- #EndLibraryItem -->
-<!-- #BeginLibraryItem "/library/order_query.lbi" --><!-- #EndLibraryItem -->
+<!--- #BeginLibraryItem "/library/top10.lbi" --><!-- #EndLibraryItem -->
+<!--- #BeginLibraryItem "/library/order_query.lbi" --><!--- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/invoice_query.lbi" --> <!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/email_list.lbi" --><!-- #EndLibraryItem -->
 <!-- TemplateEndEditable -->

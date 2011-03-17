@@ -283,7 +283,7 @@ elseif ($_REQUEST['act'] == 'main')
     {
         $warning[] = sprintf($_LANG['not_writable'], 'images', $_LANG['tpl_cannt_write']);
     }
-
+/*
     $result = file_mode_info('../temp/backup');
     if ($result < 2)
     {
@@ -294,6 +294,8 @@ elseif ($_REQUEST['act'] == 'main')
     {
         $warning[] = $_LANG['order_print_canntwrite'];
     }
+ * 
+ */
     clearstatcache();
 
     $smarty->assign('warning_arr', $warning);
