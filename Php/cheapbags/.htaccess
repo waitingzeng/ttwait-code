@@ -8,10 +8,10 @@ RewriteEngine On
 RewriteCond %{http_host} ^mail.mobi915.com [nc] 
 RewriteRule ^(.*)$ http://mail.google.com/a/mobi915.com/ [r=301,nc]
 
-RewriteCond %{http_host} ^www.mobi915.com [nc] 
-RewriteRule ^(.*)$ http://cheapbagswholesale.com/$1 [r=301,nc]
+RewriteCond %{http_host} ^mobi915.com [nc] 
+RewriteRule ^(.*)$ http://www.mobi915.com/$1 [r=301,nc]
 
-RewriteCond %{http_host} mobi915.com [nc] 
+RewriteCond %{http_host} www.mobi915.com [nc] 
 RewriteBase /
 
 # direct one-word access
