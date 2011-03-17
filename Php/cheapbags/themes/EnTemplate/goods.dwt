@@ -268,10 +268,10 @@
   </div>
     <div class="Goodsfotit clearfix" id="com_b">
      <h2>{$lang.feed_goods_desc}</h2>
-    <h2 class="h2bg">{$lang.goods_attr}</h2>
+    <!--<h2 class="h2bg">{$lang.goods_attr}</h2>-->
     <h2 class="h2bg">{$lang.goods_tag}</h2>
     <!-- {if $package_goods_list} -->
-    <h2 class="h2bg"><font id="package">{$lang.remark_package}</font></h2>
+    <!--<h2 class="h2bg"><font id="package">{$lang.remark_package}</font></h2>-->
     <script>setInterval("colorStyle('package','a','b')",300);</script>
     <!--{/if}-->
     <h2 class="h2bg">{$lang.accessories_releate}</h2>
@@ -331,8 +331,8 @@
   <!-- TemplateBeginEditable name="右边可编辑区" -->
 	<!-- #BeginLibraryItem "/library/goods_related.lbi" --><!-- #EndLibraryItem -->
 	<!-- #BeginLibraryItem "/library/bought_goods.lbi" --><!-- #EndLibraryItem -->
-	<!-- #BeginLibraryItem "/library/bought_note_guide.lbi" --><!-- #EndLibraryItem -->
-  <!-- #BeginLibraryItem "/library/comments.lbi" --><!-- #EndLibraryItem -->
+	<!---- #BeginLibraryItem "/library/bought_note_guide.lbi" --><!---- #EndLibraryItem -->
+  <!---- #BeginLibraryItem "/library/comments.lbi" --><!---- #EndLibraryItem -->
   <!-- TemplateEndEditable -->
  </div>
  </div>
