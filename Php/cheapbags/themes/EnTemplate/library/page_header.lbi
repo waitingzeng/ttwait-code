@@ -27,7 +27,7 @@ var select_spe = "{$lang.select_spe}";
 </div>
 <div class="Area clearfix logo">
  <ul class="clearfix">
-  <li class="f_l"><a href="../index.php" title="{$page_title}"><h1>Cheap Bags Wholesale</h1></a></li>
+  <li class="f_l"><a href="../index.php" title="{$page_title}"><h1>Wholesale Mobi Online Shop</h1></a></li>
 	<li class="f_r">
 	{insert_scripts files='transport.js,utils.js'}
    <font id="ECS_MEMBERZONE">{* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'} </font>

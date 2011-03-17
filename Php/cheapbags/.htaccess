@@ -5,13 +5,13 @@
 
 RewriteEngine On
 
-RewriteCond %{http_host} ^mail.cheapbagswholesale.com [nc] 
-RewriteRule ^(.*)$ http://mail.google.com/a/cheapbagswholesale.com/ [r=301,nc]
+RewriteCond %{http_host} ^mail.mobi915.com [nc] 
+RewriteRule ^(.*)$ http://mail.google.com/a/mobi915.com/ [r=301,nc]
 
-RewriteCond %{http_host} ^www.cheapbagswholesale.com [nc] 
+RewriteCond %{http_host} ^www.mobi915.com [nc] 
 RewriteRule ^(.*)$ http://cheapbagswholesale.com/$1 [r=301,nc]
 
-RewriteCond %{http_host} ^cheapbagswholesale.com [nc] 
+RewriteCond %{http_host} mobi915.com [nc] 
 RewriteBase /
 
 # direct one-word access
@@ -34,7 +34,7 @@ RewriteRule ^wholesalers-([0-9]+)-b([0-9]+)(.*)\.html$                          
 RewriteRule ^wholesalers-([0-9]+)(.*)\.html$                                                                          category\.php\?id=$1  [QSA,L]
 
 
-RewriteRule ^goods-(.*)\.html$  wholesale-handbags-$1.html [r=301,nc]
+RewriteRule ^goods-(.*)\.html$  wholesale-$1.html [r=301,nc]
 
 
 RewriteRule ^wholesale-([0-9]+)(.*)\.html$  goods\.php\?id=$1 [QSA,L]
