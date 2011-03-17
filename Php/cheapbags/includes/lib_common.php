@@ -1505,7 +1505,7 @@ function build_uri($app, $params, $append = '', $page = 0, $keywords = '', $size
             {
                 if ($rewrite)
                 {
-                    $uri = 'category-' . $cid;
+                    $uri = 'wholesalers-' . $cid;
                     if (isset($bid))
                     {
                         $uri .= '-b' . $bid;
@@ -1578,7 +1578,7 @@ function build_uri($app, $params, $append = '', $page = 0, $keywords = '', $size
             }
             else
             {
-                $uri = $rewrite ? 'goods-' . $gid : 'goods.php?id=' . $gid;
+                $uri = $rewrite ? 'wholesale-' . $gid : 'goods.php?id=' . $gid;
             }
 
             break;
@@ -1609,6 +1609,7 @@ function build_uri($app, $params, $append = '', $page = 0, $keywords = '', $size
                         $uri .= '-' . $order;
                     }
                 }
+                
                 else
                 {
                     $uri = 'brand.php?id=' . $bid;
@@ -1800,7 +1801,7 @@ function build_uri($app, $params, $append = '', $page = 0, $keywords = '', $size
     {
         if ($rewrite == 2 && !empty($append))
         {
-            $uri .= '-' . urlencode(preg_replace('/[\.|\/|\?|&|\+|\\\|\'|"|,]+/', '', $append));
+            $uri .= '-wholesale-' . str_ireplace('+', '-', urlencode(preg_replace('/[\.|\/|\?|&|\+|\\\|\'|"|,]+/', '', $append)));
         }
 
         $uri .= '.html';
@@ -1809,7 +1810,7 @@ function build_uri($app, $params, $append = '', $page = 0, $keywords = '', $size
     {
         $uri = urlencode($uri);
     }
-    return $uri;
+    return strtolower($uri);
 }
 
 /**
