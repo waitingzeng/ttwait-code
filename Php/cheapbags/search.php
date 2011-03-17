@@ -105,7 +105,7 @@ if ($_REQUEST['act'] == 'advanced_search')
 /*------------------------------------------------------ */
 else
 {
-    $_REQUEST['keywords']   = !empty($_REQUEST['keywords'])   ? trim($_REQUEST['keywords'])     : '';
+    $_REQUEST['keywords']   = !empty($_REQUEST['keywords'])   ? htmlspecialchars(trim($_REQUEST['keywords']))     : '';
     $_REQUEST['brand']      = !empty($_REQUEST['brand'])      ? intval($_REQUEST['brand'])      : 0;
     $_REQUEST['category']   = !empty($_REQUEST['category'])   ? intval($_REQUEST['category'])   : 0;
     $_REQUEST['min_price']  = !empty($_REQUEST['min_price'])  ? intval($_REQUEST['min_price'])  : 0;

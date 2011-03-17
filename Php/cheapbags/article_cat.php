@@ -47,7 +47,7 @@ else
 }
 
 /* 获得当前页码 */
-$page = !empty($_REQUEST['page']) ? intval($_REQUEST['page']) : 1;
+$page   = !empty($_REQUEST['page'])  && intval($_REQUEST['page'])  > 0 ? intval($_REQUEST['page'])  : 1;
 
 /*------------------------------------------------------ */
 //-- PROCESSOR

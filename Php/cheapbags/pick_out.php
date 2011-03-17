@@ -132,7 +132,7 @@ else
         $rs = $db->query($sql);
         while ($row = $db->fetchRow($rs))
         {
-            $picks[] = array('name'=>'<strong>'.$row['attr_name'].':</strong><br />'.urldecode($_GET['attr'][$row['attr_id']]), 'url'=>'pick_out.php?cat_id='.$cat_id.search_url($attr_picks, $row['attr_id']));
+            $picks[] = array('name'=>'<strong>'.$row['attr_name'].':</strong><br />'.htmlspecialchars(urldecode($_GET['attr'][$row['attr_id']])), 'url'=>'pick_out.php?cat_id='.$cat_id.search_url($attr_picks, $row['attr_id']));
         }
 
         /* 查出数量 */

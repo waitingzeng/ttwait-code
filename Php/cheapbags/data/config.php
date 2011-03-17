@@ -34,7 +34,7 @@ define('AUTH_KEY', 'mykeyttwait');
 
 define('OLD_AUTH_KEY', '');
 
-define('API_TIME', '2011-03-15 05:39:17');
+define('API_TIME', '2011-03-17 00:59:44');
 
 
 
