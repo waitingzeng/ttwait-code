@@ -9,6 +9,7 @@
 							<!--<a href="#" class="feedbutton"></a>-->
 						</div>
 					</li>
+					<li class="widget"><?php include('adsense_sidebar_right.php') ?></li>
 					<?php if ( function_exists('dynamic_sidebar') && dynamic_sidebar() ) : else : ?>
 					<li class="widget">
 						<ul>

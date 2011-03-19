@@ -10,6 +10,7 @@
 					<div class="comment_count"><?php comments_popup_link('0', '1', '%', '', 'n/a'); ?></div>
 					<h1><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>"><?php the_title(); ?></a></h1>
 					<div class="body">
+						<?php include('adsense_singlepost_top_square.php') ?>
 						<?php the_content('<p>Continue Reading&#8230;</p>'); ?>
 					</div>
 					<div class="postinfo">
