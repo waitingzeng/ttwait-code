@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 				
 				<?php if (have_posts()) : ?>
+				<?php $count = 1 ?>
 				<?php while (have_posts()) : the_post(); ?>
 				
 				<div <?php post_class() ?> id="post-<?php the_ID(); ?>">
@@ -10,9 +11,11 @@
 					<div class="comment_count"><?php comments_popup_link('0', '1', '%', '', 'n/a'); ?></div>
 					<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title(); ?>"><?php the_title(); ?></a></h2>
 					<div class="body">
+						<?php if($count == 1){include('adsense_singlepost_top_square.php');} ?>
 						<?php the_content('Continue Reading'); ?>
 					</div>
 				</div>
+				<?php $count = $count + 1; ?>
 				<?php endwhile; ?>
 				
 				<?php if(function_exists('wp_pagenavi')) : wp_pagenavi();  else : ?>
