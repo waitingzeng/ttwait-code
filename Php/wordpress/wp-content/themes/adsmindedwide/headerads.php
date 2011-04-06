@@ -5,7 +5,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <script type="text/javascript"><!--
-google_ad_client = "pub-2153651206088577";
+google_ad_client = "google_adsense_account";
 google_alternate_ad_url = "";
 google_ad_width = 728;
 google_ad_height = 15;

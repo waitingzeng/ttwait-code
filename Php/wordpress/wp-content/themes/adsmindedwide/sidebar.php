@@ -86,7 +86,7 @@
 </td></tr>
 <tr><td valign="top" align="left">
 <input type="submit" name="sa" value="Search"></input>
-<input type="hidden" name="client" value="pub-2153651206088577"></input>
+<input type="hidden" name="client" value="google_adsense_account"></input>
 <input type="hidden" name="forid" value="1"></input>
 <input type="hidden" name="channel" value="5292143788"></input>
 <input type="hidden" name="ie" value="ISO-8859-1"></input>

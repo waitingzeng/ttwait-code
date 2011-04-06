@@ -1,5 +1,5 @@
 <div style="float: left; margin-right: 3px;"><script type="text/javascript"><!--
-google_ad_client = "google_ad_client";
+google_ad_client = "pub-3609132561688446";
 /* 336x280, created 3/24/10 */
 google_ad_width = 336;
 google_ad_height = 280;
