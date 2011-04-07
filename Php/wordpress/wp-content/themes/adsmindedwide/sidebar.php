@@ -34,7 +34,7 @@
                 				'asc', '', TRUE, FALSE,
                 				TRUE, FALSE, FALSE,
                 				TRUE, FALSE, '', FALSE,
-                				'', '', '1',
+                				'', '', '',
                 				TRUE); ?>
 			</ul>
 		</div>
