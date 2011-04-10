@@ -39,8 +39,10 @@
 			</ul>
 		</div>
 	</div>
-
-<?php if ( function_exists('dynamic_sidebar') && dynamic_sidebar() ):?><?php endif;?>
+<br />
+<?php if ( !function_exists('dynamic_sidebar')
+|| !dynamic_sidebar() ) : ?>
+<?php endif; ?>
 
 <!-- monthly archives -->
 
