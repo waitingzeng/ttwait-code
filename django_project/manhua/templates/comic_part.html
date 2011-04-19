@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block contents %}
+<script language="javascript">
+var app_label = '{{ app_label }}';
+var type_id = '{{ type_id}}';
+var part_id = '{{ part_id }}';
+var server_list = [
+	{% for server in server_list %}
+	'{{ server }}',
+	{% endfor %}
+];
+
+var img_list = [
+	{% for img in img_list %}
+	'{{ img }}',
+	{% endfor %}
+];
+</script>
+<div class="picNav"><a class="dir" href="/{{ app_label }}/comic/{{ type_id }}/" id="book" title="返回目录"><span>返回目录</span></a></div>
+<div class="pic"><img id="imgid" style="cursor:pointer;" /></div>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block contents %}
+{% if part_list%}
+	<ul>
+	{% for link, title in part_list %}
+    <li><a href="{{ link }}" title="{{ title }}" target="_blank">{{ title}}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+加载页面失败
+{% endif%}
+{% endblock %}
