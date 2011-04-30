@@ -1,0 +1,9 @@
+<?php  
+$cfg_dbhost = '~cfg_dbhost~';  
+$cfg_dbuser = '~cfg_dbuser~';  
+$cfg_dbpwd = '~cfg_dbpwd~';  
+$cfg_pconnec = 0;  
+$cfg_dbname = '~cfg_dbname~';  
+$GLOBALS['charset'] = 'utf8';  
+if(defined('ADMIN')) $GLOBALS['charset'] = 'gb2312';
+?>
