@@ -1,0 +1,42 @@
+return_url_log=&0b1a94434257cc8af02466f3d7ea5b98&：执行日期：20100309231119	
+:verify_failed：执行日期：20100309231119	
+notify_url_log=http://notify.alipay.com/trade/notify_query.do?partner=2088002026956934&notify_id=HTTP/1.1 200 OK
+,Date: Tue, 09 Mar 2010 15:53:19 GMT
+,Server: Apache
+,Set-Cookie: ali_apache_id=124.232.132.215.126814999924.8; path=/; domain=.alipay.com; expires=Wed, 30-Nov-2084 01:01:01 GMT
+,Set-Cookie: ali_apache_sid=124.232.132.215.126814999924.8|1268151799; path=/; domain=.alipay.com
+,Set-Cookie: JSESSIONID=C9C75C20A08DA2113565E10CBC33C13E; Path=/
+,Set-Cookie: ALIPAYJSESSIONID=nEmGOe1efYXcfpcuZgbPxJ0rB6mSkWpay; Domain=.alipay.com; Path=/
+,Content-Language: zh-CN
+,Content-Length: 19
+,Vary: Accept-Encoding
+,Cache-Control: max-age=0,no-cache
+,Expires: Thu, 05 Jan 1995 22:00:00 GMT
+,Pragma: no-cache
+,Connection: close
+,Content-Type: text/html;charset=GBK
+,
+,invalid命令参数不对：执行日期：20100309231119	
+notify_url_log=：执行日期：20100309231119	
+verify_failed：执行日期：20100309231119	
+notify_url_log=http://notify.alipay.com/trade/notify_query.do?partner=2088002026956934&notify_id=HTTP/1.1 200 OK
+,Date: Tue, 09 Mar 2010 15:53:21 GMT
+,Server: Apache
+,Set-Cookie: ali_apache_id=124.232.132.215.126815000139.5; path=/; domain=.alipay.com; expires=Wed, 30-Nov-2084 01:01:01 GMT
+,Set-Cookie: ali_apache_sid=124.232.132.215.126815000139.5|1268151801; path=/; domain=.alipay.com
+,Set-Cookie: JSESSIONID=C9CDD9048A0186DA34893D4365D4099E; Path=/
+,Set-Cookie: ALIPAYJSESSIONID=lubr3rUrUeYPTiu1fZIv+hcRa+rvX2pay; Domain=.alipay.com; Path=/
+,Content-Language: zh-CN
+,Content-Length: 19
+,Vary: Accept-Encoding
+,Cache-Control: max-age=0,no-cache
+,Expires: Thu, 05 Jan 1995 22:00:00 GMT
+,Pragma: no-cache
+,Connection: close
+,Content-Type: text/html;charset=GBK
+,
+,invalid命令参数不对：执行日期：20100309231121	
+notify_url_log=：执行日期：20100309231121	
+verify_failed：执行日期：20100309231121	
+return_url_log=67decf13b9d802276988afcb9b2aa6b3&8391f6cd8ea0a713f0be277ca4af3a44&lzhnorth@yahoo.com.cn,2088002462494898,create\_direct\_pay\_by\_user,T,RqPnCoPT3K9\%2Fvwbh3I\%2BEoWOFqcwZWohqpNIh9N\%2Foaljb7\%2BGNgh3Ju3UeMaFH\%2BP1tdPdu,2010-10-04 19:54:41,trade\_status\_sync,149|0.01|20101004111004,1,250729956@qq.com,2088002796144687,购买拍币,0.01,2010100497901589,TRADE\_FINISHED,67decf13b9d802276988afcb9b2aa6b3,MD5：执行日期：20101004111129	
+149|0.01|20101004111004:verify_failed：执行日期：20101004111129	
