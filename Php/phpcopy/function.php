@@ -27,7 +27,7 @@ function get_cached($url){
     $filename = CACHE_ROOT . "$cache_id.html";
     $timecompre = time() - CACHE_TIME;
     if(file_exists($filename) && @filemtime($filename) > $timecompare) {
-		//return $filename;
+		return $filename;
 	}
     $html = get_file($url, 3);
     if($html){
