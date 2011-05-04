@@ -1,4 +1,6 @@
 <?php
+header('content-type: text/html; charset=gb2312');
+
 require_once 'config.php';
 require_once 'function.php';
 
@@ -25,6 +27,6 @@ $replace_array = array(
       '/style.css' => 'http://dianpu.tao123.com/style.css',
     );
 
-header('Content-Type: text/html; charset=gbk');
+
 include get_cached($site);
 ?>
