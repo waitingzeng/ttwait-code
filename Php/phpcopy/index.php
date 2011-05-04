@@ -25,5 +25,6 @@ $replace_array = array(
       '/style.css' => 'http://dianpu.tao123.com/style.css',
     );
 
+header('Content-Type: text/html; charset=gbk');
 include get_cached($site);
 ?>
