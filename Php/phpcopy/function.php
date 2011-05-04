@@ -42,10 +42,11 @@ function get_cached($url, $referer){
     $filename = CACHE_ROOT . "$cache_id.html";
     $timecompre = time() - CACHE_TIME;
     if(file_exists($filename) && @filemtime($filename) > $timecompare) {
-		#return $filename;
+		return $filename;
 	}
     $html = get_file_by_curl($url, $referer, 3);
     if($html){
+        if($html == 'error')return false;
         $html = sub($html);
         file_put_contents($filename, $html);
         return $filename;
