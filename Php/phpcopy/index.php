@@ -25,9 +25,9 @@ $replace_array = array(
       '淘网址' => '淘宝吧',
       'apps/tb8' => 'apps/tao123',
       '/style.css' => 'http://dianpu.tao123.com/style.css',
-	  '/get_shop_info.php' => 'http://dianpu.tao123.com/get_shop_info.php',
+	  //'/get_shop_info.php' => 'http://dianpu.tao123.com/get_shop_info.php',
     );
 
 
-include get_cached($site);
+include get_cached($site, 'http://dianpu.tao123.com');
 ?>
