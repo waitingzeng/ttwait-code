@@ -1,0 +1,59 @@
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="horizontal">
+	<mx:Script>
+		<![CDATA[
+			import mx.core.BitmapAsset;
+			import mx.core.DragSource;
+			import mx.events.DragEvent;
+			import mx.managers.DragManager;
+			import mx.managers.CursorManager;
+			
+			private var xoffset:Number;
+			private var yoffset:Number;
+			private static const FORMAT:String = "image" ;
+			private function mouseDownHandler(evt:MouseEvent ):void {
+				
+				var initiator:Image = evt.currentTarget as Image;
+				xoffset = initiator.mouseX;
+				yoffset = initiator.mouseY;
+				trace('click x:' + xoffset + ' y:'+yoffset );
+				var proxyBox:BitmapAsset = new BitmapAsset();
+				proxyBox.bitmapData = new BitmapData(initiator.width,initiator.height );
+				proxyBox.bitmapData.draw( initiator );
+				var dragSource:DragSource = new DragSource();
+				dragSource.addData( initiator, FORMAT );
+				DragManager.doDrag( initiator, dragSource, evt,proxyBox, 0, 0, 0.5 );
+			}
+			private function dragEnterHandler( evt:DragEvent ):void {
+				var cur_x:int = evt.localX - xoffset;
+				var cur_y:int = evt.localY - yoffset;
+				trace('drag x:' + cur_x + ' y:'+cur_y );
+				if ( cur_x > 0 && cur_y > 0 ) {
+					DragManager.acceptDragDrop(Canvas(evt.currentTarget));
+				}else{
+					DragManager.acceptDragDrop(null);
+				}
+			}
+			private function dropHandler( evt:DragEvent ):void {
+				trace(evt.target);
+				var cur_x:int = evt.localX - xoffset;
+				var cur_y:int = evt.localY - yoffset;
+				if ( cur_x > 0 && cur_y > 0 ) {
+				
+					var box:Image = Image( evt.dragInitiator );
+					box.x = evt.localX - xoffset;
+					box.y = evt.localY - yoffset;
+					evt.target.addChild(box);
+				}
+			}
+			
+			
+		]]>
+	</mx:Script>
+	<mx:Canvas id="canvas" backgroundColor="0xEEEEEE" width="300" height="300"
+			   >
+		<mx:Image id="dragItem" width="100" height="50" source="http://localhost/img/m0020103.jpg" mouseDown="mouseDownHandler(event);"  x="49" y="45"/>
+	</mx:Canvas>
+	<mx:Canvas id="canvas0" backgroundColor="0xEEEEEE" width="300" height="300"
+			   dragEnter="dragEnterHandler(event);" dragDrop="dropHandler(event);" dragOver="dragEnterHandler(event)"> 
+	</mx:Canvas>
+</mx:Application>

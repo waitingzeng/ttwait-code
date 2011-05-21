@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" backgroundColor="#000000" click="canvas1_clickHandler(event)">
+	<mx:Script>
+		<![CDATA[
+			private function init(event:Event):void{
+				this.width = img.width;
+				this.height = img.height;
+			}
+
+			protected function canvas1_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				this.parentApplication.setStart(this);
+			}
+
+		]]>
+	</mx:Script>
+	<mx:Image x="0" y="0"  width="100%" height="100%" source="http://localhost/img/m0020103.jpg" id="img" creationComplete="init(event)">
+		
+	</mx:Image>
+	<mx:Label text="aaaaaaaaaaaa" height="100%" width="100%"   x="0" y="0" color="#FCFCFC" fontWeight="bold" fontSize="36">
+		
+	</mx:Label>
+</mx:Canvas>
