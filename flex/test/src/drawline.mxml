@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="init()">
+	
+	<mx:Script>
+
+		<![CDATA[
+			
+			
+			import mx.controls.Alert;
+			
+			import com.Line;
+			
+			import com.LinkMap;
+			
+			private var lineList:Array = new Array();
+			
+			private var currentLine:int = 0;
+			
+			private var drawLine:Boolean = false;
+			
+			private var startMap:LinkMap;
+			
+			private var endMap:LinkMap;
+			
+			
+			
+			/**
+			 
+			 * 初始化
+			 
+			 * */
+			
+			private function init():void{
+				
+				//添加三个图标到容器
+				
+				var startPoint:Point = new Point(450,50);
+				
+				var endPoint:Point = new Point(200,350);
+				
+				var endPoint2:Point = new Point(600,400);
+				
+				
+				
+				var linkMap1:LinkMap = new LinkMap(startPoint,100,80,"a",1);
+				
+				var linkMap2:LinkMap = new LinkMap(endPoint,100,80,"b",2);
+				
+				var linkMap3:LinkMap = new LinkMap(endPoint2,100,80,"c",2);
+				
+				
+				
+				myCanvas.addChild(linkMap1);
+				
+				myCanvas.addChild(linkMap2);
+				
+				myCanvas.addChild(linkMap3);
+				
+				//设置全局变量
+				
+				var shareObject:SharedObject = SharedObject.getLocal("drawLine","/");
+				
+				shareObject.data.drawLine = false;
+				
+				
+				
+				//添加事件
+				
+				myCanvas.addEventListener(MouseEvent.MOUSE_DOWN,onMouseDown);
+				
+				myCanvas.addEventListener(MouseEvent.MOUSE_MOVE,onMouseMove);
+				
+				myCanvas.addEventListener(MouseEvent.MOUSE_UP,onMouseUp);
+				
+				
+				
+			}
+			
+			
+			
+			/**
+			 
+			 * 开始画线
+			 
+			 * */
+			
+			private function onMouseDown(event:MouseEvent):void{
+				
+				if(drawLine && this.isDrawClickNode(event,1)){
+					
+					var line:Line = new Line();
+					
+					line.startPoint = new Point(event.stageX,event.stageY);
+					
+					line.endPoint = new Point(event.stageX,event.stageY);
+					
+					line.drawLine();
+					
+					myCanvas.addChild(line);
+					
+					lineList[currentLine] = line;
+					
+				}
+				
+				
+				
+			}
+			
+			//称动鼠标
+			
+			private function onMouseMove(event:MouseEvent):void{
+				
+				if(drawLine && lineList.length > currentLine ){
+					
+					
+					
+					var line:Line = lineList[currentLine] as Line;
+					
+					line.endPoint = new Point(event.stageX,event.stageY);
+					
+					line.drawLine();
+					
+				}
+				
+			}
+			
+			private function onMouseUp(event:MouseEvent):void{
+				
+				var line:Line;
+				if(drawLine){
+					
+					if(this.isDrawClickNode(event,2) && startMap != endMap){
+						
+						//节点与连线建立关系
+						
+						line = lineList[currentLine] as Line;
+						
+						startMap.setLine(line,true);
+						
+						endMap.setLine(line,false);
+						
+						
+						
+						currentLine ++;
+						
+						drawLine = false;
+						
+					}else{
+						
+						line = lineList[currentLine] as Line;
+						
+						if(line != null){
+							
+							line.removeLine();
+							
+							lineList.slice(currentLine,1);//删除指定位置的对象
+							
+							myCanvas.removeChild(line);
+							
+						}
+						
+					}
+					
+				}
+				
+			}
+			
+			//点击开始画线
+			
+			private function startDrawLine():void{
+				
+				//设置一个全局变量，
+				
+				var shareObject:SharedObject = SharedObject.getLocal("drawLine","/");
+				
+				shareObject.data.drawLine = true;
+				
+				drawLine = true;
+				
+			}
+			
+			//点击移动
+			
+			private function onMove():void{
+				
+				var shareObject:SharedObject = SharedObject.getLocal("drawLine","/");
+				
+				shareObject.data.drawLine = false;
+				
+				drawLine = false;
+				
+			}
+			
+			
+			
+			/**
+			 
+			 * 判断事件是否是在节点上
+			 
+			 * */
+			
+			private function isDrawClickNode(event:MouseEvent,type:int):Boolean{
+				
+				var children:Array = myCanvas.getChildren();
+				
+				
+				
+				for(var i:int=0; i < children.length; i++){
+					
+					var child:Object = children[i];
+					
+					if(child is LinkMap){
+						
+						
+						
+						var map:LinkMap = child as LinkMap;
+						
+						var x:int = map.x;
+						
+						var y:int = map.y;
+						
+						var width:int = map.width;
+						
+						var height:int = map.height;
+						
+						
+						
+						if(event.stageX > x && event.stageX < x+width && event.stageY > y && event.stageY < y+height){
+							
+							if(type == 1){
+								
+								startMap = map;
+								
+							}else if(type == 2){
+								
+								endMap = map;
+								
+							}
+							
+							return true
+							
+						}
+						
+						
+						
+					}
+					
+				}
+				
+				return false;
+				
+			}
+			
+			
+			
+			
+			
+			
+			
+		]]>
+		
+	</mx:Script>
+	
+	
+	
+	<mx:Canvas id="myCanvas" width="90%" height="90%" />
+	
+	<mx:Button label="画线" click="startDrawLine()"  x="10" y="200" fontSize="15" />
+	
+	<mx:Button label="移动" click="onMove()" x="10" y="100" fontSize="15" />
+	
+</mx:Application>
