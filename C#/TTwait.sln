@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TTwait", "TTwait\TTwait.csproj", "{3F14925A-AF5E-4D8A-A03F-25E378910DE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSNPSharp", "msnlive\MSNPSharp\MSNPSharp.csproj", "{97CB2DC7-2FE8-4AF5-84D0-6B9872A5E960}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSNSend", "MSNSend\MSNSend.csproj", "{16C8CB58-6952-477E-B2E4-6B2147061646}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "深蓝词库转换", "IMEWLConverter\深蓝词库转换.csproj", "{558107BF-B884-4B09-BEC0-962F3D60BA07}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F14925A-AF5E-4D8A-A03F-25E378910DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F14925A-AF5E-4D8A-A03F-25E378910DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F14925A-AF5E-4D8A-A03F-25E378910DE4}.Debug|x86.ActiveCfg = Debug|x86
+		{3F14925A-AF5E-4D8A-A03F-25E378910DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F14925A-AF5E-4D8A-A03F-25E378910DE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F14925A-AF5E-4D8A-A03F-25E378910DE4}.Release|x86.ActiveCfg = Release|x86
+		{3F14925A-AF5E-4D8A-A03F-25E378910DE4}.Release|x86.Build.0 = Release|x86
+		{97CB2DC7-2FE8-4AF5-84D0-6B9872A5E960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97CB2DC7-2FE8-4AF5-84D0-6B9872A5E960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97CB2DC7-2FE8-4AF5-84D0-6B9872A5E960}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{97CB2DC7-2FE8-4AF5-84D0-6B9872A5E960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97CB2DC7-2FE8-4AF5-84D0-6B9872A5E960}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97CB2DC7-2FE8-4AF5-84D0-6B9872A5E960}.Release|x86.ActiveCfg = Release|Any CPU
+		{16C8CB58-6952-477E-B2E4-6B2147061646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16C8CB58-6952-477E-B2E4-6B2147061646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16C8CB58-6952-477E-B2E4-6B2147061646}.Debug|x86.ActiveCfg = Debug|x86
+		{16C8CB58-6952-477E-B2E4-6B2147061646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16C8CB58-6952-477E-B2E4-6B2147061646}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16C8CB58-6952-477E-B2E4-6B2147061646}.Release|x86.ActiveCfg = Release|x86
+		{16C8CB58-6952-477E-B2E4-6B2147061646}.Release|x86.Build.0 = Release|x86
+		{558107BF-B884-4B09-BEC0-962F3D60BA07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{558107BF-B884-4B09-BEC0-962F3D60BA07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{558107BF-B884-4B09-BEC0-962F3D60BA07}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{558107BF-B884-4B09-BEC0-962F3D60BA07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{558107BF-B884-4B09-BEC0-962F3D60BA07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{558107BF-B884-4B09-BEC0-962F3D60BA07}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
