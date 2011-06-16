@@ -285,8 +285,14 @@ namespace MSNSend
             try
             {
                 if (messenger.Connected)
+                {
                     messenger.Disconnect();
-                
+                    messenger.ContactService.Clear();
+                    messenger.OIMService.Clear();
+                    messenger.StorageService.Clear();
+                    userList.Clear();
+                    GC.Collect();
+                }
             }
             catch { }
         }
