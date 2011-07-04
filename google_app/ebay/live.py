@@ -4,7 +4,7 @@ from google.appengine.api.urlfetch import fetch
 from django.utils import simplejson
 import re
 
-CID_RE = re.compile(r'cid\-([\d\w]{16})\.profile\.live\.com', re.I).findall
+CID_RE = re.compile(r'cid\-([\d\w]{16})', re.I).findall
 headers = {
     'Accept-Encoding' : 'gzip',
     'User-Agent' : 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)'
@@ -23,16 +23,16 @@ class MainPage(webapp.RequestHandler):
                 continue
         if ex:
             raise e
-        
-    
-    def get(self):  
+
+
+    def get(self):
         self.response.headers['Content-Type'] = 'text/plain'
         try:
             ids = self.request.get('ids', None)
             onlycheck = self.request.get('onlycheck', None)
             cookies = self.request.get('cookies', '')
             if not ids is None:
-                page = self.fetchurl('http://cid-%s.profile.live.com/' % ids, cookies)
+                page = self.fetchurl('http://profile.live.com/cid-%s/' % ids, cookies)
                 self.response.out.write('%s;' % page.status_code)
                 if not onlycheck and page.status_code == 200:
                     mailItem = {}
@@ -49,11 +49,11 @@ class MainPage(webapp.RequestHandler):
             self.response.out.write('000;%s' % e)
             return
 
-def main():  
+def main():
     application = webapp.WSGIApplication(
                                 [('/live.py', MainPage)],
                                 debug=True)
     wsgiref.handlers.CGIHandler().run(application)
-    
+
 if __name__ == "__main__":
     main()
