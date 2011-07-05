@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" minWidth="955" minHeight="600" creationComplete="init(event)">
+    <mx:Script>
+        <![CDATA[
+            import com.ttwait.utils.RectFunc;
+            import com.ttwait.worldedit.items.Line;
+            
+            
+            
+            public function init(event:Event):void{
+                var p1:Point = new Point(300, 300);
+                var p2:Point = new Point(500, 500);
+                var line1:Line = new Line(p1, p2);
+                var p3:Point = new Point(100, 400);
+                var p4:Point = new Point(600, 400);
+                var line2:Line = new Line(p3, p4);
+                var rect:Rectangle = new Rectangle(100, 200, 500, 200)
+                trace(RectFunc.line_intersect(line1, line2));
+                trace(RectFunc.segment_intersect(line1, line2));
+                trace(RectFunc.segment_intersect_rect(line1, rect));
+                
+            }
+        ]]>
+    </mx:Script>
+</mx:Application>

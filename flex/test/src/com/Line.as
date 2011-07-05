@@ -2,6 +2,7 @@ package com
 	
 {
 	
+	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
 	import mx.core.UIComponent;
@@ -47,7 +48,6 @@ package com
 			super();
 			
 		}
-		
 		
 		
 		public function drawLine(){

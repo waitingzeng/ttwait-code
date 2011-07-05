@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<InfoPanel xmlns="*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	height="107" width="225" title="鼠标信息" titleStyleName="panelTitle"
+	>
+	
+	<mx:Style>
+		.panelTitle{
+			color:#000000;
+			font-weight:bold;
+		}
+	</mx:Style>
+	
+	<mx:Script>
+		<![CDATA[
+            import mx.messaging.channels.StreamingAMFChannel;
+		
+			[Bindable]
+			private var _px:String;
+			[Bindable]
+			private var _py:String;
+            
+            [Bindable]
+            private var _sx:String;
+            
+            [Bindable]
+            private var _sy:String;
+			
+			//填充内容信息
+			public function createContent(obj:Object):void{
+				_px = obj.px + ",";
+				_py = obj.py + ",";
+                _sx = obj.sx + "";
+                _sy = obj.sy + "";
+			}
+			
+		]]>
+	</mx:Script>
+	<mx:Label x="10" y="10" text="像素坐标X：" color="0x000000"/>
+	<mx:Text x="81.5" y="10" color="0x000000" text="{_px}"/>
+    
+    <mx:Text x="120" y="10" color="0x000000" text="{_sx}"/>
+	<mx:Label x="10.5" y="26" text="像素坐标Y：" color="0x000000"/>
+	<mx:Text x="82.5" y="26" color="0x000000" text="{_py}"/>
+    <mx:Text x="120" y="26" color="0x000000" text="{_sy}"/>
+	
+</InfoPanel>

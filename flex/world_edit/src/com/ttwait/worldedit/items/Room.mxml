@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="init(event)" scaleX="1" scaleY="1" textAlign="center">
+    <mx:Script>
+        <![CDATA[
+            import com.ttwait.utils.MapEditorConstant;
+            import com.ttwait.utils.RectFunc;
+            
+            import mx.events.PropertyChangeEvent;
+        
+            public var info:Object;
+            private var lineList:Dictionary = new Dictionary();
+            private var num:int = 0;
+            public var raidDoor:RaidDoor = null;
+
+            public function init(event:Event):void
+            {
+                this.reset();
+            }
+            
+            public function setInfo(room:Object):void{
+                this.info = room;
+                this.width = int(room.width / MapEditorConstant.SCALE);
+                this.height = int(room.height / MapEditorConstant.SCALE);
+                
+                this.id = this.info.room_id;
+                
+                if(this.info.x != -1 && this.info.y != -1){
+                    this.x = int(this.info.x / MapEditorConstant.SCALE);
+                    this.y = int(this.info.y / MapEditorConstant.SCALE);
+                }
+            }
+            
+            
+            public function updateInfo():void{
+                this.info.x = int(this.x * MapEditorConstant.SCALE);
+                this.info.y = int(this.y * MapEditorConstant.SCALE);
+
+                var lines:Array = new Array();
+                for(var i:* in lineList){
+                    
+                    var lineFlag:LineFlag = i as LineFlag;
+                    if(!lineFlag.isHead){
+                        continue;
+                    }
+                    var line:Line = lineFlag.line;
+                    
+                    var obj:Object = new Object();
+                    if(line.lineInfo){
+                        obj = line.lineInfo;
+                    }else{
+                        obj.id = 0;
+                    }
+                    
+                    obj.to_direction = line.endDoor.door.dir;
+                    obj.to_pos = line.endDoor.door.pos * MapEditorConstant.SCALE;
+                    obj.from_direction = line.startDoor.door.dir;
+                    obj.from_pos = line.startDoor.door.pos * MapEditorConstant.SCALE;
+                    obj.to_room_id = line.endDoor.door.room.id;
+                    
+                    lines.push(obj);
+                    
+                }
+                if(this.raidDoor){
+                    var door:Object = new Object();
+                    door.id = this.raidDoor.door_id;
+                    door.from_direction = this.raidDoor.door.dir;
+                    door.from_pos = this.raidDoor.door.pos * MapEditorConstant.SCALE;
+                    this.info.door = door;
+                }else{
+                    this.info.door = null;
+                }
+                this.info.lines = lines;
+                
+            }
+            
+            public function get_rect():Rectangle{
+                return new Rectangle(this.x, this.y, this.width, this.height);
+            }
+            
+            
+            public function reset():void{
+                //this.img.source = this.info.resource;
+                this.show.text = this.info.name;
+                
+                this.toolTip = this.info.room_id + ',' + this.info.name + ", X:" + this.x + ", Y:" + this.y + ", width:" + this.width + ", height:" + this.height;
+                
+                //this.addChild(_image);
+                
+                this.loadImg();  
+                
+            }
+            
+            //装载图片  
+            public function loadImg(): void{  
+                var loader:Loader = new Loader();  
+                var url: String = this.info.resource;
+                var urlRequest:URLRequest = new URLRequest(url);
+                loader.load(urlRequest);  
+                loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loadComplete);  
+            }  
+            
+            //图片装载成功后，创建一个sprite显示图片  
+            private function loadComplete(e: Event): void{  
+                var loader: Loader = Loader(e.target.loader);  
+                var imgmap:Bitmap = loader.content as Bitmap;  
+                
+                var newdata:BitmapData = imgmap.bitmapData.clone();  
+                var area:Rectangle = new Rectangle(this.info.border_left, this.info.border_up, this.info.width, this.info.height);  
+                var nd: BitmapData = new BitmapData(this.info.width, this.info.height);  
+                nd.copyPixels(newdata, area, nd.rect.topLeft);  
+                var newImg: Bitmap = new Bitmap(nd);  
+                this.img.data = newImg;
+                
+            }  
+            
+            public function getAllLines():Array{
+                var lines:Array = new Array();
+                for(var i:* in lineList){
+                    lines.push(LineFlag(i).line)
+                }
+                return lines;
+            }
+            
+            public function removeLine(line:Line):void{
+                var newLineList:Dictionary = new Dictionary();
+                for(var i:* in lineList){
+                    var lineFlag:LineFlag = i as LineFlag;
+                    if(lineFlag.line != line){
+                        newLineList[i] = lineList[i];
+                    }
+                }
+                lineList = newLineList;
+            }
+            
+            /**
+             
+             * 重绘图标上的连线
+             
+             * */
+            
+            public function refreshLine():void{
+                
+                if(this.raidDoor){
+                    this.raidDoor.update();
+                }
+                
+                this.toolTip = this.info.name + ", X:" + this.x + ", Y:" + this.y + ", width:" + this.width + ", height:" + this.height;
+                for(var i:* in lineList){
+                    
+                    var lineFlag:LineFlag = i as LineFlag;
+                    
+                    var door:Door = lineList[i];
+                    
+                    var line:Line = lineFlag.line;
+                    
+                    var isHead:Boolean = lineFlag.isHead;
+                    
+                    /**
+                     
+                     * 如果是连线箭头所指的，则重设线条开始位置
+                     
+                     * 如果不是，则重设连线结束
+                     
+                     **/
+                    
+                    if(isHead){
+                        IEventDispatcher(line.startDoor.door).dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_CHANGE));
+                        
+                        
+                    }else{
+                        IEventDispatcher(line.endDoor.door).dispatchEvent(new PropertyChangeEvent(PropertyChangeEvent.PROPERTY_CHANGE));
+                        
+                        
+                    }
+                    this.reCalcLine(line);
+                    
+                    line.refresh();
+                    
+                }
+                
+            }
+            
+            public function reCalcLine(line:Line):void{
+                var ps:Array = RectFunc.segment_intersect_rect_all(line, line.startDoor.door.room.get_rect());
+                var ps1:Array = RectFunc.segment_intersect_rect_all(line, line.endDoor.door.room.get_rect());
+                var res:Array = RectFunc.get_short_line(ps, ps1);
+                if(res.length != 2 || !res[0] || !res[1]){
+                    return;
+                }
+                if(res[0].x != line.startPoint.x || res[0].y != line.startPoint.y || res[1].x != line.endPoint.x || res[1].y != line.endPoint.y)
+                    line.remove();
+                line.startDoor.door.setPoint(res[0]);
+                line.endDoor.door.setPoint(res[1]);
+                                
+            }
+            
+            public function setLineUseDoor(line:Line, door:Door, flag:Boolean):Boolean{
+        
+                
+                var lineFlag:LineFlag = new LineFlag(line,flag);
+                
+                lineList[lineFlag] = door;
+                return true;
+            }
+            
+            public function setLine(line:Line,flag:Boolean ):Door{
+                
+                var p:Point = RectFunc.segment_intersect_rect(line, this.get_rect());
+                
+                var door:Door = new Door(this, p);
+                if (!door.isvalid)
+                    return null;
+                
+                var lineFlag:LineFlag = new LineFlag(line,flag);
+                
+                lineList[lineFlag] = door;
+                
+                num++;
+                
+                return door;
+                
+            }
+            
+            public function createDoor(info:Object):Door{
+                var p:Point = new Point();
+                var d:int = -1;
+                var pos:int = -1;
+                if(info.from_room_id == this.id){
+                    d = info.from_direction;
+                    pos = int(info.from_pos / MapEditorConstant.SCALE);
+                }else if(info.to_room_id == this.id){
+                    pos = int(info.to_pos / MapEditorConstant.SCALE);
+                    d = info.to_direction;
+                }else{
+                    return null;
+                }
+                
+                var door:Door = new Door(this, null);
+                door.setDirPos(d, pos);
+                return door;
+            }
+            
+            public function remove():void{
+                if(this.parent){
+                    var lines:Array = this.getAllLines();
+                    for each(var line:Line in lines){
+                        line.remove();
+                    }
+                    this.parent.removeChild(this);
+                    this.info.x = -1;
+                    this.info.y = -1;
+                }
+            }
+            
+            
+            public function change():void{
+                this.refreshLine();
+            }
+            
+            
+        ]]>
+    </mx:Script>
+    <mx:Image id="img" width="100%" height="100%" autoLoad="true" x="0" y="0" maintainAspectRatio="false">
+    </mx:Image>
+    <mx:Label id="show" alpha="50" color="#FF00FF" width="100%" height="100%" x="0" y="0">
+    </mx:Label>
+    
+</mx:Canvas>

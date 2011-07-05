@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<InfoPanel xmlns="*" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" width="320" height="420"
+	creationComplete="initPanel(event)"
+	title="地图元件库"
+	 x="183" y="-9">
+	
+	<mx:Script>
+		<![CDATA[
+		    import com.ttwait.network.Network;
+		    import com.ttwait.utils.ImageLoader;
+		    import com.ttwait.worldedit.data.WorldRooms;
+		    import com.ttwait.worldedit.items.Room;
+		    
+		    import flash.net.URLVariables;
+		    
+		    import mx.collections.XMLListCollection;
+		    import mx.controls.Alert;
+		    import mx.events.CloseEvent;
+		    import mx.managers.PopUpManager;
+		    import mx.messaging.AbstractConsumer;
+
+			private var ct:int = 0;			
+			private var network:Network = new Network();
+			private var mapData:XML = null;
+			[Bindable] 
+            private var mapRoomsData:XMLListCollection = new XMLListCollection();
+            
+            
+			//初始化面板
+			private function initPanel(evet:Event):void{
+			    
+			}
+			
+			
+			public function setData(data:XMLList):void{
+			    this.mapRoomsData = new XMLListCollection(data);
+			}
+			
+			private function treeLabel(item:Object):String{
+				
+				var node:XML = XML(item);
+                return node.@name;
+			}
+			
+			//FileSystemTree 的 change 事件
+            private function fileTreeChange(event:Event):void
+            {
+                var selectItem:XML = XML(libTree.selectedItem);
+                if (selectItem.localName() == 'map')
+                {
+                    return;   
+                } else {
+                    //预览图片
+                    imgPrvImg.source = selectItem.@img;
+                    //this.parentApplication.create_move_room(selectItem.@id);
+                    
+                }
+            }
+			
+            
+            
+			
+		]]>
+	</mx:Script>
+
+	<mx:Image id="imgPrvImg" width="160" height="90" autoLoad="true" scaleContent="true" x="80" y="31"/>
+	<mx:Tree backgroundAlpha="0.3" id="libTree" x="31.5" y="129" height="206" width="261" dataProvider="{mapRoomsData}" labelFunction="treeLabel" change="fileTreeChange(event)">
+	</mx:Tree>
+    
+	
+	
+</InfoPanel>

@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+                xmlns:items="com.ttwait.worldedit.items.*"
+                creationComplete="initEdit(event)" horizontalScrollPolicy="off"
+                keyDown="moveEditKey(event)" layout="absolute" mouseWheel="doMouseWheel(event)"
+                scaleX="1" scaleY="1" verticalScrollPolicy="off">
+    <mx:Style>
+        Application{
+            fontSize:12;
+            fontFamily: "宋体";
+        }
+    </mx:Style>
+	<mx:Script>
+		<![CDATA[
+            import com.ttwait.utils.MapEditorConstant;
+            import com.ttwait.utils.MapEditorUtils;
+            import com.ttwait.utils.RectFunc;
+            import com.ttwait.worldedit.data.WorldRooms;
+            import com.ttwait.worldedit.items.Door;
+            import com.ttwait.worldedit.items.Line;
+            import com.ttwait.worldedit.items.Room;
+            import com.ttwait.worldedit.layers.GridLayer;
+            import com.ttwait.worldedit.layers.RoomLayer;
+            
+            import flash.display.Sprite;
+            import flash.net.navigateToURL;
+            
+            import mx.controls.Alert;
+            import mx.controls.Image;
+            import mx.controls.Tree;
+            import mx.core.BitmapAsset;
+            import mx.core.DragSource;
+            import mx.events.CloseEvent;
+            import mx.events.DragEvent;
+            import mx.events.FlexEvent;
+            import mx.managers.CursorManager;
+            import mx.managers.DragManager;
+            import mx.managers.PopUpManager;
+            import mx.utils.ColorUtil;
+            
+            private static const TREEFORMAT:String = "treeroom" ;
+            private static const ROOMFORMAT:String = "room" ;
+            private static const LINEFORMAT:String = "line";
+            private static const DOORFORMAT:String = "door";
+			
+			private var _mouseDowned:Boolean = false;//鼠标是否按下
+			
+        
+			private var _currentMode:int = 4;//鼠标点击为放置建筑
+			private var xoffset:int = 0;
+			private var yoffset:int = 0;
+			
+			
+			private var _mapRoomLib:MapRoomLibPanel;//地图元件库panel
+			private var _mapMouseInfoPanel:MapMouseInfoPanel;//鼠标信息panel
+           
+            private var _startInfo:Object = null;
+            private var _dragIngRoom:Room = null;
+            private var _world_rect:Rectangle = null;
+            private var lineList:Array = new Array();
+            private var room_dict:Object = new Object();
+            
+            private var currentLine:Line = null;
+            private var selectObj:DisplayObject = null;
+            
+            
+            
+		    
+		    public var world_rooms:WorldRooms = new WorldRooms();
+		    
+			//显示元件库
+			private function showMapRoomLib():void{
+				if(_mapRoomLib == null){
+					_mapRoomLib = MapRoomLibPanel(PopUpManager.createPopUp(mapEditOutCanvas,MapRoomLibPanel));
+					_mapRoomLib.setData(world_rooms.getTreeXml());
+					_mapRoomLib.libTree.addEventListener(MouseEvent.MOUSE_DOWN, libTreeMouseDown);
+					
+					PopUpManager.centerPopUp(_mapRoomLib);
+				}else{
+					if(_mapRoomLib.visible){
+						_mapRoomLib.visible = false;
+					}else{
+						_mapRoomLib.visible = true;
+					}
+				}
+			}
+			
+			private function showMouseInfo():void{
+				if(_mapMouseInfoPanel == null){
+					this._mapMouseInfoPanel = MapMouseInfoPanel(PopUpManager.createPopUp(mapEditOutCanvas,MapMouseInfoPanel));
+					PopUpManager.centerPopUp(_mapMouseInfoPanel);
+				}else{
+					if(_mapMouseInfoPanel.visible){
+	     				_mapMouseInfoPanel.visible = false;
+	     			}else{
+	     				_mapMouseInfoPanel.visible = true;
+	     			}
+				}
+			}
+			
+			private function initEdit(event:Event):void{
+			    this.world_rooms.load(createEditPanel);
+			}
+			
+            private function menuHandler(evet:MouseEvent):void{
+                var btnId:String = evet.target.id;
+                if(btnId == "imageLibBtn"){//如果是放置建筑按钮
+                    showMapRoomLib();
+                }else if(btnId == "mouseInfoBtn"){
+                    showMouseInfo();
+                }else if(btnId == "roomModeBtn"){
+                    this._currentMode = 4;
+                }else if(btnId == "roadModeBtn"){
+                    this._currentMode = 3;
+                }else if(btnId == "save_rooms") {
+                    this.updateData();
+                    this.world_rooms.save()
+                }
+                
+            }
+             
+			
+			//定义编辑层的panel
+            private function createEditPanel():void{
+                //定义鼠标信息panel
+                this.showMouseInfo();
+                _mapMouseInfoPanel.y = 5 + mapEditOutCanvas.y;
+                _mapMouseInfoPanel.x = mapEditCanvas.width + 5;
+                //定义元件库面板
+                showMapRoomLib();
+                _mapRoomLib.x = mapEditCanvas.width + 5 ;
+                _mapRoomLib.y = 130 + mapEditOutCanvas.y;
+                this._world_rect = new Rectangle(0, 0, MapEditorConstant.WORLD_WIDTH, MapEditorConstant.WORLD_HEIGHT);
+                var room:Room;
+                for each(var info:Object in this.world_rooms.getWorldRoom()){
+                    room = new Room();
+                    this.mapEditCanvas.addChild(room);
+                    room.setInfo(info);
+                    room_dict[info.room_id] = room;
+                    room.addEventListener(MouseEvent.MOUSE_DOWN, this.roomMouseDown);
+                }
+                
+                for each(var tmp1:* in this.mapEditCanvas.getChildren()){
+                    if(!(tmp1 is Room)){
+                        continue;
+                    }
+                    var tmp:Room = tmp1 as Room;
+                    onRoomShow(tmp);
+                    
+                }
+            }
+			
+			private function onRoomShow(tmp:Room):void{
+                for each(var door:Object in tmp.info.lines){
+                    var to_room:Room = room_dict[door.to_room_id];
+                    
+                    var d1:Door = tmp.createDoor(door);
+                    
+                    
+                    var d2:Door = to_room.createDoor(door);
+                    
+                    
+                    var line:Line = new Line(d1.toPoint(), d2.toPoint());
+                    
+                    line.lineInfo = door;
+                    
+                    
+                    tmp.setLineUseDoor(line, d1, true);
+                    to_room.setLineUseDoor(line, d2, false);
+                    
+                    this.mapEditCanvas.addChild(line);
+                    
+                    line.setDoor(d1, d2);
+                    line.drawLine();
+                    
+                }
+                if(tmp.info.door){
+                    var obj:RaidDoor = new RaidDoor();
+                    obj.setRoom(tmp);
+                    obj.door.setDirPos(tmp.info.door.from_direction, tmp.info.door.from_pos / MapEditorConstant.SCALE);
+                    obj.door_id = tmp.info.door.id;
+                    
+                    this.mapEditCanvas.addChild(obj);
+                    obj.update();
+                    tmp.raidDoor = obj;
+                    //obj.addEventListener(MouseEvent.MOUSE_DOWN, raidDoorMouseDown);
+                }
+            }
+            
+            private function raidDoorMouseDown(evet:MouseEvent):void{
+                if(this.selectObj){
+                    this.selectObj.alpha = 1;
+                }
+                this.selectObj = evet.currentTarget as DisplayObject;
+                
+                this.selectObj.alpha = 0.5;
+                
+            }
+            
+            //鼠标在mapEditCanvas区域移动的响应方法
+            private function mapEditCanvasMove(evet:MouseEvent):void{
+                if(_mapMouseInfoPanel && _mapMouseInfoPanel.visible){
+                    var mouseClickX:Number = evet.localX - xoffset;
+                    var mouseClickY:Number = evet.localY - yoffset;
+                    //显示鼠标信息panel
+                    var parObj:Object = new Object();
+                    parObj.px = mouseClickX;
+                    parObj.py = mouseClickY;
+                    parObj.sx = evet.stageX;
+                    parObj.sy = evet.stageY;
+                    _mapMouseInfoPanel.createContent(parObj);
+                }
+            }
+            
+            
+            
+            
+            public function libTreeMouseDown(evt:MouseEvent):void{
+                var selectItem:XML = XML(evt.currentTarget.selectedItem);
+                if(!selectItem.localName()){
+                    return;
+                }
+                if (selectItem.localName() == 'map')
+                {
+                    return;   
+                } 
+                else 
+                {
+                    
+                    var room_id:int = selectItem.@id;
+                    var initiator:* = evt.currentTarget;
+                    
+                    xoffset = initiator.mouseX;
+                    yoffset = initiator.mouseY;
+                    
+                    var roominfo:Object = this.world_rooms.getRoomInfo(room_id);
+                    var room:Room = new Room();
+                    room.setInfo(roominfo);
+                    
+                    var proxyBox:BitmapAsset = new BitmapAsset();
+                    proxyBox.bitmapData = new BitmapData(room.width, room.height );
+                    _dragIngRoom = room;
+                    var dragSource:DragSource = new DragSource();
+                    dragSource.addData( initiator, TREEFORMAT );
+                    DragManager.doDrag( initiator, dragSource, evt, proxyBox, 0, 0, 0.5 );
+                }
+            }
+            
+            public function libDoorMouseDown(evt:MouseEvent):void{
+                var initiator:* = evt.currentTarget;
+                xoffset = initiator.mouseX;
+                yoffset = initiator.mouseY;
+                var proxyBox:BitmapAsset = new BitmapAsset();
+                proxyBox.bitmapData = new BitmapData(10,10 );
+                proxyBox.bitmapData.draw( initiator );
+                var dragSource:DragSource = new DragSource();
+                dragSource.addData( initiator, DOORFORMAT );
+                DragManager.doDrag( initiator, dragSource, evt, proxyBox, 0, 0, 0.5 );
+            }
+            
+            public function roomMouseDown(evt:MouseEvent):void{
+                if(this._currentMode == 4){
+                    var initiator:* = evt.currentTarget;
+                    
+                    xoffset = initiator.mouseX;
+                    yoffset = initiator.mouseY;
+                    var proxyBox:BitmapAsset = new BitmapAsset();
+                    proxyBox.bitmapData = new BitmapData(initiator.width,initiator.height );
+                    proxyBox.bitmapData.draw( initiator );
+                    _dragIngRoom = initiator;
+                    var dragSource:DragSource = new DragSource();
+                    dragSource.addData( initiator, ROOMFORMAT );
+                    DragManager.doDrag( initiator, dragSource, evt, proxyBox, 0, 0, 0.5 );
+                }
+                
+            }
+            
+            public function startMoveLine(line:Line, evt:MouseEvent):void{
+                selectObj = line;
+                //line.lineColor = line.selectColor;
+                //line.refresh();
+                
+                line.dragPoint = new Point(evt.stageX, evt.stageY);
+                
+                var proxyBox:BitmapAsset = new BitmapAsset();
+                proxyBox.x = evt.stageX;
+                proxyBox.y = evt.stageY;
+                var rect:Rectangle = line.to_rect();
+                proxyBox.bitmapData = new BitmapData(rect.width,rect.height );
+                proxyBox.bitmapData.draw( line );
+                var dragSource:DragSource = new DragSource();
+                dragSource.addData( line, LINEFORMAT );
+                DragManager.doDrag( line, dragSource, evt, proxyBox, 0, 0, 0.5 );
+            }
+           
+            
+            
+            private function checkRoomCanDrop(rect:Rectangle):Boolean{
+                for each(var room:* in this.mapEditCanvas.getChildren()){
+                    if(!(room is Room) || room == this._dragIngRoom){
+                        continue;
+                    }
+                    var tmp:Room = room as Room;
+                    var roomRect:Rectangle = new Rectangle(tmp.x, tmp.y, tmp.width, tmp.height);
+                    
+                    if(RectFunc.rect_on_rect(rect, roomRect)){
+                        return false;
+                    }
+                }
+                return true;
+            }
+            
+            private function checkCanDrop(evt:DragEvent):Boolean{
+                if(evt.dragSource.hasFormat(LINEFORMAT)){
+                    var p:Point = new Point(evt.stageX, evt.stageY);
+                    if(Point.distance(p, Line(evt.dragInitiator).dragPoint) > 100)
+                        return true;
+                    return false;
+                }
+                
+                if(evt.dragSource.hasFormat(DOORFORMAT)){
+                    var p1:Point = new Point(evt.stageX, evt.stageY);
+                    var tmp:* = this.getObj(p1);
+                    if(tmp is Room){
+                        var room:Room = tmp as Room;
+                        var a:Boolean = this.world_rooms.had_door(room.info.map_id);
+                        if(!a){
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+                
+                if(!_dragIngRoom)
+                    return false;
+                
+                var cur_x:int = evt.localX - xoffset;
+                var cur_y:int = evt.localY - yoffset;
+                var rect1:Rectangle = new Rectangle(cur_x, cur_y, _dragIngRoom.width, _dragIngRoom.height);
+                if(!this.checkRoomCanDrop(rect1)){
+                    return false;
+                }
+                
+                if(evt.dragSource.hasFormat(TREEFORMAT)){
+                    if(RectFunc.rect_in_rect(rect1, _world_rect)){
+                        return true;
+                    }
+                }
+                if(evt.dragSource.hasFormat(ROOMFORMAT)){
+                    return true;
+                }
+                
+                return false;
+                            
+            }
+            
+            private function dragEnterHandler( evt:DragEvent ):void {
+                trace(evt.stageX, evt.stageY);
+                
+                mapEditCanvasMove(evt);
+                
+                if(this.checkCanDrop(evt)){
+                    
+                    DragManager.acceptDragDrop(Canvas(evt.currentTarget));
+                    
+                }else{
+                    DragManager.acceptDragDrop(null);
+                }
+                
+                
+            }
+            
+            private function updateData():void{
+                var children:Array = this.mapEditCanvas.getChildren();
+                
+                
+                for(var i:int=0; i < children.length; i++){
+                    var child:Object = children[i];
+                    
+                    if(child is Room){
+                        var room:Room = child as Room;
+                        room.updateInfo();
+                    }
+                }
+            }
+            
+            private function updateTree():void{
+                var ids:Array = new Array();
+                this.updateData();
+                this._mapRoomLib.setData(this.world_rooms.getTreeXml());
+                
+            }
+            
+            private function checkLineRoom(line:Line, room:Room):Boolean{
+                var ps:Array = RectFunc.segment_intersect_rect_all(line, room.get_rect());
+                if(ps.length == 0 && (line.startDoor.door.room == room || line.endDoor.door.room == room)){
+                    return true;
+                }
+                if(ps.length > 0 && (line.startDoor.door.room != room && line.endDoor.door.room != room)){
+                    return false;
+                }
+                return false;
+            }
+            
+            private function checkOldLine(line:Line):Boolean{
+                var children:Array = this.mapEditCanvas.getChildren();
+                
+                
+                for(var i:int=0; i < children.length; i++){
+                    var child:Object = children[i];
+                    
+                    if(child is Room){
+                        
+                        var room:Room = child as Room;
+                        if(room == line.startDoor.door.room || room == line.endDoor.door.room){
+                            continue;
+                        }
+                        var ps:Array = RectFunc.segment_intersect_rect_all(line, room.get_rect())
+                        if(ps.length > 0){
+                            return false;
+                        }
+                        
+                    }else if(child is Line){
+                        var cline:Line = child as Line;
+                        if(RectFunc.segment_intersect(line, cline)){
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+            
+            private function checkAllLines():void{
+                var children:Array = this.mapEditCanvas.getChildren();
+                
+                
+                for(var i:int=0; i < children.length; i++){
+                    var child:Object = children[i];
+                    if(child is Line){
+                        var line:Line = child as Line;
+                        if(!checkOldLine(line)){
+                            line.remove();
+                        }
+                    }
+                }
+            }
+            
+            private function dropHandler( evt:DragEvent ):void {
+                if(evt.dragSource.hasFormat(LINEFORMAT)){
+                    Line(evt.dragInitiator).remove();
+                }
+                
+                var cur_x:int = evt.stageX - xoffset;
+                var cur_y:int = evt.stageY - yoffset;
+                if(cur_x < 0)cur_x = 0;
+                if(cur_y < 0) cur_y = 0;
+                var room:Room;
+                
+                if(evt.dragSource.hasFormat(TREEFORMAT)){
+                    var selectItem:XML = XML(Tree(evt.dragInitiator).selectedItem);
+                    var room_id:int = selectItem.@id;
+                    var roominfo:Object = this.world_rooms.getRoomInfo(room_id);
+                    room = new Room();
+                    room.setInfo(roominfo);
+                    room.x = cur_x;
+                    room.y = cur_y;
+                    
+                    room.addEventListener(MouseEvent.MOUSE_DOWN, this.roomMouseDown);
+                    this.mapEditCanvas.addChild(room);
+                    room_dict[roominfo.room_id] = room;
+                    this.updateTree();
+                    
+                    
+                }else if(evt.dragSource.hasFormat(ROOMFORMAT)){
+                    room = Room(evt.dragInitiator);
+                    room.x = cur_x;
+                    room.y = cur_y;
+                    var rect1:Rectangle = new Rectangle(cur_x, cur_y, _dragIngRoom.width, _dragIngRoom.height);
+                    if(!RectFunc.rect_in_rect(rect1, this._world_rect)){
+                        room.remove(); 
+                        this.updateTree();
+                    }else{
+                        
+                        room.refreshLine();
+                        this.checkAllLines();
+                    }
+                }else if(evt.dragSource.hasFormat(DOORFORMAT)){
+                    var obj:RaidDoor = new RaidDoor();
+                    var p:Point = new Point(cur_x, cur_y);
+                    var tmp:Room = this.getObj(p) as Room;
+                    
+                    obj.setRoom(tmp);
+                    
+                    if(p.x < (tmp.x + 50))
+                        p.x = tmp.x;
+                    else if(p.x > (tmp.x + tmp.width - 50)) 
+                        p.x = tmp.x + tmp.width;
+                    else if(p.y < (tmp.y + 10)) 
+                        p.y = tmp.y;
+                    else 
+                        p.y = tmp.y + tmp.height;
+                    obj.door.setPoint(p);
+                    
+                    if(obj.door.isvalid)
+                    {
+                        this.mapEditCanvas.addChild(obj);
+                        obj.update();
+                        tmp.raidDoor = obj;
+                    }
+                    
+                }
+                xoffset = 0;
+                yoffset = 0;
+                _dragIngRoom = null;
+            }
+            
+            
+            
+            
+            private function mouseMove(evt:MouseEvent):void{
+                mapEditCanvasMove(evt);
+                if(this._currentMode == 3 && this._startInfo != null && evt.currentTarget == this.mapEditCanvas){
+                    
+                        
+                    var line:Line = currentLine;
+                        
+                    line.endPoint = new Point(evt.stageX,evt.stageY);
+                        
+                    line.drawLine();
+                        
+                    
+                }
+            }
+            
+            /**
+             
+             * 判断事件是否是在节点上
+             
+             * */
+            
+            private function isDrawClickRoom(event:MouseEvent,type:int):Boolean{
+                
+                var obj:Object = this.getClickObj(event);
+                if(obj == null){
+                    return false;
+                }
+                
+                if(obj is Room){
+                    if(type == 1){
+                        this._startInfo = new Object();
+                        this._startInfo.startRoom = obj;
+                        
+                        
+                    }else if(type == 2){
+                        
+                        this._startInfo.endRoom = obj;
+                        
+                    }
+                    
+                    return true
+                }
+                return false;
+                
+            }
+            
+            private function getObj(pos:Point):DisplayObject{
+                var children:Array = this.mapEditCanvas.getChildren();
+                
+                
+                var rect:Rectangle = null;
+                var child:Object = null;
+                for(var i:int=0; i < children.length; i++){
+                    child = children[i];
+                    if(child is RaidDoor){
+                        var door:RaidDoor = child as RaidDoor;
+                        rect = door.to_rect();
+                    }else{
+                        continue;
+                    }
+                    
+                    if(RectFunc.pos_on_rect(pos, rect)){
+                        return child as DisplayObject;
+                    }
+                }
+                
+                for(i=0; i < children.length; i++){
+                    child = children[i];
+                    if(child is Room){
+                        var room:Room = child as Room;
+                        rect = room.get_rect();
+                    }else if(child is Line){
+                        var line:Line = child as Line;
+                        rect = line.to_rect();
+                    }
+                    if(RectFunc.pos_on_rect(pos, rect)){
+                        return child as DisplayObject;
+                    }
+                }
+                return null;
+            }
+            
+            private function getClickObj(event:MouseEvent):DisplayObject{
+                var pos:Point = new Point(event.stageX, event.stageY);
+                return getObj(pos);
+            }
+            
+            protected function mapEditCanvas_mouseDownHandler(event:MouseEvent):void
+            {
+                // TODO Auto-generated method stub
+                var oldObj:DisplayObject = this.selectObj;
+                this.selectObj = this.getClickObj(event);
+                if(this.selectObj){
+                    if(this.selectObj != oldObj && oldObj){
+                        oldObj.alpha = 1;
+                    }
+                    this.selectObj.alpha = 0.5;
+                    
+                    
+                    if(this.selectObj is Line){
+                        this.startMoveLine(this.selectObj as Line, event);
+                    }
+                }else{
+                    if(oldObj){
+                        oldObj.alpha = 1;
+                    }
+                }
+                this.stage.focus = this;
+                if(this._currentMode == 3){
+                    
+                    if(this.isDrawClickRoom(event,1)){
+                        
+                        var startPoint:Point = new Point(event.stageX,event.stageY);
+                        
+                        var endPoint:Point = new Point(event.stageX,event.stageY);
+                        
+                        var line:Line = new Line(startPoint, endPoint);
+                        
+                        
+                        
+                        line.drawLine();
+                        
+                        this.mapEditCanvas.addChild(line);
+                        
+                        currentLine = line;
+                        
+                    }
+                    
+                    //this._startInfo = null;
+                    var gr:Graphics = this.mapEditOutCanvas.graphics;
+                    gr.clear();
+                }   
+                    
+                
+            }
+            
+            public function checkCanLine(line:Line):Boolean{
+                var children:Array = this.mapEditCanvas.getChildren();
+                
+                
+                for(var i:int=0; i < children.length; i++){
+                    var child:Object = children[i];
+                    
+                    if(child is Room){
+                        var room:Room = child as Room;
+                        if(room != this._startInfo.startRoom && room != this._startInfo.endRoom){
+                            if(RectFunc.segment_intersect_rect(line, room.get_rect())){
+                                return false;
+                            }
+                        }
+                    }else if(child is Line){
+                        var cline:Line = child as Line;
+                        if(RectFunc.segment_intersect(line, cline)){
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+            
+            protected function mapEditCanvas_mouseUpHandler(event:MouseEvent):void
+            {
+                // TODO Auto-generated method stub
+                var line:Line;
+                
+                if(this._currentMode == 3 && this._startInfo){
+                    
+                    if(this.isDrawClickRoom(event,2) && this._startInfo.startRoom != this._startInfo.endRoom){
+                        
+                        //节点与连线建立关系
+                        
+                        line = currentLine;
+                        
+                        if(!this.checkCanLine(line)){
+                            line.remove();
+                            
+                            trace('remove line');
+                            return;
+                        }
+                        
+                        
+                        var d1:Door = this._startInfo.startRoom.setLine(line,true);
+                        
+                        var d2:Door = this._startInfo.endRoom.setLine(line,false);
+                        
+                        
+                        line.setDoor(d1, d2);
+                        
+                        line.refresh();
+                        
+                        this._startInfo = null;
+                        
+                        
+                    }else{
+                        
+                        line = currentLine;
+                        
+                        if(line != null){
+                            
+                            line.remove();
+                            
+                            trace('remove line');
+                            
+                        }
+                        
+                    }
+                    
+                }
+                this._startInfo = null;
+            }
+            
+            
+            
+            //a,s,w,d移动编辑区域
+            private function moveEditKey(evet:KeyboardEvent):void{
+                if(!this.selectObj)
+                    return;
+                
+                var obj:DisplayObject = this.selectObj;
+                if(this.selectObj is Room){
+                    switch (evet.keyCode)
+                    {
+                        case 65:	//a
+                            if(selectObj.x > 0)
+                                selectObj.x --;
+                            
+                            break;
+                        case 87:	//w
+                            if(selectObj.y > 0)
+                                selectObj.y--;
+                            break;
+                        case 68:	//d
+                            if(selectObj.x < this.mapEditCanvas.width)
+                                selectObj.x ++;
+                            break;
+                        case 83:	//s
+                            if(selectObj.y < this.mapEditCanvas.height)
+                                selectObj.y ++;
+                            break;
+                    }
+                    
+                    Room(this.selectObj).change();
+                    trace("selectobj" + this.selectObj.x + "," + this.selectObj.y);
+                }else if(this.selectObj is RaidDoor){
+                    var t:RaidDoor = this.selectObj as RaidDoor;
+                    if(evet.keyCode == 46){
+                        this.deleteConfirm(function():void{
+                            var map_id:int = t.door.room.info.map_id;
+                            world_rooms.del_door(map_id);
+                            t.door.room.raidDoor = null;
+                            mapEditCanvas.removeChild(t);
+                            
+                        })
+                    }else{
+                        t.door.move(evet);
+                        //t.update();
+                        var p:Point = t.door.toPoint();
+                        trace("raid door move" + p.x + ","+p.y);
+                    }
+                }
+                
+                
+            }
+            
+            public function deleteConfirm(func:Function):void{ 
+                Alert.yesLabel = 'yes'; 
+                Alert.noLabel = 'no'; 
+                Alert.cancelLabel = 'cancel'; 
+                Alert.show('确认要删除吗','info',1|2,this, function (event:CloseEvent):void{
+                    if(event.detail==Alert.YES){ 
+                        func();
+                    } 
+                });     
+            } 
+             
+            
+            public function removeLine(line:Line):void{
+                this.world_rooms.removeLine(line);
+            }
+            
+            public function doMouseWheel(event:MouseEvent):void
+            {
+                // TODO Auto-generated method stub
+                if(event.delta < 0 && this.scaleX == 1)
+                    return;
+                this.scaleX += event.delta / 10;
+                this.scaleY += event.delta / 10;
+                if(this.scaleX < 1){
+                    this.scaleX = 1;
+                    this.scaleY = 1;
+                }
+            }
+            
+        ]]>
+	</mx:Script>
+    
+	<mx:Canvas id="mapEditOutCanvas" y="0"  x="0" width="100%" height="100%" borderStyle="solid" borderColor="#FFFFFF" 
+        dragEnter="dragEnterHandler(event)" dragOver="dragEnterHandler(event)" dragDrop="dropHandler(event)" verticalScrollPolicy="auto" horizontalScrollPolicy="auto">
+	<mx:Canvas id="mapEditCanvas" x="0" y="0" width="{MapEditorConstant.WORLD_WIDTH}" height="{MapEditorConstant.WORLD_HEIGHT}" borderStyle="solid" borderColor="#000000"
+               mouseMove="mouseMove(event)" mouseDown="mapEditCanvas_mouseDownHandler(event)" mouseUp="mapEditCanvas_mouseUpHandler(event)" keyDown="moveEditKey(event)">
+	</mx:Canvas>
+	</mx:Canvas>
+    
+    <mx:Canvas id="menuPanel" x="0" y="{MapEditorConstant.WORLD_HEIGHT}" width="100%" height="130" backgroundColor="0x333333">
+        <mx:HBox width="98%" height="120" x="8" y="8">
+            <mx:Button id="imageLibBtn" click="menuHandler(event)" x="10" y="10" label="房间库" toolTip="显示隐藏元件库"/>
+            <mx:Button id="mouseInfoBtn" click="menuHandler(event)" x="10" y="82" label="鼠标信息" toolTip="显示隐藏鼠标信息"/>
+            <mx:Button id="roomModeBtn" click="menuHandler(event)" x="10" y="10" label="放置房间模式" toolTip="放置房间模式"/>
+            <mx:Button id="roadModeBtn" click="menuHandler(event)" x="10" y="82" label="连线模式" toolTip="连线模式"/>
+            <mx:Button id="save_rooms" label="保存" click="menuHandler(event)" toolTip="保存"/>
+            
+
+            <items:RaidDoor id="doorCanvas" mouseDown="libDoorMouseDown(event)">
+            </items:RaidDoor>
+            
+        </mx:HBox>
+    </mx:Canvas>
+</mx:Application>
