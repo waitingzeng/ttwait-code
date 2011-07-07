@@ -56,16 +56,16 @@ namespace TTwait
             this.cachefile = string.Format("{0}/cache_{1}.txt", AccountText.Directory, name);
         }
 
-        public void createCache()
+        public void CreateCache()
         {
             if(File.Exists(this.cachefile)){
-                this.updateCache();
+                this.UpdateCache();
             }else{
                 throw new NotDataException();
             }
         }
     
-        private void updateCache()
+        private void UpdateCache()
         {
             if(File.Exists(this.localfile)){
                 DateTime a = File.GetLastWriteTime(this.cachefile);
@@ -77,7 +77,7 @@ namespace TTwait
                 }
             }
         }
-        public void reLoad()
+        public void ReLoad()
         {
             this.data.Clear();
             File.Delete(this.localfile);
@@ -90,7 +90,7 @@ namespace TTwait
             {
                 return;
             }
-            this.createCache();
+            this.CreateCache();
             string[] lines = new string[]{};
             if(File.Exists(this.localfile))
             {
@@ -104,23 +104,23 @@ namespace TTwait
                 throw new NotDataException();
             }
             this.data = new List<string>(lines);
-            this.sync();
+            this.Sync();
         }
     
-        public string get()
+        public string Get()
         {
-            return this.get(1)[0];
+            return this.Get(1)[0];
         }
-        public List<string> get(int limit)
+        public List<string> Get(int limit)
         {
             lock(this)
             {
                 this.change = true;
-                return this._get(limit);
+                return this._Get(limit);
             }
         }
         
-        private List<string> _get(int limit)
+        private List<string> _Get(int limit)
         {
             if(limit <= 0)
             {
@@ -145,14 +145,14 @@ namespace TTwait
                 {
                     throw new NotDataException();
                 }
-                this.sync();
+                this.Sync();
                 this.load();
-                return this._get(limit);
+                return this._Get(limit);
             }
             return list;
         }
 
-        public void append(string item)
+        public void Append(string item)
         {
             if (!this.data.Contains(item))
             {
@@ -160,21 +160,21 @@ namespace TTwait
                 this.change = true;
             }
         }
-        public void clear()
+        public void Clear()
         {
             this.data.Clear();
         }
 
-        public void clear(string[] items)
+        public void Clear(string[] items)
         {
             foreach (string item in items)
             {
-                this.clear(item);
+                this.Clear(item);
             }
-            this.sync();
+            this.Sync();
         }
 
-        public void clear(string item)
+        public void Clear(string item)
         {
             if (this.data.Contains(item))
             {
@@ -183,16 +183,16 @@ namespace TTwait
             }
         }
 
-        public void clear(Dictionary<string, bool>.KeyCollection items)
+        public void Clear(Dictionary<string, bool>.KeyCollection items)
         {
             foreach (string item in items)
             {
-                this.clear(item);
+                this.Clear(item);
             }
-            this.sync();
+            this.Sync();
         }
 
-        public void sync()
+        public void Sync()
         {
             if(this.change)
             {
