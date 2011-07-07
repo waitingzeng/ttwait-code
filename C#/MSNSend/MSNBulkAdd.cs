@@ -93,13 +93,13 @@ namespace MSNSend
                 {
                     authFail[line.Trim()] = true;
                 }
-                this.senders.clear(authFail.Keys);
+                this.senders.Clear(authFail.Keys);
             }
         }
 
         void closeFile()
         {
-            this.senders.sync();
+            this.senders.Sync();
         }
 
         void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -127,7 +127,7 @@ namespace MSNSend
             string name;
             try
             {
-                name = this.senders.get();
+                name = this.senders.Get();
             }
             catch (NotDataException)
             {
@@ -227,7 +227,7 @@ namespace MSNSend
                 string to;
                 try
                 {
-                    to = tos.get();
+                    to = tos.Get();
                 }
                 catch (NotDataException)
                 {
@@ -270,15 +270,15 @@ namespace MSNSend
                 i++;
                 if (i >= 100)
                 {
-                    this.senders.sync();
-                    this.tos.sync();
+                    this.senders.Sync();
+                    this.tos.Sync();
                 }
                 List<MSNClient> need = new List<MSNClient>();
                 lock (this)
                 {
                     foreach (MSNClient client in msnList.Values)
                     {
-                        if (client.checkTimeOut())
+                        if (client.CheckTimeOut())
                         {
                             need.Add(client);
                         }

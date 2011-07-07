@@ -79,8 +79,8 @@ namespace MSNSend
                 filetrace = new FileTraceListener(tracefile);
                 Trace.Listeners.Add(filetrace);
             }
-            Settings.SavePath = "mcl";
-            Settings.NoSave = ConfigurationManager.AppSettings["nosave"] == "1";
+            //Settings.SavePath = "mcl";
+            Settings.NoSave = true;//ConfigurationManager.AppSettings["nosave"] == "1";
  
 
             cc.ControlEvent += new ConsoleCtrl.ControlEventHandler(cc_ControlEvent);
@@ -125,7 +125,7 @@ namespace MSNSend
                     {
                         authFail[line.Trim()] = true;
                     }
-                    this.senders.clear(authFail.Keys);
+                    this.senders.Clear(authFail.Keys);
                 }
             }
             
@@ -135,7 +135,7 @@ namespace MSNSend
         void closeFile()
         {
             exclude.Flush();
-            this.senders.sync();
+            this.senders.Sync();
         }
 
         void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -156,7 +156,7 @@ namespace MSNSend
             
         }
 
-        private void createMSN()
+        private void CreateMSN()
         {
             if (!running || msnList.Count >= this.threadcount)
                 return;
@@ -165,16 +165,16 @@ namespace MSNSend
             string name;
             try
             {
-                name = this.senders.get();
+                name = this.senders.Get();
             }
             catch (NotDataException)
             {
                 if (this.autoReload)
                 {
                     exclude.Clear();
-                    this.senders.reLoad();
+                    this.senders.ReLoad();
                     Console.WriteLine("reload");
-                    createMSN();
+                    CreateMSN();
                     return;
                 }
                 Console.WriteLine("All Sender Finish");
@@ -230,11 +230,11 @@ namespace MSNSend
                         }
                     }
                     //File.AppendAllText(this.thisFileName, mails.ToString());
-                    File.AppendAllText(this.cidFileName, cids.ToString());
-                    File.AppendAllText(this.senderCountFileName, string.Format("{0}:{1}\r\n", m.Messenger.Owner.Mail, m.Messenger.ContactList.Count));
+                    //File.AppendAllText(this.cidFileName, cids.ToString());
+                    //File.AppendAllText(this.senderCountFileName, string.Format("{0}:{1}\r\n", m.Messenger.Owner.Mail, m.Messenger.ContactList.Count));
                 }catch{}
             }
-            m.Messenger.Owner.Name = names.get();
+            m.Messenger.Owner.Name = names.Get();
             //Thread.Sleep(2000);
             if (m.UserListLeft > 0)
             {
@@ -305,14 +305,7 @@ namespace MSNSend
             finish(msn);
             if (!msn.AuthFail)
             {
-                this.senders.append(msn.Name);
-            }
-            else
-            {
-                lock (this)
-                {
-                    File.AppendAllText(authFailFileName, string.Format("{0}\r\n", msn.Name));
-                }
+                this.senders.Append(msn.Name);
             }
         }
 
@@ -332,14 +325,13 @@ namespace MSNSend
                     msnList.Remove(msn.Name);
                 }
                 Console.WriteLine("finish");
-                //createMSN();
             }
         }
         public void run()
         {
             try
             {
-                this.senders.reLoad();
+                this.senders.ReLoad();
             }
             catch (NotDataException)
             {
@@ -348,7 +340,7 @@ namespace MSNSend
             }
             if (this.senders.Count < this.threadcount)
             {
-                this.senders.clear();
+                this.senders.Clear();
                 Console.WriteLine("Account Too little! All Finish");
             }
             if (Msg.Count == 0)
@@ -357,23 +349,15 @@ namespace MSNSend
                 return;
             }
             Console.WriteLine("Sender : {0}, Msg : {1}", this.senders.Count, Msg.Count);
-            createMSN();
-            int i = 0;
+            CreateMSN();
             while (running || msnList.Count > 0 || failcount < failtoexit)
             {
-                i++;
-                if (i >= 100)
-                {
-                    i = 0;
-                    exclude.Flush();
-                    this.senders.sync();
-                }
                 List<MSNClient> need = new List<MSNClient>();
                 lock (this)
                 {
                     foreach (MSNClient client in msnList.Values)
                     {
-                        if (client.checkTimeOut())
+                        if (client.CheckTimeOut())
                         {
                             need.Add(client);
                         }
@@ -385,10 +369,7 @@ namespace MSNSend
                     client.OnHadSomeError();
                 }
                 Console.WriteLine("Current Running MSN: {0}", msnList.Count);
-                //if (msnList.Count < this.threadcount)
-                //{
-                createMSN();
-                //}
+                CreateMSN();
                 Thread.Sleep(1000);
             }
             msnList.Clear();

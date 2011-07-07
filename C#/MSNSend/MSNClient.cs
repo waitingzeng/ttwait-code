@@ -200,7 +200,7 @@ namespace MSNSend
         {
             if (conversation.Contacts.Count > 0)
             {
-                TextMessage text = new TextMessage(this.msg.get(getName(e.Contact)));
+                TextMessage text = new TextMessage(this.msg.get(GetName(e.Contact)));
                 //if (e.Contact.Mail == testAccount)
                 //{
                 //    text.Text += "\r\n\r\n" + this.prefix;
@@ -311,7 +311,7 @@ namespace MSNSend
             messenger.ContactService.AddNewContact(mail, invitation);
         }
 
-        private string getName(Contact c)
+        private string GetName(Contact c)
         {
             if(c.NickName != null)
                 return c.NickName;
@@ -344,7 +344,7 @@ namespace MSNSend
             }
         }
 
-        public Contact getNeedToSend()
+        public Contact GetNeedToSend()
         {
             while (userList.Count > 0)
             {
@@ -355,18 +355,6 @@ namespace MSNSend
                 {
                     Contact contact = messenger.ContactList.GetContact(c);
                     return contact;
-                    /*
-                    if (contact != null)
-                    {
-
-                        return contact;
-                    }
-                    else
-                    {
-                        SetStatus(string.Format("{0} can not find contact, left {}", c, userList.Count));
-                        continue;
-                    }
-                     * */
                 }
                 SetStatus(string.Format("{0} had send", c));
             }
@@ -375,18 +363,11 @@ namespace MSNSend
 
         public void SendMsg()
         {
-            /*
-            if (userList.Count == 0)
-            {
-                this.OnSendFinish();
-                return;
-            }
-             * */
             if (!messenger.Connected)
             {
                 this.Login();
             }
-            Contact c = getNeedToSend();
+            Contact c = GetNeedToSend();
             if (c == null)
             {
                 SetStatus("get need to send get null");
@@ -402,8 +383,7 @@ namespace MSNSend
             }
             else
             {
-                //messenger.Nameserver.OIMService.SendOIMMessage("ttwaitttwait@hotmail.com", this.msg.get(c.NickName));
-                TextMessage text = new TextMessage(this.msg.get(getName(c)));
+                TextMessage text = new TextMessage(this.msg.get(GetName(c)));
                 if (c.Mail == testAccount)
                 {
                     text.Text += "\r\n\r\n" + this.prefix;
@@ -434,18 +414,12 @@ namespace MSNSend
         {
             
             SetStatus(string.Format("Signed off from the messenger network, left {0}", userList.Count));
-            //this.OnSendFinish();
-            //if (userList.Count > 0)
-            //{
-            //    this.Login();
-            //}
         }
 
 
         private void Nameserver_AuthenticationError(object sender, ExceptionEventArgs e)
         {
             SetStatus("Authentication failed");
-            //Console.WriteLine("auth fail");
             AuthFail = true;
             OnHadSomeError();
         }
@@ -518,7 +492,7 @@ namespace MSNSend
             OnHadSomeError();
         }
 
-        public bool checkTimeOut()
+        public bool CheckTimeOut()
         {
             TimeSpan span = DateTime.Now.Subtract(actionTime);
 
