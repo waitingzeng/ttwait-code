@@ -59,7 +59,7 @@ class MainHandler(webapp.RequestHandler):
             self.response.headers['Location'] = gourl
             
         else:
-            page = memcache.get(gourl)
+            page = memcache.get(gourl.lower())
             #page = None
             if page is None:
                 page = self.fetchurl(gourl)
