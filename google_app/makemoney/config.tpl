@@ -3,16 +3,16 @@
 import wsgiref.handlers
 from google.appengine.ext import webapp
 
-SITE = 'http://1.somuchmoney.sinaapp.com/'
+SITE = 'http://%(from_site)s/'
 
 REPLACE = (
-    ('1.somuchmoney.sinaapp.com', 'so-much-money.appspot.com'),
-    ('UA-791706-40', ''), 
-    ('UA-791706-42', ''), 
-    ('UA-791706-46', ''), 
-    ('google_analy_id', ''), 
+    ('%(from_site)s', '%(to_site)s'),
+    ('UA-791706-40', '%(analy_id)s'), 
+    ('UA-791706-42', '%(analy_id)s'), 
+    ('UA-791706-46', '%(analy_id)s'), 
+    ('google_analy_id', '%(analy_id)s'), 
     ('google_ad_client = "google_ad_client";', 
-    'google_ad_client = "pub-3036032774445026";'),
+    'google_ad_client = "%(google_ad_client)s";'),
 )
 
 funcs = []
