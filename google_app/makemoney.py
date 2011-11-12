@@ -44,8 +44,8 @@ if __name__ == '__main__':
         print ' '.join(sys.argv)
         for j in range(10):
             try:
-                raw_input()
-                #execfile(script_path, globals())
+                #raw_input()
+                execfile(script_path, globals())
                 print key, 'success\n\n' 
                 break
             except Exception, info:
