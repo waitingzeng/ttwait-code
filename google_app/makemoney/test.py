@@ -52,8 +52,8 @@ class MainHandler(webapp.RequestHandler):
             self.response.out.write('not data found')
             return
         gourl = '%s/%s' % (config.SITE, url)
-        if self.request.query_string and not (len(self.request.query_string) == 13 and self.request.query_string.startswith('13')):
-            gourl = '%s?%s' % (gourl, self.request.query_string)
+        #if self.request.query_string and not (len(self.request.query_string) == 13 and self.request.query_string.startswith('13')):
+        #    gourl = '%s?%s' % (gourl, self.request.query_string)
         if url in config.REDIRECTURL:
             self.response.set_status(301, 'Moved Permanently')
             self.response.headers['Location'] = gourl
