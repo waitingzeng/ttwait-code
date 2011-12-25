@@ -1,9 +1,10 @@
-<div id="adsense_homepage_linkunit">
+<div id="adsense_singlepost_top_square">
 <script type="text/javascript"><!--
 google_ad_client = "google_ad_client";
-google_ad_width = 468;
-google_ad_height = 15;
-google_ad_format = "468x15_0ads_al";
+google_ad_width = 250;
+google_ad_height = 250;
+google_ad_format = "250x250_as";
+google_ad_type = "text_image";
 google_ad_channel = "";
 google_color_border = "F7F7F7";
 google_color_bg = "F7F7F7";

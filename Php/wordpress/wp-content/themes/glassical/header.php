@@ -33,13 +33,9 @@
 			</div>
 			
 			<?php if (!dynamic_sidebar("Header Ad") ) : ?>  
-				<div class="ad"></div>
+				<div class="ad"><?php include('adsense_top.php'); ?></div>
 			<?php endif; ?>
 			
-			<ul id="navigation">
-				<?php wp_list_pages('title_li='); ?>
-				<li class="rss"><a href="<?php bloginfo('rss2_url'); ?>"><img src="<?php bloginfo('stylesheet_directory'); ?>/images/rss.png" alt="RSS" width="16" height="16" /></a></li>
-			</ul>
 			
 		</div>
 		

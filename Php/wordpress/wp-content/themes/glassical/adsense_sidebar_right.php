@@ -1,5 +1,5 @@
 <script type="text/javascript"><!--
-google_ad_client = "pub-3609132561688446";
+google_ad_client = "google_ad_client";
 /* 160x600, created 3/24/10 */
 google_ad_width = 300;
 google_ad_height = 250;
