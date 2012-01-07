@@ -15,7 +15,7 @@ cur_path = osp.dirname(osp.abspath(__file__))
 EMAIL = dict(
     host = "pop3.163.com",
     user = "zqc160@163.com",
-    psw = "TTwait846266",
+    psw = "littlefox846266",
 )
 
 

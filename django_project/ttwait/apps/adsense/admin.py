@@ -18,6 +18,7 @@ admin.site.register(models.AdsenseAccount, AdsenseAccountAdmin)
 
 class ReportAdmin(admin.ModelAdmin):
     list_display = ('account', 'date', 'views', 'clicks', 'ctr', 'cpc', 'rpm', 'usd')
+    list_per_page = 300
     ordering = ['account', 'date']
     date_hierarchy = 'date'
     list_filter = ('account', 'date')
@@ -41,7 +42,6 @@ class ReportAdmin(admin.ModelAdmin):
     
     def queryset(self, request):
         qs = self.model._default_manager.get_stat_query_set()
-        # TODO: this should be handled by some parameter to the ChangeList.
         ordering = self.get_ordering(request)
         if ordering:
             qs = qs.order_by(*ordering)
