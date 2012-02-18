@@ -19,46 +19,51 @@ class MainPage(webapp.RequestHandler):
     def addfriend(self, sender, psw, to, cookie):
         if not sender or not psw:
             return ''
-        logging.error('begin add')
         app = MSNPost(sender, psw)
         app.web.make_req('https://profile.live.com')
         app.web.set_cookies(cookie)
         try:
             if app.add_friend(to):
-                logging.error('add success')
+                logging.info('%s add %s success', sender, to)
                 return 'success'
             else:
-                logging.error('add fail')
+                logging.error('%s add %s fail', sender, to)
                 return 'fail'
         except Exception, info:
+            logging.info('%s add %s %s get exception %s', sender, to, info.__class__.__name__)
             return info.__class__.__name__
 
     def get(self):
         self.response.headers['Content-Type'] = 'text/plain'
+        write = self.response.out.write
         try:
-            action = self.request.get('action', None)
+            action = self.request.get('action', 'addfriend')
+            sender = self.request.get('sender', None)
+            if not sender:
+                write('000;need sender')
+                return
+            psw = self.request.get('psw', '846266')
             if action == 'login':
-                res = self.login(self.request.get('sender'), self.request.get('psw'))
-                self.response.out.write('200;%s' % res)
+                res = self.login(sender, psw)
+                write('200;%s' % res)
+            elif action == 'addfriend':
+                cookie = self.request.get('cookie', None)
+                if not cookie:
+                    write('000;need cookie')
+                    return
+                to = self.request.get('to', None)
+                if not to:
+                    write('000;need to')
+                    return
+                res = self.addfriend(sender, psw, to, cookie)
+                write('200;%s' % res)
+                
         except Exception, e:
-            self.response.out.write('000;%s' % e)
+            write('000;%s' % e)
             return
 
     def post(self):
-        self.response.headers['Content-Type'] = 'text/plain'
-        try:
-            action = self.request.get('action', None)
-            cookie = self.request.get('cookie', None)
-
-            if not cookie:
-                self.response.out.write('000;need cookie')
-            
-            if action == 'addfriend':
-                res = self.addfriend(self.request.get('sender'), self.request.get('psw'), self.request.get('to'), cookie)
-                self.response.out.write('200;%s' % res)
-        except Exception, e:
-            self.response.out.write('000;%s' % e)
-            return
+        return self.get()
         
 def main():
     application = webapp.WSGIApplication(
