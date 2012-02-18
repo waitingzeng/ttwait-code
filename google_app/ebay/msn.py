@@ -30,7 +30,7 @@ class MainPage(webapp.RequestHandler):
                 logging.error('%s add %s fail', sender, to)
                 return 'fail'
         except Exception, info:
-            logging.info('%s add %s %s get exception %s', sender, to, info.__class__.__name__)
+            logging.info('%s add %s get exception %s', sender, to, info.__class__.__name__)
             return info.__class__.__name__
 
     def get(self):
