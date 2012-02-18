@@ -58,6 +58,7 @@ class MainPage(webapp.RequestHandler):
                 self.response.out.write('200;%s' % res)
         except Exception, e:
             self.response.out.write('000;%s' % e)
+            raise e
             return
         
 def main():

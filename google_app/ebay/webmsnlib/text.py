@@ -111,40 +111,39 @@ def not_html_tags(htmlText, repl=' '):
 def readlines(filename, comment=None):
     data = []
     if os.path.exists(filename):
-        with file(filename) as pipe:
-            for x in pipe:
-                x = x.strip()
-                if x and (not comment or not x.startswith(comment)):
-                    data.append(x)
+        for x in file(filename):
+            x = x.strip()
+            if x and (not comment or not x.startswith(comment)):
+                data.append(x)
     return data
 
 def readdict(filename, sp = None, ignore=True):
     data = {}
     if os.path.exists(filename):
-        with file(filename) as pipe:
-            for x in pipe:
-                x = x.strip()
-                if x:
-                    if sp is None:
-                        data[x] = 1
-                    else:
-                        try:
-                            k,v = x.split(sp, 2)
-                            data[k.strip()] = v.strip()
-                        except Exception, info:
-                            if not ignore:
-                                raise info
-                            print info
-                            continue
+        for x in file(filename):
+            x = x.strip()
+            if x:
+                if sp is None:
+                    data[x] = 1
+                else:
+                    try:
+                        k,v = x.split(sp, 2)
+                        data[k.strip()] = v.strip()
+                    except Exception, info:
+                        if not ignore:
+                            raise info
+                        print info
+                        continue
     return data
 
 
 def writelines(filename, lines):
     if lines is None:
         return
-    with file(filename, 'w') as a:
-        a.write('\n'.join(lines))
-        a.write('\n')
+    a = file(filename, 'w')
+    a.write('\n'.join(lines))
+    a.write('\n')
+    a.close()
 
 
 
