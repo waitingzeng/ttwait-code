@@ -5,7 +5,7 @@ from text import get_in
 import socket
 import time
 import threading
-import json
+from django.utils import simplejson as json
 import httplib
 import sys
 
