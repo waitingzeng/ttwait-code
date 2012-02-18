@@ -10,13 +10,10 @@ class MainPage(webapp.RequestHandler):
     def login(self, sender, psw):
         if not sender or not psw:
             return ''
-        print 'begin login'
         app = MSNPost(sender, psw)
         if app.login():
-            print 'login success'
             return app.web.cookies_to_str()
         else:
-            print 'login fail'
             return ''
     
     def addfriend(self, sender, psw, to, cookie):
@@ -55,7 +52,7 @@ class MainPage(webapp.RequestHandler):
 
             if not cookie:
                 self.response.out.write('000;need cookie')
-                
+            
             if action == 'addfriend':
                 res = self.addfriend(self.request.get('sender'), self.request.get('psw'), self.request.get('to'), cookie)
                 self.response.out.write('200;%s' % res)
