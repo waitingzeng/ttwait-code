@@ -38,6 +38,9 @@ handlers:
 - url: /click/.*
   script: clickbank.py
 
+- url: /msn.py
+  script: msn.py
+
 - url: /.*
   script: redirect.py
 
