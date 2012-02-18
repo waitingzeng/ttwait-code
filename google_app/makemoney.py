@@ -25,11 +25,16 @@ if __name__ == '__main__':
     script_name = SCRIPT_EXCEPTIONS.get(script_name, script_name)
     script_path = os.path.join(SCRIPT_DIR, script_name)
 
+    keys = sys.argv[1:]
+    sys.argv = sys.argv[:1]
     argv = '%s %s -e test -p test --no_cookies' % (action, path)
     for i,v in enumerate(argv.split(' ')):
         sys.argv.append(v)
     
+
     for key, infos in site_config.items():
+        if keys and key not in keys:
+            continue
         print key, 'begin'
         sys.argv[4] = infos['email']
         sys.argv[6] = str(infos['psw'])
