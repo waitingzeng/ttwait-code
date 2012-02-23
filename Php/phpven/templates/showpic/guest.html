@@ -1,0 +1,31 @@
+<div id="floatser" style="Z-INDEX:100; right: 20px; FILTER: alpha(opacity=80); WIDTH: 150px; POSITION: absolute; top:400px;" align=center> 
+<form action="{$ServerPath}guest.asp" method="post">
+<div>Email:</div><div><input type="text" size="20" name="email" /><font color="#CC0000">*</font></div>
+<div>Question:</div><div><textarea name="content" rows="3" cols="20"></textarea><font color="#CC0000">*</font></div>
+</form>
+</div> 
+
+<script language="JavaScript"> 
+ <!-- 
+$(function(){
+	function hideser(){
+	  obj=document.getElementById("floatser");
+	  obj.style.display='none';
+	}
+var lastScrollYser = 0;
+function heartBeatser()
+{
+	diffY	= document.body.scrollTop;
+	percent =1*(diffY-lastScrollYser);
+	if(percent>0) percent = Math.ceil(percent);
+	else   percent = Math.floor(percent);
+	obj=document.getElementById("floatser");
+	obj.style.pixelTop += percent;
+	lastScrollYser = lastScrollYser+percent;
+}
+setInterval(heartBeatser, 1);
+
+})
+
+ //--> 
+ </script>  

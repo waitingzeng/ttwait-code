@@ -1,0 +1,48 @@
+{include file='ad_top.html'}
+<table width="80%" border="0" cellspacing="1" bgcolor="#DBC2B0">
+<tr>
+<td height="30" bgcolor="#F5EFE7" align="center">{t}网站名称{/t}</td>
+<td height="30" bgcolor="#F5EFE7" align="center">{t}网站地址{/t}</td>
+<td bgcolor="#F5EFE7" height="30" align="center">LOGO</td>
+<td bgcolor="#F5EFE7" height="30" align="center">{t}排序{/t}</td>
+<td bgcolor="#F5EFE7" height="30" align="center">{t}操作{/t}</td>
+</tr>
+{foreach item=link from=$linklist}
+<tr>
+<form name="form1" method="post" action="?action=edit&id={$link.id}">
+<td height="30" bgcolor="#FFFFFF" align="center">
+<input name="wordlink" type="text" id="linkname" value="{$link.wordlink}" size="16"></td>
+<td bgcolor="#FFFFFF" height="30" align="center">
+<input name="url" type="text" id="linkurl" value="{$link.url}" size="26"></td>
+<td bgcolor="#FFFFFF" height="30" align="center">
+<input name="logo" type="text" id="url1" size="21" value="{$link.logo}"></td>
+<td bgcolor="#FFFFFF" height="30" align="center">
+<input name="bs" type="text" id="linkidorder" value="{$link.bs}" size="3"></td>
+<td bgcolor="#FFFFFF" height="30" align="center">
+<input type="submit" name="Submit" value="{t}修改{/t}">
+&nbsp;&nbsp;<a href="?action=del&id={$link.id}"  onClick="return confirm('{t}你确定要删除吗?{/t}')">{t}删除{/t}</a></td>
+</form>
+</tr>
+{foreachelse}
+{t}暂无内容{/t}
+{/foreach}
+</table><pre> </pre><table width="80%" border="0" cellpadding="0" cellspacing="1" bgcolor="#DBC2B0">
+<form name="form2" method="post" action="ad_links.asp?action=add">
+<tr> 
+<td height="30" colspan="5" bgcolor="#F5EFE7" align="center">
+&nbsp;{t}添加内容{/t}</td>
+</tr>
+<tr> 
+<td height="30" bgcolor="#FFFFFF" align="center">{t}网站名称{/t}</td>
+<td height="30" bgcolor="#FFFFFF" align="center">{t}网站地址{/t}</td>
+<td height="30" bgcolor="#FFFFFF" align="center">LOGO</td>
+<td height="30" bgcolor="#FFFFFF" align="center">{t}排序{/t}</td>
+<td height="30" bgcolor="#FFFFFF" align="center">{t}操作{/t}</td></tr>
+<tr> 
+<td height="30" bgcolor="#FFFFFF" align="center"><input name="wordlink" type="text" id="wordlink" size="16"></td>
+<td height="30" bgcolor="#FFFFFF" align="center"><input name="url" type="text" id="url" size="26"></td>
+<td height="30" bgcolor="#FFFFFF" align="center"><input name="logo" type="text" id="url0" size="21"></td>
+<td height="30" bgcolor="#FFFFFF" align="center"><input name="bs" type="text" id="bs" value="{$link_ct+1}" size="3"></td>
+<td height="30" bgcolor="#FFFFFF" align="center"><input type="submit" name="Submit2" value="{t}添加{/t}"></td>
+</tr></form>
+</table>

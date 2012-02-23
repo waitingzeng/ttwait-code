@@ -1,0 +1,39 @@
+{$header}
+<!--左边-->
+<div id="inbody">
+<div class="left">
+<script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+{include file="ingg.html"}
+{include file="insort.html"}
+</div>
+<!--右边-->
+<div class="right">
+<div class="right770">
+{if $type == 0}
+<h2 class="r01">Help</h2><h2 class="r02"></h2><h2>
+  <table border="0" width="600" cellspacing="0" cellpadding="0">
+    <tr>
+      <td height="200" valign="top">
+          <p style="line-height: 200%; margin-left:20px; margin-right:20px; margin-top:10px; margin-bottom:0"> There are some method you can try when you have difficulty:<br>
+            1. Read the help information by click the links in the left;<br>
+            2. Click &quot;<a href="#" onClick="javascript:window.open('{$ServerPath}guest.asp','newwindow','toolbar=no,scrollbars=yes,resizable=no,top=0,left=0,width=420,height=180');"><font color="#FE7902">Feedback</font></a><font color="#FE7902">&quot;</font>, 
+            Submit your question to administrators;<br>
+            3. Ask your question in the page of product infomation;<br>
+            4. Contact US :</p>
+        <p style="line-height: 200%; margin-left: 37px; margin-right: 20px; margin-top: 5px; margin-bottom: 20px"> Tel:{$config.tel}<br>
+          Email:{$config.mail}<br>
+          Fax:{$config.fax}<br>
+          MSN:{$config.msn}<br>
+          Addres:{$config.ymaddr} ZipCode:{$config.code}</p></td>
+    </tr>
+  </table></h2>
+{elseif $type == 1 and $p}
+<h2 class="r01">{$p.title}</h2><h2 class="r02"></h2><h2>
+{if $p.img1}
+<div><img border="0" src="{$p.img1}"></div>
+{/if}
+<div>{$p.nr}</div>
+</h2>
+{/if}
+</div></div>
+{$footer}

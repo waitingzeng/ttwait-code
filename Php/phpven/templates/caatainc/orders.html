@@ -1,0 +1,53 @@
+{$header}
+  <table width="920px" border=0 cellpadding=0 cellspacing=0 bgcolor="#FFFFFF" height="100px">
+    <tr>
+      <td width=181 align="center" valign="top" rowspan="2"><script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+{include file="insort.html"}
+</td>
+    </tr>
+    <tr>
+      <td valign="top" align="center">
+        <table border="0" cellpadding="0" cellspacing="5" width="100%" bgcolor="#EEEEEE">
+          <tr>
+            <td align="center" bgcolor="#EEEEEE"><table border="0" cellpadding="5" cellspacing="0" width="100%" background="{$serverstyle}img/pattern.gif" style="border: 1px solid #C0C0C0">
+                <tr>
+                  <td height="30" colspan="2"><p style="line-height: 150%; margin-left: 10px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px"><b>Your Orders List:</b></td>
+                  <td height="30" colspan="4" align="right"><p style="margin-right: 20px"><a href="orders.asp">All</a>:
+					{foreach item=s from=$orderstate key=s_ct}
+					&nbsp; <a href="orders.asp?zt={$s_ct}">{if $zt == $s_ct}<font color="#FF0000">{$s}</font>{else}{$s}{/if}</a>
+					{/foreach}</td>
+                </tr>
+                <tr>
+                  <td align="center" width="10" height="30"></td>
+                  <td width="150" height="30">Order Number</td>
+                  <td width="150" height="30">Date</td>
+                  <td width="100" height="30">Order Status</td>
+                  <td align="center" width="10" height="30"></td>
+                </tr>
+                {if $p}
+                {foreach item=sub from=$p.items}
+                <tr>
+                  <td align="center" width="10" height="30"></td>
+                  <td width="150" height="35" class="border_bottom"><a href="#" onClick="javascript:window.open('{$ServerPath}submore.asp?sub_id={$sub.sub_id}','newwindow','toolbar=no,scrollbars=yes,resizable=no,top=0,left=0,width=650,height=600');">{$sub.sub_number}</a></td>
+                  <td width="150" height="35" class="border_bottom">{$sub.sub_date}</td>
+                  <td width="100" height="35" class="border_bottom">{$orderstate[$sub.sub_zt]}</td>
+                  <td align="center" width="10" height="30"></td>
+                </tr>	
+               	{/foreach}
+                <tr>
+                  <td align="center" colspan="6" height="30">
+                  {$p.totalpage|pagination:$p.pageIndex:"orders.asp?zt=$zt&page=#page#"}
+				</td>
+                </tr>
+                {else}
+                <tr><td align=center height=26 colspan=4>No Data</td></tr>
+                {/if}
+                <tr>
+                  <td colspan="6" height="30"><p style="line-height: 150%; margin-left: 10px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px"></td>
+                </tr>
+              </table></td>
+          </tr>
+        </table></td>
+    </tr>
+  </table>
+{$footer}

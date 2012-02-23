@@ -1,0 +1,26 @@
+{$header}
+<div id="inbody">
+<div class="left">
+<script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+{include file="ingg.html"}
+{include file="insort.html"}
+</div>
+<!--右边-->
+<div class="right">
+<form action="{$ServerPath}guestbook.asp?action=save" method="post" name="guestform" onSubmit="return guestform_onsubmit(this);">
+<div class="right770"><h2 class="r01" style="width:100%">Welcome to post your question or suggest! We will contact you with the email!</h2><h2>
+<div class="right570">
+{if $success}
+	<p>Your feedback had been receive, please wait our reply!</p>
+{/if}
+<div class="right150">Your Email:</div><div class="right400"><input type="text" size="30" style="width:200px" name="email" /><font color="#CC0000">*</font></div>
+<div class="right150">Content:</div><div class="right400"><textarea name="content" rows="10" cols="30"></textarea><font color="#CC0000">*</font></div>
+<div class="right150"></div><div class="right400"><input type="submit" value="Submit" />
+</div>
+</div>
+</h2>
+</div>
+</form>
+</div>
+</div>
+{$footer}

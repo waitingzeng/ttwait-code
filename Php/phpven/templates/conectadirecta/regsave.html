@@ -1,0 +1,35 @@
+{$header}
+<div id="inbody">
+<div class="left">
+<script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+{include file="ingg.html"}
+{include file="insort.html"}
+</div>
+<!--右边-->
+<div class="right">
+<div class="right770">
+{if $hadLogin}
+<h2 class="r01">Register finished!</h2><h2 class="r02"></h2><h2>
+<div class="right570">
+<div class="right150">UserName:</div><div class="right400">{$username}</div>
+<div class="right150">Email:</div><div class="right400">{$email}</div>
+<h4> Congratulations! {$username} ,you have finished registrating<br>
+      <a href="{$ServerPath}modify.asp"><font color="#FF0000">Please fill in the receiver's name and address.</font></a><br>
+      <a href="{$ServerPath}">Back to Homepage.</a></h4>
+<div class="right150"></div><div class="right400"></div>
+</div>
+</h2>
+{else}
+<h2 class="r01">Register Error!</h2><h2 class="r02"></h2><h2>
+<div class="right570">
+<ul class="errmsg">{$errmsg}</ul>
+
+<div class="right150"><a href="javascript:history.go(-1)" style="color:red">Back To Reg</a></div><div class="right400"></div>
+</div></h2>
+{/if}
+</div>
+<br/><br/><br/><br/><br/><br/>
+{include file="contact.html"}
+</div>
+</div>
+{$footer}

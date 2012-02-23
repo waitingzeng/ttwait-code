@@ -1,0 +1,54 @@
+{$header}
+<table width="920px" border=0 cellpadding=0 cellspacing=0 bgcolor="#FFFFFF" height="100">
+    <tr>
+      <td width=181 align="center" valign="top"><script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+	{include file="insort.html"}
+</td>
+      <td valign="top" align="left">
+		<table width="50%" border="0" cellpadding="0px" cellspacing="10px" background="{$serverstyle}img/pattern.gif" style="border: 1px solid #C0C0C0">
+			{if not $user}
+                <tr>
+                  <td align="center" height="100" colspan="2">User Not Found, Please<a href="{$ServerPath}login.asp" target=_blank>Login</a>, <a href="{$ServerPath}reg.asp" target=_blank>Chick Here to Register</a></td>
+                </tr>
+               {else}
+                  <tr>
+                    <td height="30" colspan="2" align="center"><b>&nbsp;UserInfo:</b></td>
+                  </tr>
+                  <tr>
+                    <td width="200" height="30" align="right">UserName:</td>
+                    <td width="525" height="30" align="left">&nbsp;{$user.username}</td>
+                  </tr>
+                  <tr>
+                    <td width="200" height="30" align="right">Your Money:</td>
+                    <td width="525" height="30">&nbsp;{$user.jifen}</td>
+                  </tr>
+                  <tr>
+                    <td width="200" height="30" align="right">&nbsp;Orders:</td>
+                    <td width="525" height="30">&nbsp;
+                       {$ordercount}(<a href="{$ServerPath}orders.asp">Order Status</a>)</td>
+                  </tr>
+                  <tr>
+                    <td width="200" height="30" align="right">Register IP:</td>
+                    <td width="525" height="30">&nbsp;{$user.user_regip}</td>
+                  </tr>
+                  <tr>
+                    <td width="200" height="30" align="right">Register Date:</td>
+                    <td width="525" height="30">&nbsp;{$user.regtime}</td>
+                  </tr>
+                  <tr>
+                    <td width="200" height="30" align="right">Login Times:</td>
+                    <td width="525" height="30">&nbsp;{$user.degree}</td>
+                  </tr>
+                  <tr>
+                    <td width="200" height="30" align="right">E-mail:</td>
+                    <td width="525" height="30">&nbsp;{$user.usermail}</td>
+                  </tr>
+                  <tr>
+                    <td width="200" height="30" align="right">Real Name:</td>
+                    <td width="525" height="30">&nbsp;{$user.user_namec}</td>
+                  </tr>
+               {/if}
+              </table></td>
+    </tr>
+  </table>
+{$footer}

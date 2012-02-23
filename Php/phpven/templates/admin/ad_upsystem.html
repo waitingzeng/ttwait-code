@@ -1,0 +1,158 @@
+{include file='ad_top.html'}
+<table border="0" cellspacing="1" cellpadding="5" bgcolor="#DBC2B0">
+<form method="POST" action="ad_upsystem.asp?action=change">
+          <tr>
+            <td height="20" bgcolor="#F5EFE7" colspan="2">&nbsp; {t}网站联系信息{/t}:</td>
+            </tr>
+			<tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}网站名称{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<input type="text" name="sitename" size="36" value="{$config.sitename}" class=input></td>
+          </tr>
+			<tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}网站域名{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<input type="text" name="homepage" size="36" value="{$config.homepage}" class=input></td>
+          </tr>
+		  <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}网站代码{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<input type="text" name="site_code" size="36" value="{$config.site_code}" class=input></td>
+          </tr>
+			<tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}网店地址{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<input type="text" name="web" size="36" value="{$config.web}" class=input></td>
+          </tr>
+          <tr> 
+            <td width="150" height="20" align="right" bgcolor="#FFFFFF">{t}ICP备案号/证书{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<input type="text" name="icp" size="36" value="{$config.icp}" class=input></td>
+          </tr>
+          <tr> 
+            <td width="150" height="20" align="right" bgcolor="#FFFFFF">{t}电话{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<input type="text" name="tel" size="36" value="{$config.tel}" class=input></td>
+          </tr>
+          <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}传真{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<input type="text" name="fax" size="36" value="{$config.fax}" class=input></td>
+          </tr>
+          <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}地址{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<input type="text" name="ymaddr" size="60
+			" value="{$config.ymaddr}" class=input></td>
+          </tr>
+			<tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}邮编{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<input type="text" name="code" size="20" value="{$config.code}" class=input></td>
+          </tr>
+          <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">Email:</td>
+            <td height="20" bgcolor="#FFFFFF"><input type="text" name="mail" size="20" value="{$config.mail}" class=input></td>
+          </tr>
+          <!--
+		  <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">OQ:</td>
+            <td height="20" bgcolor="#FFFFFF"><input type="text" name="oicq" size="20" value="{$config.oicq}" class=input>
+			<font color="#FF0000">注意不同QQ之间用/隔开,例如: 57152557/5404818</font></td>
+          </tr>
+		  -->
+          <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">Msn:</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<input type="text" name="msn" size="20" value="{$config.msn}" class=input></td>
+          </tr>
+          <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">LOGO:</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<input type="text" name="logo" size="20" value="{$config.logo}" class=input></td>
+          </tr>
+          <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">BANNER:</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<input type="text" name="banner" size="20" value="{$config.banner}" class=input></td>
+          </tr>
+		   <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">Google Analytics:</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<input type="text" name="banquan" size="20" value="{$config.banquan}" class=input></td>
+          </tr>
+          <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">indexcode(,):</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<input type="text" name="indexcode" size="20" value="{$config.indexcode}" class=input></td>
+          </tr>
+          <!--<tr>
+            <td height="20" bgcolor="#F5EFE7" colspan="2">&nbsp; {t}网站显示设置{/t}:</td>
+          </tr>
+		<tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}模板{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF"><input type="text" name="tpname" value="{$config.tpname}" class="input" /></td></td>
+          </tr>
+		<tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}样式{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF"><input type="text" name="sitestyle" value="{$config.sitestyle}" class="input" /></td></td>
+          </tr>
+		  <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}是否打开缓存{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF"><select name="enablecache"><option value="0" {if enablecache=="0"} selected="selected"{/if}>No</option><option value="1" {if enablecache=="1"} selected="selected"{/if}>Yes</option></select></td></td>
+          </tr>
+		  <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}后台语言{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF"><input type="text" name="languagetype" value="{$config.languagetype}" class="input" /></td></td>
+          </tr>
+		  <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}静态文件目录{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF"><input type="text" name="htmldir" value="{$config.htmldir}" class="input" /></td></td>
+          </tr>
+		  <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}静态文件扩展名{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF"><input type="text" name="htmlext" value="{$config.htmlext}" class="input" /></td></td>
+          </tr>-->
+		   <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}默认标题{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF"><input type="text" name="defaulttitle" value="{$config.defaulttitle}" size="30" class="input" /></td></td>
+          </tr>
+		   <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}默认关键词{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF"><textarea name="defaultkeyword" rows="10" cols="50">{$config.defaultkeyword}</textarea></td></td>
+          </tr>
+		   <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}默认描述{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<textarea name="defaultdescription" id="defaultdescription" cols="50" rows="5">{$config.defaultdescription}</textarea></td></td>
+          </tr>
+		  <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">Index Content:</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<textarea name="index_content" id="index_content" cols="50" rows="5">{$config.index_content}</textarea></td></td>
+          </tr>
+          <tr>
+            <td height="20" bgcolor="#F5EFE7" colspan="2">&nbsp; {t}产品显示设置{/t}:</td>
+          </tr>
+		<tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}每页显示产品数{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<input type="text" name="lookpage" size="3" value="{$config.lookpage}" class=input></td>
+          </tr>
+			<tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}商品缩略图尺寸{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<input type="text" name="width" size="3" value="{$config.width}" class=input>×<input type="text" name="height" size="3" value="{$config.height}" class=input> 
+			{t}宽×高{/t}</td>
+          </tr>
+		  <tr>
+            <td height="20" align="right" bgcolor="#FFFFFF" width="150">{t}商品默认详情{/t}:</td>
+            <td height="20" bgcolor="#FFFFFF">
+			<IFRAME ID="eWebEditor1" src="eWebEditor/ewebeditor.htm?id=defaulthwdetail&style=coolblue" frameborder="0" scrolling="no" width="600" height="250"></IFRAME>
+			<textarea name="defaulthwdetail" id="defaulthwdetail" style="visibility:hidden">{$config.defaulthwdetail}</textarea></td>
+          </tr>
+          <tr>
+            <td height="20" bgcolor="#FFFFFF" width="150" align="right"></td>
+            <td height="20" bgcolor="#FFFFFF"><input type="submit" value="{t}提交{/t}" name="B1" class=input></td>
+          </tr></form>
+        </table>

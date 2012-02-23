@@ -1,0 +1,41 @@
+<div align="center"> 
+Page:{$pindex} / ToTal {$totalpage}&nbsp;&nbsp;
+	{if $p.pageIndex > 1}
+	<a href="{$ServerPath}{$pagePrev}">Prev</a>
+	{else}
+	Prev
+	{/if}
+	&nbsp;&nbsp;
+	  {if $p.pageIndex < $p.totalpage}
+	  <a href="{$ServerPath}{$pageNext}">Next</a>
+		{else}
+	Next
+		{/if}
+	&nbsp;&nbsp;
+	Go to page:
+	<input type="text" name="page" id="page" value="{$pindex+1}" size="1" style="text-align: center" class=input>
+	<input type="button" class=input value="GO" onClick="javascript:Go()">
+	<br />
+	{if $totalpage > 1}
+	Page List : 
+	{foreach item=i from=$pagelist key=i_ct}
+		{if i_ct == $pindex}
+			<b>{$i_ct}</b>
+		{else}
+			<a href="{$ServerPath}{$i}">{$i_ct}</a>
+		{/if}
+	{/foreach}
+	{/if}
+</div>
+
+<script language="javascript">
+function Go()
+{literal}{{/literal}
+var totalpage = {$p.totalpage};
+var page = document.getElementById('page').value;
+if(page>totalpage)
+page=totalpage;
+window.location.href = "{$ServerPath}{$pageurl}".replace('#page#', page);
+{literal}}{/literal}
+</script>
+

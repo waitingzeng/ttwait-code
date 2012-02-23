@@ -1,0 +1,50 @@
+{include file='ad_top.html'}
+<form method="POST" action="ad_user.asp">
+	<table width="100%" height="30" border="0" cellpadding="0" cellspacing="0">
+	  <tr> 
+		<td align="center"><select name="searchType"><option value="username" selected="selected">Username</option><option value="usermail">Email</option></select>&nbsp;&nbsp;{t}searchKey{/t}:<input style="FONT-SIZE: 12px; WIDTH: 110px" type="text" name="searchKey" size="15" class=input>
+		<input type="submit" name="imageField2" value="{t}搜索{/t}" ></td>
+	  </tr>
+	</table>
+  </form>
+<table width="100%" border="0" cellspacing="1" cellpadding="5" bgcolor="#DBC2B0">
+        <tr bgcolor="688cb8"> 
+          <td bgcolor="#F5EFE7" align="center">ID</td>
+          <td bgcolor="#F5EFE7" align="center">{t}用户名{/t}</td>
+          <td bgcolor="#F5EFE7" align="center">E-mail</td>
+          <td bgcolor="#F5EFE7" align="center">{t}注册时间{/t}</td>
+          <td bgcolor="#F5EFE7" align="center">{t}类型{/t}</td>
+          <!--<td bgcolor="#F5EFE7" align="center">{t}积分{/t}</td>-->
+          <td bgcolor="#F5EFE7" align="center">{t}订单{/t}</td>
+          <td bgcolor="#F5EFE7" align="center">{t}操作{/t}</td>
+        </tr>
+	{if $p.totalrec ==0}
+<tr bgcolor="#FFFFFF">
+          <td colspan="8" bordercolor="#F5EFE7">{t}暂无内容{/t}</td>
+        </tr>
+    {else}
+		{foreach item=u from=$p.items}
+        <tr bgcolor="#FFFFFF"> 
+          <td align="center" bordercolor="#F5EFE7">{$u.id}</td>
+          <td align="center" bordercolor="#F5EFE7"><a href="ad_modify.asp?id={$u.id}">{$u.username}</a></td>
+          <td align="center" bordercolor="#F5EFE7">{$u.usermail}</td>
+          <td align="center" bordercolor="#F5EFE7">{$u.regtime}</td>
+          <td align="center" bordercolor="#F5EFE7">{$usertype[$u.user_type]}</td>
+          <!--<td align="center" bordercolor="#F5EFE7">{$u.savemoney}</td>-->
+          <td align="center" bordercolor="#F5EFE7">
+			<a href="ad_sub.asp?user_name={$u.username}">{t}点击查看{/t}</a></td>
+          <td align="center" bordercolor="#F5EFE7"> 
+            <a href="ad_user.asp?user_id={$u.id}&action=del" onClick="return confirm('{t}你确定要删除吗?{/t}')">{t}删除{/t}</a></td>
+        </tr>
+		{/foreach}
+        <tr bgcolor="#FFFFFF" align="right"> 
+          <td colspan="8" bordercolor="#F5EFE7">
+          {$p.totalpage|pagination:$p.pageIndex:"ad_user.asp?page=#page#"}
+		  </td>
+        </tr>
+		  {/if}
+      </table>
+
+ 
+
+

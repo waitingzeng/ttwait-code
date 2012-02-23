@@ -1,0 +1,31 @@
+{$header}
+  <table width="743px" border="0" cellpadding="0" style="border-collapse: collapse">
+     <tr>
+      <td width="743" height="48" style="border-top: 2px solid #FFFFFF" background="{$serverstyle}img/reg1.gif"><p style="margin-left: 40px">Welcome to post your question or suggest! We will contact you with the email!</p></td>
+    </tr>
+    <tr>
+      <td background="{$serverstyle}img/regbg.gif" align="left">
+      {if $success}
+		<p style="margin-left: 40px">Your feedback had been receive, please wait our reply!</p>
+		{/if}
+      <table width="90%" border="0" cellpadding="5" cellspacing="5px" style="margin-bottom: 6">
+        <form action="{$ServerPath}guestbook.asp?action=save" method="post" name="guestform" language="javascript" onSubmit="return guestform_onsubmit(this)">
+          <tr>
+            <td align="right" width="150">Your Email: </td>
+            <td><input style="FONT-SIZE: 12px; WIDTH: 210px" type="text" name="email" size="20" class=input>
+                  <font color="#FF0000"> *</font></td>
+          </tr>
+          <tr>
+            <td align="right" width="150">Content:</td>
+            <td><textarea name="content" rows="10" cols="30"></textarea>
+                  <font color="#FF0000"> *</font></td>
+          </tr>
+          <tr>
+            <td align="right" width="150"></td>
+            <td><input type="image" src="{$serverstyle}img/regbutton.gif" name="submit"></td>
+          </tr>
+        </form>
+      </table></td>
+    </tr>
+  </table>
+{$footer}

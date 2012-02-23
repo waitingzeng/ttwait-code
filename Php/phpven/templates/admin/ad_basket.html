@@ -1,0 +1,57 @@
+{include file='ad_top.html'}
+<table border="0" cellpadding="5" cellspacing="0" id="table1"><form method="POST" action="ad_basket.asp">
+	<tr>
+		<td align="center"><font color="#FF0000"><b>{t}模糊查找{/t}:</b></font></td>
+		<td align="center">{t}用户名{/t}</td>
+		<td align="center"><input type="text" name="user_name" size="12" class=input value="{$user_name}"></td>
+		<td align="center"><input type="submit" value="{t}搜索{/t}" name="B1"></td>
+	</tr></form>
+</table>
+<table border="0" cellpadding="0" style="border-collapse: collapse" width="100%" >
+	<tr>
+		<td valign="top">
+<div align="center">
+		<table border="0" cellspacing="1" cellpadding="5" height="32" bgcolor="#DBC2B0" width="100%" style="text-align:center">
+			<tr height="25">
+				<td bgcolor="#F5EFE7" align="center">{t}图片{/t}</td>
+				<td bgcolor="#F5EFE7" align="center">{t}用户名{/t}</td>
+				<td bgcolor="#F5EFE7" align="center">{t}编号{/t}</td>
+				<td bgcolor="#F5EFE7" align="center"> {t}时间{/t} </td>
+				<td bgcolor="#F5EFE7" align="center">{t}尺寸{/t}</td>
+				<td bgcolor="#F5EFE7" align="center">{t}价格{/t}</td>
+				<td bgcolor="#F5EFE7" align="center">{t}数量{/t}</td>
+				<td bgcolor="#F5EFE7" align="center">{t}订单号{/t}</td>
+				<td bgcolor="#F5EFE7" align="center">{t}操作{/t}</td>
+			</tr>
+  {foreach item=basket from=$p.items}
+  <form action="ad_basket.asp?action=modi&amp;basket_id={$basket.basket_id}" method="post">
+        	<tr bgcolor="#FFFFFF">
+				<td>
+<a href="{$pic_url}{$basket.hw_sn}.jpg" target="_blank"><img border="0" src="{$pic_url}{$basket.hw_sn}.jpg" onerror="this.src='images/noimage.jpg'" width="50" height="50"></a></td>
+				<td><a href="ad_basket.asp?user_name={$basket.user_name}">{$basket.user_name}</a></td>
+				<td align="center"><a href="{$ServerPath}views.asp?hw_id={$basket.hw_id}" target="_blank">{$basket.hw_sn}</td>
+				<td align="center">{$basket.basket_date}</td>
+				<td align="center">{$basket.hw_size}</td>
+				<td align="center">{$basket.hw_price}</td>
+				
+				<td align="center">{$basket.basket_count}</td>
+				<td align="center"><input value="{$basket.sub_number}" name="sub_number" class="input" /></td>
+				
+				<td align="center">
+				<input value="{t}修改{/t}" name="submit" type="submit" />&nbsp;
+				</td>
+			</tr>
+			</form>
+	{/foreach}
+
+</table>
+<table border="0" width="100%" cellspacing="0">
+	<tr>
+		<td height="30">
+        {$p.totalpage|pagination:$p.pageIndex:"ad_basket.asp?sub_number=$sub_number&user_name=$user_name&page=#page#"}
+        </td>
+	</tr></table>
+      	</div>
+		</td>
+	</tr>
+</table>

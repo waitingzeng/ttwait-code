@@ -1,0 +1,27 @@
+{include file='ad_top.html'}
+<table border="0" width="750" cellspacing="1" style="border-collapse: collapse" cellpadding="0" bgcolor="#DBC2B0">
+        <tr bgcolor="#6894d8"> 
+          <td bgcolor="#F5EFE7" height="30" align="center" width="30"> 
+            <div align="center">ID</div></td>
+          <td bgcolor="#F5EFE7" height="26" align="center"> 
+            <div align="center">Email</div></td>
+          <td bgcolor="#F5EFE7" height="26" align="center"> 
+            <div align="center">Body</div></td>
+           <td bgcolor="#F5EFE7" height="26" align="center" width="30"> </td>
+        </tr>
+		{if $p.totalrec == 0}
+<tr><td colspan="4" bgcolor="#FFFFFF" height="26" align="center">{t}暂无内容{/t}</td></tr>
+		{else}
+		{foreach item=n from=$p.items}
+        <tr bgcolor="#FFFFFF"> 
+          <td height="26" align="center">{$n.guest_id}</td>
+          <td height="26" align="center"><a href="mailto:{$n.email}">{$n.email}</a></td>
+          <td height="26">{$n.body}</td>
+          <td height="26" align="center"><a href="ad_guest.asp?guest_id={$n.guest_id}&action=del"  onClick="return confirm('{t}你确定要删除吗?{/t}')">{t}删除{/t}</a></td>
+        </tr>
+		{/foreach}
+<tr><td colspan="4" bgcolor="#FFFFFF" height="26" align="center">
+{$p.totalpage|pagination:$p.pageIndex:"ad_guest.asp?page=#page#"}
+</td></tr>
+</table>
+{/if}

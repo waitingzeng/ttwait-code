@@ -1,0 +1,51 @@
+{include file='ad_top.html'}
+<table border="0" cellspacing="1" bgcolor="#DBC2B0" cellpadding="5">
+  <tr><td align="center" colspan="5" bgcolor="#F5EFE7"><b>{t}送货方式{/t}{t}修改{/t}</b></td></tr>
+  <tr><td align="center" bgcolor="#F5EFE7">{t}名称{/t}</td>
+	  <td align="center" bgcolor="#F5EFE7">{t}附加费率%{/t}</td>
+	  <td align="center" bgcolor="#F5EFE7">{t}附加费用{/t}</td>
+	  <td align="center" bgcolor="#F5EFE7">{t}说明{/t}</td>
+	  <td align="center" bgcolor="#F5EFE7">{t}到货时间{/t}</td>
+	  <td align="center" bgcolor="#F5EFE7">{t}操作{/t}</td>
+	  </tr>
+	{foreach item=ps from=$pslist}
+<form method="post" action="ad_ps.asp?action=edit&ps_id={$ps.ps_id}">
+  <tr><td align="center" bgcolor="#FFFFFF"><input name="ps_name" class="input" type="text" size="13" value="{$ps.ps_name}"></td>
+	  <td align="center" bgcolor="#FFFFFF">
+		<input name="ps_fei" type="text" size="2" value="{$ps.ps_fei}" class="input">%</td>
+	  <td align="center" bgcolor="#FFFFFF">
+		<input name="ps_fujia" type="text" size="2" value="{$ps.ps_fujia}" class="input"></td>
+	  <td align="center" bgcolor="#FFFFFF">
+		<textarea rows="3" name="ps_content" cols="21">{$ps.ps_content}</textarea></td>
+	  <td align="center" bgcolor="#FFFFFF">
+		<input name="ps_time" type="text" size="6" value="{$ps.ps_time}" class="input"></td>
+	  <td align="center" bgcolor="#FFFFFF"><input type="submit" name="Submit" value="{t}修改{/t}">&nbsp;&nbsp;
+	  <a href="?action=del&ps_id={$ps.ps_id}" onClick="return confirm('{t}你确定要删除吗?{/t}')">{t}删除{/t}</a></td>
+</tr></form>
+{/foreach}
+</table>
+		<p>　</p>
+  <table border="0" cellpadding="5" cellspacing="1" bgcolor="#DBC2B0">
+<form method="post"  action="ad_ps.asp?action=add">
+  <tr> 
+    <td align="center" rowspan="2" bgcolor="#F5EFE7">{t}添加内容{/t}:</td>
+    <td align="center" bgcolor="#F5EFE7">{t}名称{/t}</td>
+    <td align="center" bgcolor="#F5EFE7">{t}附加费率%{/t}</td>
+    <td align="center" bgcolor="#F5EFE7">{t}附加费用{/t}</td>
+    <td align="center" bgcolor="#F5EFE7">{t}说明{/t}</td>
+    <td align="center" bgcolor="#F5EFE7">{t}到货时间{/t}</td>
+    <td align="center" bgcolor="#F5EFE7"></td>
+  </tr>
+  <tr> 
+    <td align="center" bgcolor="#FFFFFF">
+	<input name="ps_name" type="text" size="11" class="input"></td>
+    <td align="center" bgcolor="#FFFFFF"><input name="ps_fei" type="text" size="4" class="input">%</td>
+    <td align="center" bgcolor="#FFFFFF"><input name="ps_fujia" type="text" size="4" class="input"></td>
+    <td align="center" bgcolor="#FFFFFF">
+	<textarea rows="3" name="ps_content" cols="21"></textarea></td>
+    <td align="center" bgcolor="#FFFFFF">
+	<input name="ps_time" type="text" size="8" class="input"></td>
+    <td align="center" bgcolor="#FFFFFF">
+	<input type="submit" name="Submit2" value="{t}提交{/t}"></td>
+  </tr>
+  </form></table>

@@ -1,0 +1,29 @@
+{$header}
+<!--左边-->
+<div id="inbody">
+<div class="left">
+<script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+{include file="ingg.html"}
+{include file="insort.html"}
+</div>
+<!--右边-->
+<div class="right">
+<div class="right770">
+<h2 class="r06"></h2>
+{if $p.totalrec == 0}
+<h2 class="r07">Not Data Found</h2><h2 class="r02"></h2>
+{else}
+<h2 class="r07">{foreach item=item from=$categorys}
+                <a href="{$ServerPath}{$item.alias}.html"><b>{$item.name}</b></a> >> 
+            {/foreach}{$p.totalrec}&nbsp;Items,{$p.bottom}-{$p.top}</h2><h2>
+<!--调用时可重复这一段图片-->
+{foreach item=hw from=$p.items key=hw_ct}
+	{include file="ins.html"}
+{/foreach}
+<!--结束 下面是重复的例子-->
+</h2>
+{/if}</div>
+{$p.totalpage|pagination:$p.pageIndex:$pageurl}
+</div>
+</div>
+{$footer}

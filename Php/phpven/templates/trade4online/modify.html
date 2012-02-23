@@ -1,0 +1,87 @@
+{$header}
+  <table width=920 border=0 cellpadding=0 cellspacing=0 bgcolor="#FFFFFF" height="100">
+    <tr>
+      <td width=181 align="center" valign="top"><script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+		{include file="insort.html"}
+		</td>
+      <td valign="top" align="left">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%" background="{$serverstyle}img/pattern.gif" style="border: 1px solid #C0C0C0">
+              {if not $user}
+                <tr>
+                  <td align="center" height="100" colspan="2">User Not Found, Please<a href="{$ServerPath}login.asp" target=_blank>Login</a>, <a href="{$ServerPath}reg.asp" target=_blank>Chick Here to Register</a></td>
+                </tr>
+                {else}
+				{if $errmsg != ""}
+					<tr>
+                    <td height="30" width="100%" colspan="2" align="center">{$errmsg}</td>
+                  </tr>
+				{/if}
+                <form method="POST" action="?action=modify" onSubmit="return modifyform_onsubmit(this)">
+                  <tr>
+                    <td height="30" width="100%" colspan="2" align="center"><b>&nbsp;Update your information:</b></td>
+                  </tr>
+                  <tr>
+                    <td height="30" align="right" width="100">Username:</td>
+                    <td height="30" width="525">&nbsp;{$user.username}</td>
+                  </tr>
+                  <tr>
+                    <td height="30" align="right" width="100">Email:</td>
+                    <td height="30" width="525">&nbsp;
+                      <input type="text" name="user_mail" size="36" class=input value="{$user.usermail}">
+                      <font color="#FF0000">*</font></td>
+                  </tr>
+                  <tr>
+                    <td height="30" align="right" width="100">Phone Number:</td>
+                    <td height="30" width="525">&nbsp;
+                      <input type="text" name="user_tel" size="36" class=input value="{$user.usertel}"></td>
+                  </tr>
+				  <tr>
+                      <td height="30" align="right" width="100">Country:</td>
+                    <td height="30" width="525">&nbsp;
+                          <input type="text" name="user_country" size="36" class=input value="{$user.country}">
+                          <font color="#FF0000">*</font></td>
+                    </tr>
+                  <tr>
+                    <td height="30" align="right" width="100">Detail Address:</td>
+                    <td height="30" width="525">&nbsp;
+                      <input type="text" name="user_adds" size="36" class=input value="{$user.user_adds}">
+                      <font color="#FF0000">*</font></td>
+                  </tr>
+                  <tr>
+                    <td height="30" align="right" width="100">Zip Code:</td>
+                    <td height="30" width="525">&nbsp;
+                      <input type="text" name="user_postcode" size="10" class=input value="{$user.user_postcode}">
+                      <font color="#FF0000">*</font></td>
+                  </tr>
+                  <tr>
+                    <td height="30" align="right" width="100">Real Name:</td>
+                    <td height="30" width="525">&nbsp;
+                      <input type="text" name="user_namec" size="10" class=input value="{$user.user_namec}">
+                      <font color="#FF0000">*</font></td>
+                  </tr>
+				  <tr>
+                      <td height="30" align="right" width="100">MSN:</td>
+                      <td height="30" width="525">&nbsp;
+                          <input type="text" name="usermsn" size="10" class=input value="{$user.usermsn}"></td>
+                    </tr>
+					<tr>
+                      <td height="30" align="right" width="100">Google Talk:</td>
+                      <td height="30" width="525">&nbsp;
+                          <input type="text" name="usergoogle" size="10" class=input value="{$user.usergoogle}"></td>
+                    </tr>
+					<tr>
+                      <td height="30" align="right" width="100">Yahoo:</td>
+                      <td height="30" width="525">&nbsp;
+                          <input type="text" name="useryahoo" size="10" class=input value="{$user.useryahoo}"></td>
+                    </tr>
+                  <tr>
+                    <td height="30" align="right" width="100"></td>
+                    <td height="30" width="525">&nbsp;
+                      <input type="image" src="{$serverstyle}img/regbutton.gif" name="submit"></td>
+                  </tr>
+                </form>
+                {/if}
+              </table></td>
+    </tr>
+  </table>
+{$footer}

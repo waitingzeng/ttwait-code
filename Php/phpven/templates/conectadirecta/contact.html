@@ -1,0 +1,7 @@
+<div class="right770"><h2 class="r01">Contact</h2><h2 class="r02"></h2><h2>
+{foreach item=m from=$config.msn}
+<div class="r320"><h2><img src="{$serverstyle}img/msn.jpg" /></h2><h2 class="r03"><a href='msnim:add?contack={$m}'>{$m}</a></h2></div>
+{/foreach}
+<div class="r320"><h2><img src="{$serverstyle}img/mail.jpg" /></h2><h2 class="r03"><a href="mailto:{$config.mail}">{$config.mail}</a></h2></div>
+<div class="r320"><h2><img src="{$serverstyle}img/tel.jpg" /></h2><h2 class="r03">{$config.tel}</h2></div>
+</h2></div>

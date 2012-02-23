@@ -1,0 +1,31 @@
+{include file='ad_top.html'}
+<table border="0" cellpadding="0" cellspacing="1" style="border-collapse: collapse" height="30" bgcolor="#DBC2B0">
+      <tr>
+        <td width="100" align="center" bgcolor="#F5EFE7">{t}分类内容管理{/t}:</td>
+{foreach item=t from=$typelist}
+<td width="100" align="center" bgcolor="#F5EFE7"><a href="ad_booktype.asp?typeid={$t.id}">{$t.typename}</a></td>
+{foreachelse}
+	{t}暂无内容{/t}
+{/foreach}
+</tr></table><p style="margin-top: 5px; margin-bottom: 5px">
+<table border="0" bgcolor="#DBC2B0" style="border-collapse: collapse" cellpadding="5" cellspacing="1">
+      <form method="post" action="ad_type.asp">
+		<tr>
+        <td bgcolor="#F5EFE7">{t}新增网站信息分类名称{/t}:</td>
+        <td bgcolor="#FFFFFF"> <input type="text" name="typename" size="20"></td>
+        <td bgcolor="#FFFFFF"> 
+        <input type="submit" name="addtypename" value="{t}提交{/t}">
+        <input type="hidden" name="action" value="add"></td></tr></form>
+  </table>
+  {foreach item=t from=$typelist}
+  <p style="margin-top: 5px; margin-bottom: 5px">
+<table width="300" border="0" bgcolor="#DBC2B0" style="border-collapse: collapse" cellpadding="8" cellspacing="1">
+    <form name="form1" method="post" action="?action=edit&id={$t.id}"><tr> 
+      <td align="center" bgcolor="#FFFFFF">
+		<input type="text" name="typename" value="{$t.typename}" maxlength="20" size="20"></td>
+      <td align="center" bgcolor="#FFFFFF">
+        <input type="submit" name="mod" value="{t}修改{/t}"></td>
+      <td align="center" bgcolor="#FFFFFF"><a href="?action=del&id={$t.id}" onClick="return confirm('{t}你确定要删除吗?{/t}')">{t}删除{/t}</a></td>
+    </tr></form>
+  </table>
+	{/foreach}

@@ -1,0 +1,7 @@
+<marquee behavior=scroll direction=left width=200 height=20 scrollamount=1/100 scrolldelay=1 onmouseover='this.stop()' onmouseout='this.start()'>
+	 {foreach item=pub from=$pubs key=pub_ct}<a href="#" onclick="javascript:window.open('{$ServerPath}notice.asp?id={$pub.id}%>','newwindow','toolbar=no,scrollbars=yes,resizable=no,top=0,left=0,width=370,height=300');">
+<font color="#FFFFFF">{$pub_ct}.{$pub.title}</font><font color="#CCCCCC">({$pub.date})</font></a>&nbsp;&nbsp;&nbsp;&nbsp;
+{foreachelse}
+	<font color="#FFFFFF">No Data</font>
+{/foreach}
+		</marquee>

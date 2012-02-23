@@ -1,0 +1,58 @@
+{$header}
+<div id="inbody">
+<div class="left">
+<script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+{include file="ingg.html"}
+{include file="insort.html"}
+</div>
+<!--右边-->
+<div class="right">
+<div class="right770">
+  <h2 class="r01">Shopping Cart</h2>
+  <h2 class="r02"></h2><h2>
+  <br/>
+  {if not $basketlist}
+  <h3>No Product in your Shopping Cart</h3>
+  {else}
+<table width="700" border="1" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="25" class="r04"><div align="center">Picture</div></td>
+    <td class="r04"><div align="center">SeralNo</div></td>
+    <td class="r04"><div align="center">Product</div></td>
+    <td class="r04"><div align="center">Price</div></td>
+    <td class="r04"><div align="center">size</div></td>
+    <td class="r04"><div align="center">Quantity</div></td>
+    <td class="r04"><div align="center">Total</div></td>
+    <td class="r04"><div align="center">Modify</div></td>
+  </tr>
+  {assign var='totalcash' value="0"}
+   {foreach item=basket from=$basketlist}
+    <form name="form1" method="POST" action="?action=change&basket_id={$basket.basket_id}">
+  <tr>
+    <td height="25"><div align="center"><img src="{$config.pic_url}{$basket.hw_sn}.jpg" width="100" height="75" /></div></td>
+    <td><div align="center">{$basket.hw_sn}</div></td>
+    <td><div align="center"><a target="_blank" href="{$ServerPath}{$basket.alias}.html">{$basket.hw_name}</a></div></td>
+    <td><div align="center">{$basket.hw_price}</div></td>
+    <td><div align="center">{$basket.hw_size}</div></td>
+    <td><div align="center"><input type="text" name="count" size="2" value="{$basket.basket_count}"></div></td>
+    <td><div align="center">{$basket.basket_count*$basket.hw_price}</div></td>
+    <td><div align="center"><input type="submit" value="Edit" name="B1">
+                          <input name="button" type="button" onClick="javascript:location.href =' {$ServerPath}buy.asp?action=del&basket_id={$basket.basket_id}'" value="Del"></div></td>       
+  </tr></form>
+		 {assign var='totalcash' value="`$totalcash+$basket.basket_count*$basket.hw_price`"}
+   {/foreach}
+    <tr>
+  <td height="25" colspan="8" class="r05">Subtotal:<font color="#CC0000">${$totalcash}</font>&nbsp;&nbsp;</td>
+  </tr>
+  <tr>
+  <td height="25" colspan="8" class="r05"><input name="button" type="button" onClick="javascript:window.open('javascript:history.go(-1)','_self','')" value="Continue Shopping">
+                      &nbsp;
+    <input name="button" type="button" onClick="javascript:window.open('{$ServerPath}cash.asp','_self','')" value="Check Out"></td>
+  </tr>
+</table> {/if}
+<br/>
+</h2></div>
+{include file="contact.html"}
+</div>
+</div>
+{$footer}

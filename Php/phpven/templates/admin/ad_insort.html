@@ -1,0 +1,13 @@
+{include_php file="insort.php"}
+<link rel="stylesheet" href="css/jquery.treeview.css" />
+<script src="js/jquery.cookie.js" type="text/javascript"></script>
+<script src="js/jquery.treeview.js" type="text/javascript"></script>
+<script language="javascript">var menuurl="ad_delhw.asp";var pinpai="";var ServerPath = '{$ServerPath}';</script>
+<script language="javascript" src="js/site1.js"></script>
+<h2 class="title">Products List</h2>
+	<ul id="navigation" style="background:#FFFFFF">
+{foreach item=c from=$depth1}
+	<li><a href="ad_delhw.asp?cat_id={$c.id}" >{$c.name}</a><ul cat="{$c.id}" id="cat_{$c.id}" depth="{$c.depth}"></ul>
+	</li>
+{/foreach}
+</ul>

@@ -1,0 +1,11 @@
+{include_php file="insort.php"}
+<script language="javascript">var menuurl=false</script>
+<div  class="left200c">Products List</div>
+	<div class="left200"><h2 class="left01">
+    <ul id="navigation">
+{foreach item=c from=$depth1}
+	<li><span>{$c.name}</span><ul cat="{$c.id}" id="cat_{$c.id}" depth="{$c.depth}"></ul>
+	</li>
+{/foreach}
+</ul>
+</h2></div>

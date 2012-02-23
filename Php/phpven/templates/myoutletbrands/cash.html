@@ -1,0 +1,74 @@
+{$header}
+<div id="inbody">
+<div class="left">
+<script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+{include file="ingg.html"}
+{include file="insort.html"}
+</div>
+<div class="right">
+<div class="right770">
+  <h2 class="r01">Check Out</h2>
+  <h2 class="r02"></h2><h2>
+  <br/>
+  {if not $basketlist}
+  <h3>No Product in your Shopping Cart</h3>
+  {include file="contact.html"}
+  {else}
+<table width="700" border="1" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="25" class="r04"><div align="center">Picture</div></td>
+    <td class="r04"><div align="center">SeralNo</div></td>
+    <td class="r04"><div align="center">Price</div></td>
+    <td class="r04"><div align="center">size</div></td>
+    <td class="r04"><div align="center">Quantity</div></td>
+    <td class="r04"><div align="center">Total</div></td>
+  </tr>
+   {assign var='totalcash' value="0"}
+   {foreach item=basket from=$basketlist}
+  <tr>
+    <td height="25"><div align="center"><img src="{$config.pic_url}{$basket.hw_sn}.jpg" width="100" height="75" /></div></td>
+    <td><div align="center"><a target="_blank" href="{$ServerPath}{$basket.alias}.html">{$basket.hw_sn}</a></div></td>
+    <td><div align="center">${$basket.hw_price}</div></td>
+    <td><div align="center">{$basket.hw_size}</div></td>
+    <td><div align="center">{$basket.basket_count}</td>
+    <td><div align="center">${$basket.basket_count*$basket.hw_price}</div></td>   
+  </tr>
+		{assign var='totalcash' value="`$totalcash+$basket.basket_count*$basket.hw_price`"}
+   {/foreach}
+    <tr>
+  <td height="25" colspan="6" class="r05">Subtotal:<font color="#CC0000">${$totalcash}</font>&nbsp;&nbsp;</td>
+  </tr>
+</table><br/>
+</h2></div>
+<div class="right770"><h2 class="r01">Contact</h2><h2 class="r02"></h2><h2>
+<form method="post" onsubmit="return subform_onsubmit(this)" name="subform" action="{$ServerPath}cashsave.asp?action=subp">
+<div class="right570">
+<div class="right150">Your Name</div><div class="right400"><input type="text" name="sub_from" value="{$user.username}"></div>
+<div class="right150">Your Tel</div><div class="right400"><input type="text" name="sub_fromtel" value="{$user.usertel}"></div>
+<div class="right150">Your Email</div><div class="right400"><input type="text" name="sub_frommail" value="{$user.usermail}"></div>
+<div class="right150">Your Country</div><div class="right400"><input type="text" name="sub_fromcountry" value="{$user.country}"></div>
+<div class="right150">Your Address</div><div class="right400"><input type="text" name="sub_fromadds" value="{$user.user_adds}"></div>
+<div class="right150">Your Zip Code</div><div class="right400"><input type="text" name="sub_frompost" value="{$user.user_postcode}"></div>
+<div class="right150"></div><div class="right400">Receiver's Infomation&nbsp;&nbsp;<input name="be_username" type="checkbox" value="beusername" onClick="Fuc_BeUserName(this.checked, this.form)"> Your are Receiver </div>
+<div class="right150">Name</div><div class="right400"><input type="text" name="sub_to"><span>*</span></div>
+<div class="right150">Email</div><div class="right400"><input type="text" name="sub_mail"><span>*</span></div>
+<div class="right150">Country</div><div class="right400"><input type="text" name="sub_country"><span>*</span></div>
+<div class="right150">Detail Address</div><div class="right400"><input type="text" name="sub_adds"><span>*</span></div>
+<div class="right150">Zip Code</div><div class="right400"><input type="text" name="sub_post"><span>*</span></div>
+<div class="right150">Phone Number</div><div class="right400"><input type="text" name="sub_tel"></div>
+{foreach item=p from=$payments key=p_ct}
+{if $p_ct == 0}
+<div class="right150">Payment</div><div class="right400 right4002"><input type="radio" value="{$p.pay_id}" name="pay_id" checked="checked" class="payid" >{$p.pay_name}&nbsp;<span id="payid_{$p.pay_id}" class="payidspan" style="display:block">{$p.pay_content}</span></div>
+{else}
+<div class="right150"></div><div class="right400 right4002"><input type="radio" value="{$p.pay_id}" name="pay_id" class="payid" >{$p.pay_name}&nbsp;<span id="payid_{$p.pay_id}" class="payidspan">{$p.pay_content}</span></div>
+{/if}
+{/foreach}
+<div class="right150">Shopping/Dilivery</div><div class="right400">{foreach item=p from=$pss key=p_ct}<input type="radio" value="{$p.ps_id}" name="ps_id"{if $p_ct == 0} checked="checked"{/if}>{$p.ps_name}&nbsp;{/foreach}</div>
+<div class="right150">Other</div><div class="right400 right4002"><textarea cols="25" rows="3" name="other"></textarea><input type="hidden" value="0" name="totime"><input type="hidden" name="fapiao" value="0"><input type="hidden" name="quehuo" value="0"></div>
+<div class="right150"></div><div class="right400"><input type="submit" value="Submit" />
+</div>
+</div></form>
+</h2></div>{/if}
+</div>
+</div>
+{$footer}

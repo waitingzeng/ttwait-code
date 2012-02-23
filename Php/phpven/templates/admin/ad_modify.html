@@ -1,0 +1,69 @@
+{include file='ad_top.html'}
+{if $errmsg}<p>{$errmsg}</p>{/if}
+<form method="POST" action="ad_modify.asp?id={$user.id}&action=change">
+	<table width="90%" border="0" style="border-collapse: collapse" cellpadding="5" bgcolor="#DBC2B0" cellspacing="1">
+	  <tr> 
+		<td width="21%" align="right" bgcolor="#F5EFE7">{t}用户名{/t}:</td>
+		<td width="79%" bgcolor="#F5EFE7">  {$user.username}</td>
+	  </tr>
+	  <tr> 
+		<td width="21%" align="right" bgcolor="#FFFFFF">{t}密&nbsp;码{/t}:</td>
+		<td width="79%" bgcolor="#F5EFE7">  <input style="FONT-SIZE: 12px; WIDTH: 210px" type="password" name="userpass" size="36" class=input></td>
+	  </tr>
+	  <tr> 
+		<td width="21%" bgcolor="#FFFFFF" align="right">E-mail:</td>
+		<td width="79%" bgcolor="#FFFFFF">　<input style="FONT-SIZE: 12px; WIDTH: 210px" type="text" name="user_mail" size="36" class=input value="{$user.usermail}"></td>
+	  </tr>
+	  <tr> 
+		<td width="21%" bgcolor="#FFFFFF" align="right">{t}电话{/t}:</td>
+		<td width="79%" bgcolor="#FFFFFF">　<input style="FONT-SIZE: 12px; WIDTH: 210px" type="text" name="user_tel" size="36" class=input value="{$user.usertel}"></td>
+	  </tr>
+	  <tr> 
+		<td width="21%" bgcolor="#FFFFFF" align="right">{t}邮编{/t}:</td>
+		<td width="79%" bgcolor="#FFFFFF">　<input style="FONT-SIZE: 12px; WIDTH: 110px" type="text" name="user_postcode" size="36" class=input value="{$user.user_postcode}"></td>
+	  </tr>
+	  <tr> 
+		<td width="21%" bgcolor="#FFFFFF" align="right">{t}国家{/t}:</td>
+		<td width="79%" bgcolor="#FFFFFF">　<input style="FONT-SIZE: 12px; WIDTH: 260px" type="text" name="country" size="36" class=input value="{$user.country}"></td>
+	  </tr>
+	  <tr> 
+		<td width="21%" bgcolor="#FFFFFF" align="right">{t}地址{/t}:</td>
+		<td width="79%" bgcolor="#FFFFFF">　<input style="FONT-SIZE: 12px; WIDTH: 260px" type="text" name="user_adds" size="36" class=input value="{$user.user_adds}"></td>
+	  </tr>
+	  <tr>
+		<td width="21%" bgcolor="#FFFFFF" align="right">{t}真实姓名{/t}:</td>
+		<td width="79%" bgcolor="#FFFFFF">　<input style="FONT-SIZE: 12px; WIDTH: 110px" type="text" name="user_namec" size="36" class=input value="{$user.user_namec}"></td>
+	  </tr>
+	  <tr> 
+		<td width="21%" align="right" bgcolor="#FFFFFF">MSN:</td>
+		<td width="79%" bgcolor="#FFFFFF">  {$user.usermsn}</td>
+	  </tr>
+	  <tr> 
+		<td width="21%" align="right" bgcolor="#FFFFFF">google talk:</td>
+		<td width="79%" bgcolor="#FFFFFF">  {$user.usergoogle}</td>
+	  </tr>
+	  <tr> 
+		<td width="21%" align="right" bgcolor="#FFFFFF">yahoo:</td>
+		<td width="79%" bgcolor="#FFFFFF">  {$user.useryahoo}</td>
+	  </tr>
+	  <!--
+		<tr>
+		<td width="21%" bgcolor="#FFFFFF" align="right">
+		用户等级与折扣:</td>
+		<td width="79%" bgcolor="#FFFFFF">&nbsp; 
+	<select size="1" name="user_type">
+	{foreach item=t from=$usertype}
+	<option value="{$t.usertype_id}" {if $user.user_type == $t.usertype_id} selected{/if}>{$t.usertype_name}折扣:{$t.usertype_zhekou}</option>
+	{/foreach}
+	</select></td>
+	  </tr>-->
+	  <tr> 
+		<td width="21%" bgcolor="#FFFFFF" align="right">
+		<p align="right">{t}积分修改{/t}:</td>
+		<td width="79%" bgcolor="#FFFFFF">&nbsp;
+		<input style="FONT-SIZE: 12px; WIDTH: 110px" type="text" name="jifen" size="36" class=input value="{$user.jifen}"></td>
+	  </tr>
+	  <tr> 
+		<td colspan="2" bgcolor="#FFFFFF" align="center"><input name="B1" type=submit value="{t}修改{/t}"></td>
+	  </tr></form>
+	</table>

@@ -1,0 +1,23 @@
+<!--脚部-->
+<div id="inbody">
+<div class="foot01">{$config.index_content}</div>
+<div class="foot02">{foreach item=link from=$links}<a href="{$link.url}" target="_blank" title="{$link.wordlink}"><img src="{$ServerPath}{$link.logo}" border="0"/></a>{/foreach}</div>
+<div class="logo"></div>
+<div class="foot03">Copyright &copy;<a href="{$config.web}">{$config.homepage}</a>. All Rights Reserved.<br />
+   Phone Number:{$config.tel}<br />
+   Email:<a href="mailto:{$config.mail}">{$config.mail}</a> Fax:{$config.fax}<br>
+   Detail Address:{$config.ymaddr} Zip Code:{$config.code}&nbsp;<a target="_blank" href="http://www.miibeian.gov.cn/">{$config.icp}</a> </div>
+<div class="foot04">
+</div>
+</div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+{literal}try {{/literal}
+var pageTracker = _gat._getTracker("{$config.banquan}");
+pageTracker._trackPageview();
+{literal}} catch(err) {}{/literal}</script>
+</body>
+</html>

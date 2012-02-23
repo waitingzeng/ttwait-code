@@ -1,0 +1,13 @@
+{include_php file="ingg.php"}
+{if $pubs != 0}
+	<div class="left200"><h2><img src="{$serverstyle}img/left03.gif" /></h2></h2><h2 class="left02">
+    <marquee direction="up" scrollamount="1" scrolldelay="100" loop="-1" class="left02" onmouseover="stop()" onmouseout="start()">
+	{foreach item=pub from=$pubs key=pub_ct}
+	<div class="leftgg" ><a href="{$ServerPath}notice.asp?id={$pub.id}" target="_blank" title="{$pub.title}">{$pub_ct+1}.{$pub.title}</a></div>
+	{/foreach}
+    </marquee>
+    </h2>
+</div>
+{else}
+<div class="left200"><h2><a href="{$ServerPath}help.asp"><img src="{$serverstyle}img/left02.gif" border="0" /></a></h2></div>
+{/if}

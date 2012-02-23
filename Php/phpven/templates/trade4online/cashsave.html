@@ -1,0 +1,173 @@
+{$header}
+  <table border="0" cellpadding="0" cellspacing="0" width="920px">
+    <tr>
+      <td width="180" align="center" valign="top" rowspan="2">
+			<script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+			{include file="insort.html"}
+		</td>
+      <td align="center" valign="top"><pre> </pre>
+        {if not $sub }
+			No Product In Your Shopping Cart
+		{else}
+        <table width="736px" border="0" cellpadding="0" background="{$serverstyle}img/cash01.gif">
+          <tr>
+            <td height="24" colspan="9" background="{$serverstyle}img/cash02.gif"></td>
+          </tr>
+          <tr>
+            <td height="26" colspan="9" align="center"><b>Order finished, Order Number <font color="red">{$sub.sub_number}</font>:</b></td>
+          </tr>
+         <tr height="30"  class="tr_bottom">
+                  <td></td>
+				  <td>Pic</td>
+                  <td>SN</td>
+                  <td>Price</td>
+				  <td>Size </td>
+                  <td>Quantity </td>
+                  <td>Total</td>
+                  <td></td>
+                </tr>
+			{assign var='totalcash' value="0"}
+			{foreach item=basket from=$basketlist}
+                <tr class="tr_bottom">
+                  <td></td>
+				  <td><img src="{$config.pic_url}{$basket.hw_sn}.jpg" width="64px" height="48px"></td>
+                  <td><a target="_blank" href="{$ServerPath}{$basket.alias}.html">{$basket.hw_sn}</a></td>
+                  <td>{$basket.hw_price}</td>
+                  <td>{$basket.hw_size}</td>
+                  <td>{$basket.basket_count}</td>
+                  <td>{$basket.basket_count*$basket.hw_price}</td>
+                  <td></td>
+                </tr>
+                {assign var='totalcash' value="`$totalcash+$basket.basket_count*$basket.hw_price`"}
+				 {/foreach}
+			{assign var='tps' value="`$totalcash*$ps.ps_fei/100+$ps.ps_fujia`"}
+			{assign var='ttps' value="`$totalcash+$tps`"}
+            {assign var='tpay' value="`$ttps*$pay.pay_fei/100+pay.pay_fujia`"}
+            {assign var='total' value="`$ttps+$tpay`"}
+            {if $promo}
+             {if $promo.type}
+               {assign var='promoval' value="`$promo.num+$promo.num*$pay.pay_fei/100`"}
+               {else}
+               {assign var='promoval' value="`$total*$promo.num/100`"}
+               {/if}
+             {else}
+             	{assign var='promoval' value="0"}
+             {/if}
+<tr>
+              <td height="26" colspan="8" align="right"><p style="margin-top:8px; margin-bottom:8px; padding-right:10px">
+                Subtotal:<font color="red">{$totalcash}</font><br/>
+                {if $tps>0}Shipping:<font color="red">{$ps.ps_name}</font>,  Shipping Fee:<font color="red">${$tps}</font><br>{/if}
+                {if $tpay > 0}Payment:<font color="red">{$pay.pay_name}</font>,  Payment Fee:<font color="red">${$tpay}</font><br>{/if}
+				Total:<font color=red>${$total|string_format:'%.0f'}</font><br/>
+				{if $promoval>0}Promo: <font color="#FF0000">${$promoval}</font>&nbsp;&nbsp;You Need Pay<font color=red>${$total-$promoval|string_format:'%.0f'}</font>{/if}
+                </p>
+				<br/>
+				{if $payonline.paypal == 1}
+			  		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                            <tr>
+                              <td align="right"><input type="hidden" name="cmd" value="_xclick">
+                                  <input type="hidden" name="business" value="{$payonline.pay_paypal}">
+                                  <input type="hidden" name="item_name" value="{$sub.sub_number}">
+                                  <input type="hidden" name="amount" value="{$total|string_format:'%.0f'}">
+                                  <input type="hidden" name="no_note" value="1">
+                                  <input type="hidden" name="currency_code" value="USD">
+                                  <input type="hidden" name="lc" value="C2">
+                                  <input type="hidden" name="bn" value="PP-BuyNowBF">
+                                  <input type="image" src="{$ServerPath}images/pay/paypal_buy.gif" border="0" name="submit" width="115" height="24"></td>
+                            </tr>
+                        </form>
+                      </table>
+					 {/if}
+				 </td>
+              <td height="26" align="right" width="20">
+			  		
+			  </td>
+            </tr>
+		</table>
+        <table border="0" cellpadding="0" cellspacing="0" width="736px" background="{$serverstyle}img/cash2.gif">
+          <tr>
+            <td height="48" colspan="2" background="{$serverstyle}img/cash0.gif"></td>
+          </tr>
+          <tr>
+            <td height="26" align="right">Your Name:</td>
+            <td height="26" align="left">&nbsp;&nbsp;{$sub.sub_from}</td>
+          </tr>
+          <tr>
+            <td height="26" align="right" width="19%">Your Tel:</td>
+            <td height="26" align="left">&nbsp;&nbsp;{$sub.sub_fromtel}</td>
+          </tr>
+          <tr>
+            <td height="26" align="right" width="19%">Your Email:</td>
+            <td height="26" align="left">&nbsp;&nbsp;{$sub.sub_frommail}</td>
+          </tr>
+            <tr>
+              <td height="26" align="right" width="19%">Your Country:</td>
+              <td height="26" align="left">&nbsp;&nbsp;{$sub.sub_fromcountry}</td>
+            </tr>
+          <tr>
+            <td height="26" align="right" width="19%">Your Address:</td>
+            <td height="26" align="left">&nbsp;&nbsp;{$sub.sub_fromadds}</td>
+          </tr>
+          <tr>
+            <td height="26" align="right" width="19%">Your ZipCode:</td>
+            <td height="26" align="left">&nbsp;&nbsp;{$sub.sub_frompost}</td>
+          </tr>
+          <tr>
+            <td height="48" colspan="2" background="{$serverstyle}img/cash3.gif"></td>
+          </tr>
+        </table>
+        <table border="0" cellpadding="0" cellspacing="0" width="736px" background="{$serverstyle}img/cash4.gif">
+          <tr>
+            <td height="26" align="right" width="19%">Receiver's Name:</td>
+            <td height="26" align="left">&nbsp;&nbsp;{$sub.sub_to}</td>
+          </tr>
+          <tr>
+            <td height="26" align="right" width="19%">Phone Number:</td>
+            <td height="26" align="left">&nbsp;&nbsp;{$sub.sub_tel}</td>
+          </tr>
+          <tr>
+            <td height="26" align="right" width="19%">Email:</td>
+            <td height="26" align="left">&nbsp;&nbsp;{$sub.sub_mail}</td>
+          </tr>
+			<tr>
+              <td height="26" align="right" width="19%">Address:</td>
+              <td height="26" align="left">&nbsp;&nbsp;{$sub.sub_country}</td>
+            </tr>
+          <tr>
+            <td height="26" align="right" width="19%">Address:</td>
+            <td height="26" align="left">&nbsp;&nbsp;{$sub.sub_adds}</td>
+          </tr>
+          <tr>
+            <td height="26" align="right" width="19%">Zip Code:</td>
+            <td height="26" align="left">&nbsp;&nbsp;{$sub.sub_post}</td>
+          </tr>
+          <tr>
+            <td height="26" align="right" width="19%">Arrival Time:</td>
+          <tr>
+            <td height="45" align="right" width="19%" valign="top"  align="left"><p style="line-height: 150%"> Payment:</td>
+            <td height="45" valign="top"  align="left"><p style="line-height:150%">
+                &nbsp;&nbsp;{$pay.pay_name}<br>
+                <font color="#0000FF">{$pay.pay_content}</font>
+            </td>
+          </tr>
+          <tr>
+            <td height="45" align="right" width="19%" valign="top"><p style="line-height: 150%"> Shipment:</td>
+            <td height="45" valign="top"  align="left"><p style="line-height:150%">
+                &nbsp;&nbsp;{$ps.pa_name}<br>
+                <font color="#0000FF">Normal Time:{$ps.ps_time}  &nbsp; {$ps.ps_content}</font>
+            </td>
+          </tr>
+          <tr>
+            <td height="26" align="right" width="19%">Other:</td>
+            <td height="26">&nbsp;&nbsp;{$sub.sub_other}</td>
+          </tr>
+          <tr>
+            <td height="36" align="right" colspan="2" background="{$serverstyle}img/cash5.gif"></td>
+          </tr>
+        </table>
+         {/if}
+		</td>
+    </tr>
+  </table>
+{$footer}

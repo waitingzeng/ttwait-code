@@ -1,0 +1,15 @@
+{include file='ad_top.html'}
+<h1>Clear Cache</h1>
+<ul>
+<li><a href="?type=all">all</a></li>
+<li><a href="?type=languange">languange</a></li>
+<li><a href="?type=template">template</a></li>
+<li><a href="?type=tag">tag</a></li>
+<li><a href="?type=js">js</a></li>
+<li><form action="?type=prev" method="post">Prev <input type="text" name="prev" /><input type="submit" name="submit" value="submit"> </form></li>
+<li><form action="?type=custom" method="post">Key <select name="key" multiple="multiple">
+{for k in keys}
+<option value="{$k}">{$k}</option>
+{/for}
+</select><input type="submit" name="submit" value="submit"> </form></li>
+</ul>

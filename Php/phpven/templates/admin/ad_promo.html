@@ -1,0 +1,59 @@
+{include file='ad_top.html'}
+<body bgcolor="#FFFFFF" text="#000000" background="blue.gif">
+		<table width="242" border="0" cellspacing="1" cellpadding="5" bgcolor="#DBC2B0">
+			<form action="ad_promo.asp" method=post><tr>
+				<td bgcolor="#F5EFE7" colspan="2" align="center">
+				<font style="font-size: 9pt; font-weight: 700">{t}新增一个优惠码{/t}</font></td>
+			</tr>
+			<tr>
+				<td width="71" bgcolor="#FFFFFF" align="right">
+				<span style="font-size: 9pt">{t}优惠码{/t}:</span></td>
+				<td width="155" bgcolor="#FFFFFF">
+				<input type="text" name="code1" size="20" class="input"></td>
+			</tr>
+				<tr>
+				<td width="71" bgcolor="#FFFFFF" align="right">
+				<span style="font-size: 9pt">{t}类型{/t}:</span></td>
+				<td width="155" bgcolor="#FFFFFF">
+				<select name="type1">
+                    <option value="0">折扣</option>
+                    <option value="1">减价</option>
+                </select>
+              	</td>
+				</tr>
+             <tr>
+				<td width="71" bgcolor="#FFFFFF" align="right">
+				<span style="font-size: 9pt">{t}数量{/t}:</span></td>
+				<td width="155" bgcolor="#FFFFFF">
+				<input type="text" name="num1" size="20" class="input"></td>
+			</tr>
+			<tr>
+				<td width="71" bgcolor="#FFFFFF"></td>
+				<td width="155" bgcolor="#FFFFFF"><input type="submit" name="addname" value="{t}提交{/t}">
+		<input type=hidden name="action" value="addname"></td>
+			</tr></form>
+		</table>	
+  	{foreach item=promo from=$promolist}
+<table border="0" cellspacing="1" cellpadding="5" width="300px" bgcolor="#DBC2B0"><form method=post action="ad_promo.asp?action=mod&id={$promo.id}">
+				<tr>
+					<td bgcolor="#FFFFFF" width="10%">{$promo.id}</td>
+					<td bgcolor="#FFFFFF">
+					<input type="text" name="code" value="{$promo.code}" class="input" size="10"></td>
+                    <td bgcolor="#FFFFFF">
+                    <select name="type">
+                    	<option value="0" selected="selected">折扣</option>
+                        <option value="1" {if $promo.type} selected="selected"{/if}>减价</option>
+                    </select>
+					</td>
+					<td bgcolor="#FFFFFF">
+					<input type="text" name="num" value="{$promo.num}" size="10" class="input"></td>
+                    <td bgcolor="#FFFFFF">
+					<input type="text" name="state" value="{$promo.state}" size="10" class="input"></td>
+        <td bgcolor="#FFFFFF"><input type="submit" name="modify" value="{t}修改{/t}"></td>
+        <td bgcolor="#FFFFFF"><a href="ad_promo.asp?action=del&id={$promo.id}" onClick="return confirm('{t}你确定要删除吗?{/t}')">Del</a></td>
+   </tr></form>
+   </table>
+   {/foreach}
+	{if $errmsg}<p>{$errmsg}</p>{/if}
+</body>
+</html>

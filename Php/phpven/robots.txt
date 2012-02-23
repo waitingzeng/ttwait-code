@@ -1,0 +1,10 @@
+User-agent: *
+Disallow:  /*/buy.asp
+Disallow:  /*/order.asp
+Disallow:  *-p$
+Disallow:  *html,0.7$
+Disallow:  /html/*
+Disallow:  /link-exchange.php
+Disallow:  buy.php
+Disallow:  ad_*.php
+Disallow:  ad_*.asp

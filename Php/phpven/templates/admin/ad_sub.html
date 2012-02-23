@@ -1,0 +1,47 @@
+{include file='ad_top.html'}
+<table border="0" cellpadding="5" cellspacing="0" id="table1"><form method="POST" action="ad_sub.asp">
+	<tr>
+		<td align="center"><font color="#FF0000"><b>{t}模糊查找{/t}:</b></font></td>
+		<td align="center">{t}订单号{/t}</td>
+		<td align="center"> 
+<input type="text" name="sub_number" size="12" class=input value="{$sub_number}"></td>
+		<td align="center">{t}用户名{/t}</td>
+		<td align="center"><input type="text" name="user_name" size="12" class=input value="{$user_name}"></td>
+		<td align="center">{t}状态{/t}</td>
+		<td align="center"><select size="1" name="zt">
+			<option value="-1" selected="selected">{t}全部{/t}</option>
+			{foreach item=s from=$orderstate key=s_ct}
+			<option value="{$s_ct}" {if $zt == $s_ct} selected="selected"{/if}>{$s}</option>
+			{/foreach}
+			</select></td>
+		<td align="center"><input type="submit" value="{t}确定{/t}" name="B1"></td>
+	</tr></form>
+</table>
+{if $p.totalrec == 0}
+	{t}暂且没有任何订单{/t}
+{else}
+	
+<table border="0" width="100%" cellspacing="1" style="border-collapse: collapse" cellpadding="5" bgcolor="#DBC2B0">
+      <tr>
+        <td bgcolor="#FFFFFF">{t}订单号{/t}</td>
+        <td bgcolor="#FFFFFF">{t}状态{/t}</td>
+        <td bgcolor="#FFFFFF">{t}订货人{/t}</td>
+        <td bgcolor="#FFFFFF">{t}地址{/t}</td>
+        <td bgcolor="#FFFFFF">{t}日期{/t}</td>
+      </tr>
+	 {foreach item=sub from=$p.items}
+      <tr>
+        <td bgcolor="#FFFFFF"><a href="ad_submore.asp?sub_id={$sub.sub_id}">{$sub.sub_number}</a></td>
+        <td bgcolor="#FFFFFF">{$orderstate[sub.sub_zt]}</td>
+        <td bgcolor="#FFFFFF"><a href="?user_name={$sub.sub_name}">{$sub.sub_name}</a></td>
+        <td bgcolor="#FFFFFF">{$sub.sub_adds}</td>
+        <td bgcolor="#FFFFFF">{$sub.sub_date}</td>
+      </tr>
+      {/foreach}
+      <tr>
+        <td colspan="5" bgcolor="#FFFFFF">
+        {$p.totalpage|pagination:$p.pageIndex:"ad_sub.asp?zt=$zt&page=#page#"}
+		</td>
+      </tr>
+    </table>
+{/if}

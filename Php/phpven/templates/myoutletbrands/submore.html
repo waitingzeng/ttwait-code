@@ -1,0 +1,143 @@
+
+<link href={$serverstyle}css.css rel=STYLESHEET type=text/css>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+{if $sub}
+<title>Details of {$sub.sub_number}</title>
+<table border="0" width="700" cellspacing="1" cellpadding="5" bgcolor="#808080">
+  <tr>
+    <td bgcolor="#EEEEEE" colspan="6" align="center">Order Number:<font color="#FF0000">{$sub.sub_number}
+      </font>&nbsp;&nbsp; 
+      Date:<font color="#808080">{$sub.sub_date}</font>&nbsp;&nbsp; UserName: {$sub.sub_name}</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" colspan="6" align="center"><table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
+        <form method="POST" action="?sub_id={$sub.sub_id}&action=zt">
+          <tr>
+            <td>Order Status: {$orderstate[sub.sub_zt]}</td>
+            <td>{if $sub.sub_zt < 5}
+              Modify:
+              <select size="1" name="sub_zt">
+                {if $sub.sub_zt == 1}
+                <option value="0">{$orderstate[0]}</option>
+                <option value="2">{$orderstate[2]}</option>
+                <option value="5">{$orderstate[5]}</option>
+                {elseif $sub.sub_zt == 0}
+                <option value="1">{$orderstate[1]}</option>
+                <option value="2">{$orderstate[2]}</option>
+                <option value="5">{$orderstate[5]}</option>
+                {elseif $sub.sub_zt == 2}
+                <option value="5">{$orderstate[5]}</option>
+                {elseif $sub.sub_zt == 3}
+                <option value="5">{$orderstate[5]}</option>
+                {elseif $sub.sub_zt == 4}
+                <option value="5">{$orderstate[5]}</option>
+                {/if}
+              </select>
+              <input type="submit" value="Modify" name="submit">
+              {/if}</td>
+          </tr>
+        </form>
+      </table></td>
+  </tr>
+  <tr>
+    <td bgcolor="#F0F0F0" colspan="6">Your Name:<b>{$sub.sub_from}</b></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" colspan="6">Country:{$sub.sub_fromcountry}</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" colspan="6">Address:{$sub.sub_fromadds}</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" colspan="6">ZipCode:{$sub.sub_frompost}</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" colspan="6">Email:{$sub.sub_frommail}</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" colspan="6">Tel:{$sub.sub_fromtel}</td>
+  </tr>
+  <tr>
+    <td bgcolor="#F0F0F0" colspan="6">Purchaser's Name:<b>{$sub.sub_to}</b></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" colspan="6">Country:<b>{$sub.sub_country}</b></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" colspan="6">Address:<b>{$sub.sub_adds}</b></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" colspan="6">ZipCode:{$sub.sub_post}</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" colspan="6">Email:<b>{$sub.sub_mail}</b></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" colspan="6">Tel:<b>{$sub.sub_tel}</b></td>
+  </tr>
+  <tr>
+    <td height="20" bgcolor="#FFFFFF" colspan="6">Payment:{$pay.pay_name}
+</td>
+  </tr>
+  <tr>
+    <td height="20" bgcolor="#FFFFFF" colspan="6">Shipment:{$ps.ps_name}
+  </td>
+  </tr>
+  <tr>
+    <td height="20" bgcolor="#FFFFFF" colspan="6">Other:{$sub.sub_other}</td>
+  </tr>
+  <tr bgcolor="#f0f0f0">
+    <td colspan="6"><p align="center">Product</p></td>
+  </tr>
+  <tr bgcolor="#f7f7f7" align="center">
+  	<td>Pic</td>
+	<td>Serial No</td>
+    <td>Price</td>
+	<td>Size</td>
+    <td>QYT</td>
+    <td>Total</td>
+  </tr>
+  	{assign var='totalcash' value="0"}
+   	{foreach item=basket from=$basketlist}
+  <tr bgcolor="#FFFFFF" align="center">
+  <td><a href="{$ServerPath}{$basket.alias}.html"><img src="{$pic_url}{$basket.hw_sn}.jpg" width="64px" height="48px" border="0" /></a></td>
+  <td><a href="{$ServerPath}{$basket.alias}.html">{$basket.hw_sn}</a></td>
+    <td>{$basket.hw_price}</td>
+    <td>{$basket.hw_size}</td>
+    <td>{$basket.basket_count}</td>
+    <td>{$basket.hw_price*$basket.basket_count}</td>
+  </tr>
+  {assign var='totalcash' value="`$totalcash+$basket.basket_count*$basket.hw_price`"}
+  {/foreach}
+    {assign var='tps' value="`$totalcash*$ps.ps_fei/100+$ps.ps_fujia`"}
+	{assign var='ttps' value="`$totalcash+$tps`"}
+    {assign var='tpay' value="`$ttps*$pay.pay_fei/100+pay.pay_fujia`"}
+    {assign var='total' value="`$ttps+$tpay`"}
+    {if $promo}
+     {if $promo.type}
+       {assign var='promoval' value="`$promo.num+$promo.num*$pay.pay_fei/100`"}
+       {else}
+       {assign var='promoval' value="`$total*$promo.num/100`"}
+       {/if}
+     {else}
+     	{assign var='promoval' value="0"}
+     {/if}
+  <tr>
+    <td bgcolor="#FFFFFF" colspan="6" align="right"><p style="margin-right: 10px; line-height:150%">
+        Subtotal:<font color="#CC0000">{$totalcash}</font><br/>
+  {if $tps>0}Shipping:<font color="#CC0000">{$ps.ps_name}</font>,  Shipping Fee:<font color="#CC0000">${$tps}</font><br/>{/if}
+				{if $tpay > 0}Payment:<font color="#CC0000">{$pay.pay_name}</font>,  Payment Fee: <font color="#CC0000">${$tpay}</font><br>{/if}
+				Total:<font color="#CC0000">${$total|string_format:'%.0f'}</font>
+				{if $promoval>0}Promo: <font color="#FF0000">${$promoval}</font>&nbsp;&nbsp;You Need Pay<font color=red>${$total-$promoval|string_format:'%.0f'}</font>{/if}
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" colspan="6" align="center">{if $sub.sub_zt == 0}
+      <a href="?sub_id={$sub.sub_id}&action=del">Delete</a>
+      {/if}
+    </td>
+  </tr>
+</table>
+{else}
+	No Data
+{/if}

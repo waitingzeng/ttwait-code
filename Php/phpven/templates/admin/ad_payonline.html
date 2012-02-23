@@ -1,0 +1,22 @@
+{include file='ad_top.html'}
+{if $errmsg}<p style="color:red">{$errmsg}</p>{/if}
+<form method="POST" action="?action=change">
+
+<table border="0" cellspacing="1" cellpadding="5" bgcolor="#DBC2B0" id="table2" width="600">
+<tr><td height="20" bgcolor="#F5EFE7"><b>Paypal:</b></td>
+    <td bgcolor="#F5EFE7" width="150" align="center">
+    Open<input type="radio" value="1" name="paypal" {if $payonline.paypal==1} checked="checked"{/if}>&nbsp;
+    Close<input type="radio" value="0" name="paypal" {if $payonline.paypal==0} checked="checked"{/if}></td></tr>
+<tr><td height="10" bgcolor="#FFFFFF">Account:<input type="text" name="pay_paypal" size="40" class=input value="{$payonline.pay_paypal}"></td>
+    <td align="center" bgcolor="#FFFFFF" width="150">
+	<a target="_blank" href="https://www.paypal.com/">Reg</a>&nbsp; 
+	<a target="_blank" href="https://www.paypal.com/">Login</a></td>
+</tr>
+<tr><td height="10" align="right" bgcolor="#FFFFFF" colspan="2"><a target="_blank" href="https://www.paypal.com/">
+	<img border="0" src="images/pay/paypal.gif"></a></td>
+</tr>
+<tr><td height="5" bgcolor="#FFFFFF" align="center" colspan="2">
+<input type="submit" value="submit" name="B1"></td>
+</tr>
+</table><pre></pre>
+　</form>

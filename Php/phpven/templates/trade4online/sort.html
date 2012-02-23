@@ -1,0 +1,25 @@
+{$header}
+<div class="body">
+  <div class="left">
+		<script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+		{include file="insort.html"}
+	</div>
+<div class="right">	
+	<div class="sortNav border_bottom">&nbsp;
+	{if $p.totalrec == 0}
+		Not Data Found
+	{else}
+	{foreach item=item from=$categorys}
+        <a href="{$ServerPath}{$item.alias}.html"><b>{$item.name}</b></a> >> 
+    {/foreach}
+	{$p.totalrec}&nbsp;Items,{$p.bottom}-{$p.top}</div>
+	<div class="right770">
+		{foreach item=hw from=$p.items key=hw_ct}
+		{include file="ins.html"}
+		{/foreach}
+    </div>
+	{$p.totalpage|pagination:$p.pageIndex:$pageurl}
+	{/if}
+	</div>
+</div>
+{$footer}

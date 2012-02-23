@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<project version="5.5" encoding="UTF-8">
+	<project_entity ID="debugger">
+		<connectionInfo use_defaults="false" tempFilesLocation="C:\Documents and Settings\TTwait" debug_mode="local" serverHost="http://Server_Address/" port="10000"/>
+		<breakpoints/>
+		<watches/>
+	</project_entity>
+	<project_entity ID="SourceControl">
+		<encodingStyle value="CVS"/>
+	</project_entity>
+	<project_entity ID="project_roots">
+		<vfile name="D:\Code\Php\phpven"/>
+	</project_entity>
+	<project_entity ID="bookmarks">
+		<bookmark fileName="D:\Code\Php\phpven\smarty\Smarty.class.php" lineNumber="166" description="var $cache_dir       =  'cache';"/>
+	</project_entity>
+	<project_entity ID="javaBridge" JRE_Name="1.5.0_06"/>
+	<project_entity ID="Subversion">
+		<svnCmdArguments>
+			<SubversionCommand commandType="update"/>
+			<SubversionCommand commandType="commit"/>
+			<SubversionCommand commandType="add"/>
+			<SubversionCommand commandType="status"/>
+			<SubversionCommand commandType="diff"/>
+			<SubversionCommand commandType="delete"/>
+			<SubversionCommand commandType="revert"/>
+			<SubversionCommand commandType="resolve"/>
+		</svnCmdArguments>
+	</project_entity>
+	<project_entity ID="editor_component" selectedEditor="1">
+		<openEditors>
+			<editor fileName="D:\Code\Php\phpven\ad_sub.php" caretPosition="751" clone="false" encoding="UTF-8"/>
+			<editor fileName="D:\Code\Php\phpven\includes\ad_top.php" caretPosition="426" clone="false" encoding="UTF-8"/>
+		</openEditors>
+	</project_entity>
+	<project_entity ID="CVS">
+		<lastArguments>
+			<CVSCommand commandType="update"/>
+			<CVSCommand commandType="commit"/>
+			<CVSCommand commandType="add"/>
+			<CVSCommand commandType="status"/>
+			<CVSCommand commandType="diff"/>
+		</lastArguments>
+	</project_entity>
+</project>

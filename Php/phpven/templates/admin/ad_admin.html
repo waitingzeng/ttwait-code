@@ -1,0 +1,41 @@
+{include file='ad_top.html'}
+<body bgcolor="#FFFFFF" text="#000000" background="blue.gif">
+		<table width="242" border="0" cellspacing="1" cellpadding="5" bgcolor="#DBC2B0">
+			<form action="ad_admin.asp" method=post><tr>
+				<td bgcolor="#F5EFE7" colspan="2" align="center">
+				<font style="font-size: 9pt; font-weight: 700">{t}新增一个管理员{/t}</font></td>
+			</tr>
+			<tr>
+				<td width="71" bgcolor="#FFFFFF" align="right">
+				<span style="font-size: 9pt">{t}管理员{/t}:</span></td>
+				<td width="155" bgcolor="#FFFFFF">
+				<input type="text" name="admin_name1" size="20" class="input"></td>
+			</tr>
+				<tr>
+				<td width="71" bgcolor="#FFFFFF" align="right">
+				<span style="font-size: 9pt">{t}密&nbsp;码{/t}:</span></td>
+				<td width="155" bgcolor="#FFFFFF">
+				<input type="password" name="admin_pass1" size="20"class="input"></td>
+				</tr>
+			<tr>
+				<td width="71" bgcolor="#FFFFFF"></td>
+				<td width="155" bgcolor="#FFFFFF"><input type="submit" name="addname" value="{t}提交{/t}">
+		<input type=hidden name="action" value="addname"></td>
+			</tr></form>
+		</table>	
+  	{foreach item=admin from=$adminlist}
+<table border="0" cellspacing="1" cellpadding="5" width="300px" bgcolor="#DBC2B0"><form method=post action="ad_admin.asp?action=mod&admin_id={$admin.admin_id}">
+				<tr>
+					<td bgcolor="#FFFFFF" width="10%">{$admin.admin_id}</td>
+					<td bgcolor="#FFFFFF">
+					<input type="text" name="admin_name" value="{$admin.admin_name}" class="input" size="10"></td>
+					<td bgcolor="#FFFFFF">
+					<input type="password" name="admin_pass" size="10" class="input"></td>
+        <td bgcolor="#FFFFFF"><input type="submit" name="modify" value="{t}修改{/t}"></td>
+        <td bgcolor="#FFFFFF"><a href="ad_admin.asp?action=del&admin_id={$admin.admin_id}" onClick="return confirm('{t}你确定要删除吗?{/t}')">Del</a></td>
+   </tr></form>
+   </table>
+   {/foreach}
+	{if $errmsg}<p>{$errmsg}</p>{/if}
+</body>
+</html>

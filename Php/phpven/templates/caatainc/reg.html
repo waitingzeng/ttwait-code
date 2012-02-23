@@ -1,0 +1,62 @@
+{$header}
+  <table width="743px" border="0" cellpadding="0" style="border-collapse: collapse">
+     <tr>
+      <td width="743" height="48" style="border-top: 2px solid #FFFFFF" background="{$serverstyle}img/reg1.gif"><p style="margin-left: 40px">Register Now:&nbsp; (Already Member,Please <a href="{$ServerPath}login.asp"><u>Login</u></a> , <a href="{$ServerPath}repass.asp"><u>Forgot Password?</u></a>)</td>
+    </tr>
+    <tr>
+      <td background="{$serverstyle}img/regbg.gif" align="left"><table width="90%" border="0" cellpadding="5" cellspacing="5px" style="margin-bottom: 6">
+        <form action="{$ServerPath}regsave.asp" method="post" name="regform" language="javascript" onSubmit="return regform_onsubmit(this)">
+          <tr>
+            <td align="right" width="150">UserName: </td>
+            <td><input style="FONT-SIZE: 12px; WIDTH: 210px" type="text" name="user_name" size="20" class=input>
+                  <font color="#FF0000"> *</font></td>
+          </tr>
+          <tr>
+            <td align="right" width="150">PassWord:</td>
+            <td><input style="FONT-SIZE: 12px; WIDTH: 210px" type="password" name="user_pass" size="20" class=input>
+                  <font color="#FF0000"> *</font></td>
+          </tr>
+          <tr>
+            <td align="right" width="150">Confirm Password:</td>
+            <td><input style="FONT-SIZE: 12px; WIDTH: 210px" type="password" name="user_pass2" size="20" class=input>
+                  <font color="#FF0000"> *</font></td>
+          </tr>
+          <tr>
+            <td align="right" width="150">&nbsp;Email:</td>
+            <td><input style="FONT-SIZE: 12px; WIDTH: 210px" type="text" name="user_mail" size="20" class=input>
+                  <font color="#FF0000"> *</font></td>
+          </tr>
+		  <tr>
+            <td align="right" width="150">&nbsp;Country:</td>
+            <td><input style="FONT-SIZE: 12px; WIDTH: 210px" type="text" name="user_country" size="20" class=input>
+                  <font color="#FF0000"> *</font></td>
+          </tr>
+		  <tr>
+            <td align="right" width="150">&nbsp;MSN:</td>
+            <td><input style="FONT-SIZE: 12px; WIDTH: 210px" type="text" name="user_msn" size="20" class=input></td>
+          </tr>
+		  		  <tr>
+            <td align="right" width="150">&nbsp;Yahoo:</td>
+            <td><input style="FONT-SIZE: 12px; WIDTH: 210px" type="text" name="user_yahoo" size="20" class=input></td>
+          </tr>
+		  		  <tr>
+            <td align="right" width="150">&nbsp;Google talk:</td>
+            <td><input style="FONT-SIZE: 12px; WIDTH: 210px" type="text" name="user_google" size="20" class=input></td>
+          </tr>
+          <tr>
+            <td align="right" width="150">Question of Password:</td>
+            <td><input style="FONT-SIZE: 12px; WIDTH: 210px" type="text" name="question" size="20" class=input></td>
+          </tr>
+          <tr>
+            <td align="right" width="150">Answer of Password:</td>
+            <td><input style="FONT-SIZE: 12px; WIDTH: 210px" type="text" name="answer" size="20" class=input></td>
+          </tr>
+          <tr>
+            <td align="right" width="150"></td>
+            <td><input type="image" src="{$serverstyle}img/regbutton.gif" name="submit"></td>
+          </tr>
+        </form>
+      </table></td>
+    </tr>
+  </table>
+{$footer}

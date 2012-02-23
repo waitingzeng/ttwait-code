@@ -1,0 +1,34 @@
+{$header}
+<div id="inbody">
+<div class="left">
+<script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+{include file="ingg.html"}
+{include file="insort.html"}
+</div>
+<!--右边-->
+<div class="right">
+<div class="right770">
+{if not $user}
+  <h2 class="r01">Notice</h2><h2 class="r02"></h2>
+<h3>User Not Found, Please <a href="{$ServerPath}login.asp" target=_blank><u>Login</u></a>, or <a href="{$ServerPath}reg.asp" target=_blank><u>Chick Here to Register</u></a></h3>
+{else}
+<h2 class="r01">User Info</h2><h2 class="r02"></h2><h2>
+<div class="right570">
+<div class="right150">UserName:</div><div class="right400">{$user.username}</div>
+<div class="right150">Your Money:</div><div class="right400">{$user.jifen}</div>
+<div class="right150">Orders:</div><div class="right400">{$ordercount}(<a href="{$ServerPath}orders.asp">Order Status</a>)</div>
+<div class="right150">Register IP:</div><div class="right400">{$user.user_regip}</div>
+<div class="right150">Register Date:</div><div class="right400">{$user.regtime}</div>
+<div class="right150">Login Times:</div><div class="right400">{$user.degree}</div>
+<div class="right150">E-mail:</div><div class="right400">{$user.usermail}</div>
+<div class="right150">Real Name:</div><div class="right400">{$user.user_namec}</div>
+<div class="right150"></div><div class="right400">
+</div>
+</div>
+</h2>
+</div>
+{/if}
+{include file="contact.html"}
+</div>
+</div>
+{$footer}

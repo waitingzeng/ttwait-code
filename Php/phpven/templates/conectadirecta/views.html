@@ -1,0 +1,83 @@
+{$header}
+<!--左边-->
+<script language="javascript" src="/js/douco.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/zoom.css?v=1">
+<div id="inbody">
+<div class="left">
+<script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+{include file="ingg.html"}
+<!--TTwaitRemoveBegin-->{include file="insort.html"}<!--TTwaitRemoveEnd-->
+<!--TTwaitADBEGIN<div class="left200"> <h2 class="left01" align="center">
+    <script type="text/javascript">
+google_ad_client = "pub-2153651206088577";
+/* 200x200, 创建于 08-11-10 */
+google_ad_slot = "2969919180";
+google_ad_width = 200;
+google_ad_height = 200;
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<script type="text/javascript">
+google_ad_client = "pub-2153651206088577";
+/* 200x200, 创建于 08-11-10 */
+google_ad_slot = "2969919180";
+google_ad_width = 200;
+google_ad_height = 200;
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</h2></div>TTwaitADEND-->
+</div>
+<!--右边-->
+<div class="right">
+<form action="{$ServerPath}basket.asp?hw_id={$hw.hw_id}" method="post">
+<div class="right770">
+  <h2 class="r06"></h2>
+   {if $hw == 0}
+  <h2 class="r07">Product not found!</h2>
+  {else}
+  <h2 class="r07">{foreach item=item from=$categorys}
+                <a href="{$ServerPath}{$item.alias}.html"><b>{$item.name}</b></a> >> 
+            {/foreach} {$hw.hw_name}</h2><h2>
+<div class="show300"><a href="{$config.pic_url}{$hw.hw_sn}.jpg"  class="MagicZoom MagicThumb" title="{$hw.hw_sn}"><img src="{$config.pic_url}{$hw.hw_sn}.jpg" onerror="this.src='{$ServerPath}images/noimage.jpg';" width="300px" border="0" class="photo{if $hw.html} new{/if}"></a></div>
+<div class="show420">
+<li>Product:  {$hw.hw_name}</li>
+<li>Serial No :  {$hw.hw_sn}</li>
+<li>State:<select name="">
+  <option value="0" {if !$hw.hw_kucun} selected="selected"{/if}>Out Of Stock</option>
+  <option value="1" {if $hw.hw_kucun} selected="selected"{/if}>In Stock</option>
+</select></li>
+<li>Unit Price(USD) : <font color="#CC0000">{$hw.pricelist.5}$</font></li>
+<li>QYT : Input how much quantity you want to buy under</li>
+<li><table width="100%" border="1" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="36%"><div align="center">Size (Euros/US)</div></td>
+    {foreach item=kxa from=$hw.sizelist}
+    <td><div align="center">{$kxa}</div></td>
+    {/foreach}
+  </tr>
+  <tr>
+    <td><div align="center">quantity </div></td>
+    {foreach item=kxa from=$hw.sizelist}
+    <td><div align="center"><input name="quantity{$kxa}" type="text" size="1" value="0"></div></td>
+    {/foreach}
+  </tr>
+</table>
+</li>
+<li>
+  <div align="center"><input type="image" src="{$serverstyle}img/an01.gif" /></div>
+</li>
+</div></form>
+  </h2>
+</div>
+<!--产品说明-->
+<div class="right770"><h2 class="r01">Details</h2><h2 class="r02"></h2><h2 class="show">{$hw.hw_content2}</h2></div>
+{/if}
+{include file="contact.html"}
+</div>
+</div>
+{$footer}
+
+

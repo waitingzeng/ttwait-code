@@ -1,0 +1,44 @@
+{$header}
+  <table border="0" width="743" cellpadding="0" style="border-collapse: collapse" bordercolor="#111111">
+  	{if $hadLogin}
+    <tr>
+      <td width="743" height="48" style="border-top: 2px solid #FFFFFF" background="{$serverstyle}img/reg1.gif"><p style="margin-left: 40px">Register finished!</td>
+    </tr>
+    <tr>
+      <td align="center" background="{$serverstyle}img/regbg.gif"><table width="90%" border="0" cellpadding="0" style="border-collapse: collapse" bordercolor="#111111">
+          <tr>
+            <td width="33%" height="30" align="right">UserName:</td>
+            <td width="67%" height="30" align="left">{$username}</td>
+          </tr>
+          <tr>
+            <td width="33%" height="30" align="right">Email:</td>
+            <td width="67%" height="30" align="left">{$email}</td>
+          </tr>
+          <tr>
+            <td height="100" colspan="2"><p style="line-height: 150%">
+                Congratulations! {$username} ,you have finished registrating<br>
+                <a href="{$ServerPath}modify.asp"><font color="#FF0000">Please fill in the receiver's name and address.</font></a><br>
+                <a href="{$ServerPath}">Back to Homepage.</a></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr>
+      <td width="100%" align="center"><img border="0" src="{$serverstyle}img/reg2.gif"></td>
+    </tr>
+    {else}
+    <tr>
+      <td width="743" height="48" style="border-top: 2px solid #FFFFFF" background="{$serverstyle}img/reg1.gif"><p style="margin-left: 40px">Error!</td>
+    </tr>
+    <tr>
+      <td align="center" background="{$serverstyle}img/regbg.gif"><table border="0" width="90%" cellspacing="1">
+          <tr>
+            <td height="200"><p style="line-height: 150%">{$errmsg}<br/><li><a href="javascript:history.go(-1)" style="color:red">Back To Reg</a></li></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr>
+      <td width="100%" align="center"><img border="0" src="{$serverstyle}img/reg2.gif"></td>
+    </tr>
+    {/if}
+  </table>
+{$footer}

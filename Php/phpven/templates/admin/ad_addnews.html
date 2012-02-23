@@ -1,0 +1,17 @@
+{include file='ad_top.html'}
+<table border="0" cellspacing="0" cellpadding="0" bgcolor="#F5EFE7" width="100%"><form method="POST" name="form" action="ad_addnews.asp?action=save">
+          <tr>
+            <td height="30" colspan="2">{t}标题{/t}:<input type="text" name="news_title" size="20" value="{if $news}{$news.news_title}{/if}" class=input></td>
+          </tr>
+          <tr>
+            <td height="30" valign="top">{t}内容{/t}:</td>
+            <td height="30"><IFRAME ID="eWebEditor1" src="eWebEditor/ewebeditor.htm?id=news_content&style=coolblue" frameborder="0" scrolling="no" width="550" height="350"></IFRAME></td>
+          </tr>
+          <tr>
+            <td height="30" colspan="2" align="center">
+			<input type="submit" value="{t}提交{/t}" name="B1" class=input>
+            <textarea name="news_content" id="news_content" style="visibility:hidden">{if $news}{$news.news_content}{/if}</textarea>
+			<input type="hidden" name="news_id" value="{if $news}{$news.news_id}{else}0{/if}"/>
+			</td>
+          </tr></form>
+        </table>

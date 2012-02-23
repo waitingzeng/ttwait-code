@@ -1,0 +1,40 @@
+{$header}
+<div id="inbody">
+<div class="left">
+<script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+{include file="ingg.html"}
+{include file="insort.html"}
+</div>
+<!--右边-->
+<div class="right">
+{if $hadLogin}
+<div class="right770">
+  <h2 class="r01">Notice</h2>
+  <h2 class="r02"></h2></div>
+<h3>{$username} You have already Login, If you are not 
+	<font color="red">{$username}</font>,Please <a href="{$ServerPath}quit.asp"><u>Quit and Re-Login</u></a>!</h3>
+{else}
+<form action="{$ServerPath}regsave.asp" method="post" name="regform" onSubmit="return regform_onsubmit(this)">
+<div class="right770"><h2 class="r01">Register Now</h2><h2 class="r02"></h2><h2>
+<div class="right570"><h4>Already Member,Please <a href="{$ServerPath}login.asp"><u>Login</u></a> , <a href="{$ServerPath}repass.asp"><u>Forgot Password?</u></a></h4>
+<div class="right150">UserName:</div><div class="right400"><input type="text" size="30" style="width:200px" name="user_name" /><font color="#CC0000">*</font></div>
+<div class="right150">Password:</div><div class="right400"><input type="password" size="30" style="width:200px" name="user_pass"/><font color="#CC0000">*</font></div>
+<div class="right150">Confirm Password:</div><div class="right400"><input type="password" style="width:200px" size="30" name="user_pass2"/><font color="#CC0000">*</font></div>
+<div class="right150">Email:</div><div class="right400"><input type="text" size="30" style="width:200px" name="user_mail"/><font color="#CC0000">*</font></div>
+<div class="right150">Country:</div><div class="right400"><input type="text" size="30" style="width:200px" name="user_country"/><font color="#CC0000">*</font></div>
+<div class="right150">MSN:</div><div class="right400"><input type="text" size="30" style="width:200px" name="user_msn"/></div>
+<div class="right150">Yahoo:</div><div class="right400"><input type="text" size="30" style="width:200px" name="user_yahoo"/></div>
+<div class="right150">google talk</div><div class="right400"><input type="text" size="30" style="width:200px" name="user_google"/></div>
+<div class="right150">Question of password</div><div class="right400"><input type="text" style="width:200px" size="30" name="question"/></div>
+<div class="right150">Aswer of password</div><div class="right400"><input type="text" style="width:200px" size="30" name="answer"/></div>
+
+<div class="right150"></div><div class="right400"><input type="submit" value="Submit" />
+</div>
+</div>
+</h2>
+</div>
+</form>
+</div>
+{/if}
+</div>
+{$footer}

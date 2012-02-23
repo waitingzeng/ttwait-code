@@ -1,0 +1,33 @@
+{include file='ad_top.html'}
+<table border="0" cellspacing="1" bgcolor="#E6D6C8" cellpadding="5">
+ <tr><td align="center" colspan="2" bgcolor="#F5EFE7"><b>{t}公告管理{/t}</b></td></tr>
+{foreach item=pub from=$publist}
+<form method="post" action="?action=edit&id={$pub.id}">
+  <tr><td bgcolor="#FFFFFF">
+	<input name="title" type="text" size="30" value="{$pub.title}"></td>
+	  <td bgcolor="#FFFFFF" rowspan="2"><input type="submit" name="Submit" value="{t}修改{/t}">&nbsp;&nbsp;
+	  <a href="?action=del&id={$pub.id}" onClick="return confirm('{t}你确定要删除吗?{/t}')">{t}删除{/t}</a>
+	  </td>
+	  </tr>
+  <tr><td bgcolor="#FFFFFF">
+	<textarea rows="4" name="msg" cols="65">{$pub.msg}</textarea></td>
+</tr></form>
+{foreachelse}
+	{t}暂无内容{/t}
+{/foreach}
+</table>
+<p>　</p>
+<table border="0" cellpadding="5" cellspacing="1" bgcolor="#E6D6C8">
+<form method="post"  action="?action=add">
+  <tr> 
+    <td align="center" rowspan="2" bgcolor="#FFFFFF">{t}添加内容{/t}：</td>
+    <td bgcolor="#F5EFE7">
+	<input name="title" type="text" size="13"></td>
+    <td bgcolor="#F5EFE7">
+	<input type="submit" name="Submit2" value="{t}提交{/t}"></td>
+  </tr>
+  <tr> 
+    <td bgcolor="#FFFFFF" colspan="2">
+	<textarea rows="4" name="msg" cols="65"></textarea></td>
+  </tr>
+  </form></table>

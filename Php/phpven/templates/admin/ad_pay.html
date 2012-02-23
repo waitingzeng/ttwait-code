@@ -1,0 +1,45 @@
+{include file='ad_top.html'}
+<table border="0" cellspacing="1" bgcolor="#DBC2B0" cellpadding="5">
+  <tr><td align="center" colspan="4" bgcolor="#F5EFE7"><b>{t}支付方式{/t}{t}修改{/t}</b></td></tr>
+  <tr><td align="center" bgcolor="#F5EFE7">{t}名称{/t}</td>
+      <td align="center" bgcolor="#F5EFE7">{t}附加费率%{/t}</td>
+  	  <td align="center" bgcolor="#F5EFE7">{t}附加费用{/t}</td>
+	  <td align="center" bgcolor="#F5EFE7">{t}说明{/t}</td>
+	  <td align="center" bgcolor="#F5EFE7">{t}操作{/t}</td>
+	  </tr>
+	{foreach item=pay from=$paylist}
+<form method="post" action="ad_pay.asp?action=edit&pay_id={$pay.pay_id}">
+  <tr><td align="center" bgcolor="#FFFFFF"><input name="pay_name" type="text" size="13" value="{$pay.pay_name}"></td>
+  <td align="center" bgcolor="#FFFFFF"><input name="pay_fei" type="text" size="13" value="{$pay.pay_fei}" style="text-align:right">%</td>
+  <td align="center" bgcolor="#FFFFFF"><input name="pay_fujia" type="text" size="13" value="{$pay.pay_fujia}" style="text-align:right"></td>
+	  <td align="center" bgcolor="#FFFFFF">
+		<textarea rows="2" name="pay_content" cols="21">{$pay.pay_content}</textarea></td>
+	  <td align="center" bgcolor="#FFFFFF"><input type="submit" name="Submit" value="{t}修改{/t}">&nbsp;&nbsp;
+	  <a href="?action=del&pay_id={$pay.pay_id}" onClick="return confirm('{t}你确定要删除吗?{/t}')">{t}删除{/t}</a></td>
+</tr></form>
+	{/foreach}
+</table>
+<p>　</p>
+<table border="0" cellpadding="5" cellspacing="1" bgcolor="#DBC2B0">
+<form method="post"  action="ad_pay.asp?action=add">
+  <tr> 
+    <td align="center" rowspan="2" bgcolor="#F5EFE7">{t}添加内容{/t}:</td>
+    <td align="center" bgcolor="#F5EFE7">{t}名称{/t}</td>
+     <td align="center" bgcolor="#F5EFE7">{t}附加费率%{/t}</td>
+	<td align="center" bgcolor="#F5EFE7">{t}附加费用{/t}</td>
+    <td align="center" bgcolor="#F5EFE7">{t}说明{/t}</td>
+    <td align="center" bgcolor="#F5EFE7"></td>
+  </tr>
+  <tr> 
+    <td align="center" bgcolor="#FFFFFF">
+	<input name="pay_name" type="text" size="11"></td>
+	<td align="center" bgcolor="#FFFFFF">
+	<input name="pay_fei" type="text" size="11" value="0" style="text-align:right">%</td>
+	<td align="center" bgcolor="#FFFFFF">
+	<input name="pay_fujia" type="text" size="11" value="0" style="text-align:right"></td>
+    <td align="center" bgcolor="#FFFFFF">
+	<textarea rows="2" name="pay_content" cols="21"></textarea></td>
+    <td align="center" bgcolor="#FFFFFF">
+	<input type="submit" name="Submit2" value="{t}提交{/t}"></td>
+  </tr>
+  </form></table>

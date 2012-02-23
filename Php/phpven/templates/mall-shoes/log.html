@@ -1,0 +1,13 @@
+document.write('<div  class="left200c">Member Area</div>')
+document.write('<div class="left200"><h2 class="left01">')
+	{if $username}
+document.write('<div align="center">[<a href="{$ServerPath}modify.asp">{$username}</a> / <a href="{$ServerPath}quit.asp">Quit</a>]</div>')
+document.write('<div align="center"><a href="{$ServerPath}userinfo.asp">Info</a> / <a href="{$ServerPath}modify.asp">Modify Info</a></div>')
+document.write('<div align="center"><a href="{$ServerPath}changepass.asp">Change Password</a></div>')
+document.write('<div align="center"><a href="{$ServerPath}orders.asp">Order Status</a></div>')
+document.write('<div align="center"><a href="{$ServerPath}buy.asp">View Cart({$viewcount})</a></div>')
+	{else}
+document.write('<div align="center"><a href="{$ServerPath}reg.asp">Register</a> / <a href="{$ServerPath}login.asp">Login</a></div>')
+document.write('<div align="center"><a href="{$ServerPath}buy.asp">View Cart(0)</a></div>')
+	{/if}
+document.write('</h2></div>')

@@ -1,0 +1,68 @@
+{$header}
+  <table width=920 border=0 cellpadding=0 cellspacing=0 bgcolor="#FFFFFF" height="300">
+    <tr>
+      <td width=181 align="center" valign="top">
+	  <script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+	{include file="insort.html"}
+	</td>
+      <td valign="top" align="center">
+        <table border="0" cellpadding="0" cellspacing="5" width="730" bgcolor="#EEEEEE">
+          <tr>
+            <td align="center" bgcolor="#EEEEEE"><table cellpadding="0" cellspacing="0" width="100%" background="{$serverstyle}img/pattern.gif" style="border: 1px solid #C0C0C0">
+                <tr>
+                  <td height="30" colspan="8"><p style="margin-left: 20px"><b>Shopping Cart:</b></td>
+                </tr>
+                <tr height="30"  class="tr_bottom">
+                  <td></td>
+				  <td>Pic</td>
+                  <td>SN</td>
+                  <td>Price</td>
+				  <td>Size </td>
+                  <td>Quantity </td>
+                  <td>Total</td>
+                  <td></td>
+                </tr>
+				{assign var='totalcash' value="0"}
+				{foreach item=basket from=$basketlist}
+                <tr class="tr_bottom">
+                  <td></td>
+				  <td><img src="{$config.pic_url}{$basket.hw_sn}.jpg" width="64px" height="48px"></td>
+                  <td><a target="_blank" href="{$ServerPath}{$basket.alias}.html">{$basket.hw_sn}</a></td>
+                  <td>{$basket.hw_price}</td>
+                  <td>{$basket.hw_size}</td>
+                  <td>{$basket.basket_count}</td>
+                  <td>{$basket.basket_count*$basket.hw_price}</td>
+                  <td></td>
+                </tr>
+               {assign var='totalcash' value="`$totalcash+$basket.basket_count*$basket.hw_price`"}
+               {foreachelse}
+               	<tr>
+                  <td height="30" colspan="8" align="center" class="border_bottom">No Product in your Shopping Cart</td>
+                </tr>
+				 {/foreach}
+               <form action="cash.asp?action=save" method="post">
+                <tr class="tr_bottom">
+                  <td height="30" colspan="8" style="text-align:left">&nbsp;&nbsp;If you have a promo code please enter it herer:&nbsp;<input type="text" name="promocode" size="10" value="{$promo.code}" /><input type="submit" name="submit" value="Apply Code" /></td>
+               </tr>
+               </form>
+               {if $promo}
+             	{if $promo.type}
+               {assign var='promoval' value="`$promo.num`"}
+               {else}
+               {assign var='promoval' value="`$totalcash*$promo.num/100`"}
+               {/if}
+             {else}
+             	{assign var='promoval' value="0"}
+             {/if}
+                <tr>
+                  <td height="30" colspan="8" align="right" style="padding-right:20px">{if $promoval > 0}Promo: <font color="#FF0000">${$promoval}</font>&nbsp;&nbsp;{/if}Subtotal:<font color="#FF0000">${$totalcash-$promoval}</font>&nbsp; </td>
+                </tr>
+              </table></td>
+          </tr>
+        </table>
+        <pre></pre>
+        {include file="cashin.html"}
+        </td>
+    </tr>
+  </table>
+{$footer}

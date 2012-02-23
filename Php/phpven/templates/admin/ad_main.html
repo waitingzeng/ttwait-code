@@ -1,0 +1,38 @@
+{include file='ad_top.html'}
+<body bgcolor="#FFFFFF" text="#000000" style="background-color: #DBC2B0" topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0">
+<div align="center">
+  <center>
+  <table style="WORD-BREAK: break-all; BORDER-COLLAPSE: collapse" cellPadding="0" width="645" bgColor="#ffffff" border="0" height="100%">
+    <tr>
+      <td colSpan="3" width="645">
+      <div align="center">
+        <table cellSpacing="0" cellPadding="0" width="90%" border="0" height="100%">
+          <tr>
+            <td>
+<p>{if $guestcount == 0}
+    
+    {t}没有新留言{/t}
+    {else}
+    {$guestcount} {t}条新留言{/t}
+    {/if}
+    , <a href="ad_guest.asp"><font color=red>{t}点击查看{/t}</font>  {t}所有留言{/t}</a></p>
+<p>
+	{if $newsubcount == 0}
+	{t}没有新订单{/t},<a href=ad_sub.asp>{t}点击查看{/t} {t}所有订单{/t}</a>
+	{else}
+	{$newsubcount} {t}新订单{/t},<a href=ad_sub.asp?zt=1><font color=red>{t}点击查看{/t}</font></a>,<a href=ad_sub.asp>{t}点击查看{/t} {t}所有订单{/t}</a>
+	{/if}
+</p>
+<p>
+{$quhoucount} {t}缺货{/t},<a href=ad_delhw.asp?quehuo=yes><font color=red>{t}点击查看{/t}</font></a>
+</p>
+</td>
+          </tr>
+        </table>
+      </div></td>
+    </tr>
+  </table>
+  </center>
+</div>
+</body>
+</html>

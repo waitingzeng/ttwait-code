@@ -1,0 +1,15 @@
+#AddHandler x-httpd-php5 .php
+#AddHandler x-httpd-php .php4
+DirectoryIndex index.html index.php
+<IfModule mod_rewrite.c>
+Options +FollowSymlinks
+RewriteEngine on
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^.+h([0-9]+)\.html$ views.php?hw_id=$1  [N,L]
+RewriteRule ^.+c([0-9]+)\.html$ sort.php?cat_id=$1  [N,L]
+RewriteRule ^.+c([0-9]+)\-p([0-9]+)\.html$ sort.php?cat_id=$1&page=$2  [N,L]
+RewriteRule ^(.*)\.asp(.*)$ $1.php$2  [N,L]
+RewriteRule ^pic/(.*)$ http://littlefox010.appspot.com/pic/$1 [R=301,NC,L]
+#RewriteRule ^pic/(.*)$ http://pic.caatashoes.com/pic/$1 [N,R]
+</IfModule>

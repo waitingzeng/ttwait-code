@@ -1,0 +1,48 @@
+{$header}
+  <table width=920 border=0 cellpadding=0 cellspacing=0 bgcolor="#FFFFFF" height="100">
+    <tr>
+      <td width=181 align="center" valign="top">
+		<script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+        {include file="insort.html"}
+	  </td>
+      <td valign="top" align="center"><PRE> </PRE>
+		<table border="0" cellpadding="0" cellspacing="0" width="100%" background="{$serverstyle}img/pattern.gif" style="border: 1px solid #C0C0C0">
+               {if not $username}
+                <tr>
+                  <td align="center" height="100" colspan="2">User Not Found, Please<a href="{$ServerPath}login.asp" target=_blank>Login</a>, <a href="{$ServerPath}reg.asp" target=_blank>Chick Here to Register</a></td>
+                </tr>
+                {else}
+                <form method="POST" action="?action=modify">
+                  <tr>
+                    <td width="100%" height="30" colspan="2" align="center"><b>&nbsp;Update Your PassWord:</b></td>
+                  </tr>
+                  <tr>
+                    <td width="200" height="30" align="right">UserName:</td>
+                    <td width="525" height="30">&nbsp;{$username}</td>
+                  </tr>
+                  <tr>
+                    <td width="200" height="30" align="right">Old Password:</td>
+                    <td width="525" height="30">&nbsp;
+                      <input type="password" name="oldpass" size="30" class=input></td>
+                  </tr>
+                  <tr>
+                    <td width="200" height="30" align="right">New Password:</td>
+                    <td width="525" height="30">&nbsp;
+                      <input type="password" name="pass1" size="30" class=input></td>
+                  </tr>
+                  <tr>
+                    <td width="200" height="30" align="right">Confirm New Password:</td>
+                    <td width="525" height="30">&nbsp;
+                      <input type="password" name="pass2" size="30" class=input></td>
+                  </tr>
+                  <tr>
+                    <td width="200" height="30" align="right"></td>
+                    <td width="525" height="30"><input type=submit name=submit value=Change></td>
+                  </tr>
+                </form>
+				{/if}
+              </table>
+		</td>
+    </tr>
+  </table>
+{$footer}

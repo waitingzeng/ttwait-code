@@ -1,0 +1,44 @@
+{$header}
+<div id="inbody">
+<div class="left">
+<script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+{include file="ingg.html"}
+{include file="insort.html"}
+</div>
+<!--右边-->
+<div class="right">
+<div class="right770">
+  <h2 class="r01">Order Status</h2>
+  <h2 class="r02"></h2><h2>
+<table width="700" border="1" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="25" colspan="3"><div align="center"><font  class="r04">Your Orders List:</font>&nbsp;&nbsp; <a href="{$ServerPath}orders.asp">All</a>:
+	{foreach item=s from=$orderstate key=s_ct}
+	<a href="{$ServerPath}orders.asp?zt={$s_ct}">{if $zt == $s_ct}<font color="red">{$s}</font>{else}{$s}{/if}</a>&nbsp;&nbsp;&nbsp;
+	{/foreach}</div></td>
+    </tr>
+  <tr>
+    <td width="195" height="25" class="r04"><div align="center">Number</div></td>
+    <td width="308" class="r04"><div align="center">Date</div></td>
+    <td width="189" class="r04"><div align="center">Status</div></td>
+  </tr>
+  {if not $p or $p.totalrec == 0}
+  	<tr><td align=center height=26 colspan=3><div align="center">No Data</div></td></tr>
+  {else}
+  {foreach item=sub from=$p.items}
+  <tr>
+    <td height="25"><div align="center"><a href="{$ServerPath}submore.asp?sub_id={$sub.sub_id}" target="_blank">{$sub.sub_number}</a></div></td>
+    <td><div align="center">{$sub.sub_date}</div></td>
+    <td><div align="center">{$orderstate[$sub.sub_zt]}</div></td>
+  </tr>
+  {/foreach}
+   <tr>
+  <td height="25" colspan="3" class="r05">{$p.totalpage|pagination:$p.pageIndex:"orders.asp?zt=$zt&page=#page#"}</td>
+  </tr>
+  {/if}
+</table>
+</h2></div>
+{include file="contact.html"}
+</div>
+</div>
+{$footer}

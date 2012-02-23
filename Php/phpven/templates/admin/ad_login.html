@@ -1,0 +1,46 @@
+{include file='ad_top.html'}
+<script language="JavaScript">
+	<!--
+	var msg = ['{t}请输入用户名{/t}!', '{t}请输入密码{/t}', '{t}请输入验证码{/t}'];
+	{literal}
+	if (top.location !== self.location) 
+	{ 
+		top.location=self.location; 
+	}
+	function frameBuster() {       
+		if (window != top)           
+			top.location.href = location.href; 
+	} 
+	window.onload = frameBuster; 
+	function check_null(){
+		if (document.form1.admin_name.value==""){
+			alert(msg[0]);
+			return false;
+		}
+		if (document.form1.admin_pass.value==""){
+			alert(msg[1]);
+			return false;
+		}
+		return true;
+	}
+	{/literal}
+	// -->
+	</script>
+
+<body bgcolor="#F0F0E8" link="#FFFFFF" style="background-color: #DBC2B0">
+<div align="center">
+<table border="0" width="300" cellspacing="0" cellpadding="0"><form method="POST" name="form1" action="ad_login{$l}.asp?action=login" onSubmit="javascript: return check_null();">
+  {if $errmsg}
+  <tr><td align="center" colspan="2" height="30">{$errmsg}</td></tr>
+  {/if}
+  <tr><td align="center" colspan="2" height="30"><b><font color="#FFFFFF">{t}管理登陆{/t}</font></b></td></tr>
+  <tr><td align="right" height="30"><b><font color="#FFFFFF">{t}用户名{/t}：</font></b></td>
+      <td height="30"><input type="text" name="admin_name" size="20" class=input></td>
+  </tr>
+  <tr><td align="right" height="30"><b><font color="#FFFFFF">{t}密&nbsp;码{/t}：</font></b></td>
+      <td height="30">
+		<input type="password" name="admin_pass" size="21" class=input></td>
+  </tr>
+  <tr><td align="right" height="30"></td><td height="30">
+	<input type="submit" value="{t}提交{/t}" name="B1"></td>
+</tr></form></table></div>

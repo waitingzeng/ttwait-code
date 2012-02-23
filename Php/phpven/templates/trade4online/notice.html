@@ -1,0 +1,21 @@
+<link rel="stylesheet" type="text/css" href="inc/css.css">
+{if $pub}
+<title>{$pub.title}</title>
+<body topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0">
+
+<div align="center">
+<table width="350" border="0" cellpadding="0" style="border-collapse: collapse" bordercolor="#111111" >
+          <tr> 
+            <td  height="31" align="center" background="{$serverstyle}{$serverstyle}img/gg1.gif"><b>{$pub.title}</b></td>
+          </tr>
+          <tr> 
+            <td height="100" valign="top" background="{$serverstyle}{$serverstyle}img/ggbg.gif">
+			<p style="text-indent: 20; line-height: 150%; margin: 3px 10; ">{$pub.msg}</p></td></tr>
+          <tr> 
+            <td height="25" align="right" background="{$serverstyle}{$serverstyle}img/gg2.gif">
+			<p style="margin-right: 10px; margin-top: 5px">Date:{$pub.date}</td></tr>
+</table>
+</div>
+{else}
+Notice Not Found
+{/if}

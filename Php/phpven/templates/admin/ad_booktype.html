@@ -1,0 +1,19 @@
+{include file='ad_top.html'}
+{if not $booklist}
+<p align="center"><b>{t}暂无内容{/t}<font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp; </font>
+<a href="ad_bookzj.asp?typeid={$typeid}"><font color="#FF0000">{t}添加内容{/t}</font></a></b>
+
+{else}
+<p align="center"><b><a href="ad_bookzj.asp?typeid={$typeid}"><font color="#FF0000">{t}添加内容{/t}</font></a></b>
+<div align="center">
+<table width="500" border="1" style="border-collapse: collapse" bordercolor="#FFFFFF" cellpadding="0" cellspacing="0" bgcolor="#F5EFE7">
+{foreach item=b from=$booklist}       
+    <tr> 
+      <td width="350" height="40"><p style="line-height: 150%; margin: 5"><b>{$b.title}:</b><br>{$b.nr}</td>
+      <td width="50"><a href="ad_bookzj.asp?id={$b.id}"><div align="center">{t}修改{/t}</div></a></td>
+      <td width="50"><a href="?action=del&id={$b.id}&typeid={$b.typeid}"><div align="center">{t}删除{/t}</div></a></td>
+    </tr>
+{/foreach}
+  </table>
+  </div>
+{/if}

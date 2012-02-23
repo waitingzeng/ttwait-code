@@ -1,0 +1,31 @@
+{$header}
+<!--左边-->
+<div id="inbody">
+<div class="left">
+<script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+{include file="ingg.html"}
+{include file="insort.html"}
+<div  class="left200c">Subscription</div>
+<div class="left200"><h2 class="left01">
+	<form method="post" action="#" onSubmit="return submit_dy(this);"><div align="center"><input name="useremail" size="12" class="input">&nbsp;&nbsp;<input name="submit" type="submit" value="submit"></div></form>
+	</h2>
+</div>
+
+</div>
+<!--右边-->
+<div class="right">
+<div class="right770"><h2 class="r01">Special Offer</h2><h2 class="r02"></h2><h2>
+{foreach item=hw from=$tejia}
+<div class="tu100"><h2> <a target="_blank" href="{$ServerPath}{$hw.cat_alias}.html" title="{$hw.hw_name}"><img src="{$config.pic_url}{$hw.hw_sn}.jpg" onerror="if(this.src.indexOf('noimage') != -1)this.src='{$ServerPath}images/noimage.jpg';" width="{$config.width}" height="{$config.height}" alt="{$hw.hw_name}" class="photo{if $hw.html} new{/if}"></a></h2><h1><a target="_blank" href="{$ServerPath}{$hw.alias}.html" title="{$hw.hw_name}">{$hw.hw_sn}</a></h1><h3><a target="_blank" href="{$ServerPath}{$hw.alias}.html" title="{$hw.hw_name}">{$hw.hw_name|truncate:22}</a></h3></div>
+{/foreach}
+</h2></div>
+<div class="right770"><h2 class="r01">shopping</h2><h2 class="r02"></h2><h2>
+<!--调用时可重复这一段图片-->
+{foreach item=hw from=$hwlist key=hw_ct}
+	{include file="ins.html"}
+{/foreach}
+<!--结束 下面是重复的例子-->
+</h2></div>
+</div>
+</div>
+{$footer}

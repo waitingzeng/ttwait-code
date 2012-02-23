@@ -1,0 +1,72 @@
+{$header}
+  <table width=920 border=0 cellpadding=0 cellspacing=0 bgcolor="#FFFFFF" style="float:left">
+    <tr>
+      <td width=181 align="center" valign="top"> 
+	  <script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+	   {include file="inhelp.html"}
+	  </td>
+      <td valign="top" align="center">{if $type == 0}
+        <table border="0" width="700" cellspacing="0" cellpadding="0">
+          <tr>
+            <td height="200" valign="top"><img src="{$serverstyle}img/help.gif">
+              <p style="line-height: 200%; margin-left:20px; margin-right:20px; margin-top:10px; margin-bottom:0"> There are some method you can try when you have difficulty:<br>
+                1. Read the help information by click the links in the left;<br>
+                2. Click &quot;<a href="#" onClick="javascript:window.open('/guest.asp','newwindow','toolbar=no,scrollbars=yes,resizable=no,top=0,left=0,width=420,height=180');"><font color="#FE7902">Feedback</font></a><font color="#FE7902">&quot;</font>, 
+                Submit your question to administrators;<br>
+                3. Ask your question in the page of product infomation;<br>
+                4. Contact US :</p>
+              <p style="line-height: 200%; margin-left: 37px; margin-right: 20px; margin-top: 5px; margin-bottom: 20px"> Tel:<%=rs7("tel")%><br>
+                Email:<a href="mailto:{$mail}">{$mail}</a><br>
+                Fax:{$fax}<br>
+                QQ:{$oicq}<br>
+                MSN:<a href="msnim:add?contact={$msn}">{$msn}</a> <br>
+                Addres:{$ymaddr} ZipCode:{$code} </td>
+          </tr>
+        </table>
+        {elseif $type == 1 and $p}
+        <table width="700" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+          <tr>
+            <td height="48" style="border-top: 2px solid #FFFFFF" background="{$serverstyle}img/help1.gif"><p style="padding-left: 40px;font-size:10pt"><font color="#346A7C"><b>{$p.title}</b></font></td>
+          </tr>
+          <tr>
+            <td valign="top" width="700" background="{$serverstyle}img/regbg.gif" align="center"><table border="0" width="95%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td>{if $p.img1}
+                    <p align="center" style="margin-top: 10px; margin-bottom: 10px"><img border="0" src="{$p.img1}"></p>
+                      {/if}
+                    <p style="line-height: 150%; margin-left: 10; margin-right: 10; word-break:break-all;">{$p.nr}</p></td>
+                </tr>
+              </table></td>
+          </tr>
+          <tr>
+            <td width="700" height="17" background="{$serverstyle}img/reg2.gif"></td>
+          </tr>
+        </table>
+        {elseif $type == 2 and $typename}
+		{foreach item=book from=$bslist}
+        <table width="700" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0">
+          <tr>
+            <td height="48" style="border-top: 2px solid #FFFFFF" background="{$serverstyle}img/help1.gif"><p style="margin-left: 40px;font-size:10pt"><a href="{$ServerPath}help.asp?typeid={$book.typeid}&id={$book.id}"><font color="#346A7C"><b>{$typename}:{$book.title}</b></font></a></td>
+          </tr>
+          <tr>
+            <td valign="top" width="700" background="{$serverstyle}img/regbg.gif" align="center"><table border="0" width="95%" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td height="8"></td>
+                </tr>
+                <tr style="word-break:break-all;">
+                  <td style="">{if $book.img1}
+                    <p align="center" style="padding-top: 10px; padding-bottom: 10px"><img border="0" src="{$book.img1}">
+                      {/if}
+                    <p style="line-height: 150%; padding-left: 10px; padding-right: 10px ;word-break:break-all;">{$book.nr}</td>
+                </tr>
+              </table></td>
+          </tr>
+          <tr>
+            <td width="700" height="17" background="{$serverstyle}img/reg2.gif"></td>
+          </tr>
+        </table>
+         {/foreach}
+	  {/if}</td>
+    </tr>
+  </table>
+{$footer}

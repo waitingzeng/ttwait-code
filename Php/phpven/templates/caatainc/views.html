@@ -1,0 +1,99 @@
+{$header}
+<script language="javascript" src="/js/douco.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/zoom.css?v=1">
+<div class="body">
+	{if not $hw}
+	<p>Product not found!</p>
+	{else}
+	<ul class="viewsTitle">
+	<li><img src="{$serverstyle}img/v1.gif"></li><li class="nav">
+	{foreach item=item from=$categorys}
+        <a href="{$ServerPath}{$item.alias}.html"><b>{$item.name}</b></a> >> 
+    {/foreach} {$hw.hw_name}
+	</li><li><img src="{$serverstyle}img/v2.gif"></li>
+	</ul>
+		<div>
+			<div class="viewsBody">
+				<ul>
+					<li><a href="{$config.pic_url}{$hw.hw_sn}.jpg" class="MagicZoom MagicThumb" title="{$hw.hw_sn}"><img src="{$config.pic_url}{$hw.hw_sn}.jpg" onerror="this.src='{$ServerPath}images/noimage.jpg';" class="photo{if $hw.html} new{/if}" width="200px"></a></li>
+					<li class="details">
+						<table>
+							<tr>
+								<td colspan="{$hw.qualist_length+2}" align="left" style="border:0"><span>
+						Serial No : {$hw.hw_sn}<br />
+						&nbsp;Product: <strong>{$hw.hw_name}</strong><br />
+						&nbsp;State: <select name="hw_kucun">
+                        	<option value="0"  selected="selected">Out Of Stock</option>
+                            <option value="1" {if $hw.hw_kucun > 0} selected="selected"{/if}>In Stock</option>
+                        </select><br />
+						&nbsp;Price : <font color="red"><strong>(The prices based on the quantity,the more  you order,the cheaper they are.And you can mix and match what you want with different sizes/styles/brands,we still can give you wholesale prices.)</strong></font></span></td>
+							</tr>
+						  <tr>
+							<td> Quantity </td>
+							
+							{foreach item=kxa from=$hw.qualist}
+								<td>{$kxa}</td>
+							{/foreach}
+						  </tr>
+						  <tr>
+							<td> Unit price(USD) </td>
+							{foreach item=kxa from=$hw.pricelist}
+							<td>{$kxa}</td>
+							{/foreach}
+						  </tr>
+						</table>
+						<span>QYT : Input how much quantity you want to buy under</span>
+						<form action="{$ServerPath}basket.asp?hw_id={$hw.hw_id}" method="post">
+						<table>
+							<tr>
+								<td> Size (Euros/US)</td>
+								{foreach item=kxa from=$hw.sizelist}
+                                <td>{$kxa}</td>
+								{/foreach}
+							</tr>
+							<tr>
+								<td> quantity </td>
+								{foreach item=kxa from=$hw.sizelist}
+								<td><input name="quantity{$kxa}" type="text" size="1" value="0" class="input"></td>
+								{/foreach}</tr>
+						</table>
+						<p style="text-align:center;"><input type="image" src="{$serverstyle}img/order.gif"></p>
+						</form>
+					</li>
+                    <!--TTwaitRemoveBegin--><li class="contact" style="text-align:left">
+                	{foreach item=m from=$config.msn}
+					<p><img src="{$serverstyle}img/msn.gif"><a href='msnim:add?contack={$m}'>{$m}</a></p>
+                    {/foreach}
+					<p><img src="{$serverstyle}img/email.gif"><a href="mailto:{$mail}">{$config.mail}</a></p>
+					<p><img src="{$serverstyle}img/telv.gif">{$config.tel}</p>
+				</li><!--TTwaitRemoveEnd-->
+					<!--TTwaitADBEGIN<li class="google"><p><script type="text/javascript">
+                    google_ad_client = "pub-2153651206088577";
+					/* 250x250, ´´½¨ÓÚ 08-5-24 */
+					google_ad_slot = "1790550029";
+					google_ad_width = 250;
+					google_ad_height = 250;
+                    </script>
+				<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+				</p></li>TTwaitADEND-->	
+				</ul>
+			</div>
+			<div class="divContent">
+			<ul>
+				<li class="content">
+					<ul>
+						<li class="title">Details</li>
+						<li class="details">{$hw.hw_content2}</li>
+						<li class="bottom"><img src="{$serverstyle}img/v9.gif" /></li>
+					</ul>
+				</li>
+				<!--TTwaitADBEGIN<li class="contact">
+                	{foreach item=m from=$config.msn}
+					<p><img src="{$serverstyle}img/msn.gif"><a href='msnim:add?contack={$m}'>{$m}</a></p>
+                    {/foreach}
+					<p><img src="{$serverstyle}img/email.gif"><a href="mailto:{$mail}">{$config.mail}</a></p>
+					<p><img src="{$serverstyle}img/telv.gif">{$config.tel}</p>
+				</li>TTwaitADEND-->	
+			</ul>
+		{/if}
+{$footer}

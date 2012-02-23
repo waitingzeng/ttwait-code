@@ -1,0 +1,19 @@
+{include_php file="insort.php"}
+<script language="javascript">var menuurl=false</script>
+<table cellSpacing="0" cellPadding="0" border="0" style="border:0">
+  <tr><td style="border:0"><img border="0" src="{$serverstyle}img/insort1.gif" /></td></tr>
+  <tr><td style="border:0"><img border="0" src="{$serverstyle}img/insort2.gif"/></td></tr>
+  <tr>
+    <td align="middle" background="{$serverstyle}img/insortbg.gif" align="center">
+	  <ul id="navigation">
+{foreach item=c from=$depth1}
+	<li><span>{$c.name}</span><ul cat="{$c.id}" id="cat_{$c.id}" depth="{$c.depth}"></ul>
+	</li>
+{/foreach}
+	  </ul>
+	 </td>
+  </tr>
+  <tr>
+    <td align="middle"><img border="0" src="{$serverstyle}img/insort3.gif"></td></tr>
+</table>
+

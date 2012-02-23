@@ -1,0 +1,33 @@
+{$header}
+<div id="inbody">
+<div class="left">
+<script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+{include file="ingg.html"}
+{include file="insort.html"}
+</div>
+<!--右边-->
+<div class="right">
+<div class="right770">
+{if not $username}
+  <h2 class="r01">Notice</h2>
+  <h2 class="r02"></h2>
+  <h3>User Not Found, Please <a href="{$ServerPath}login.asp" target=_blank><u>Login</u></a>, or <a href="{$ServerPath}reg.asp" target=_blank><u>Chick Here to Register</u></a></h3>
+{else}
+<h2 class="r01">Change Your PassWord</h2><h2 class="r02"></h2>
+<form method="POST" action="{$ServerPath}changepass.asp?action=modify">
+<div class="right570">{if $errmsg != ""}
+    <ul>{$errmsg}</ul>
+{/if}
+<div class="right150">UserName:</div><div class="right400">{$username}</div>
+<div class="right150">Old Password:</div><div class="right400"><input type="password" name="oldpass" size="30"><font color="#CC0000">*</font></div>
+<div class="right150">New Password:</div><div class="right400"><input type="password" name="pass1" size="30"><font color="#CC0000">*</font></div>
+<div class="right150">Confirm New Password:</div><div class="right400"><input type="password" name="pass2" size="30"><font color="#CC0000">*</font></div>
+<div class="right150"></div><div class="right400"><input type="submit" value="Submit" />
+</div>
+</div>
+</form>
+{/if}
+{include file="contact.html"}
+</div>
+</div>
+{$footer}

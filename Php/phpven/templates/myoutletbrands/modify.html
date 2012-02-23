@@ -1,0 +1,41 @@
+{$header}
+<div id="inbody">
+<div class="left">
+<script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+{include file="ingg.html"}
+{include file="insort.html"}
+</div>
+<!--右边-->
+<div class="right">
+{if not $user}
+<div class="right770">
+  <h2 class="r01">Notice</h2>
+  <h2 class="r02"></h2></div>
+<h3>User Not Found, Please <a href="{$ServerPath}login.asp" target=_blank><u>Login</u></a>, or <a href="{$ServerPath}reg.asp" target=_blank><u>Chick Here to Register</u></a></h3>
+{include file="contact.html"}
+{else}
+<form method="POST" action="?action=modify" onSubmit="return modifyform_onsubmit(this)">
+<div class="right770"><h2 class="r01">Modify Info</h2><h2 class="r02"></h2><h2>
+<div class="right570">{if $errmsg != ""}
+    <ul>{$errmsg}</ul>
+{/if}
+<div class="right150">UserName:</div><div class="right400">{$user.username}</div>
+<div class="right150">Real Name:</div><div class="right400"><input type="text" name="user_namec" size="30" value="{$user.user_namec}"><font color="#CC0000">*</font></div>
+<div class="right150">Email:</div><div class="right400"><input type="text" name="user_mail" size="30" value="{$user.usermail}"><font color="#CC0000">*</font></div>
+<div class="right150">Country:</div><div class="right400"><input type="text" name="user_country" size="30" value="{$user.country}"><font color="#CC0000">*</font></div>
+<div class="right150">Detail Address:</div><div class="right400"><input type="text" name="user_adds" size="30" value="{$user.user_adds}"><font color="#CC0000">*</font></div>
+<div class="right150">Zip Code:</div><div class="right400"><input type="text" name="user_postcode" size="30" value="{$user.user_postcode}"><font color="#CC0000">*</font></div>
+<div class="right150">Phone Number:</div><div class="right400"><input type="text" name="user_tel" size="30" value="{$user.usertel}"></div>
+<div class="right150">MSN:</div><div class="right400"><input type="text" name="usermsn" size="10" size="30" value="{$user.usermsn}"></div>
+<div class="right150">Google Talk:</div><div class="right400"><input type="text" name="usergoogle" size="30" value="{$user.usergoogle}"></div>
+<div class="right150">Yahoo Messager:</div><div class="right400"><input type="text" name="useryahoo" size="30" value="{$user.useryahoo}"></div>
+<div class="right150"></div><div class="right400"><input type="submit" value="Submit" />
+</div>
+</div>
+</h2>
+</div>
+</form>
+</div>
+{/if}
+</div>
+{$footer}

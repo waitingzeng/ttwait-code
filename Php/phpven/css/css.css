@@ -1,0 +1,27 @@
+body *{
+font-size: 9pt;
+}
+a:link, a:active, a:visited
+	{ font-size: 9pt;
+	  color: #666666;
+ 	  text-decoration: none; 
+          font-family:Arial; }
+a:hover { font-size: 9pt;
+	  color: 3FA6B6;
+	  text-decoration: underline;
+          font-family:Arial; }
+table {border:0px;border-collapse:collapse;border-spacing:0px;padd:expression(this.cellPadding=0);}
+table.items td {width:25%; height:134px; text-align:center}
+table.items td table{bordercolor:#111111}
+table.items td table td{ height:23px; text-align:center}
+table.items td table img{ border:0px solid #C0C0C0; height:75px; width:100px;}
+table.items a:hover{ LEFT: 1px; COLOR: #ff0099; POSITION: relative; TOP: 1px; TEXT-DECORATION: none;}
+.log	{ height:18; width: 70; font-family:Arial; }
+.input	{ height:18; font-family:Arial; }
+.yin    { FILTER: blur(direction=120,strength=3); font-family:Arial; }
+.backs  { BACKGROUND-COLOR: #DBC2B0; }
+.backq  { BACKGROUND-COLOR: #F5EFE7; }
+.photo:hover 
+        { LEFT: 1px; COLOR: #ff0099; POSITION: relative; TOP: 1px; TEXT-DECORATION: none; }
+.border_bottom{border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom: 1px solid #CCCCCC;}
+.title{ font-size:18px;}

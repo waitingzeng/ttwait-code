@@ -1,0 +1,123 @@
+{$header}
+<div id="inbody">
+<div class="left">
+<script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+{include file="ingg.html"}
+{include file="insort.html"}
+</div>
+<!--右边-->
+<div class="right">
+<div class="right770">
+<h2 class="r01">Reset Password</h2><h2 class="r02"></h2><h2>
+{if $step == 1}
+<table width="630" border="0" align="center" cellpadding="0" cellspacing="5">
+  <tr>
+    <td align="center"><table width="100%" border="0" cellpadding="0" cellspacing="0" style="border: 1px solid #C0C0C0">
+      {if $error == 1}
+	  	<tr><td colspan=3 align=center height=100>Please fill in Username,<a href=# onClick=history.go(-1)><font color=#ff0000>Back</font></a> !</td></tr>
+	   {elseif $error == 2}
+		<tr><td colspan=3 align=center height=100>UserName not Found,<a href=# onClick=history.go(-1)><font color=#ff0000>Back</font></a> !</td></tr>
+		{elseif $error == 3}
+		<tr><td colspan=3 align=center height=100>Sorry,You had no question of Password,<a href=# onClick=history.go(-1)><font color=#ff0000>Back</font></a> !</td></tr>
+		{else}
+      <tr>
+        <td colspan="3" align="center" height="30">Step 2: Answer Your Question of Password</td>
+      </tr>
+      <form method="POST" name="form" action="{$ServerPath}repass.asp?action=repass2">
+        <tr>
+          <td align="right" height="30" width="200">UserName:</td>
+          <td height="30" width="25"></td>
+          <td height="30" width="400">{$user.username}
+                <input name="user_name" type="hidden" value="{$user.username}"></td>
+        </tr>
+        <tr>
+          <td align="right" height="30" width="200">Question:</td>
+          <td height="30" width="25"></td>
+          <td height="30" width="400">{$user.question}
+                <input name="question" type="hidden" value="{$user.question}"></td>
+        </tr>
+        <tr>
+          <td align="right" height="30" width="200">Answer:</td>
+          <td height="30" width="25"></td>
+          <td height="30" width="400"><input name="answer" type="text" class=input size="20"></td>
+        </tr>
+        <tr>
+          <td align="center" colspan="3" height="30"><input type=submit value=Next name="submit1"></td>
+        </tr>
+      </form>
+	{/if}
+    </table></td>
+  </tr>
+</table>
+{elseif $step == 2}
+<table width="630" border="1" align="center" cellpadding="0" cellspacing="5">
+  <tr>
+    <td align="center"><table width="100%" border="0" cellpadding="0" cellspacing="0" style="border: 1px solid #C0C0C0">
+      {if $error == 1}
+	  <tr><td colspan=3 align=center height=100>Please confirm your Answer,<a href=# onClick=history.go(-1)><font color=#ff0000>Back</font></a> !</td></tr>
+	  {else}
+      <form method="POST" name="form2" action="{$ServerPath}repass.asp?action=repass3">
+        <tr>
+          <td colspan="3" align="center" height="30">Step 3: Reset Your Password</td>
+        </tr>
+        <tr>
+          <td width="200" align="right" height="30">UserName:</td>
+          <td width="25" height="30"></td>
+          <td width="400" height="30">{$user.username}
+                <input name="user_name" type="hidden" value="{$user.username}"></td>
+        </tr>
+        <tr>
+          <td width="200" align="right" height="30">New Password:</td>
+          <td width="25" height="30"></td>
+          <td width="400" height="30"><input name="pass1" type="password" class=input size="20"></td>
+        </tr>
+        <tr>
+          <td width="200" align="right" height="30">Confirm New Password:</td>
+          <td width="25" height="30"></td>
+          <td width="400" height="30"><input name="pass2" type="password" class=input size="20"></td>
+        </tr>
+        <tr>
+          <td align="center" colspan="3" height="30"><input type=submit value=Next name="submit1"></td>
+        </tr>
+      </form>
+     {/if}
+    </table></td>
+  </tr>
+</table>
+{elseif $step == 3}
+<table width="630" border="1" align="center" cellpadding="0" cellspacing="5">
+  <tr>
+    <td align="center"><table border="0" cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid #C0C0C0">
+      {if $error == 1}
+	  	<tr><td colspan=3 align=center height=100>Verify password is different from the previous one,<a href=# onClick=history.go(-1)><font color=#ff0000>Back</font></a> !</td></tr>
+	  {elseif $error == 2}
+	  <tr><td colspan=3 align=center height=100>UserName Not Found,<a href=# onClick=history.go(-1)><font color=#ff0000>Back</font></a> !</td></tr>
+	  {else}
+	   <tr><td colspan=3 align=center height=100>Success, <a href="{$ServerPath}"><font color=red>Back To HomePage</font></a></td></tr>
+	   {/if}
+    </table></td>
+  </tr>
+</table>
+{else}
+<table width="630" border="1" align="center" cellpadding="0" cellspacing="5">
+  <tr>
+    <td align="center"><table width="100%" border="0" cellpadding="0" cellspacing="0" style="border: 1px solid #C0C0C0">
+      <form method="POST" name="form1" action="{$ServerPath}repass.asp?action=repass1">
+        <tr>
+          <td height="60" colspan="3" align="center" width="100%">Step 1: Password Reminder</td>
+        </tr>
+        <tr>
+          <td align="right" height="30" width="230">Username:</td>
+          <td align="center" height="30" width="165"><input name="user_name" type="text" class=input size="16"></td>
+          <td height="30" width="230"><input type=submit value=Next name="submit"></td>
+        </tr>
+      </form>
+    </table></td>
+  </tr>
+</table>
+{/if}
+</h2><br/><br/>
+{include file="contact.html"}
+</div>
+</div>
+{$footer}

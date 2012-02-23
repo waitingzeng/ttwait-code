@@ -1,0 +1,108 @@
+{$header}
+<div id="inbody">
+<div class="left">
+<script language="javascript" src="{$ServerPath}ajax.asp?func=log"></script>
+{include file="ingg.html"}
+{include file="insort.html"}
+</div>
+<div class="right">
+<div class="right770">
+  <h2 class="r01">Check Out</h2>
+  <h2 class="r02"></h2><h2>
+  <br/>
+  {if not $sub}
+  <h3>No Product in your Shopping Cart</h3>
+  {include file="contact.html"}
+  {else}
+<table width="700" border="1" align="center" cellpadding="0" cellspacing="0">
+ <tr>
+    <td height="25" colspan="6"><div align="center"><font  class="r04">Order finished, Order Number <font color="#FF0000">{$sub.sub_number}</font>:</font></div></td>
+    </tr>
+  <tr>
+    <td height="25" class="r04"><div align="center">Picture</div></td>
+    <td class="r04"><div align="center">SeralNo</div></td>
+    <td class="r04"><div align="center">Price</div></td>
+    <td class="r04"><div align="center">size</div></td>
+    <td class="r04"><div align="center">Quantity</div></td>
+    <td class="r04"><div align="center">Total</div></td>
+  </tr>
+  {assign var='totalcash' value="0"}
+  {foreach item=basket from=$basketlist}
+  <tr>
+    <td height="25"><div align="center"><img src="{$config.pic_url}{$basket.hw_sn}.jpg" width="100" height="75" /></div></td>
+    <td><div align="center"><a target="_blank" href="{$ServerPath}{$basket.alias}.html">{$basket.hw_sn}</a></div></td>
+    <td><div align="center">${$basket.hw_price}</div></td>
+    <td><div align="center">{$basket.hw_size}</div></td>
+    <td><div align="center">{$basket.basket_count}</td>
+    <td><div align="center">${$basket.basket_count*$basket.hw_price}</div></td>   
+  </tr>
+		{assign var='totalcash' value="`$totalcash+$basket.basket_count*$basket.hw_price`"}
+   {/foreach}
+    {assign var='tps' value="`$totalcash*$ps.ps_fei/100+$ps.ps_fujia`"}
+	{assign var='ttps' value="`$totalcash+$tps`"}
+    {assign var='tpay' value="`$ttps*$pay.pay_fei/100+pay.pay_fujia`"}
+    {assign var='total' value="`$ttps+$tpay`"}
+    {if $promo}
+     {if $promo.type}
+       {assign var='promoval' value="`$promo.num+$promo.num*$pay.pay_fei/100`"}
+       {else}
+       {assign var='promoval' value="`$total*$promo.num/100`"}
+       {/if}
+     {else}
+     	{assign var='promoval' value="0"}
+     {/if}
+    <tr>
+  <td height="25" colspan="6" class="r05">Subtotal:<font color="#CC0000">{$totalcash}</font><br/>
+  {if $tps>0}Shipping:<font color="#CC0000">{$ps.ps_name}</font>,  Shipping Fee:<font color="#CC0000">${$tps}</font><br/>{/if}
+				{if $tpay > 0}Payment:<font color="#CC0000">{$pay.pay_name}</font>,  Payment Fee: <font color="#CC0000">${$tpay}</font><br>{/if}
+				Total:<font color="#CC0000">${$total|string_format:'%.0f'}</font>
+				{if $promoval>0}Promo: <font color="#FF0000">${$promoval}</font>&nbsp;&nbsp;You Need Pay<font color=red>${$total-$promoval|string_format:'%.0f'}</font>{/if}
+				<br/>
+				<input type="button" value="About Payment" onClick="javascript:window.open('help.asp?id=4')"></td>
+  </tr>
+</table><br/>
+</h2></div>
+<div class="right770"><h2 class="r01">Your Contact</h2><h2 class="r02"></h2><h2>
+<div class="right570">
+<div class="right150">Your Name</div><div class="right400">{$sub.sub_from}</div>
+<div class="right150">Your Tel</div><div class="right400">{$sub.sub_fromtel}</div>
+<div class="right150">Your Email</div><div class="right400">{$sub.sub_frommail}</div>
+<div class="right150">Your Country</div><div class="right400">{$sub.sub_fromcountry}</div>
+<div class="right150">Your Address</div><div class="right400">{$sub.sub_fromadds}</div>
+<div class="right150">Your Zip Code</div><div class="right400">{$sub.sub_frompost}</div>
+</div></h2>
+<div class="right770"><h2 class="r01">Recevicer Contact</h2><h2 class="r02"></h2><h2>
+<div class="right570">
+<div class="right150">Name</div><div class="right400">{$sub.sub_to}</div>
+<div class="right150">Email</div><div class="right400">{$sub.sub_mail}</div>
+<div class="right150">Country</div><div class="right400">{$sub.sub_country}</div>
+<div class="right150">Detail Address</div><div class="right400">{$sub.sub_adds}</div>
+<div class="right150">Zip Code</div><div class="right400">{$sub.sub_post}</div>
+<div class="right150">Phone Number</div><div class="right400">{$sub.sub_tel}</div>
+<div class="right150">Payment</div><div class="right400">{$pay.pay_name}</div>
+<div class="right150">&nbsp;</div><div class="right400 right4002"><font color="#999999">{$pay.pay_content}</font></div>
+<div class="right150">Shopping/Dilivery</div><div class="right400">{$ps.ps_name}</div>
+<div class="right150">&nbsp;</div><div class="right400 right4002"><font color="#999999">Arrive Time:{if $ps.ps_time}{$ps.ps_time}{else}Normal{/if} &nbsp; {$ps.ps_content}</font></div>
+<div class="right150">Other</div><div class="right400">{$sub.sub_other}</div>
+<div class="right150"></div><div class="right400">
+</div>
+</div>
+</h2></div>{/if}
+</div>
+</div>
+<!-- Google Code for wmallcn us Conversion Page -->
+<script language="JavaScript" type="text/javascript">
+<!--
+var google_conversion_id = 1035328130;
+var google_conversion_language = "en_US";
+var google_conversion_format = "3";
+var google_conversion_color = "ffffff";
+var google_conversion_label = "7AzVCIqqlwEQgrXX7QM";
+//-->
+</script>
+<script language="JavaScript" src="http://www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<img height="1" width="1" border="0" src="http://www.googleadservices.com/pagead/conversion/1035328130/?label=7AzVCIqqlwEQgrXX7QM&amp;guid=ON&amp;script=0"/>
+</noscript>
+{$footer}

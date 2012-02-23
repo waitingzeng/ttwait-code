@@ -1,0 +1,115 @@
+<div align="center">
+  <table width="736" border="0" cellpadding="0" style="border-collapse: collapse" height="243">
+    <form method="POST" language="javascript" onsubmit="return subform_onsubmit(this)" name="subform" action="{$ServerPath}cashsave.asp?action=subp">
+      <tr>
+        <td height="25" background="{$serverstyle}img/cash1.gif"></td>
+      </tr>
+      <tr>
+        <td background="{$serverstyle}img/cash2.gif" align="left"><table width="100%" cellspacing="5px" cellpadding="0">
+            <tr>
+              <td height="26" align="right" width="19%">Your Name:</td>
+              <td><input type="text" name="sub_from" size="20" class=input value="{$user.username}"></td>
+            </tr>
+            <tr>
+              <td height="26" align="right" width="19%">Your Tel:</td>
+              <td><input type="text" name="sub_fromtel" size="20" class=input value="{$user.uesrtel}"></td>
+            </tr>
+            <tr>
+              <td height="26" align="right" width="19%">Your Email:</td>
+              <td><input type="text" name="sub_frommail" size="20" class=input value="{$user.usermail}"></td>
+            </tr>
+			<tr>
+              <td height="26" align="right" width="19%">Your Country:</td>
+              <td><input type="text" name="sub_fromcountry" size="20" class=input value="{$user.country}"></td>
+            </tr>
+            <tr>
+              <td height="26" align="right" width="19%">Your Address:</td>
+              <td><input style="FONT-SIZE: 12px; WIDTH: 210px" type="text" name="sub_fromadds" size="40" class=input value="{$user.user_adds}"></td>
+            </tr>
+            <tr>
+              <td height="26" align="right" width="19%">Your Zip Code:</td>
+              <td><input type="text" name="sub_frompost" size="10" class=input value="{$user.user_postcode}"></td>
+            </tr>
+          </table></td>
+      </tr>
+      <tr>
+        <td height="48" background="{$serverstyle}img/cash3.gif"></td>
+      </tr>
+      <tr>
+        <td background="{$serverstyle}img/cash4.gif" align="left"><table width="100%" cellspacing="5px" cellpadding="0">
+            <tr>
+              <td height="26" width="19%"></td>
+              <td><b>Receiver's Infomation</b>&nbsp;&nbsp;
+                <input name="be_username" type="checkbox" value="beusername" onClick="Fuc_BeUserName(this.checked, this.form)">
+                You are Receiver</td>
+            </tr>
+            <tr>
+              <td height="26" align="right" width="19%">Name:</td>
+              <td><input type="text" name="sub_to" size="20" class=input>
+                <font color="#FF0000">*</font></td>
+            </tr>
+            <tr>
+              <td height="26" align="right" width="19%">Phone Number:</td>
+              <td><input type="text" name="sub_tel" size="20" class=input>
+                </td>
+            </tr>
+            <tr>
+              <td height="26" align="right" width="19%">Email:</td>
+              <td><input type="text" name="sub_mail" size="20" class=input>
+                <font color="#FF0000">*</font></td>
+            </tr>
+			<tr>
+              <td height="26" align="right" width="19%">Country:</td>
+              <td><input type="text" name="sub_country" size="20" class=input>
+                <font color="#FF0000">*</font></td>
+            </tr>
+            <tr>
+              <td height="26" align="right" width="19%">Detail Address:</td>
+              <td><input style="FONT-SIZE: 12px; WIDTH: 210px" type="text" name="sub_adds" size="40" class=input>
+                <font color="#FF0000">*</font></td>
+            </tr>
+            <tr>
+              <td height="26" align="right" width="19%"> Zip Code:</td>
+              <td><input type="text" name="sub_post" size="10" class=input>
+                <font color="#FF0000">*</font></td>
+            </tr>
+            <input type="hidden" value="0" name="totime">
+            <input type="hidden" name="fapiao" value="0">
+            <input type="hidden" name="quehuo" value="0">
+            <tr>
+              <td height="26" align="right" width="19%"> Payment:</td>
+              <td>{foreach item=p from=$payments key=p_ct}
+                <input type="radio" value="{$p.pay_id}" name="pay_id"{if $p_ct == 0} checked="checked"{/if}>
+                {$p.pay_name}&nbsp;
+         {/foreach}
+                <font color="#FF0000">*</font></td>
+            </tr>
+            <tr>
+              <td height="26" align="right" width="19%">Shipping/Dilivery:</td>
+              <td>{foreach item=p from=$pss key=p_ct}
+                <input type="radio" value="{$p.ps_id}" name="ps_id"{if $p_ct == 0} checked="checked"{/if}>
+                {$p.ps_name}&nbsp;
+         		{/foreach}
+                <font color="#FF0000">*</font></td>
+            </tr>
+            <tr>
+              <td width="19%" height="26" align="right">Other: </td>
+              <td><textarea style="FONT-SIZE: 12px; WIDTH: 250px" name="other" cols="30" rows="3" class="input"></textarea></td>
+            </tr>
+            <tr>
+              <td width="19%" height="26" align="right"></td>
+              <td>If you buy shoes,note what size do you want,and quantity for each size. </td>
+            </tr>
+            <tr>
+              <td width="19%" height="26" align="right"></td>
+              <td><input type="image" src="{$serverstyle}img/regbutton.gif" name="submit"></td>
+            </tr>
+          </table></td>
+      </tr>
+      <tr>
+        <td height="36" align="center" background="{$serverstyle}img/cash5.gif"></td>
+      </tr>
+      <input type="hidden" name="promocode" value="{$promo.code}" />
+    </form>
+  </table>
+</div>

@@ -1,0 +1,88 @@
+{include file='ad_top.html'}
+<table border="0" cellspacing="0" cellpadding="8"><form method="POST" action="ad_delhw.asp">
+	<tr>
+	<td align="right">{t}模糊查找{/t}：</td>
+	<td align="center">
+	<select name="searchType" class="input">
+	<option value="hw_name" {if $searchType=="hw_name"} selected="selected"{/if}>{t}名称{/t}</option>
+	<option value="hw_sn" {if $searchType=="hw_sn"} selected="selected"{/if}>{t}编号{/t}</option>
+	</select>
+	<input type="text" name="searchKey" size="20" value="{$key}" class="input"></td>
+	<td><input type="submit" value="{t}搜索{/t}" name="B1"></td>
+	<td><a href="ad_delhw.asp?quehuo=yes">{t}缺货产品管理{/t}</a></td>
+	</tr></form>
+</table>
+<table border="0" cellpadding="0" style="border-collapse: collapse" width="100%" >
+	<tr>
+		<td width="150" valign="top">
+      <table width="163" border="0" cellpadding="0" bgcolor="#C3C3C3">
+         <tr>
+	  <td>
+      	{include file="ad_insort.html"}
+	  </td>
+	  </tr>
+
+      </table>
+</td>
+		<td valign="top">
+<div align="center">
+		<table border="0" cellspacing="1" cellpadding="5" height="32" bgcolor="#DBC2B0" width="100%">
+		<form name="form" method="post"  onsubmit="return TwoSubmit(this)">
+			<tr>
+				<td><input type="checkbox" id="chk_all" />All</td>
+				<td bgcolor="#F5EFE7" align="center">
+				{t}图片{/t}</td>
+				<td bgcolor="#F5EFE7" align="center">
+				{t}名称{/t}</td>
+				<td bgcolor="#F5EFE7" align="center">
+				{t}编号{/t}</td>
+				<td bgcolor="#F5EFE7" align="center">{t}价格{/t}</td>
+				<td bgcolor="#F5EFE7" align="center">{t}尺码{/t}</td>
+			</tr>
+       {if $p.totalrec == 0}
+	   <tr><td align=center bgcolor=ffffff height=30  colspan='11'>{t}暂无内容{/t}</td></tr>
+	   {else}
+     	{foreach item=hw from=$p.items}
+        	<tr bgcolor="#FFFFFF">
+				<td><input type="checkbox" value="{$hw.hw_id}" name="chk_hw_id" class="chk_hw_id" /></td>
+				<td>
+<a href="{$pic_url}{$hw.hw_sn}.jpg"><img border="0" src="{$pic_url}{$hw.hw_sn}.jpg" onerror="this.src='images/noimage.jpg'" width="50" height="50"></a></td>
+				<td>
+<a href="{$ServerPath}views.asp?hw_id={$hw.hw_id}">{$hw.hw_name}{if $hw.hw_kucun<=0}<font color="#FF0000">（X）</font>{/if}</a></td>
+				<td align="center">{$hw.hw_sn}</td>
+				<td align="center">{$hw.pricelist}</td>
+				<td align="center">{$hw.sizelist}</td>
+			</tr>
+		{/foreach}
+		{/if}
+<tr><td bgcolor="#FFFFFF" align="center" height="23" colspan="6">
+<input type="submit" name="action" value="Delete"><input type="submit" name="action" value="Set OOS"</td></tr>
+</form>
+</table>
+<table border="0" width="100%" cellspacing="0">
+	<tr>
+		<td height="30">
+        {$p.totalpage|pagination:$p.pageIndex:"ad_delhw.asp?cat_id=$cat_id&searchType=$searchType&key=$key&quehou=$quehou&page=#page#"}
+		</td>
+	</tr></table>
+      	</div>
+		</td>
+	</tr>
+</table>
+{literal}
+<script language=javascript>
+function TwoSubmit(form)
+{
+	if(!confirm('Did you confirm to do?')) 
+		return false;
+	return true;
+}
+
+$(function(){
+	$('#chk_all').click(function(){
+		check = this.checked;
+		$('.chk_hw_id').each(function(){this.checked = check})
+	})
+})
+</script>
+{/literal}

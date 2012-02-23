@@ -1,0 +1,46 @@
+{$header}
+<table border="0" cellpadding="0" cellspacing="0" width="70%" align="center" background="{$serverstyle}img/pattern.gif" style="border: 1px solid #C0C0C0">
+{if $hadLogin}
+<tr> 
+    <td colspan="4" height="45" valign="bottom">
+	<p style="margin-left: 35px"><b>Notice:</b>{$username} You have already Login, If you are not 
+	<b> {$username}</b>,Please <a href="{$ServerPath}quit.asp">Quit and Re-Login</a>!</td>
+   </tr>
+   	<tr> 
+    <td align="center" colspan="4"><hr color="#C0C0C0" size="1" width="90%"></td>
+   </tr>
+   	<tr> 
+    <td align="center" height="45" colspan="4"><A href="{$ServerPath}reg.asp"><IMG src="{$serverstyle}img/loginreg.gif" border=0></A></td>
+   </tr>
+   	<tr> 
+    <td align="center" height="45" colspan="4"><a href="{$ServerPath}repass.asp"><IMG src="{$serverstyle}img/repass.gif" border=0></a></td>
+   </tr>
+  <tr><td colspan="4" align="center" height="30"></td></tr>
+{else}
+<form method="POST" name="form1" action="?action=login"><tr> 
+    <td colspan="4" height="45" valign="bottom">
+	<p style="margin-left: 35px"><b>Login Area:</td>
+   </tr>
+   	<tr> 
+    <td align="center" colspan="4"><hr color="#C0C0C0" size="1" width="90%"></td>
+   </tr>
+   	<tr> 
+    <td align="right" height="45">Username:</td>
+    <td height="45"><input name="user_name" type="text" class=input style="FONT-SIZE: 12px; WIDTH: 110px;" tabindex="1"></td>
+    <td rowspan="2"><input type=image src="{$serverstyle}img/button_login.gif" name="login" tabindex="3"></td>
+    <td height="45"><A href="reg.asp" tabindex="4"><IMG src="{$serverstyle}img/loginreg.gif" border=0></A></td>
+   </tr>
+   <tr>
+     <td align="right" height="45">PassWord:</td>
+     <td height="45">
+		<input style="FONT-SIZE: 12px; WIDTH: 110px" type="password" name="user_pass" class=input size="12" tabindex="2"></td>
+     <td height="45"><a href="repass.asp" tabindex="5"><IMG src="{$serverstyle}img/repass.gif" border=0></a></td>
+  </tr>
+  <tr> 
+     <td colspan="4" align="center" height="45"></td>
+</tr>
+<input type="hidden" name="comurl" value="{$comurl}" />
+  </form>
+{/if}
+</table>
+{$footer}

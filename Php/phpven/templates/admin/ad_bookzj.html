@@ -1,0 +1,34 @@
+{include file='ad_top.html'}
+<table border="0" cellspacing="1" cellpadding="5" bgcolor="#DBC2B0"><form name="form" method="post" action="ad_bookzj.asp?action=save">
+      <tr> 
+      <td colspan="3" bgcolor="#F5EFE7" align="center">{t}内容增加{/t}</td>
+    </tr>
+      <tr> 
+      <td bgcolor="#FFFFFF">{t}标题{/t}:</td>
+        <td colspan="2" bgcolor="#FFFFFF">
+
+          <input type="text" name="title" size="50" value="{if $book}{$book.title}{/if}"></td>
+    </tr>
+  	<tr>
+      <td bgcolor="#FFFFFF">{t}分类{/t}:</td>
+        <td colspan="2" bgcolor="#FFFFFF">
+          <select name="typeid">
+            {foreach item=t from=$typelist}
+			<option value="{$t.id}" {if $book.typeid == $t.id} selected="selected"{/if}>{$t.typename}</option>
+			{/foreach}
+          </select></td>
+    	</tr>
+      <tr> 
+      <td bgcolor="#FFFFFF">{t}内容{/t}:</td>
+        <td colspan="2" bgcolor="#FFFFFF"><IFRAME ID="eWebEditor1" src="eWebEditor/ewebeditor.htm?id=nr&style=coolblue" frameborder="0" scrolling="no" width="550" height="350"></IFRAME></td>
+    </tr>
+      <tr> 
+      <td colspan="3" bgcolor="#FFFFFF" align="center">
+      <input type="submit" value="{t}提交{/t}" name="B1" class=input >
+      <textarea name="nr" id="nr" style="visibility:hidden">{if $book}{$book.nr}{/if}</textarea>
+	  <input name="id" type="hidden" value="{if $book}{$book.id}{else}0{/if}" />
+	  </td>
+    </tr></form>
+  </table>
+</body>
+</html>
