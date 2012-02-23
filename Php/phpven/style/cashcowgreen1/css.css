@@ -1,0 +1,19 @@
+BODY    { font-size: 9pt; color: #666666; font-family:Arial,helvetica,sans-serif; }
+TD	{ font-size: 9pt; color: #666666; font-family:Arial,helvetica,sans-serif; }
+a:link, a:active, a:visited
+	{ font-size: 9pt;
+	  color: #666666;
+ 	  text-decoration: none; 
+          font-family:Arial; }
+a:hover { font-size: 9pt;
+	  color: 3FA6B6;
+	  text-decoration: underline;
+          font-family:Arial; }
+.log	{ height:18; width: 70; font-family:Arial; }
+.input	{ height:18; font-family:Arial; }
+.yin    { FILTER: blur(direction=120,strength=3); font-family:Arial; }
+.backs  { BACKGROUND-COLOR: #DBC2B0; }
+.backq  { BACKGROUND-COLOR: #F5EFE7; }
+.photo:hover 
+        { LEFT: 1px; COLOR: #ff0099; POSITION: relative; TOP: 1px; TEXT-DECORATION: none; }
+.border_bottom{border-left-width: 1px; border-right-width: 1px; border-top: 1px solid #C8C8C8; border-bottom: 1px solid #C8C8C8}

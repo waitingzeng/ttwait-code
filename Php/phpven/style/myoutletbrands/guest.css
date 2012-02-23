@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+#layer1 
+{
+	position: absolute;
+	left:200px;
+	top:100px;
+	width:250px;
+	background-color:#f0f5FF;
+	border: 1px solid #000;
+	z-index: 50;
+}
+#layer1_handle 
+{
+	background-color:#5588bb;
+	padding:2px;
+	text-align:center;
+	font-weight:bold;
+	color: #FFFFFF;
+	vertical-align:middle;
+}
+#layer1_content 
+{
+	padding:5px;
+}
+#close
+{
+	float:right;
+	text-decoration:none;
+	color:#FFFFFF;
+}
+h1, h2
+{
+	font-size:20px;
+}

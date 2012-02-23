@@ -1,0 +1,500 @@
+TD	{ font-size: 9pt; color: #666666; font-family:Arial,helvetica,sans-serif; }
+*{	margin:0;padding:0; border:0;}
+body 
+{
+	font-size: 9pt;
+	color: #666666;
+	font-family:Arial,helvetica,sans-serif;
+	background-image: url(img/back.gif);
+	text-align:center;
+}
+
+a:link, a:active, a:visited
+{ 
+	color: #666666;
+ 	text-decoration: none; 
+}
+a:hover
+{
+	color: #3FA6B6;
+	text-decoration: underline;
+}
+.input{ height:18px; vertical-align:middle; border:1px solid #999999; margin:1px;}
+img{ vertical-align:middle; text-align:center;}
+
+ul{
+	list-style-type:none;
+	list-style-position : outside;
+}
+
+ul.floatleft li
+{
+	float:left;
+}
+floatleft{	float:left;}
+floatright{	float:right;}
+#main
+{
+	width:778px;
+	text-align:left;
+	background:#8C8A8B;
+	margin:auto;
+}
+#main h1{
+font-size:7px;
+color:#666666;
+}
+#header
+{
+	width:778px;
+	float:left;
+}
+
+#headerTop 
+{
+	width:778px;
+	text-align:left;
+	clear:both;
+	height:80px;
+	background:#8C8A8B;
+}
+#headerTop .logo
+{
+	text-align:left;
+	width:189px;
+}
+#headerTop .menu
+{
+	width:500px;
+	margin: 20px 0px 10px 50px;
+	text-align:right;
+}
+#headerTop .contact{font-weight:bold;}
+#headerTop .contact a
+{
+	font-size:12pt;
+	color:#ff0000;
+}
+#headerNav
+{
+	padding:5px 0px 0px 50px;
+	background-color:#3180BE;
+	color:#FFFFFF;
+	font-weight:bold;
+	height:25px;
+	float:left;
+	width:678px;
+	text-align:center;
+}
+*html #headerNav{ width:778px;}
+#headerNav a{color:#FFFFFF;}
+#headerSearch
+{
+	vertical-align:middle;
+	padding:5px 0;
+	width:778px;
+	clear:both;
+	height:20px;
+	background:#8C8A8B;
+}
+#headerSearch li{ padding:2px 5px 2px 5px; vertical-align:middle;}
+.footer
+{
+	width:778px;
+	margin:0 auto;
+	padding:0;
+	text-align:center;
+	float:left;
+	height:85px;
+	background:#8C8A8B;
+}
+.footer ul{ height:80px; width:778px;}
+.footer li{ text-align:right; line-height:150%; padding:5px 20px 0 0;}
+.footer .p1{width:65%;}
+.footer .p2{width:25%;}
+.footer p{background:#8C8A8B; float:left; width:100%; text-align:center}
+
+.spe
+{
+	padding-top:5px;
+	color:#336699;
+	height:4px;
+	background-color:#336699;
+	float:left;
+	clear:both;
+	width:100%;
+}
+.spe2
+{
+	height:3px;
+	color:#ECECF4;
+	background-color:#ECECF4;
+}
+
+.body
+{
+	width:778px;
+	display:block;
+	float:left;
+	background:#8C8A8B;
+}
+
+.body .left
+{
+	float:left;
+	width:170px;
+
+}
+.body .right
+{
+	float:right;
+	text-align:left;
+	width:600px;
+}
+.title
+{
+	font-size:12pt;
+	font-weight:bold;
+	background-color:#333399;
+	color:#FFFFFF;
+	text-align:center;
+	padding:5px 0 5px 0;
+}
+#loginErea{ background:url("img/login5.gif") repeat-y center; float:left; padding:2px 8px 2px 3px;}
+#loginErea li { width:160px; text-align:center; vertical-align:middle;}
+
+#nav
+{
+	background-color:#C3C3C3;
+	width:170px;
+	margin:2px 0 2px 0;
+}
+
+#notice
+{
+	text-align:left;
+	background:url(img/searchinbg.gif) repeat center;
+	width:600px;
+	height:30px;
+}
+#notice .marquee
+{
+	width:480px;
+}
+#notice span
+{
+	font-weight:bold;
+	color:#F96D06;
+}
+
+.hwList
+{
+	width:600px;
+	text-align:center;
+	float:left;
+	clear:both;
+}
+.hwList li
+{
+	width:600px;
+	height:120px;
+	vertical-align:middle;
+	clear:both;
+}
+.hwList li ul li
+{
+	float:left;
+	width:120px;
+	margin-top:5px;
+	clear:none;
+}
+.hwList img
+{
+	width:100px;
+	height:75px;
+}
+.border_bottom{border-width: 1px; border-bottom: solid #CCCCCC;}
+.sortNav
+{
+	background-color:#F7F7F7;
+	height:20px;
+	padding-top: 3px;
+	padding-bottom:auto;
+}
+*html .sortNav{ height:25px;}
+.sortNav a
+{
+	font-weight:bold;
+}
+.pagination
+{
+	width:98%;
+	text-align:center;
+	word-spacing:5px;
+}
+
+/* Views.aspx */
+.viewsTitle
+{
+	background:url(img/v3.gif);
+	width:778px;
+	height:40px;
+}
+.viewsTitle img
+{
+	width:23px;
+	height:40px;
+}
+.viewsTitle .nav
+{
+	width:732px;
+	padding-top:10px;
+}
+.viewsBody
+{
+ width:778px;
+}
+.viewsBody .image
+{
+	vertical-align:middle;
+	width:206px;
+	height:206px;
+	background:url(img/vbg.gif);
+	margin:5px;
+	float:left;
+}
+
+.viewsBody .image img
+{
+	width:200px;
+	margin:3px;
+}
+.viewsBody span
+{
+	margin:5px;
+	font-weight:bold;
+	font-size:12pt;
+	color:#000080;
+	line-height:150%;
+}
+.viewsBody table
+{
+	width:550px;
+	background-color:#CCCCCC;
+	text-align:center;
+	border-collapse:collapse;
+	border:solid 1px #000000;
+}
+.viewsBody table td
+{
+	border:solid 1px #000000;
+	padding:1px;
+}
+.divContent .content
+{
+	width:500px;
+	padding:5px;
+}
+.divContent .contact p
+{
+	padding:5px;
+	background:#999999;
+}
+.divContent .title
+{
+	height:25px;
+	font-size: 10pt; 
+	font-weight: bold; 
+	color:#FA860B;
+	padding-left:35px;
+	background:url(img/v7.gif);
+	text-align:left;
+}
+*html .divContent .title
+{
+	height:36px;
+}
+.divContent .details
+{
+	background-color:#FFFFFF;
+	float:left;
+	height:300px;
+}
+
+/*Reg.aspx**/
+.regForm p
+{
+	line-height:150%;
+	padding:5px;
+}
+.regForm .regtitle
+{
+	background:#E7EEEF;
+	border-top: 2px solid #FFFFFF;
+	padding:4px 40px 1px 10px;
+	font-size:12pt;
+	height:30px;
+}
+
+.regForm table
+{
+	border-collapse:collapse;
+	width:600px;
+	font-size:10pt;
+}
+.regForm td
+{
+	padding:5px;
+	text-align:left;
+}
+.regForm input
+{
+	width:210px;
+	font-size:12pt;
+}
+.regForm .submit
+{
+	width:84px;
+}
+table.buy{
+	width :600px;
+	background : #EEEEEE;
+	border-collapse:collapse;
+}
+
+table.buy td{
+height:30px;
+text-align:center;
+border:1px solid #CCCCCC;
+}
+
+p.tips{
+background:#FFFFFF;
+color:#999999;
+font-weight:bold;
+font-size:12pt;
+}
+table.cash{
+	width :600px;
+	background : url(img/cash01.gif);
+	border-collapse:collapse;
+}
+table.cash td{
+height:30px;
+text-align:center;
+border:0
+}
+div.cash2{
+	width :600px;
+	background : url(img/cash2.gif);
+}
+div.cash2 label{
+	width :130px;
+	text-align:right;
+	padding-right:10px;
+}
+div.cash2 p{
+text-align:left;
+line-height:200%;
+padding:0,10px;
+}
+div.cash3{
+	background : url(img/cash4.gif);
+}
+#changepass{
+    width:580px;
+	border:1px solid #C0C0C0;
+	background:url(img/pattern.gif);
+}
+
+#changepass p{
+line-height:200%;
+text-align:left;
+}
+#changepass p label{
+width:200px;
+text-align:right;
+padding-right:10px;
+}
+
+table.login{
+width:580px;
+background:url(img/pattern.gif);
+border: 1px solid #C0C0C0;
+border-collapse:collapse;
+}
+table.login td{
+height:45px;
+text-align:center;
+}
+#modify{
+border: 1px solid #C0C0C0;
+background:url(img/pattern.gif);
+}
+#modify p{
+line-height:200%;
+text-align:left;
+}
+#modify p label{
+width:200px;
+text-align:right;
+padding-right:10px;
+}
+#modify p span{
+color:#FF0000;
+}
+
+table.orders{
+	width:570px;
+	border: 1px solid #C0C0C0;
+	background:url(img/pattern.gif);
+}
+table.orders td{
+height:35px;
+text-align:center;
+}
+.cashin{
+width:600px;
+border:0;
+}
+.cashin p{
+text-align:left;
+line-height:200%;
+}
+.cashin label{
+text-align:right;
+width:110px;
+padding-right:10px;
+}
+.cashin span{
+color:#FF0000;
+}
+.userinfo{
+width:580px;
+border:1px solid #CCCCCC;
+background:url(img/pattern.gif);
+}
+.userinfo p{
+text-align:left;
+line-height:200%;
+}
+.userinfo label{
+text-align:right;
+width:200px;
+padding-right:10px;
+}
+h1{
+	margin:0px;
+	padding:0px;
+	font-weight:bold;
+	font-size:12pt;
+	color:#000080;
+}
+
+.google_marquee{
+width:350px;
+}
+.tejia img{
+width:100px;
+height:75px;
+}

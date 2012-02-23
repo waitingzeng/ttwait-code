@@ -1,0 +1,377 @@
+BODY    { font-size: 9pt; color: #666666; font-family:Arial,helvetica,sans-serif; text-align:center; margin:0;}
+#main
+{
+	width:920px;
+	text-align:left;
+	margin:auto;
+}
+p, img, tr, td, ul, li{	margin:0;padding:0; border:0;}
+TD	{ font-size: 9pt; color: #666666; font-family:Arial,helvetica,sans-serif; }
+a:link, a:active, a:visited
+	{ font-size: 9pt;
+	  color: #666666;
+	  text-decoration:none;
+	  font-family:Arial; }
+a:hover { font-size: 9pt;
+	  color: 3FA6B6;
+	  text-decoration: underline;
+          font-family:Arial; }
+a.photo{ text-decoration:underline;}
+.log	{ height:18; width: 70; font-family:Arial; }
+.input	{ height:18; font-family:Arial; border:1px solid;}
+.yin    { FILTER: blur(direction=120,strength=3); font-family:Arial; font-size: 10pt; font-weight: bold; color:#FA860B}
+.backs  { BACKGROUND-COLOR: #DBC2B0; }
+.backq  { BACKGROUND-COLOR: #F5EFE7; }
+
+
+.tr_bottom td, .border_bottom{ border:1px; border-bottom: 1px solid #C8C8C8; text-align:center;}
+.contact{font-weight:bold;}
+.contact a:link, .contacta:active, .contacta:visited
+{
+	font-size:12pt;
+	color:#ff0000;
+}
+.contact a:hover{
+	font-size:12pt;
+}
+
+h1{
+font-size: 12pt; 
+color: #000080; 
+font-weight: bold;
+margin:0;
+padding:0;
+}
+h2{
+font-size:14pt;
+color:#000000;
+margin:0;
+padding:0;
+text-decoration:underline;
+font-weight:lighter;
+}
+#main h1{
+font-size:9px;
+margin:0;
+padding:0;
+color:#666666;
+}
+table.noborder{
+border:0;
+border-collapse: collapse; 
+border-spacing: 0; 
+}
+table.noborder td th{
+padding:0;
+}
+
+ul{
+	list-style-type:none;
+	list-style-position : outside;
+	margin:0;
+	padding:0;
+}
+
+li{
+list-style-type:none;
+}
+#headerTop 
+{
+	width:920px;
+	text-align:left;
+	clear:both;
+	height:85px;
+}
+#headerTop .logo
+{
+	text-align:left;
+	width:189px;
+	float:left;
+}
+#headerTop .menu
+{
+	width:auto;
+	margin: 10px 0 0 0;
+	text-align:right;
+}
+#headerTop .contact{font-weight:bold;}
+#headerTop .contact a
+{
+	font-size:12pt;
+	color:#ff0000;
+}
+
+#headerNav
+{
+	font-weight:bold;
+	height:24px;
+	text-align:center;
+	width:920px;
+	
+}
+#headerNav div{
+float:left;
+background:url(img/toplanb.gif);
+background-repeat:no-repeat;
+width:110px;
+height:24px;
+vertical-align:middle;
+padding-top:4px;
+}
+*html #headerNav{ width:920px;}
+#headerNav a{color:#336699;}
+#headerSearch
+{
+	vertical-align:middle;
+	width:920px;
+	clear:both;
+	text-align:center;
+	clear:both;
+}
+#headerSearch li{ padding:0 5px; vertical-align:middle; float:left;}
+#pinpaiform { margin:5px;
+text-align:center;
+}
+.footer
+{
+	width:920px;
+	margin:0 auto;
+	padding:0;
+	text-align:center;
+	float:left;
+	clear:both;
+}
+.footer ul{ height:80px; width:778px;}
+.footer li{ text-align:right; line-height:150%; padding:5px 20px 0 0;}
+.footer .p1{width:65%;}
+.footer .p2{width:25%;}
+.footer p{float:left; width:100%; text-align:center}
+
+.spe
+{
+	padding-top:5px;
+	color:#336699;
+	height:4px;
+	background-color:#336699;
+	float:left;
+	clear:both;
+	width:100%;
+}
+.spe2
+{
+	height:3px;
+	color:#ECECF4;
+	background-color:#ECECF4;
+}
+.body
+{
+	width:920px;
+	display:block;
+	text-align:center;
+	float:left;
+	clear:both;
+}
+
+.body .left
+{
+	float:left;
+	width:170px;
+}
+.body .right
+{
+	float:left;
+	text-align:left;
+	width:720px;
+	margin-left:10px;
+}
+.title
+{
+	font-size:12pt;
+	font-weight:bold;
+	background-color:#333399;
+	color:#FFFFFF;
+	text-align:center;
+	padding:5px 0 5px 0;
+}
+#loginErea{ background:url("img/login5.gif") repeat-y center; float:left; padding:2px 8px 2px 3px;}
+#loginErea li { width:160px; text-align:center; vertical-align:middle;}
+
+#nav
+{
+	background-color:#C3C3C3;
+	width:170px;
+	margin:2px 0 2px 0;
+}
+
+
+/* Views.aspx */
+.viewsTitle
+{
+	width:920px;
+	height:40px;
+	text-align:center;
+}
+.viewsTitle li{
+float:left;
+}
+.viewsTitle img
+{
+	width:23px;
+	height:40px;
+}
+.viewsTitle .nav
+{
+	width:874px;
+	height:40px;
+	background:url(img/v3.gif);
+	text-align:left;
+	line-height:40px;
+}
+.viewsBody
+{
+ width:920px;
+}
+.viewsBody li{
+float:left;
+}
+.viewsBody .image
+{
+	vertical-align:middle;
+	width:206px;
+	height:206px;
+	background:url(img/vbg.gif);
+	margin:5px;
+	float:left;
+}
+
+.viewsBody .image img
+{
+	width:200px;
+	margin:3px;
+}
+.viewsBody span
+{
+	font-weight:bold;
+	font-size:10pt;
+	color:#000080;
+	line-height:150%;
+}
+.viewsBody table
+{
+	width:420px;
+	text-align:center;
+	border-collapse:collapse;
+}
+.viewsBody table td
+{
+	border:solid 1px #000000;
+	padding:1px;
+}
+.divContent li{
+float:left;
+text-align:left;
+}
+.divContent .content
+{
+	width:565px;
+}
+.divContent .content li{
+width:100%;
+text-align:left;
+}
+.divContent .details{
+background:url(img/v8.gif);
+padding-left:5px;
+}
+.divContent .buttom{
+padding:0px;
+margin:0;
+}
+.divContent .title
+{
+	font-size: 10pt; 
+	font-weight: bold; 
+	color:#FA860B;
+	padding-left:35px;
+	background:url(img/v7.gif);
+	text-align:left;
+	width:560px;
+}
+
+.border_bottom{border-width: 1px; border-bottom: solid #CCCCCC;}
+.sortNav
+{
+	background-color:#F7F7F7;
+	height:20px;
+	padding-top: 3px;
+	padding-bottom:auto;
+	text-align:left;
+	border:1px solid #F7F7F7;
+	width:720px;
+}
+*html .sortNav{ height:25px;}
+.sortNav a
+{
+	font-weight:bold;
+}
+.pagination
+{
+	width:98%;
+	text-align:center;
+	word-spacing:5px;
+}
+.gg{ float:left;width:700px;background:url(img/searchinbg.gif);}
+.gg li{ float:left; height:28px;}
+.gg .content{ padding-top:10px;}
+#navigation{ width:163px; text-align:left;}
+
+.photo {
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 13px;
+	padding-left: 0px;
+	border: 1px solid #CCCCCC;
+}
+.new {
+	background-image: url(img/new.jpg);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+
+.tu100{
+	float: left;
+	width: 105px;
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+}
+.tu100 h2{
+	padding: 2px;
+	border: 1px solid #CCCCCC;
+	float: left;
+}
+.tu100 h3{
+	font-size: 12px;
+	line-height: 20px;
+	font-weight: bold;
+	color: #000000;
+	height: 40px;
+	margin: 0px;
+	padding: 0px;
+	float: left;
+}
+.tu100 h1{
+	font-size: 12px;
+	line-height: 20px;
+	font-weight: normal;
+	color: #333333;
+	margin: 0px;
+	padding: 0px;
+	float: left;
+	width:105px;
+}
+.right770{
+	float: left;
+	width: 720px;
+}
