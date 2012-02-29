@@ -6,13 +6,7 @@ from google.appengine.ext import webapp
 SITE = 'http://%(from_site)s/'
 
 REPLACE = (
-    ('%(from_site)s', '%(to_site)s'),
-    ('UA-791706-40', '%(analy_id)s'), 
-    ('UA-791706-42', '%(analy_id)s'), 
-    ('UA-791706-46', '%(analy_id)s'), 
-    ('google_analy_id', '%(analy_id)s'), 
-    ('google_ad_client = "google_ad_client";', 
-    'google_ad_client = "%(google_ad_client)s";'),
+    ('%(from_site)s', '%(appid)s.appspot.com'),
 )
 
 funcs = []

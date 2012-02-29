@@ -3,16 +3,10 @@
 import wsgiref.handlers
 from google.appengine.ext import webapp
 
-SITE = 'http://solovemoney.sinaapp.com/'
+SITE = 'http://ttwait.sinaapp.com/'
 
 REPLACE = (
-    ('solovemoney.sinaapp.com', 'wholeworldmoney.appspot.com'),
-    ('UA-791706-40', ''), 
-    ('UA-791706-42', ''), 
-    ('UA-791706-46', ''), 
-    ('google_analy_id', ''), 
-    ('google_ad_client = "google_ad_client";', 
-    'google_ad_client = "pub-0700562303436822";'),
+    ('ttwait.sinaapp.com', 'wholesale-cheap-shoes.appspot.com'),
 )
 
 funcs = []
