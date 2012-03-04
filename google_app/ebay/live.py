@@ -5,7 +5,7 @@ from django.utils import simplejson
 import re
 import logging
 import gzip
-from CStringIO import StringIO
+from StringIO import StringIO
 
 CID_RE = re.compile(r'cid\-([\d\w]{16})', re.I).findall
 headers = {
