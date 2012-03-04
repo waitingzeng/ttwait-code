@@ -32,7 +32,7 @@ class MainPage(webapp.RequestHandler):
             onlycheck = self.request.get('onlycheck', None)
             cookies = self.request.get('cookies', '')
             if not ids is None:
-                page = self.fetchurl('http://profile.live.com/cid-%s/' % ids, cookies)
+                page = self.fetchurl('http://profile.live.com/cid-%s/friends/all/' % ids, cookies)
                 self.response.out.write('%s;' % page.status_code)
                 if not onlycheck and page.status_code == 200:
                     mailItem = {}

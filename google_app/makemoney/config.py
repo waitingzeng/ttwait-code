@@ -6,7 +6,7 @@ from google.appengine.ext import webapp
 SITE = 'http://ttwait.sinaapp.com/'
 
 REPLACE = (
-    ('ttwait.sinaapp.com', 'wholesale-cheap-shoes.appspot.com'),
+    ('ttwait.sinaapp.com', ' waysofpaidsurveys.appspot.com'),
 )
 
 funcs = []

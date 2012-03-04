@@ -14,6 +14,8 @@ site_config = DictIni('site_config.ini')
 path = 'makemoney'
 action = 'update'
 
+from_site = 'ttwait.sinaapp.com'
+
 if __name__ == '__main__':
     appfile = os.path.join(path, 'app.yaml')
     configfile = os.path.join(path, 'config.tpl')
@@ -38,23 +40,25 @@ if __name__ == '__main__':
         print key, 'begin'
         sys.argv[4] = infos['email']
         sys.argv[6] = str(infos['psw'])
-        
-        a = file(configfile, 'w')
-        a.write(configcontent % infos)
-        a.close()
-        a = file(appfile, 'w')
-        a.write('application: %s\n' % infos['appid'])
-        a.write(appcontent)
-        a.close()
-        print ' '.join(sys.argv)
-        for j in range(10):
-            try:
-                #raw_input()
-                execfile(script_path, globals())
-                print key, 'success\n\n' 
-                break
-            except Exception, info:
-                print 'fail', info
+        infos['from_site'] = from_site
+        for appid in infos['appids']:
+            a = file(configfile, 'w')
+            infos['appid'] = appid
+            a.write(configcontent % infos)
+            a.close()
+            a = file(appfile, 'w')
+            a.write('application: %s\n' % infos['appid'])
+            a.write(appcontent)
+            a.close()
+            print ' '.join(sys.argv)
+            for j in range(10):
+                try:
+                    #raw_input()
+                    execfile(script_path, globals())
+                    print key, 'success\n\n' 
+                    break
+                except Exception, info:
+                    print 'fail', info
         
                     
     
