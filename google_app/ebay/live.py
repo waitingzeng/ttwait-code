@@ -4,6 +4,8 @@ from google.appengine.api.urlfetch import fetch
 from django.utils import simplejson
 import re
 import logging
+import gzip
+from CStringIO import StringIO
 
 CID_RE = re.compile(r'cid\-([\d\w]{16})', re.I).findall
 headers = {
@@ -18,6 +20,8 @@ class MainPage(webapp.RequestHandler):
         for i in range(3):
             try:
                 page = fetch(url, headers=headers, allow_truncated=True)
+                if page.headers.get('content-encoding', None) == 'gzip':
+                    page.content = gzip.GzipFile(fileobj=StringIO(page.content)).read()
                 return page
             except Exception, e:
                 ex = e
@@ -37,7 +41,6 @@ class MainPage(webapp.RequestHandler):
                 self.response.out.write('%s;' % page.status_code)
                 if not onlycheck and page.status_code == 200:
                     mailItem = {}
-                    logging.error(page.content)
                     maillist = CID_RE(page.content)
                     for m in maillist:
                         if m == ids:

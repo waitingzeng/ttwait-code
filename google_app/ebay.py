@@ -40,7 +40,7 @@ if __name__ == '__main__':
     appfile = os.path.join(path, 'app.yaml')
     appcontent = file(appfile).read().split('\n', 1)[1]
     sys.path = EXTRA_PATHS + sys.path
-    script_name = 'appcfg.py'
+    script_name = 'myappcfg.py'
     script_name = SCRIPT_EXCEPTIONS.get(script_name, script_name)
     script_path = os.path.join(SCRIPT_DIR, script_name)
 
