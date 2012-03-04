@@ -3,6 +3,7 @@ from google.appengine.ext import webapp
 from google.appengine.api.urlfetch import fetch
 from django.utils import simplejson
 import re
+import logging
 
 CID_RE = re.compile(r'cid\-([\d\w]{16})', re.I).findall
 headers = {
@@ -36,7 +37,7 @@ class MainPage(webapp.RequestHandler):
                 self.response.out.write('%s;' % page.status_code)
                 if not onlycheck and page.status_code == 200:
                     mailItem = {}
-                    #print page.content
+                    logging.error(page.content)
                     maillist = CID_RE(page.content)
                     for m in maillist:
                         if m == ids:
