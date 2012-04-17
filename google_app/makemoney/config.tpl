@@ -11,7 +11,7 @@ REPLACE = (
 
 funcs = []
 
-NOURL = []
+NOURL = ['robots.txt']
 NOTREPLACEEXT = {
     'gif' : 1,
     'jpg' : 1

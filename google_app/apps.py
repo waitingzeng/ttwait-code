@@ -32,7 +32,7 @@ for k in temp:
 
 f = file('a.txt', 'a')
 for k in apps.keys():
-    f.write('203.208.39.104 %s.appspot.com\n' % k)
+    f.write('203.208.46.209 %s.appspot.com\n' % k)
 f.close()
 
 
@@ -474,6 +474,10 @@ for k in temp:
     apps[k] = config
 
 
+f = file('a.txt', 'a')
+for k in apps.keys():
+    f.write('203.208.46.209 %s.appspot.com\n' % k)
+f.close()
 
 
 

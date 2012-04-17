@@ -6,12 +6,12 @@ from google.appengine.ext import webapp
 SITE = 'http://ttwait.sinaapp.com/'
 
 REPLACE = (
-    ('ttwait.sinaapp.com', ' waysofpaidsurveys.appspot.com'),
+    ('ttwait.sinaapp.com', 'wholesaleshoesnews.appspot.com'),
 )
 
 funcs = []
 
-NOURL = []
+NOURL = ['robots.txt']
 NOTREPLACEEXT = {
     'gif' : 1,
     'jpg' : 1
