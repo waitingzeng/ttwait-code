@@ -1,0 +1,60 @@
+temp = ['make-cash-79', 'money-make-22', 'money-make-46', 'earn-money-55', 'make-money-52', 'make-cash-86', 'money-made-29', 'make-cash-20', 'easy-money-87', 'fast-money-85']
+config = {'name' : 'pakqjx@gmail.com', 'password' : 'g2s1s9y1'}
+for k in temp:
+    apps[k] = config
+    
+    
+temp = ['money-now-79', 'fast-money-75', 'easy-money-32', 'earn-money-79', 'make-cash-98', 'fast-money-36', 'earn-money-35', 'easy-money-93', 'make-cash-48', 'earn-money-6']
+config = {'name' : 'tamidza@gmail.com', 'password' : 'cr4192h1'}
+for k in temp:
+    apps[k] = config
+    
+    
+temp = ['make-cash-29', 'make-money-88', 'money-made-99', 'fast-money-74']
+config = {'name' : 'bethdfs@gmail.com', 'password' : 'r991c97r'}
+for k in temp:
+    apps[k] = config
+    
+    
+temp = ['fast-money-2', 'get-money-2', 'money-net-90', 'make-money-94']
+config = {'name' : 'evadpap@gmail.com', 'password' : 'smmxtkc5'}
+for k in temp:
+    apps[k] = config
+    
+    
+temp = ['money-make-77', 'money-now-33', 'earn-money-10', 'make-money-44']
+config = {'name' : 'juanvxa@gmail.com', 'password' : '94h7sx2q'}
+for k in temp:
+    apps[k] = config
+    
+    
+temp = ['money-now-3', 'money-made-14', 'get-money-21', 'fast-money-28']
+config = {'name' : 'budmrqu@gmail.com', 'password' : 'bs63y46r'}
+for k in temp:
+    apps[k] = config
+    
+    
+temp = ['money-net-6', 'make-money-14', 'money-now-88', 'money-net-62']
+config = {'name' : 'sengjmc@gmail.com', 'password' : 'b65k1qs4'}
+for k in temp:
+    apps[k] = config
+    
+    
+temp = ['easy-money-72', 'easy-money-43', 'get-money-91', 'make-money-46']
+config = {'name' : 'lumakyy@gmail.com', 'password' : 'x5hhk28r'}
+for k in temp:
+    apps[k] = config
+    
+    
+temp = ['money-now-86', 'make-cash-69', 'get-money-68', 'money-net-95']
+config = {'name' : 'keewyns@gmail.com', 'password' : 'g9r626rc'}
+for k in temp:
+    apps[k] = config
+    
+    
+temp = ['money-net-29', 'money-net-99', 'easy-money-81', 'earn-money-57']
+config = {'name' : 'stanhpg@gmail.com', 'password' : '729k8mc6'}
+for k in temp:
+    apps[k] = config
+    
+    
