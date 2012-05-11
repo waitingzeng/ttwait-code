@@ -1,13 +1,14 @@
 #! /usr/bin/env python
 #coding=utf-8
-from singleWeb import singleWeb
-from text import getIn, escape, RndStr, getHidden, getInList
+from singleweb import SingleWeb
+import text
 import urllib
 import re
 import urllib2
 from storage import Storage
 import sys
 from httplib import HTTPConnection
+import random
 HTTPConnection.debuglevel = 0
 
 class CreateApp:
@@ -18,10 +19,11 @@ class CreateApp:
     loginSuccessKey = 'CheckCookie?continue='
     SendMuti = True
     URL_GMAIL = 'https://appengine.google.com/_ah/login/continue?https://appengine.google.com/&ltmpl=ae&sig=c24697718eec1be75b7ab8f8a0c02416'
+    SKIP_URL = 'https://appengine.google.com/_ah/conflogin?continue=https://appengine.google.com/'
     ACTION_TOKEN_COOKIE = "GMAIL_AT"
     
     def __init__(self, name, psw):
-        self.web = singleWeb()
+        self.web = SingleWeb()
         self.name = name
         self.psw = psw
         self.params = Storage()
@@ -31,7 +33,7 @@ class CreateApp:
         return "%s%s" % (self.URL_GMAIL, urllib.urlencode(kwargs))
     
     def getLoginData(self, data):
-        all = getHidden(data)
+        all = text.get_hidden(data)
         all.update({
             'Email' : self.name,
             'Passwd' : self.psw,
@@ -40,15 +42,15 @@ class CreateApp:
         return all
 
     def _getActionToken(self):
-        at = self.web.GetCookies(self.ACTION_TOKEN_COOKIE)
+        at = self.web.get_cookies(self.ACTION_TOKEN_COOKIE)
         if at is None:    
             params = {'search' : 'inbox',
                   'start': 0,
                   'view': 'tl',
                   }
-            self.web.GetPage(self._buildURL(**params))
+            self.web.get_page(self._buildURL(**params))
 
-            at = self.web.GetCookies(self.ACTION_TOKEN_COOKIE)
+            at = self.web.get_cookies(self.ACTION_TOKEN_COOKIE)
         return at
     
     def checkLoginSuccess(self, result):
@@ -75,35 +77,37 @@ class CreateApp:
         
         except AttributeError:
             return False
-        pageData = self.web.GetPage(redirectURL)
-        g = getIn(pageData, 'var GLOBALS=[,,', ',,')
+        pageData = self.web.get_page(redirectURL)
+        g = text.get_in(pageData, 'var GLOBALS=[,,', ',,')
         if g is None:
             return False
         self.GLOBALS = eval('[%s]' % g)
         return True
     
     def login(self):
-        res = self.web.GetPage(self.loginUrl)
+        res = self.web.get_page(self.loginUrl)
         if res is None:
             print 'login:get %s fail' % self.loginUrl
             return False
-        self.loginPostUrl = getIn(res, 'action="', '"').replace("&amp;", '&')
+        self.loginPostUrl = text.get_in(res, 'action="', '"').replace("&amp;", '&')
         data = self.getLoginData(res)
         if data is None:
             return False
         header = {
             'referer' : self.web.resp.url
         }
-        res = self.web.GetPage(self.loginPostUrl, data, header)
+        res = self.web.get_page(self.loginPostUrl, data, header)
         if res is None:
             print 'login:post %s fail' % self.loginPostUrl
             return False
         respurl = self.web.url
+        if respurl.find('WITHOUT_PHONE') != -1:
+            self.web.get_page(self.SKIP_URL)
         print respurl
         if respurl.find("accounts/CheckCookie") != -1:
-            url = getIn(res, 'location.replace("', '"')
+            url = text.get_in(res, 'location.replace("', '"')
             url = url.replace('\\x3d', '=').replace('\\x26', '&')
-            res = self.web.GetPage(url)
+            res = self.web.get_page(url)
             if self.web.resp.url.find('appengine.google.com') != -1:
                 return True
         elif respurl.find('https://appengine.google.com') != -1:
@@ -113,18 +117,18 @@ class CreateApp:
     
     def loadApp(self):
         url = 'https://appengine.google.com/'
-        page = self.web.GetPage(url)
+        page = self.web.get_page(url)
         if page is None:
             return []
-        appids = getInList(page, 'app_id=', '"')
+        appids = text.get_in_list(page, 'app_id=', '"')
         return appids
     
     def createApp(self, appid=None):
         url = 'https://appengine.google.com/start/createapp'
-        res = self.web.GetPage(url)
+        res = self.web.get_page(url)
         if appid is None:
-            appid = RndStr(11)
-        data = getHidden(res)
+            appid = text.rnd_str(11)
+        data = text.get_hidden(res)
         data.update({
             'app_id' : appid,
             'title' : appid,
@@ -134,7 +138,7 @@ class CreateApp:
             'submit' : 'Create Application',
         })
         posturl = "https://appengine.google.com/start/createapp.do"
-        res = self.web.GetPage(posturl, data, headers={'referer' : url})
+        res = self.web.get_page(posturl, data, headers={'referer' : url})
         if res is None:
             return False
         file('a.html', 'w').write(res)
@@ -160,7 +164,14 @@ def createmany():
         print i, 'begin'
         create(line)
 
+keywords = [x.strip() for x in file('keyword.txt') if len(x) < 12]
+def get_valid_name():
+    name = random.choice(keywords)
+    name = name.replace(' ', '-').strip()
+    return '%s-%s' % (name, random.randint(0, 100)) 
+
 def create(name):
+    
     fail = file('fail.txt', 'a')
     appfile = file("apps.txt", 'a')
     line = name.strip()
@@ -177,8 +188,8 @@ def create(name):
     if app.login():
         print name, 'login success'
         i = 0
-        while len(temp) < 10:
-            appid = RndStr(14)
+        while len(temp) < 4:
+            appid = get_valid_name()#text.rnd_str(14)
             try:
                 if app.createApp(appid):
                     print i, name, appid, 'create success'
