@@ -1,9 +1,12 @@
-application:  make-money-44
+application: make-money-46
 version: 1
 runtime: python
 api_version: 1
 
 handlers:
+- url: /model.py
+  script: model.py
+
 - url: /.*
   script: test.py
   
