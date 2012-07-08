@@ -1,0 +1,41 @@
+<appwizard> 
+	<introduction> 
+		<name>Wordpress for sae</name> 
+		<author>Wordpress ＆＆ ElmerZhang</author> 
+		<icon>/static/image/app_icons/wordpress.jpg</icon> 
+		<homepage>http://wp4sae.sinaapp.com/</homepage> 
+		<description> 
+		<![CDATA[
+		WordPress for SAE 3.2.1具有以下特性：
+		<ul> 
+			<li>数据库主从分离，提升性能，节省云豆消耗</li> 
+			<li>轻量的Memcache缓存模块，加快网页显示速度的同时减少资源消耗，为您节省云豆。</li> 
+			<li>已内置urlrewrite规则，用户设置固定链接时只需要在控制板中设置一下即可，无需再修改appconfig(.htaccess)配置</li> 
+			<li>附件直接上传到Storage，支持图片附件的缩略图生成。</li> 
+			<li>相较于旧版WordPress for SAE，自本版本起完善邮件发送功能。仅需在WP-Mail-SMTP插件中正确设置SMTP服务器，即可使用邮件发送功能。</li> 
+			<li>删除主题、插件在线安装功能。由于SAE不支持本地代码目录写入，该功能暂时无法支持。</li> 
+ 		</ul>
+		]]>
+		</description> 
+	</introduction> 
+	<platform> 
+		<services> 
+			<service name="wordpress"  params="public">Storage</service> 
+			<service size="12M">Memcache</service> 
+			<service>Mysql</service> 
+		</services> 
+		<appconfig> 
+			<tpl> 
+            <![CDATA[
+name: <<appname>>
+version: <<version>>
+handle:
+  - rewrite:if (!is_file() && !is_dir() && path ~ "^/(.*)") goto "index.php/$1"
+            ]]>
+			</tpl> 
+		</appconfig> 
+	</platform> 
+	<code> 
+	<initScript>index.php</initScript> 
+	</code> 
+</appwizard> 
