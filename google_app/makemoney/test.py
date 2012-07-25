@@ -10,6 +10,7 @@ import logging
 import re
 import json
 import model
+import urllib
 
 class Storage(dict):
     def __getattr__(self, key):
@@ -27,9 +28,18 @@ class Storage(dict):
         except KeyError, k:
             raise AttributeError, k
 
+def add_querystr(uri, d):
+    query = urllib.urlencode(d)
+    if uri.find('?') != -1:
+        if uri.endswith('&'):
+            return uri + query
+        else:
+            return uri + '&' + query
+    else:
+        return uri + '?' + query
 
 
-default_config_url = 'http://ttwait.sinaapp.com/getconfig?appid=money-now-79'
+default_config_url = 'http://ttwait.sinaapp.com/getconfig'
 #default_config_url = 'http://localhost:9000/getconfig'
 query_r_re = re.compile('[&|?]*r=[^&]*', re.I)
 memcache_timeout = 259200
@@ -48,9 +58,10 @@ class MainHandler(webapp.RequestHandler):
     
     def get_config(self, config_url=default_config_url):
         #config_url = self.get_config_url()
-        logging.error('config url %s', config_url)
+        
         config = memcache.get(config_url)
         if not config:
+            logging.error('get config from url %s', config_url)
             resp = self.fetchurl(config_url)
             if resp.status_code != 200:
                 logging.error('config_url %s get fail', config_url)
@@ -115,6 +126,7 @@ class MainHandler(webapp.RequestHandler):
             remove_host.append('')
             remove_host = '.'.join(remove_host)
             gourl = self.request.uri.replace(remove_host, '')
+            gourl = add_querystr(gourl, {'r' : remove_host[:-1]})
             self.response.set_status(301, 'Moved Permanently')
             self.response.headers['Location'] = gourl
             return
@@ -142,7 +154,7 @@ class MainHandler(webapp.RequestHandler):
                 query_string = query_r_re.sub('', self.request.query_string)
                 if query_string:
                     gourl = '%s?%s' % (gourl, query_string)
-        
+        logging.info('get gourl %s', gourl)
         if url in config.REDIRECTURL:
             self.response.set_status(301, 'Moved Permanently')
             self.response.headers['Location'] = gourl
@@ -152,6 +164,7 @@ class MainHandler(webapp.RequestHandler):
             page = memcache.get(gourl)
             #page = None
             if page is None:
+                logging.info('get gourl %s not cache', gourl)
                 page = self.fetchurl(gourl)
                 ext = url.rsplit('.', 1)[-1]
                 if ext not in config.NOTREPLACEEXT:
@@ -161,6 +174,8 @@ class MainHandler(webapp.RequestHandler):
                             if callable(func):
                                 page.content = func(page.content)
                 memcache.set(gourl, page, memcache_timeout)
+            else:
+                logging.info('get gourl %s in cache', gourl)
             self.response.set_status(page.status_code, self.response.http_status_message(page.status_code))
             
             for header in page.headers:
