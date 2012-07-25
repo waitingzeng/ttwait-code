@@ -29,8 +29,8 @@ class Storage(dict):
 
 
 
-#default_config_url = 'http://ttwait.sinaapp.com/getconfig'
-default_config_url = 'http://localhost:8000/getconfig'
+default_config_url = 'http://ttwait.sinaapp.com/getconfig?appid=money-now-79'
+#default_config_url = 'http://localhost:9000/getconfig'
 query_r_re = re.compile('[&|?]*r=[^&]*', re.I)
 memcache_timeout = 259200
 class MainHandler(webapp.RequestHandler):
@@ -46,16 +46,22 @@ class MainHandler(webapp.RequestHandler):
             memcache.set('config_url', config_url, memcache_timeout)
         return config_url
     
-    def get_config(self):
-        config_url = self.get_config_url()
+    def get_config(self, config_url=default_config_url):
+        #config_url = self.get_config_url()
         logging.error('config url %s', config_url)
         config = memcache.get(config_url)
         if not config:
             resp = self.fetchurl(config_url)
             if resp.status_code != 200:
                 logging.error('config_url %s get fail', config_url)
-                return None
+                
+                config = memcache.get(config_url + '_old')
+                if config:
+                    return Storage(config)
+                return self.get_config()
             config = json.loads(resp.content)
+            if not config['SITE'].startswith('http://'):
+                config['SITE'] = 'http://' + config['SITE']
             if 'NOTREPLACEEXT' not in config:
                 config['NOTREPLACEEXT'] = default_config.NOTREPLACEEXT
             
@@ -69,10 +75,12 @@ class MainHandler(webapp.RequestHandler):
                 config['funcs'] = default_config.funcs
             
             memcache.set(config_url, config, memcache_timeout)
-            
+            memcache.set('config_url', config_url, memcache_timeout)
+        memcache.set(config_url+'_old', config, memcache_timeout)
         return Storage(config)
     
     def fetchurl(self, url):
+        logging.error(url)
         for _ in range(3):
             try:
                 resp = urlfetch.fetch(url, deadline =10)
@@ -89,6 +97,8 @@ class MainHandler(webapp.RequestHandler):
         self.response.headers['Location'] = gourl
         
     def nourl(self, config, url):
+        if not config:
+            return False
         for u in config.NOURL:
             if url.find(u) != -1:
                 return True
@@ -100,13 +110,25 @@ class MainHandler(webapp.RequestHandler):
             self.response.out.write('cache clear')
             return
         
-        config = self.get_config()
-        
+        if self.request.host.count('.') > 2:
+            remove_host = self.request.host.split('.')[:-3]
+            remove_host.append('')
+            remove_host = '.'.join(remove_host)
+            gourl = self.request.uri.replace(remove_host, '')
+            self.response.set_status(301, 'Moved Permanently')
+            self.response.headers['Location'] = gourl
+            return
+            
+            
+        config = self.get_config(self.get_config_url())
         if url == 'getconfig':
             s = str(config)
             self.response.headers['Content-Type'] = 'text/plain'
             self.response.out.write(s)
             return
+        
+        if not config:
+            return ''
         
         if self.nourl(config, url):
             self.response.set_status(404, 'Not Found')
@@ -114,10 +136,13 @@ class MainHandler(webapp.RequestHandler):
             return
         gourl = '%s/%s' % (config.SITE, url)
         if self.request.query_string:
-            query_string = query_r_re.sub('', self.request.query_string)
-            gourl = '%s?%s' % (gourl, query_string)
-        #if self.request.query_string and not (len(self.request.query_string) == 13 and self.request.query_string.startswith('13')):
-        #    gourl = '%s?%s' % (gourl, self.request.query_string)
+            try:
+                float(self.request.query_string)
+            except:
+                query_string = query_r_re.sub('', self.request.query_string)
+                if query_string:
+                    gourl = '%s?%s' % (gourl, query_string)
+        
         if url in config.REDIRECTURL:
             self.response.set_status(301, 'Moved Permanently')
             self.response.headers['Location'] = gourl
@@ -130,7 +155,7 @@ class MainHandler(webapp.RequestHandler):
                 page = self.fetchurl(gourl)
                 ext = url.rsplit('.', 1)[-1]
                 if ext not in config.NOTREPLACEEXT:
-                    for k,v in config.REPLACE:
+                    for k,v in config.REPLACE.items():
                         page.content = page.content.replace(k,v)
                         for func in config.funcs:
                             if callable(func):
