@@ -3,6 +3,8 @@
 from google.appengine.ext import db
 import wsgiref.handlers
 from google.appengine.ext import webapp
+from google.appengine.api import memcache
+from django.utils import simplejson as json
 
 class Config(db.Model):
     name = db.StringProperty(required=True)
@@ -33,7 +35,7 @@ class MainHandler(webapp.RequestHandler):
         value = self.request.get('value', None)
         action = self.request.get('action', 'help')
         if action == 'help':
-            res = "?action=[set|get|help]&name=[name]&value=[value]"
+            res = "?action=[set|get|help|getcache]&name=[name]&value=[value]"
         else:
             if not name:
                 res = 'name must give!'
@@ -49,6 +51,8 @@ class MainHandler(webapp.RequestHandler):
                         item.value = value
                         item.put()
                         res = '%s = "%s" success' % (name, value)
+                elif action == 'getcache':
+                    return json.dumps(memcache.get(name))
                 else:
                     res = '%s is not in [set|get|help]' % action
                     

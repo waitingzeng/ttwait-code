@@ -8,9 +8,10 @@ from random import random
 import config as default_config
 import logging
 import re
-import json
+from django.utils import simplejson as json
 import model
 import urllib
+import traceback
 
 class Storage(dict):
     def __getattr__(self, key):
@@ -167,12 +168,19 @@ class MainHandler(webapp.RequestHandler):
                 logging.info('get gourl %s not cache', gourl)
                 page = self.fetchurl(gourl)
                 ext = url.rsplit('.', 1)[-1]
-                if ext not in config.NOTREPLACEEXT:
+                content_type = page.headers['Content-Type']
+                if ext not in config.NOTREPLACEEXT and content_type.find('text') >= 0:
+                    page.content = page.content.decode('utf-8', 'ignore')
                     for k,v in config.REPLACE.items():
-                        page.content = page.content.replace(k,v)
-                        for func in config.funcs:
-                            if callable(func):
-                                page.content = func(page.content)
+                        
+                        try:
+                            
+                            page.content = page.content.replace(k,v)
+                        except:
+                            logging.error(traceback.format_exc())
+                    for func in config.funcs:
+                        if callable(func):
+                            page.content = func(page.content)
                 memcache.set(gourl, page, memcache_timeout)
             else:
                 logging.info('get gourl %s in cache', gourl)
