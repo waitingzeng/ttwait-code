@@ -1,14 +1,15 @@
 #! /usr/bin/env python
 #coding=utf-8
-from appcfg import *
 import os
 import sys
+
+from appcfg import *
 import urllib2
 import getopt
 import socket
 timeout = 10
 socket.setdefaulttimeout(timeout)
-from dict4ini import DictIni
+from pycomm.utils.dict4ini import DictIni
 
 site_config = DictIni('site_config.ini')
 path = 'makemoney'
@@ -52,10 +53,11 @@ if __name__ == '__main__':
             a.write(appcontent)
             a.close()
             print ' '.join(sys.argv)
-            for j in range(10):
+            for j in range(3):
                 try:
                     #raw_input()
-                    execfile(script_path, globals())
+                    print script_path
+                    execfile('/usr/local/bin/' + script_path, globals())
                     print key, 'success\n\n' 
                     break
                 except Exception, info:

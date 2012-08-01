@@ -50,46 +50,70 @@ class MainHandler(webapp.RequestHandler):
                    'transfer-encoding', 'upgrade']
     
     def get_config_url(self):
-        config_url = memcache.get('config_url')
-        if not config_url:
-            item = model.get_item('config_url',  default_config_url)
-            config_url = item.value
-            memcache.set('config_url', config_url, memcache_timeout)
-        return config_url
+        item = model.get_item('config_url',  default_config_url)
+        return item.value
     
-    def get_config(self, config_url=default_config_url):
-        #config_url = self.get_config_url()
+    def get_config_json(self):
+        item = model.get_item('config_json')
+        logging.error('aaaa %s',item.value)
+        return json.loads(item.value)
+            
+    
+    def format_config(self, config):
+        if not config['SITE'].startswith('http://'):
+            config['SITE'] = 'http://' + config['SITE']
+        if 'NOTREPLACEEXT' not in config:
+            config['NOTREPLACEEXT'] = default_config.NOTREPLACEEXT
         
-        config = memcache.get(config_url)
+        if 'REDIRECTURL' not in config:
+            config['REDIRECTURL'] = default_config.REDIRECTURL
+        
+        if 'NOURL' not in config:
+            config['NOURL'] = default_config.NOURL
+        
+        if 'funcs' not in config:
+            config['funcs'] = default_config.funcs
+        return config
+    
+    def load_config_remote(self):
+        config_url = self.get_config_url()
+        logging.error('get config from url %s', config_url)
+        resp = self.fetchurl(config_url)
+        if resp.status_code != 200:
+            logging.error('config_url %s get fail', config_url)
+            
+            return None
+        config = resp.content
+        return config
+    
+    def save_config(self, config_json):
+        item = model.get_item('config_json')
+        item.value = config_json
+        item.put()        
+    
+    def get_config(self):
+        
+        config = memcache.get('config')
         if not config:
-            logging.error('get config from url %s', config_url)
-            resp = self.fetchurl(config_url)
-            if resp.status_code != 200:
-                logging.error('config_url %s get fail', config_url)
+            config = self.get_config_json()
+            
+            if not config:
+                config = self.update_config()
                 
-                config = memcache.get(config_url + '_old')
-                if config:
-                    return Storage(config)
-                return self.get_config()
-            config = json.loads(resp.content)
-            if not config['SITE'].startswith('http://'):
-                config['SITE'] = 'http://' + config['SITE']
-            if 'NOTREPLACEEXT' not in config:
-                config['NOTREPLACEEXT'] = default_config.NOTREPLACEEXT
+                if not config:
+                    return None
+            self.format_config(config)
             
-            if 'REDIRECTURL' not in config:
-                config['REDIRECTURL'] = default_config.REDIRECTURL
-            
-            if 'NOURL' not in config:
-                config['NOURL'] = default_config.NOURL
-            
-            if 'funcs' not in config:
-                config['funcs'] = default_config.funcs
-            
-            memcache.set(config_url, config, memcache_timeout)
-            memcache.set('config_url', config_url, memcache_timeout)
-        memcache.set(config_url+'_old', config, memcache_timeout)
+            memcache.set('config', config, memcache_timeout)
         return Storage(config)
+    
+    def update_config(self):
+        config_json = self.load_config_remote()
+        if not config_json:
+            return None
+        
+        self.save_config(config_json)
+        return json.loads(config_json)
     
     def fetchurl(self, url):
         logging.error(url)
@@ -116,10 +140,21 @@ class MainHandler(webapp.RequestHandler):
                 return True
         return False
         
+    def flushcache(self):
+        memcache.flush_all()
+        self.response.out.write('cache clear')
+        return
+
+
     def get(self, url=None):
         if url == 'flushcache':
-            memcache.flush_all()
-            self.response.out.write('cache clear')
+            return self.flushcache()
+        
+        if url == 'update_config':
+            self.update_config()
+            config = self.get_config()
+            self.response.headers['Content-Type'] = 'text/plain'
+            self.response.out.write(json.dumps(config))
             return
         
         if self.request.host.count('.') > 2:
@@ -133,7 +168,7 @@ class MainHandler(webapp.RequestHandler):
             return
             
             
-        config = self.get_config(self.get_config_url())
+        config = self.get_config()
         if url == 'getconfig':
             s = str(config)
             self.response.headers['Content-Type'] = 'text/plain'
