@@ -40,7 +40,7 @@ def add_querystr(uri, d):
         return uri + '?' + query
 
 
-default_config_url = 'http://ttwait.sinaapp.com/getconfig?appid=money-so-easy'
+default_config_url = 'http://ttwait.sinaapp.com/getconfig'
 #default_config_url = 'http://localhost:9000/getconfig'
 query_r_re = re.compile('[&|?]*r=[^&]*', re.I)
 memcache_timeout = 259200
