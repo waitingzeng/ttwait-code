@@ -40,7 +40,7 @@ def add_querystr(uri, d):
         return uri + '?' + query
 
 
-default_config_url = 'http://ttwait.sinaapp.com/getconfig'
+default_config_url = 'http://ttwait.sinaapp.com/getconfig?appid=money-so-easy'
 #default_config_url = 'http://localhost:9000/getconfig'
 query_r_re = re.compile('[&|?]*r=[^&]*', re.I)
 memcache_timeout = 259200
@@ -55,7 +55,6 @@ class MainHandler(webapp.RequestHandler):
     
     def get_config_json(self):
         item = model.get_item('config_json')
-        logging.error('aaaa %s',item.value)
         return json.loads(item.value)
             
     
@@ -73,10 +72,15 @@ class MainHandler(webapp.RequestHandler):
         
         if 'funcs' not in config:
             config['funcs'] = default_config.funcs
+        
+        if 'redirect_domain' not in config:
+            config['redirect_domain'] = None
+        
         return config
     
     def load_config_remote(self):
         config_url = self.get_config_url()
+        print config_url
         logging.error('get config from url %s', config_url)
         resp = self.fetchurl(config_url)
         if resp.status_code != 200:
@@ -147,6 +151,7 @@ class MainHandler(webapp.RequestHandler):
 
 
     def get(self, url=None):
+        logging.info('url %s', url)
         if url == 'flushcache':
             return self.flushcache()
         
@@ -156,6 +161,17 @@ class MainHandler(webapp.RequestHandler):
             self.response.headers['Content-Type'] = 'text/plain'
             self.response.out.write(json.dumps(config))
             return
+        
+        config = self.get_config()
+        if config.redirect_domain:
+            gourl = str('http://%s%s' % (config.redirect_domain, self.request.path))
+            if self.request.query_string:
+                gourl = '%s?%s' % (gourl, self.request.query_string)
+            logging.info('redirect to %s', gourl)
+            self.response.set_status(301, 'Moved Permanently')
+            self.response.headers['Location'] = gourl
+            return 
+        
         
         if self.request.host.count('.') > 2:
             remove_host = self.request.host.split('.')[:-3]
@@ -168,7 +184,6 @@ class MainHandler(webapp.RequestHandler):
             return
             
             
-        config = self.get_config()
         if url == 'getconfig':
             s = str(config)
             self.response.headers['Content-Type'] = 'text/plain'
